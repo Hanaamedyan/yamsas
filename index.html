@@ -196,6 +196,15 @@ section, .manifesto, .services, .work-section, .process, .contact { padding: 8re
 .work-card-tag { display: inline-block; font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: .3rem .7rem; margin-bottom: .8rem; }
 .work-card-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--white); line-height: 1.2; margin-bottom: .4rem; }
 .work-card-sub { font-size: .75rem; color: rgba(245,242,236,.45); }
+/* Preview label on work cards */
+.work-card-preview {
+  position: absolute; top: 1rem; left: 1rem;
+  font-size: .55rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  background: rgba(10,10,10,.75); color: rgba(245,242,236,.55);
+  border: 1px solid rgba(245,242,236,.15);
+  padding: 3px 9px; border-radius: 20px; z-index: 3;
+  backdrop-filter: blur(4px);
+}
 .work-card-arrow { position: absolute; top: 1.4rem; right: 1.4rem; width: 36px; height: 36px; background: var(--accent); display: flex; align-items: center; justify-content: center; z-index: 3; opacity: 0; transform: scale(.7); transition: opacity .25s ease, transform .25s ease; }
 .work-card-arrow svg { width: 14px; height: 14px; stroke: var(--white); fill: none; stroke-width: 2; }
 .work-card-link:hover .work-card-arrow { opacity: 1; transform: scale(1); }
@@ -304,7 +313,25 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .form-row{grid-template-columns:1fr;}
   .contact{padding:7rem 1.5rem;}
 }
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important;}}
+/* ── TICKER pause on hover ── */
+.ticker:hover .ticker-inner { animation-play-state: paused; }
+
+/* ── prefers-reduced-motion ──
+   Use duration:0.01ms so animations still COMPLETE (preventing opacity:0 lockouts)
+   but are effectively instant. Never use animation:none — it traps elements at
+   their initial state (e.g. hero text stuck at opacity:0). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1     !important;
+    transition-duration:      0.01ms !important;
+    scroll-behavior:          auto   !important;
+  }
+  /* Ticker: stop the loop entirely — it's decorative only */
+  .ticker-inner { animation: none !important; }
+  /* Reveal elements: make them visible immediately */
+  .reveal, .reveal-l, .reveal-r { opacity: 1 !important; transform: none !important; }
+}
 
 /* ── PRICING ── */
 .pricing { background: var(--black); padding: 8rem 3rem; }
@@ -647,6 +674,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
           <img class="work-card-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=80" alt="Apex Motors" loading="lazy"/>
         </div>
         <div class="work-card-overlay"></div>
+        <span class="work-card-preview">Live preview</span>
         <div class="work-card-arrow"><svg viewBox="0 0 24 24"><polyline points="7 17 17 7"/><polyline points="7 7 17 7 17 17"/></svg></div>
         <div class="work-card-content">
           <span class="work-card-tag">Automotive</span>
@@ -662,6 +690,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
           <img class="work-card-img" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80" alt="Maison Oro" loading="lazy"/>
         </div>
         <div class="work-card-overlay"></div>
+        <span class="work-card-preview">Live preview</span>
         <div class="work-card-arrow"><svg viewBox="0 0 24 24"><polyline points="7 17 17 7"/><polyline points="7 7 17 7 17 17"/></svg></div>
         <div class="work-card-content">
           <span class="work-card-tag">Luxury Retail</span>
@@ -677,6 +706,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
           <img class="work-card-img" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Neural Strength" loading="lazy"/>
         </div>
         <div class="work-card-overlay"></div>
+        <span class="work-card-preview">Live preview</span>
         <div class="work-card-arrow"><svg viewBox="0 0 24 24"><polyline points="7 17 17 7"/><polyline points="7 7 17 7 17 17"/></svg></div>
         <div class="work-card-content">
           <span class="work-card-tag">Fitness & Health</span>
@@ -692,6 +722,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
           <img class="work-card-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Axis Gastronomy" loading="lazy"/>
         </div>
         <div class="work-card-overlay"></div>
+        <span class="work-card-preview">Live preview</span>
         <div class="work-card-arrow"><svg viewBox="0 0 24 24"><polyline points="7 17 17 7"/><polyline points="7 7 17 7 17 17"/></svg></div>
         <div class="work-card-content">
           <span class="work-card-tag">Restaurant</span>
@@ -707,6 +738,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
           <img class="work-card-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Forge.07" loading="lazy"/>
         </div>
         <div class="work-card-overlay"></div>
+        <span class="work-card-preview">Live preview</span>
         <div class="work-card-arrow"><svg viewBox="0 0 24 24"><polyline points="7 17 17 7"/><polyline points="7 7 17 7 17 17"/></svg></div>
         <div class="work-card-content">
           <span class="work-card-tag">SaaS</span>
