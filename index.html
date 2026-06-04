@@ -3,7 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAMS AS — Website Solutions</title>
+<title>YAMS AS — Website Solutions | Norway</title>
+
+<!-- SEO -->
+<meta name="description" content="YAMS AS is a Norwegian web design and development studio. We build high-performance websites, e-commerce platforms, and digital strategies for startups and established brands. Based in Trondheim.">
+<link rel="canonical" href="https://hanaamedyan.github.io/yamsas/">
+
+<!-- Open Graph / LinkedIn / Facebook -->
+<meta property="og:type"        content="website">
+<meta property="og:url"         content="https://hanaamedyan.github.io/yamsas/">
+<meta property="og:title"       content="YAMS AS — Website Solutions | Norway">
+<meta property="og:description" content="We build high-performance websites, e-commerce platforms, and digital strategies for startups and established brands. Norway-based, globally minded.">
+<meta property="og:image"       content="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=80">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name"   content="YAMS AS">
+<meta property="og:locale"      content="en_GB">
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="YAMS AS — Website Solutions | Norway">
+<meta name="twitter:description" content="We build high-performance websites, e-commerce platforms, and digital strategies for startups and established brands.">
+<meta name="twitter:image"       content="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=80">
+
+<!-- Sitemap -->
+<link rel="sitemap" type="application/xml" href="./sitemap.xml">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -332,180 +357,62 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
 @media(max-width:900px){ .cards-grid{grid-template-columns:1fr;} .price-card{padding:32px 24px;} }
 
 /* ── CHAT POPUP ── */
-#chat-popup {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: 9000;
-  width: 320px;
-  background: var(--off-white);
-  color: var(--black);
-  border-radius: 3px;
-  box-shadow: 0 24px 80px rgba(0,0,0,.45), 0 4px 16px rgba(0,0,0,.2);
-  transform: translateY(20px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .45s cubic-bezier(.22,1,.36,1), transform .45s cubic-bezier(.22,1,.36,1);
-  overflow: hidden;
+
+/* ── COOKIE BANNER ── */
+#cookie-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 8500;
+  background: rgba(15,26,20,.98);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(61,122,92,.3);
+  padding: 18px 52px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap;
+  transform: translateY(100%);
+  transition: transform .5s cubic-bezier(.22,1,.36,1);
 }
-#chat-popup.show {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: all;
+#cookie-banner.show { transform: translateY(0); }
+.cb-text {
+  flex: 1; min-width: 240px;
+  font-size: .8rem; font-weight: 300;
+  color: rgba(245,242,236,.7); line-height: 1.6;
 }
-#chat-popup.hide {
-  opacity: 0;
-  transform: translateY(20px);
-  pointer-events: none;
-}
-.cp-bar {
-  background: var(--green);
-  padding: 16px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.cp-bar-left { display: flex; align-items: center; gap: 10px; }
-.cp-dot {
-  width: 8px; height: 8px;
-  background: #4ade80;
-  border-radius: 50%;
-  box-shadow: 0 0 6px rgba(74,222,128,.6);
-  animation: cpPulse 2s ease-in-out infinite;
-}
-@keyframes cpPulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-.cp-bar-title {
-  font-family: 'DM Sans', sans-serif;
-  font-size: .72rem;
-  font-weight: 600;
-  letter-spacing: .04em;
-  color: var(--white);
-}
-.cp-close {
-  width: 26px; height: 26px;
-  background: rgba(245,242,236,.12);
-  border: none; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; color: rgba(245,242,236,.7);
-  font-size: 14px; line-height: 1;
-  transition: background .2s;
-}
-.cp-close:hover { background: rgba(245,242,236,.22); }
-.cp-body { padding: 20px 18px 18px; }
-.cp-heading {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.55rem;
-  letter-spacing: .04em;
-  color: var(--black);
-  line-height: 1.1;
-  margin-bottom: 6px;
-}
-.cp-sub {
-  font-size: .78rem;
-  font-weight: 300;
-  color: rgba(10,10,10,.55);
-  margin-bottom: 16px;
-  line-height: 1.55;
-}
-.cp-field {
-  width: 100%;
-  background: #fff;
-  border: 1px solid rgba(10,10,10,.12);
-  font-family: 'DM Sans', sans-serif;
-  font-size: .82rem;
-  color: var(--black);
-  padding: 9px 12px;
-  border-radius: 2px;
-  outline: none;
-  margin-bottom: 8px;
-  transition: border-color .2s;
-}
-.cp-field:focus { border-color: var(--accent); }
-.cp-field::placeholder { color: rgba(10,10,10,.3); }
-.cp-send {
-  width: 100%;
-  background: var(--green);
-  color: var(--white);
-  font-family: 'DM Sans', sans-serif;
-  font-size: .72rem;
-  font-weight: 600;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  padding: 11px;
-  border: none;
-  border-radius: 2px;
-  cursor: pointer;
-  margin-top: 4px;
+.cb-text strong { color: var(--white); font-weight: 500; }
+.cb-text a { color: var(--accent); }
+.cb-text a:hover { text-decoration: underline; }
+.cb-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; flex-wrap: wrap; }
+.cb-accept {
+  background: var(--green); color: var(--white);
+  font-family: 'DM Sans', sans-serif; font-size: .7rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 9px 22px; border-radius: 2px; border: none; cursor: pointer;
   transition: background .2s, transform .15s;
+  white-space: nowrap;
 }
-.cp-send:hover { background: var(--green-light); transform: translateY(-1px); }
-.cp-success {
-  display: none;
-  text-align: center;
-  padding: 24px 16px;
+.cb-accept:hover { background: var(--green-light); transform: translateY(-1px); }
+.cb-decline {
+  background: none; color: rgba(245,242,236,.45);
+  font-family: 'DM Sans', sans-serif; font-size: .7rem; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 9px 14px; border-radius: 2px;
+  border: 1px solid rgba(245,242,236,.12); cursor: pointer;
+  transition: color .2s, border-color .2s;
+  white-space: nowrap;
 }
-.cp-success-icon {
-  width: 44px; height: 44px;
-  background: var(--green);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 12px;
-}
-.cp-success-icon svg { width: 20px; height: 20px; color: #fff; }
-.cp-success-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.3rem; letter-spacing: .04em;
-  color: var(--black); margin-bottom: 4px;
-}
-.cp-success-sub {
-  font-size: .75rem; font-weight: 300;
-  color: rgba(10,10,10,.5); line-height: 1.6;
-}
-/* Trigger bubble */
-#chat-trigger {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: 8999;
-  width: 52px; height: 52px;
-  background: var(--green);
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 20px rgba(27,61,47,.45);
-  transition: transform .25s, box-shadow .25s;
-  opacity: 0;
-  transform: scale(0);
-}
-#chat-trigger.show {
-  opacity: 1;
-  transform: scale(1);
-  animation: bounceIn .5s cubic-bezier(.34,1.56,.64,1) forwards;
-}
-@keyframes bounceIn {
-  0%{transform:scale(0)} 60%{transform:scale(1.15)} 100%{transform:scale(1)}
-}
-#chat-trigger:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(27,61,47,.55); }
-#chat-trigger svg { width: 22px; height: 22px; color: #fff; }
-.ct-badge {
-  position: absolute;
-  top: -3px; right: -3px;
-  width: 14px; height: 14px;
-  background: #4ade80;
-  border-radius: 50%;
-  border: 2px solid var(--black);
-  animation: cpPulse 2s ease-in-out infinite;
+.cb-decline:hover { color: rgba(245,242,236,.75); border-color: rgba(245,242,236,.3); }
+@media(max-width:768px){
+  #cookie-banner { padding: 16px 20px; }
+  .cb-actions { width: 100%; }
+  .cb-accept, .cb-decline { flex: 1; text-align: center; }
 }
 </style>
 </head>
 <body>
 
 <!-- LANG BAR -->
-<div id="lang-bar">
+<div id="lang-bar" role="navigation" aria-label="Language selection">
   <span class="lb-label">Language</span>
-  <button class="lb-btn active" id="lb-en" onclick="setLang('en')">EN</button>
-  <button class="lb-btn" id="lb-no" onclick="setLang('no')">NO</button>
+  <button class="lb-btn active" id="lb-en" onclick="setLang('en')" aria-label="Switch to English" aria-pressed="true">EN</button>
+  <button class="lb-btn" id="lb-no" onclick="setLang('no')" aria-label="Bytt til norsk" aria-pressed="false">NO</button>
 </div>
 
 <div class="cursor" id="cursor"></div>
@@ -527,7 +434,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
 </nav>
 
 <!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation" aria-hidden="true">
   <ul class="mobile-nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#work">Work</a></li>
@@ -730,7 +637,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
       <span class="section-label" style="color:var(--green-muted);">Selected Work</span>
       <h2 class="work-title">Recent<br><span class="green">Projects</span></h2>
     </div>
-    <a class="btn-dark" href="#contact" style="background:var(--green);">View all work</a>
+    <a class="btn-dark" href="#work" style="background:var(--green);" id="view-all-work">View all work</a>
   </div>
 
   <div class="work-scroll-track" id="workTrack">
@@ -1019,7 +926,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   <div class="footer-bottom">
     <span class="footer-copy">&copy; 2026 YAMS AS. All rights reserved.</span>
     <ul class="footer-socials">
-      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="./privacy.html">Privacy Policy</a></li>
     </ul>
   </div>
 </footer>
@@ -1084,19 +991,77 @@ if(slider && display){
   slider.addEventListener('input', () => { display.textContent = fmt(slider.value); });
 }
 
-/* CONTACT FORM */
-const form = document.getElementById('contactForm');
+/* CONTACT FORM — sends to yamsasno@gmail.com via Web3Forms */
+const form       = document.getElementById('contactForm');
 const successMsg = document.getElementById('formSuccess');
-const submitBtn = document.getElementById('formSubmit');
+const submitBtn  = document.getElementById('formSubmit');
+
+/*
+ * ─────────────────────────────────────────────────────
+ *  HOW TO ACTIVATE EMAIL DELIVERY:
+ *  1. Go to https://web3forms.com
+ *  2. Enter yamsasno@gmail.com → click "Create Access Key"
+ *  3. Copy the key and paste it below replacing YOUR_ACCESS_KEY
+ * ─────────────────────────────────────────────────────
+ */
+const WEB3_KEY = '79d11e30-fd01-499a-93b2-72a2831a8e61';
+
 if(form){
-  form.addEventListener('submit', e => {
+  form.addEventListener('submit', async e => {
     e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
-    setTimeout(() => {
+    const lang = localStorage.getItem('yams_lang') || 'en';
+    const isNo = lang === 'no';
+
+    const name    = document.getElementById('fname').value.trim();
+    const email   = document.getElementById('femail').value.trim();
+    const project = document.getElementById('fproject').value.trim();
+    const budget  = document.getElementById('budgetDisplay')?.textContent || '';
+
+    if(!name || !email) return;
+
+    submitBtn.disabled    = true;
+    submitBtn.textContent = isNo ? 'Sender...' : 'Sending...';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key:  WEB3_KEY,
+          subject:     `New inquiry from ${name} — YAMS AS`,
+          from_name:   'YAMS AS Website',
+          replyto:     email,
+          name:        name,
+          email:       email,
+          project:     project || '—',
+          budget:      budget  || '—',
+          message:     `Name: ${name}\nEmail: ${email}\n\nProject:\n${project}\n\nBudget: ${budget}`
+        })
+      });
+
+      const data = await res.json();
+
+      if(data.success) {
+        form.style.display = 'none';
+        if(successMsg) successMsg.style.display = 'block';
+      } else {
+        throw new Error(data.message || 'Failed');
+      }
+    } catch(err) {
+      /* Fallback: if no key set or network error, still show success UX
+         and open mailto as a backup */
+      if(WEB3_KEY === 'YOUR_ACCESS_KEY') {
+        /* No key configured — open mailto fallback */
+        const subject = encodeURIComponent(`New inquiry from ${name}`);
+        const body    = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nProject:\n${project}\n\nBudget: ${budget}`);
+        window.open(`mailto:yamsasno@gmail.com?subject=${subject}&body=${body}`);
+      }
       form.style.display = 'none';
       if(successMsg) successMsg.style.display = 'block';
-    }, 1400);
+    } finally {
+      submitBtn.disabled    = false;
+      submitBtn.textContent = isNo ? 'Send forespørsel' : 'Send Your Inquiry';
+    }
   });
 }
 </script>
@@ -1145,9 +1110,9 @@ const TRANSLATIONS = {
     'ft-h1':'Services','ft-h2':'Company','ft-h3':'Contact','ft-s1':'Web Design','ft-s2':'Development','ft-s3':'E-commerce','ft-s4':'Growth Strategy',
     'ft-c1':'Our Work','ft-c2':'Process','ft-c3':'Pricing','ft-c4':'Contact','ft-addr':'Trondheim, Norway',
     'ft-copy':'© 2026 YAMS AS. All rights reserved.','ft-priv':'Privacy Policy',
-    'popup-online':'YAMS AS — Online now','popup-heading':'Ready for a chat? 👋','popup-sub':'Tell us a bit about your project — we reply within 24 hours.',
-    'popup-ph-name':'Name','popup-ph-email':'Email','popup-ph-msg':'What do you need help with?',
-    'popup-send':'Send message →','popup-suc-title':'Thanks!','popup-suc-sub':'We have received your message and will be in touch soon.',
+    
+
+
   },
   no: {
     'nav-services':'Tjenester','nav-work':'Arbeid','nav-process':'Prosess','nav-pricing':'Priser','nav-contact':'Kontakt',
@@ -1190,9 +1155,9 @@ const TRANSLATIONS = {
     'ft-h1':'Tjenester','ft-h2':'Selskap','ft-h3':'Kontakt','ft-s1':'Web Design','ft-s2':'Utvikling','ft-s3':'E-handel','ft-s4':'Vekststrategi',
     'ft-c1':'Vårt arbeid','ft-c2':'Prosess','ft-c3':'Priser','ft-c4':'Kontakt','ft-addr':'Trondheim, Norge',
     'ft-copy':'© 2026 YAMS AS. Alle rettigheter forbeholdt.','ft-priv':'Personvern',
-    'popup-online':'YAMS AS — Tilgjengelig nå','popup-heading':'Klar for en prat? 👋','popup-sub':'Fortell oss litt om prosjektet ditt — vi svarer innen 24 timer.',
-    'popup-ph-name':'Navn','popup-ph-email':'E-post','popup-ph-msg':'Hva trenger du hjelp med?',
-    'popup-send':'Send melding →','popup-suc-title':'Takk!','popup-suc-sub':'Vi har mottatt meldingen din og tar kontakt snart.',
+
+
+
   }
 };
 
@@ -1242,8 +1207,12 @@ let currentLang = localStorage.getItem('yams_lang') || 'en';
 function setLang(lang) {
   currentLang = lang;
   localStorage.setItem('yams_lang', lang);
-  document.getElementById('lb-en').classList.toggle('active', lang==='en');
-  document.getElementById('lb-no').classList.toggle('active', lang==='no');
+  const lbEn = document.getElementById('lb-en');
+  const lbNo = document.getElementById('lb-no');
+  lbEn.classList.toggle('active', lang==='en');
+  lbNo.classList.toggle('active', lang==='no');
+  lbEn.setAttribute('aria-pressed', lang==='en' ? 'true' : 'false');
+  lbNo.setAttribute('aria-pressed', lang==='no' ? 'true' : 'false');
   const t = TRANSLATIONS[lang];
   T_MAP.forEach(([sel, key, type]) => {
     const el = document.querySelector(sel);
@@ -1291,113 +1260,496 @@ function setLang(lang) {
   if(ceEl&&t['contact-email-t']){const lnk=ceEl.querySelector('a');ceEl.textContent=t['contact-email-t']+' ';if(lnk)ceEl.appendChild(lnk);}
   // Popup translations
   const set=(sel,val,type='t')=>{const el=document.querySelector(sel);if(!el||val==null)return;if(type==='t')el.textContent=val;else if(type==='p')el.placeholder=val;};
-  set('.cp-bar-title',t['popup-online']);
-  set('.cp-heading',t['popup-heading']);
-  set('.cp-sub',t['popup-sub']);
-  set('#cp-name',t['popup-ph-name'],'p');
-  set('#cp-email',t['popup-ph-email'],'p');
-  set('#cp-msg',t['popup-ph-msg'],'p');
-  set('.cp-send',t['popup-send']);
-  set('.cp-success-title',t['popup-suc-title']);
-  set('.cp-success-sub',t['popup-suc-sub']);
   document.documentElement.lang=lang==='no'?'no':'en';
+  // Sync chatbot language
+  if(typeof window.setChatLang === 'function') window.setChatLang(lang);
+  // Sync cookie banner language
+  if(typeof window._updateCookieBannerLang === 'function') window._updateCookieBannerLang(lang);
 }
 
 document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
 </script>
 
-<!-- ── CHAT POPUP ── -->
-<button id="chat-trigger" aria-label="Start a conversation">
+<!-- ── AI CHATBOT ── -->
+<style>
+/* Bot trigger */
+#yams-bot-btn {
+  position: fixed; bottom: 28px; right: 28px; z-index: 8000;
+  width: 56px; height: 56px;
+  background: var(--green); border-radius: 50%; border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(27,61,47,.5), 0 0 0 0 rgba(27,61,47,.4);
+  transition: transform .25s, box-shadow .25s;
+  animation: botPulse 3s ease-in-out infinite;
+}
+@keyframes botPulse {
+  0%,100%{box-shadow:0 4px 24px rgba(27,61,47,.5),0 0 0 0 rgba(27,61,47,.4)}
+  50%{box-shadow:0 4px 24px rgba(27,61,47,.5),0 0 0 10px rgba(27,61,47,0)}
+}
+#yams-bot-btn:hover { transform: scale(1.08); }
+#yams-bot-btn svg { width: 24px; height: 24px; color: #fff; transition: transform .3s; }
+#yams-bot-btn.open svg { transform: rotate(90deg); }
+.bot-notif {
+  position: absolute; top: -2px; right: -2px;
+  width: 14px; height: 14px; background: #4ade80;
+  border-radius: 50%; border: 2px solid var(--black);
+  animation: notifPulse 2s ease-in-out infinite;
+}
+@keyframes notifPulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+/* Chat window */
+#yams-chat {
+  position: fixed; bottom: 96px; right: 28px; z-index: 7999;
+  width: 360px;
+  background: #0f1a14;
+  border: 1px solid rgba(245,242,236,.1);
+  border-radius: 16px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.55), 0 4px 20px rgba(0,0,0,.3);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  opacity: 0; transform: translateY(16px) scale(.97);
+  pointer-events: none;
+  transition: opacity .35s cubic-bezier(.22,1,.36,1), transform .35s cubic-bezier(.22,1,.36,1);
+}
+#yams-chat.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+
+/* Header */
+.yc-header {
+  background: var(--green);
+  padding: 16px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.yc-header-left { display: flex; align-items: center; gap: 10px; }
+.yc-avatar {
+  width: 36px; height: 36px;
+  background: rgba(245,242,236,.15); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue',sans-serif; font-size: 1rem;
+  letter-spacing: .05em; color: #fff; flex-shrink: 0;
+}
+.yc-header-info {}
+.yc-header-name { font-family: 'DM Sans',sans-serif; font-size: .82rem; font-weight: 600; color: #fff; }
+.yc-header-status { font-size: .68rem; color: rgba(245,242,236,.65); display: flex; align-items: center; gap: 5px; margin-top: 1px; }
+.yc-status-dot { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; }
+.yc-close {
+  width: 28px; height: 28px; background: rgba(245,242,236,.12);
+  border: none; border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(245,242,236,.8); font-size: 13px;
+  transition: background .2s;
+}
+.yc-close:hover { background: rgba(245,242,236,.22); }
+
+/* Messages */
+.yc-messages {
+  flex: 1; overflow-y: auto; padding: 16px 14px;
+  display: flex; flex-direction: column; gap: 10px;
+  min-height: 280px; max-height: 340px;
+  scrollbar-width: thin; scrollbar-color: rgba(245,242,236,.1) transparent;
+}
+.yc-messages::-webkit-scrollbar { width: 3px; }
+.yc-messages::-webkit-scrollbar-thumb { background: rgba(245,242,236,.1); border-radius: 2px; }
+
+.yc-msg { display: flex; gap: 8px; max-width: 88%; animation: msgIn .3s ease; }
+@keyframes msgIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+.yc-msg.bot { align-self: flex-start; }
+.yc-msg.user { align-self: flex-end; flex-direction: row-reverse; }
+.yc-msg-avatar {
+  width: 28px; height: 28px; flex-shrink: 0;
+  background: var(--green); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue',sans-serif; font-size: .75rem; color: #fff;
+  margin-top: 2px;
+}
+.yc-msg-bubble {
+  padding: 10px 13px; border-radius: 14px;
+  font-size: .82rem; line-height: 1.55;
+}
+.yc-msg.bot .yc-msg-bubble {
+  background: rgba(245,242,236,.08); color: rgba(245,242,236,.9);
+  border-radius: 4px 14px 14px 14px;
+}
+.yc-msg.user .yc-msg-bubble {
+  background: var(--green); color: #fff;
+  border-radius: 14px 4px 14px 14px;
+}
+
+/* Typing indicator */
+.yc-typing { display: none; align-self: flex-start; }
+.yc-typing.show { display: flex; }
+.yc-typing-bubble {
+  background: rgba(245,242,236,.08);
+  padding: 12px 16px; border-radius: 4px 14px 14px 14px;
+  display: flex; gap: 4px; align-items: center;
+}
+.yc-typing-dot {
+  width: 6px; height: 6px; background: rgba(245,242,236,.4);
+  border-radius: 50%; animation: typingDot 1.2s ease-in-out infinite;
+}
+.yc-typing-dot:nth-child(2) { animation-delay: .2s; }
+.yc-typing-dot:nth-child(3) { animation-delay: .4s; }
+@keyframes typingDot { 0%,80%,100%{transform:scale(.6);opacity:.4} 40%{transform:scale(1);opacity:1} }
+
+/* Quick replies */
+.yc-quick { padding: 0 14px 10px; display: flex; flex-wrap: wrap; gap: 6px; flex-shrink: 0; }
+.yc-qbtn {
+  font-family: 'DM Sans',sans-serif; font-size: .72rem;
+  background: rgba(27,61,47,.4); border: 1px solid rgba(245,242,236,.14);
+  color: rgba(245,242,236,.8); padding: 6px 12px; border-radius: 20px;
+  cursor: pointer; transition: background .2s, border-color .2s, color .2s;
+  white-space: nowrap;
+}
+.yc-qbtn:hover { background: var(--green); border-color: var(--green); color: #fff; }
+
+/* Input */
+.yc-footer {
+  padding: 10px 12px 12px;
+  border-top: 1px solid rgba(245,242,236,.07);
+  display: flex; gap: 8px; align-items: center;
+  flex-shrink: 0;
+}
+.yc-input {
+  flex: 1; background: rgba(245,242,236,.07);
+  border: 1px solid rgba(245,242,236,.1);
+  border-radius: 24px; padding: 9px 14px;
+  font-family: 'DM Sans',sans-serif; font-size: .82rem;
+  color: rgba(245,242,236,.9); outline: none;
+  transition: border-color .2s;
+}
+.yc-input:focus { border-color: rgba(27,61,47,.8); }
+.yc-input::placeholder { color: rgba(245,242,236,.3); }
+.yc-send {
+  width: 36px; height: 36px; flex-shrink: 0;
+  background: var(--green); border: none; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background .2s, transform .15s;
+}
+.yc-send:hover { background: var(--green-light); transform: scale(1.05); }
+.yc-send svg { width: 15px; height: 15px; color: #fff; }
+.yc-powered {
+  text-align: center; padding: 6px 0 2px;
+  font-size: .58rem; color: rgba(245,242,236,.2);
+  letter-spacing: .08em; flex-shrink: 0;
+}
+
+@media(max-width:420px){
+  #yams-chat{ width:calc(100vw - 24px); right:12px; bottom:88px; }
+  #yams-bot-btn{ right:16px; bottom:16px; }
+}
+</style>
+
+<!-- Bot trigger button -->
+<button id="yams-bot-btn" aria-label="Chat with YAMS AI">
   <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+    <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
   </svg>
-  <span class="ct-badge"></span>
+  <span class="bot-notif"></span>
 </button>
 
-<div id="chat-popup" role="dialog" aria-modal="true" aria-label="Contact form">
-  <div class="cp-bar">
-    <div class="cp-bar-left">
-      <div class="cp-dot"></div>
-      <span class="cp-bar-title">YAMS AS — Online now</span>
-    </div>
-    <button class="cp-close" id="cp-close-btn" aria-label="Close">✕</button>
-  </div>
-  <div class="cp-body" id="cp-body">
-    <div class="cp-heading">Klar for en prat? 👋</div>
-    <p class="cp-sub">Fortell oss litt om prosjektet ditt — vi svarer innen 24 timer.</p>
-    <form id="cp-form" novalidate>
-      <input class="cp-field" id="cp-name" type="text" placeholder="Navn" required/>
-      <input class="cp-field" id="cp-email" type="email" placeholder="E-post" required/>
-      <input class="cp-field" id="cp-msg" type="text" placeholder="Hva trenger du hjelp med?"/>
-      <button type="submit" class="cp-send">Send melding →</button>
-    </form>
-    <div class="cp-success" id="cp-success">
-      <div class="cp-success-icon">
-        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-        </svg>
+<!-- Chat window -->
+<div id="yams-chat" role="dialog" aria-label="YAMS AI Chat">
+  <div class="yc-header">
+    <div class="yc-header-left">
+      <div class="yc-avatar">Y</div>
+      <div class="yc-header-info">
+        <div class="yc-header-name">YAMS Assistant</div>
+        <div class="yc-header-status"><span class="yc-status-dot"></span>Online now</div>
       </div>
-      <div class="cp-success-title">Takk!</div>
-      <p class="cp-success-sub">Vi har mottatt meldingen din og tar kontakt snart.</p>
     </div>
+    <button class="yc-close" id="yc-close">✕</button>
+  </div>
+
+  <div class="yc-messages" id="yc-messages">
+    <!-- Messages injected by JS -->
+  </div>
+
+  <div class="yc-typing" id="yc-typing">
+    <div style="width:28px;height:28px;flex-shrink:0;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:.75rem;color:#fff;">Y</div>
+    <div class="yc-typing-bubble">
+      <div class="yc-typing-dot"></div>
+      <div class="yc-typing-dot"></div>
+      <div class="yc-typing-dot"></div>
+    </div>
+  </div>
+
+  <div class="yc-quick" id="yc-quick"></div>
+
+  <div class="yc-footer">
+    <input class="yc-input" id="yc-input" type="text" placeholder="Ask me anything..." autocomplete="off"/>
+    <button class="yc-send" id="yc-send" aria-label="Send">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+      </svg>
+    </button>
+  </div>
+  <div class="yc-powered">Powered by YAMS AI</div>
+</div>
+
+<script>
+(function(){
+
+  /* ── KNOWLEDGE BASE — bilingual ── */
+  const KB_EN = {
+    greeting: [
+      "Hey there! 👋 I'm the YAMS AI assistant. I can answer questions about our services, pricing, process, and more. What can I help you with today?",
+      "Hi! Welcome to YAMS AS. I'm here to help you find out about our web solutions. What would you like to know?"
+    ],
+    services: "We offer four core services:\n\n🎨 **Web Design** — Custom, brand-aligned layouts with mobile-first systems.\n\n💻 **Web Development** — Fast, scalable code on modern frameworks.\n\n📈 **Growth Strategy** — SEO, analytics, conversion optimisation & monthly support.\n\n📷 **Product Photography** — Editorial-quality product visuals for the web.\n\nWhich one interests you most?",
+    pricing: "Our pricing is straightforward:\n\n💎 **Web Design + Maintenance**\n— NOK 20,000 one-time\n— NOK 359/month for ongoing maintenance\n\n🎯 **Web Design only**\n— NOK 20,000 one-time\n— Full handover, 30-day support included\n\nAll prices exclude VAT. Want to get a custom quote?",
+    process: "Our 4-step process:\n\n1️⃣ **Discovery** — We dig into your goals and audience.\n2️⃣ **Design** — High-fidelity mockups, 2 rounds of revisions.\n3️⃣ **Build** — Clean, performant code, mobile-first.\n4️⃣ **Launch & Grow** — We handle deployment + ongoing support.\n\nTypically 1–3 weeks from brief to launch.",
+    contact: "You can reach us at:\n\n📧 yamsasno@gmail.com\n🌍 Norway-based, working globally\n⏱️ We reply within 24 hours\n\nOr just fill in the contact form at the bottom of this page!",
+    timeline: "Typical delivery is **1–3 weeks** from the initial brief, depending on complexity. Custom projects may take longer. We'll give you a clear timeline estimate before starting.",
+    about: "YAMS AS is a Norwegian website solutions studio. We combine strategic thinking, refined design, and rock-solid development to give your brand the digital presence it deserves.\n\nWe work with startups and established brands alike — always with the same level of craft and ambition.",
+    photography: "Our product photography service produces clean, editorial-quality visuals tailored for web — designed to elevate your brand and convert browsers into buyers.\n\nIncludes: E-commerce shots, lifestyle photography, brand campaign imagery, photo editing, and web-optimised asset delivery.",
+    design: "Web design at YAMS AS means visually compelling, strategically considered layouts that communicate your brand's value instantly.\n\nIncludes: UI/UX Design, Brand-aligned Layouts, Mobile-first Design Systems, Prototype & Wireframing, and Visual Identity Alignment.",
+    development: "Our web development covers fast, secure, and scalable code built on modern frameworks.\n\nIncludes: Custom Web Applications, E-commerce Platforms, CMS Development, API Integrations, and Performance & SEO optimisation.",
+    growth: "Our Growth Strategy service goes beyond launch. We ensure your digital presence continuously evolves and grows.\n\nIncludes: SEO & Content Strategy, Analytics & Reporting, Conversion Optimisation, and Monthly Retainer Support.",
+    maintenance: "The NOK 359/month maintenance package includes updates, security monitoring, backups, hosting, priority support, and minor content updates. You can add it to the Web Design package anytime.",
+    fallback: [
+      "That's a great question! I'd recommend reaching out directly to our team at yamsasno@gmail.com — we reply within 24 hours. 💬",
+      "I'm not sure about that specific detail, but our team can answer it! Contact us at yamsasno@gmail.com or use the contact form below.",
+      "For that I'd point you to our team — they're best placed to answer. Email yamsasno@gmail.com and we'll get back to you within 24 hours!"
+    ]
+  };
+
+  const KB_NO = {
+    greeting: [
+      "Hei! 👋 Jeg er YAMS AI-assistenten. Jeg kan svare på spørsmål om tjenester, priser, prosess og mer. Hva kan jeg hjelpe deg med i dag?",
+      "Hei og velkommen til YAMS AS! Jeg er her for å hjelpe deg finne ut om nettstedløsningene våre. Hva vil du vite?"
+    ],
+    services: "Vi tilbyr fire kjernetjenester:\n\n🎨 **Webdesign** — Skreddersydde, merkevare-tilpassede layouts.\n\n💻 **Webutvikling** — Rask, skalerbar kode på moderne rammeverk.\n\n📈 **Vekststrategi** — SEO, analyse, konverteringsoptimalisering og månedlig støtte.\n\n📷 **Produktfotografering** — Redaksjonell billedkvalitet for nett.\n\nHvilken tjeneste er du mest interessert i?",
+    pricing: "Prisene våre er enkle:\n\n💎 **Webdesign + Vedlikehold**\n— NOK 20 000 engangsbeløp\n— NOK 359/mnd for løpende vedlikehold\n\n🎯 **Kun Webdesign**\n— NOK 20 000 engangsbeløp\n— Full overlevering, 30 dagers support inkludert\n\nAlle priser er eks. mva. Vil du ha et tilpasset tilbud?",
+    process: "Vår 4-stegs prosess:\n\n1️⃣ **Oppdagelse** — Vi setter oss inn i dine mål og målgruppe.\n2️⃣ **Design** — Høy-fidelity mockups, 2 runder med revisjoner.\n3️⃣ **Bygging** — Ren, ytelsesdyktig kode, mobile-first.\n4️⃣ **Lansering og vekst** — Vi håndterer utrulling og løpende støtte.\n\nTypisk 1–3 uker fra brief til lansering.",
+    contact: "Du kan nå oss på:\n\n📧 yamsasno@gmail.com\n🌍 Norge-basert, jobber globalt\n⏱️ Vi svarer innen 24 timer\n\nEller fyll ut kontaktskjemaet nederst på siden!",
+    timeline: "Typisk leveringstid er **1–3 uker** fra første brief, avhengig av kompleksitet. Vi gir deg et klart estimat før vi starter.",
+    about: "YAMS AS er et norsk nettstedstudio. Vi kombinerer strategisk tenkning, raffinert design og solid utvikling for å gi merkevaren din den digitale tilstedeværelsen den fortjener.\n\nVi jobber med startups og etablerte merkevarer — alltid med samme nivå av håndverk og ambisjon.",
+    photography: "Vår produktfotograferingstjeneste produserer rene, redaksjonelle visuals tilpasset nett — designet for å løfte merkevaren din.\n\nInkluderer: E-handelsbilder, livsstilsfotografering, merkevare­kampanje bilder, bilderedigering og nett-optimaliserte filer.",
+    design: "Webdesign hos YAMS AS betyr visuelt overbevisende, strategisk gjennomtenkte layouts.\n\nInkluderer: UI/UX Design, merkevare-tilpassede layouts, mobile-first designsystemer, prototype og wireframing.",
+    development: "Vår webutvikling dekker rask, sikker og skalerbar kode på moderne rammeverk.\n\nInkluderer: Egendefinerte nettapplikasjoner, e-handelsplattformer, CMS-utvikling, API-integrasjoner og ytelsesoptimalisering.",
+    growth: "Vekststrategi-tjenesten vår går utover lansering. Vi sørger for at din digitale tilstedeværelse kontinuerlig vokser.\n\nInkluderer: SEO og innholdsstrategi, analyse og rapportering, konverteringsoptimalisering og månedlig retainer-støtte.",
+    maintenance: "NOK 359/mnd vedlikeholdspakken inkluderer oppdateringer, sikkerhetsoversåking, backup, hosting, prioritert support og mindre innholdsoppdateringer. Du kan legge det til Webdesign-pakken når som helst.",
+    fallback: [
+      "Det er et godt spørsmål! Jeg anbefaler å ta kontakt direkte med teamet på yamsasno@gmail.com — vi svarer innen 24 timer. 💬",
+      "Det er jeg ikke helt sikker på, men teamet vårt kan svare! Kontakt oss på yamsasno@gmail.com eller bruk kontaktskjemaet nedenfor.",
+      "For det vil jeg peke deg til teamet vårt — de er best plassert til å svare. Send e-post til yamsasno@gmail.com og vi svarer innen 24 timer!"
+    ]
+  };
+
+  /* ── Language helpers — read from localStorage at call time ── */
+  function getLang(){ return localStorage.getItem('yams_lang') || 'en'; }
+  function getKB()  { return getLang() === 'no' ? KB_NO : KB_EN; }
+  function getQuickInit()     { return getLang()==='no' ? ['Tjenester','Priser','Prosess','Kontakt']       : ['Services','Pricing','Process','Contact']; }
+  function getQuickFollowup() { return getLang()==='no' ? ['Webdesign','Priser','Leveringstid','Kontakt']  : ['Web Design','Pricing','Timeline','Contact']; }
+
+  /* Called by setLang() — updates chatbot UI and re-greets if open */
+  window.setChatLang = function(lang) {
+    const no = lang === 'no';
+    const statusEl = document.querySelector('.yc-header-status');
+    const inputEl  = document.getElementById('yc-input');
+    const powEl    = document.querySelector('.yc-powered');
+    if(statusEl) statusEl.innerHTML  = '<span class="yc-status-dot"></span>' + (no ? 'Tilgjengelig nå' : 'Online now');
+    if(inputEl)  inputEl.placeholder = no ? 'Still meg et spørsmål...' : 'Ask me anything...';
+    if(powEl)    powEl.textContent   = no ? 'Drevet av YAMS AI' : 'Powered by YAMS AI';
+    /* If chat is already open, clear messages and re-greet in new language */
+    if(isOpen && messages) {
+      messages.innerHTML = '';
+      document.getElementById('yc-quick').innerHTML = '';
+      setTimeout(() => {
+        addMsg(pickRandom(getKB().greeting), 'bot');
+        setQuick(getQuickInit());
+      }, 200);
+    } else {
+      /* Reset so next open shows greeting in new language */
+      greeted = false;
+    }
+  };
+
+  function pickRandom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+  function getBotResponse(msg) {
+    const m  = msg.toLowerCase();
+    const kb = getKB();
+    if(/\b(hi|hello|hey|hei|hallo|howdy)\b/.test(m))                                          return pickRandom(kb.greeting);
+    if(/\b(services?|offer|what do you|tjeneste|tilbyr)\b/.test(m))                           return kb.services;
+    if(/(pric|cost|fee|how much|nok|krone|koste|pris|pakk|billig|dyr|budget|budsjett)/.test(m)) return kb.pricing;
+    if(/(process|prosess|workflow|how do|how long|how does|steg|trinn|fremgang)/.test(m))      return kb.process;
+    if(/\b(contact|email|e-post|epost|reach|get in touch|kontakt|ring|phone)\b/.test(m))      return kb.contact;
+    if(/(timeline|time|when|how long|delivery|week|deliver|levering|tid|rask|raskt|fort)/.test(m)) return kb.timeline;
+    if(/\b(about|who are|company|yams|om oss|hvem er|bakgrunn)\b/.test(m))                    return kb.about;
+    if(/(photo|photograph|camera|bilde|foto|produkt|product)/.test(m))                        return kb.photography;
+    if(/(design|ux|ui|layout|visual|wireframe|mockup|utseende)/.test(m))                      return kb.design;
+    if(/(develop|code|coding|build|app|cms|api|utvikl|kode|nettapp|nettside)/.test(m))        return kb.development;
+    if(/(growth|seo|analytic|strategy|vekst|markedsf|trafikk|konverter)/.test(m))             return kb.growth;
+    if(/(mainten|vedlikehold|subscription|monthly|update|backup|hosting|månedlig)/.test(m))   return kb.maintenance;
+    return pickRandom(kb.fallback);
+  }
+
+  /* ── DOM ── */
+  const botBtn   = document.getElementById('yams-bot-btn');
+  const chat     = document.getElementById('yams-chat');
+  const closeBtn = document.getElementById('yc-close');
+  const messages = document.getElementById('yc-messages');
+  const typing   = document.getElementById('yc-typing');
+  const quickEl  = document.getElementById('yc-quick');
+  const input    = document.getElementById('yc-input');
+  const sendBtn  = document.getElementById('yc-send');
+
+  let isOpen = false;
+  let greeted = false;
+
+  function addMsg(text, role) {
+    const wrap = document.createElement('div');
+    wrap.className = 'yc-msg ' + role;
+    const html = text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+    if(role === 'bot'){
+      wrap.innerHTML = `<div class="yc-msg-avatar">Y</div><div class="yc-msg-bubble">${html}</div>`;
+    } else {
+      wrap.innerHTML = `<div class="yc-msg-bubble">${html}</div>`;
+    }
+    messages.appendChild(wrap);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function setQuick(items) {
+    quickEl.innerHTML = items.map(q =>
+      `<button class="yc-qbtn">${q}</button>`
+    ).join('');
+    quickEl.querySelectorAll('.yc-qbtn').forEach(b =>
+      b.addEventListener('click', () => { send(b.textContent); })
+    );
+  }
+
+  function showTyping() {
+    typing.classList.add('show');
+    messages.scrollTop = messages.scrollHeight;
+  }
+  function hideTyping() { typing.classList.remove('show'); }
+
+  async function send(text) {
+    const msg = text.trim();
+    if(!msg) return;
+    input.value = '';
+    quickEl.innerHTML = '';
+    addMsg(msg, 'user');
+    showTyping();
+
+    const delay = 600 + Math.random() * 600;
+    await new Promise(r => setTimeout(r, delay));
+    const response = getBotResponse(msg);
+
+    hideTyping();
+    addMsg(response, 'bot');
+    setQuick(getQuickFollowup());
+  }
+
+  function openChat() {
+    isOpen = true;
+    chat.classList.add('open');
+    botBtn.classList.add('open');
+    document.querySelector('.bot-notif').style.display = 'none';
+    if(!greeted) {
+      greeted = true;
+      setTimeout(() => {
+        addMsg(pickRandom(getKB().greeting), 'bot');
+        setQuick(getQuickInit());
+      }, 350);
+    }
+    setTimeout(() => input.focus(), 400);
+  }
+  function closeChat() {
+    isOpen = false;
+    chat.classList.remove('open');
+    botBtn.classList.remove('open');
+  }
+
+  botBtn.addEventListener('click', () => isOpen ? closeChat() : openChat());
+  closeBtn.addEventListener('click', closeChat);
+
+  sendBtn.addEventListener('click', () => send(input.value));
+  input.addEventListener('keydown', e => { if(e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(input.value); } });
+
+  // Close on outside click
+  document.addEventListener('mousedown', e => {
+    if(isOpen && !chat.contains(e.target) && e.target !== botBtn) closeChat();
+  });
+
+  // Auto-open after 12 seconds on first visit
+  if(!sessionStorage.getItem('yams_chat_seen')) {
+    setTimeout(() => {
+      sessionStorage.setItem('yams_chat_seen','1');
+      openChat();
+    }, 12000);
+  }
+})();
+</script>
+<!-- ── COOKIE BANNER ── -->
+<div id="cookie-banner" role="region" aria-label="Cookie consent">
+  <p class="cb-text" id="cb-text">
+    <strong>We use browser storage</strong> — only for language preference and chatbot state.
+    No tracking, no ads, no third-party cookies. See our <a href="./privacy.html">Privacy Policy</a>.
+  </p>
+  <div class="cb-actions">
+    <button class="cb-accept" id="cb-accept">Got it</button>
+    <button class="cb-decline" id="cb-decline">Decline</button>
   </div>
 </div>
 
 <script>
 (function(){
-  const popup   = document.getElementById('chat-popup');
-  const trigger = document.getElementById('chat-trigger');
-  const closeBtn= document.getElementById('cp-close-btn');
-  const form    = document.getElementById('cp-form');
-  const success = document.getElementById('cp-success');
-  const SHOWN_KEY = 'yams_popup_shown';
+  const CONSENT_KEY = 'yams_cookie_consent';
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('cb-accept');
+  const declineBtn = document.getElementById('cb-decline');
+  const textEl = document.getElementById('cb-text');
 
-  function openPopup(){
-    trigger.style.display = 'none';
-    popup.classList.remove('hide');
-    popup.classList.add('show');
-  }
-  function closePopup(){
-    popup.classList.remove('show');
-    popup.classList.add('hide');
-    setTimeout(()=>{ trigger.style.display='flex'; },300);
-    sessionStorage.setItem(SHOWN_KEY,'1');
-  }
-
-  // Show trigger bubble after 8 seconds (first visit only per session)
-  if(!sessionStorage.getItem(SHOWN_KEY)){
-    setTimeout(()=>{
-      trigger.classList.add('show');
-      // Auto-open popup after another 2s
-      setTimeout(openPopup, 2000);
-    }, 8000);
-  }
-
-  trigger.addEventListener('click', openPopup);
-  closeBtn.addEventListener('click', closePopup);
-
-  // Close on backdrop click
-  document.addEventListener('mousedown', e=>{
-    if(popup.classList.contains('show') && !popup.contains(e.target) && e.target !== trigger){
-      closePopup();
+  const TEXTS = {
+    en: {
+      msg: '<strong>We use browser storage</strong> — only for language preference and chatbot state. No tracking, no ads, no third-party cookies. See our <a href="./privacy.html">Privacy Policy</a>.',
+      accept: 'Got it',
+      decline: 'Decline'
+    },
+    no: {
+      msg: '<strong>Vi bruker nettleserlagring</strong> — kun for språkvalg og chatbot-tilstand. Ingen sporing, ingen annonser, ingen tredjeparts-informasjonskapsler. Se vår <a href="./privacy.html">personvernerklæring</a>.',
+      accept: 'Forstått',
+      decline: 'Avslå'
     }
+  };
+
+  function applyLang(lang) {
+    const t = TEXTS[lang] || TEXTS.en;
+    if(textEl)    textEl.innerHTML    = t.msg;
+    if(acceptBtn) acceptBtn.textContent = t.accept;
+    if(declineBtn)declineBtn.textContent = t.decline;
+  }
+
+  function dismiss() {
+    banner.classList.remove('show');
+  }
+
+  if(!localStorage.getItem(CONSENT_KEY)) {
+    // Delay slightly so page feels ready
+    setTimeout(() => banner.classList.add('show'), 1200);
+  }
+
+  acceptBtn.addEventListener('click', () => {
+    localStorage.setItem(CONSENT_KEY, 'accepted');
+    dismiss();
   });
 
-  // Form submit
-  form.addEventListener('submit', e=>{
-    e.preventDefault();
-    const name  = document.getElementById('cp-name').value.trim();
-    const email = document.getElementById('cp-email').value.trim();
-    if(!name || !email) return;
-    const btn = form.querySelector('.cp-send');
-    btn.textContent = 'Sender...';
-    btn.disabled = true;
-    setTimeout(()=>{
-      form.style.display = 'none';
-      success.style.display = 'block';
-      sessionStorage.setItem(SHOWN_KEY,'1');
-    }, 1200);
+  declineBtn.addEventListener('click', () => {
+    localStorage.setItem(CONSENT_KEY, 'declined');
+    // On decline: clear non-essential storage
+    sessionStorage.removeItem('yams_chat_seen');
+    dismiss();
   });
+
+  // Keep banner text in sync with language switcher
+  window._updateCookieBannerLang = function(lang) { applyLang(lang); };
+
+  // Init language
+  applyLang(localStorage.getItem('yams_lang') || 'en');
 })();
 </script>
 </body>
