@@ -126,11 +126,13 @@ nav {
 
 /* HERO */
 .hero { height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 3rem 4rem; position: relative; overflow: hidden; background: var(--black); }
-.hero-bg-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'Bebas Neue', sans-serif; font-size: clamp(12rem,22vw,26rem); color: var(--green); opacity: .08; white-space: nowrap; pointer-events: none; letter-spacing: -.02em; user-select: none; }
-.hero-eyebrow { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; opacity: 0; transform: translateY(20px); animation: fadeUp .8s .3s ease forwards; }
-.hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(5rem,13vw,14rem); line-height: .9; letter-spacing: -.01em; color: var(--white); opacity: 0; transform: translateY(40px); animation: fadeUp .9s .5s ease forwards; }
+.hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(.22) grayscale(.3); pointer-events: none; z-index: 0; }
+.hero-video-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(10,10,10,.45) 0%, rgba(10,10,10,.65) 50%, rgba(10,10,10,.92) 100%); pointer-events: none; }
+.hero-bg-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'Bebas Neue', sans-serif; font-size: clamp(12rem,22vw,26rem); color: var(--green); opacity: .06; white-space: nowrap; pointer-events: none; letter-spacing: -.02em; user-select: none; z-index: 2; }
+.hero-eyebrow { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; opacity: 0; transform: translateY(20px); animation: fadeUp .8s .3s ease forwards; position: relative; z-index: 3; }
+.hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(5rem,13vw,14rem); line-height: .9; letter-spacing: -.01em; color: var(--white); opacity: 0; transform: translateY(40px); animation: fadeUp .9s .5s ease forwards; position: relative; z-index: 3; }
 .hero-title .green { color: var(--accent); }
-.hero-bottom { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 3rem; opacity: 0; transform: translateY(20px); animation: fadeUp .8s .8s ease forwards; }
+.hero-bottom { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 3rem; opacity: 0; transform: translateY(20px); animation: fadeUp .8s .8s ease forwards; position: relative; z-index: 3; }
 .hero-tagline { font-size: clamp(.85rem,1.2vw,1.1rem); font-weight: 300; line-height: 1.7; max-width: 360px; color: rgba(245,242,236,.65); }
 .hero-scroll { display: flex; flex-direction: column; align-items: center; gap: .5rem; font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(245,242,236,.4); }
 .scroll-line { width: 1px; height: 60px; background: var(--accent); animation: scrollPulse 2s ease infinite; }
@@ -482,6 +484,10 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
 
 <!-- HERO -->
 <section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
+    <source src="https://videos.pexels.com/video-files/31460854/13415735_2560_1440_30fps.mp4" type="video/mp4"/>
+  </video>
+  <div class="hero-video-overlay"></div>
   <div class="hero-bg-text" aria-hidden="true">YAMS</div>
   <div class="hero-eyebrow">Website Solutions — Est. Norway</div>
   <h1 class="hero-title">We Build<br><span class="green">Digital</span><br>Presence</h1>
