@@ -1144,7 +1144,7 @@ if(form){
 /* ── LANGUAGE SWITCHER ── */
 const TRANSLATIONS = {
   en: {
-    'nav-services':'Services','nav-work':'Work','nav-process':'Process','nav-pricing':'Pricing','nav-contact':'Contact',
+    'nav-services':'Services','nav-work':'Work','nav-process':'Process','nav-pricing':'Pricing','nav-contact':'Contact','nav-blog':'Blog',
     'nav-cta':'Get a quote','mob-cta':'Get a Quote','mob-tagline':'YAMS — Website Solutions',
     'hero-eyebrow':'Website Solutions — Est. Norway',
     'hero-h1':'We Build<br><span class="green">Digital</span><br>Presence',
@@ -1182,14 +1182,14 @@ const TRANSLATIONS = {
     'contact-email-t':'Or email us directly at',
     'ft-tagline':'Website solutions for businesses that want to grow. Norway-based, globally minded.',
     'ft-h1':'Services','ft-h2':'Company','ft-h3':'Contact','ft-s1':'Web Design','ft-s2':'Development','ft-s3':'E-commerce','ft-s4':'Growth Strategy',
-    'ft-c1':'Our Work','ft-c2':'Process','ft-c3':'Pricing','ft-c4':'Contact','ft-addr':'Trondheim, Norway',
+    'ft-c1':'Our Work','ft-c2':'Process','ft-c3':'Pricing','ft-c4':'Contact','ft-c5':'Blog','ft-addr':'Trondheim, Norway',
     'ft-copy':'© 2026 YAMS. All rights reserved.','ft-orgno':'Org.nr. 937 814 461','ft-priv':'Privacy Policy',
     
 
 
   },
   no: {
-    'nav-services':'Tjenester','nav-work':'Arbeid','nav-process':'Prosess','nav-pricing':'Priser','nav-contact':'Kontakt',
+    'nav-services':'Tjenester','nav-work':'Arbeid','nav-process':'Prosess','nav-pricing':'Priser','nav-contact':'Kontakt','nav-blog':'Blogg',
     'nav-cta':'Få et tilbud','mob-cta':'Få et tilbud','mob-tagline':'YAMS — Nettstedløsninger',
     'hero-eyebrow':'Nettstedløsninger — Est. Norge',
     'hero-h1':'Vi Bygger<br><span class="green">Digital</span><br>Tilstedeværelse',
@@ -1227,7 +1227,7 @@ const TRANSLATIONS = {
     'contact-email-t':'Eller e-post oss direkte på',
     'ft-tagline':'Nettstedløsninger for virksomheter som vil vokse. Norge-basert, globalt tenkende.',
     'ft-h1':'Tjenester','ft-h2':'Selskap','ft-h3':'Kontakt','ft-s1':'Web Design','ft-s2':'Utvikling','ft-s3':'E-handel','ft-s4':'Vekststrategi',
-    'ft-c1':'Vårt arbeid','ft-c2':'Prosess','ft-c3':'Priser','ft-c4':'Kontakt','ft-addr':'Trondheim, Norge',
+    'ft-c1':'Vårt arbeid','ft-c2':'Prosess','ft-c3':'Priser','ft-c4':'Kontakt','ft-c5':'Blogg','ft-addr':'Trondheim, Norge',
     'ft-copy':'© 2026 YAMS. Alle rettigheter forbeholdt.','ft-orgno':'Org.nr. 937 814 461','ft-priv':'Personvern',
 
 
@@ -1236,9 +1236,9 @@ const TRANSLATIONS = {
 };
 
 const T_MAP = [
-  ['.nav-links li:nth-child(1) a','nav-services','t'],['.nav-links li:nth-child(2) a','nav-work','t'],['.nav-links li:nth-child(3) a','nav-process','t'],['.nav-links li:nth-child(4) a','nav-pricing','t'],['.nav-links li:nth-child(5) a','nav-contact','t'],
+  ['.nav-links li:nth-child(1) a','nav-services','t'],['.nav-links li:nth-child(2) a','nav-work','t'],['.nav-links li:nth-child(3) a','nav-process','t'],['.nav-links li:nth-child(4) a','nav-pricing','t'],['.nav-links li:nth-child(5) a','nav-contact','t'],['.nav-links li:nth-child(6) a','nav-blog','t'],
   ['.nav-cta','nav-cta','t'],['.mobile-menu-cta','mob-cta','t'],['.mobile-menu-tagline','mob-tagline','t'],
-  ['.mobile-nav-links li:nth-child(1) a','nav-services','t'],['.mobile-nav-links li:nth-child(2) a','nav-work','t'],['.mobile-nav-links li:nth-child(3) a','nav-process','t'],['.mobile-nav-links li:nth-child(4) a','nav-pricing','t'],['.mobile-nav-links li:nth-child(5) a','nav-contact','t'],
+  ['.mobile-nav-links li:nth-child(1) a','nav-services','t'],['.mobile-nav-links li:nth-child(2) a','nav-work','t'],['.mobile-nav-links li:nth-child(3) a','nav-process','t'],['.mobile-nav-links li:nth-child(4) a','nav-pricing','t'],['.mobile-nav-links li:nth-child(5) a','nav-contact','t'],['.mobile-nav-links li:nth-child(6) a','nav-blog','t'],
   ['.hero-eyebrow','hero-eyebrow','t'],['.hero-title','hero-h1','h'],['.hero-tagline','hero-tagline','t'],
   ['.hero-stat:nth-child(1) .stat-label','stat-label-1','t'],['.hero-stat:nth-child(2) .stat-label','stat-label-2','t'],['.hero-scroll span','hero-scroll','t'],
   ['.manifesto-label','manifesto-label','t'],['.manifesto-quote','manifesto-quote','h'],['.manifesto-body:nth-of-type(1)','manifesto-b1','t'],['.manifesto-body:nth-of-type(2)','manifesto-b2','t'],['.manifesto .btn-dark','manifesto-cta','t'],
@@ -1271,7 +1271,7 @@ const T_MAP = [
   ['.footer-tagline','ft-tagline','t'],
   ['.footer-col:nth-child(2) h4','ft-h1','t'],['.footer-col:nth-child(3) h4','ft-h2','t'],['.footer-col:nth-child(4) h4','ft-h3','t'],
   ['.footer-col:nth-child(2) ul li:nth-child(1) a','ft-s1','t'],['.footer-col:nth-child(2) ul li:nth-child(2) a','ft-s2','t'],['.footer-col:nth-child(2) ul li:nth-child(3) a','ft-s3','t'],['.footer-col:nth-child(2) ul li:nth-child(4) a','ft-s4','t'],
-  ['.footer-col:nth-child(3) ul li:nth-child(1) a','ft-c1','t'],['.footer-col:nth-child(3) ul li:nth-child(2) a','ft-c2','t'],['.footer-col:nth-child(3) ul li:nth-child(3) a','ft-c3','t'],['.footer-col:nth-child(3) ul li:nth-child(4) a','ft-c4','t'],
+  ['.footer-col:nth-child(3) ul li:nth-child(1) a','ft-c1','t'],['.footer-col:nth-child(3) ul li:nth-child(2) a','ft-c2','t'],['.footer-col:nth-child(3) ul li:nth-child(3) a','ft-c3','t'],['.footer-col:nth-child(3) ul li:nth-child(4) a','ft-c4','t'],['.footer-col:nth-child(3) ul li:nth-child(5) a','ft-c5','t'],
   ['.footer-col:nth-child(4) ul li:nth-child(2) a','ft-addr','t'],['.footer-copy','ft-copy','t'],['.footer-orgno','ft-orgno','t'],
   ['.footer-socials li:nth-child(3) a','ft-priv','t'],
 ];
