@@ -12,9 +12,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Blog — Web Design, SEO & Digital Tips | YAMS</title>
-<meta name="description" content="YAMS blog — articles on web design, SEO, pricing and digital solutions for Norwegian businesses. Practical tips from the experts."/>
+<meta name="description" content="YAMS blog — practical articles on web design, SEO, pricing and digital solutions for Norwegian businesses."/>
 <link rel="canonical" href="https://hanaamedyan.github.io/yamsas/blog/"/>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231B3D2F'/%3E%3Cline x1='8' y1='6' x2='16' y2='17' stroke='white' stroke-width='2.8' stroke-linecap='round'/%3E%3Cline x1='24' y1='6' x2='16' y2='17' stroke='white' stroke-width='2.8' stroke-linecap='round'/%3E%3Cline x1='16' y1='17' x2='16' y2='26' stroke='white' stroke-width='2.8' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='17' r='2.5' fill='%23C8A660'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231B3D2F'/%3E%3Cline x1='8' y1='6' x2='16' y2='17' stroke='white' stroke-width='2.8' stroke-linecap='round'/%3E%3Cline x1='24' y1='6' x2='16' y2='17' stroke='white' stroke-width='2.8' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='17' r='2.5' fill='%23C8A660'/%3E%3C/svg%3E">
 <meta name="theme-color" content="#1B3D2F"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://hanaamedyan.github.io/yamsas/blog/"/>
@@ -30,15 +30,11 @@ html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 a{text-decoration:none;color:inherit;}
 img{display:block;max-width:100%;}
-
-/* LANG BAR */
 #lang-bar{position:fixed;top:0;left:0;right:0;height:34px;z-index:200;background:rgba(10,10,10,.98);border-bottom:1px solid rgba(245,242,236,.07);display:flex;align-items:center;justify-content:flex-end;padding:0 52px;gap:4px;backdrop-filter:blur(10px);}
 .lb-label{font-size:.6rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,236,.25);margin-right:6px;}
 .lb-btn{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:2px;border:1px solid transparent;background:none;cursor:pointer;color:rgba(245,242,236,.4);transition:color .2s,background .2s,border-color .2s;}
 .lb-btn:hover{color:rgba(245,242,236,.75);}
 .lb-btn.active{color:var(--white);background:var(--green);border-color:var(--green);}
-
-/* NAV */
 nav{position:fixed;top:34px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 3rem;background:rgba(10,10,10,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(245,242,236,.07);}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--white);letter-spacing:.05em;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
@@ -46,16 +42,12 @@ nav{position:fixed;top:34px;left:0;right:0;z-index:100;display:flex;align-items:
 .nav-links a:hover,.nav-links a.active{opacity:1;}
 .nav-cta{font-size:.73rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--black);background:var(--white);padding:.55rem 1.3rem;transition:background .2s;}
 .nav-cta:hover{background:var(--off-white);}
-
-/* HERO */
 .blog-hero{padding:10rem 3rem 4rem;max-width:1300px;margin:0 auto;}
 .hero-tag{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;}
 .hero-tag::before{content:'';width:2rem;height:1px;background:var(--accent);}
 .blog-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,8vw,7rem);line-height:.95;letter-spacing:.02em;margin-bottom:1.5rem;}
 .blog-hero h1 span{color:var(--green-muted);}
 .blog-hero p{font-size:1.05rem;color:var(--muted);max-width:540px;line-height:1.8;}
-
-/* POSTS */
 .posts-section{max-width:1300px;margin:0 auto;padding:5rem 3rem;}
 .posts-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(245,242,236,.1);}
 .posts-header h2{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.04em;}
@@ -65,23 +57,18 @@ nav{position:fixed;top:34px;left:0;right:0;z-index:100;display:flex;align-items:
 .post-card:hover{background:#111;}
 .post-card.featured{grid-column:span 2;flex-direction:row;gap:3rem;align-items:flex-start;}
 .post-cat{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);font-weight:600;}
-.post-title{font-family:'Playfair Display',serif;font-size:1.35rem;line-height:1.3;color:var(--white);transition:color .2s;}
-.post-card:hover .post-title{color:var(--off-white);}
+.post-title{font-family:'Playfair Display',serif;font-size:1.35rem;line-height:1.3;color:var(--white);}
 .post-card.featured .post-title{font-size:1.85rem;}
 .post-excerpt{font-size:.88rem;color:var(--muted);line-height:1.75;flex:1;}
 .post-meta{display:flex;align-items:center;gap:1rem;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,242,236,.35);}
 .post-arrow{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:.4rem;margin-top:.5rem;transition:gap .2s;}
 .post-card:hover .post-arrow{gap:.7rem;}
 .featured-img{width:220px;flex-shrink:0;height:200px;object-fit:cover;filter:brightness(.8) saturate(.7);}
-
-/* CTA */
 .cta-strip{background:var(--green);padding:4rem 3rem;text-align:center;}
 .cta-strip h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.2rem);letter-spacing:.04em;margin-bottom:1rem;}
 .cta-strip p{font-size:.95rem;color:rgba(245,242,236,.75);margin-bottom:2rem;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.7;}
 .btn-white{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--green);background:var(--white);padding:1rem 2.5rem;transition:background .2s;}
 .btn-white:hover{background:var(--off-white);}
-
-/* FOOTER */
 footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245,242,236,.1);}
 .footer-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
 .footer-brand{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--white);}
@@ -89,7 +76,6 @@ footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245
 .footer-links{display:flex;gap:2rem;list-style:none;}
 .footer-links a{font-size:.72rem;color:rgba(245,242,236,.5);transition:color .2s;}
 .footer-links a:hover{color:var(--white);}
-
 @media(max-width:900px){
   #lang-bar{padding:0 1.5rem;}
   nav{padding:1.2rem 1.5rem;top:34px;}
@@ -133,36 +119,71 @@ footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245
 <div class="posts-section">
   <div class="posts-header">
     <h2 data-key="posts-title">All posts</h2>
-    <span class="posts-count" data-key="posts-count">2 articles</span>
+    <span class="posts-count" data-key="posts-count">7 articles</span>
   </div>
 
   <div class="posts-grid">
-    <a class="post-card featured" href="./hva-koster-en-nettside-i-norge.html">
-      <img class="featured-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=75" alt="Nettside pris Norge" loading="lazy"/>
+
+    <!-- Featured -->
+    <a class="post-card featured" href="./nettside-pris-norge.html">
+      <img class="featured-img" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=75" alt="Nettside pris Norge" loading="lazy"/>
       <div style="display:flex;flex-direction:column;gap:1rem;">
         <div class="post-cat" data-key="cat-price">Pricing & Budget</div>
-        <div class="post-title" data-key="p1-title">Hva koster en nettside i Norge i 2026?</div>
-        <p class="post-excerpt" data-key="p1-excerpt">Oversikt over reelle priser på nettsider i Norge — fra enkle hjemmesider til avanserte nettbutikker. Vi bryter ned hva du faktisk betaler for, og hva du bør unngå.</p>
-        <div class="post-meta">
-          <span>23. juni 2026</span>
-          <span>·</span>
-          <span data-key="read1">6 min read</span>
-        </div>
-        <div class="post-arrow" data-key="read-more">Read article →</div>
+        <div class="post-title" data-key="p1-title">Hva koster en nettside i Norge?</div>
+        <p class="post-excerpt" data-key="p1-exc">Alt du trenger å vite om nettside-priser — hva påvirker prisen, ulike typer nettsider og tips før du bestiller.</p>
+        <div class="post-meta"><span>23. juni 2026</span><span>·</span><span data-key="min5">5 min read</span></div>
+        <div class="post-arrow" data-key="read-art">Read article →</div>
       </div>
     </a>
 
-    <a class="post-card" href="./hvorfor-bedriften-trenger-nettside.html">
-      <div class="post-cat" data-key="cat-strategy">Strategy</div>
-      <div class="post-title" data-key="p2-title">Hvorfor bedriften din trenger en profesjonell nettside i 2026</div>
-      <p class="post-excerpt" data-key="p2-excerpt">Over 80 % av norske forbrukere søker på nett før de kjøper. Uten en profesjonell nettside mister du kunder til konkurrentene — hver eneste dag.</p>
-      <div class="post-meta">
-        <span>23. juni 2026</span>
-        <span>·</span>
-        <span data-key="read2">5 min read</span>
-      </div>
-      <div class="post-arrow" data-key="read-more-2">Read article →</div>
+    <a class="post-card" href="./nettside-for-handverkere.html">
+      <div class="post-cat" data-key="cat-strat">Strategy</div>
+      <div class="post-title" data-key="p2-title">Nettside for håndverkere</div>
+      <p class="post-excerpt" data-key="p2-exc">Er du rørlegger, elektriker, maler eller snekker? Se hvorfor en nettside er ditt kraftigste markedsføringsverktøy.</p>
+      <div class="post-meta"><span>23. juni 2026</span><span>·</span><span data-key="min5b">5 min read</span></div>
+      <div class="post-arrow" data-key="read-art2">Read article →</div>
     </a>
+
+    <a class="post-card" href="./seo-for-sma-bedrifter.html">
+      <div class="post-cat">SEO</div>
+      <div class="post-title" data-key="p3-title">SEO for små bedrifter</div>
+      <p class="post-excerpt" data-key="p3-exc">Praktisk guide til SEO for norske småbedrifter. Ranger høyere på Google og tiltrekk flere kunder — uten å bruke en formue.</p>
+      <div class="post-meta"><span>23. juni 2026</span><span>·</span><span data-key="min7">7 min read</span></div>
+      <div class="post-arrow" data-key="read-art3">Read article →</div>
+    </a>
+
+    <a class="post-card" href="./flere-kunder-fra-google.html">
+      <div class="post-cat" data-key="cat-seo-growth">SEO & Growth</div>
+      <div class="post-title" data-key="p4-title">Hvordan få flere kunder fra Google?</div>
+      <p class="post-excerpt" data-key="p4-exc">Praktiske tips for å bruke Google til å tiltrekke kunder. Lokal SEO, Google Business Profile, anmeldelser og innhold.</p>
+      <div class="post-meta"><span>23. juni 2026</span><span>·</span><span data-key="min6">6 min read</span></div>
+      <div class="post-arrow" data-key="read-art4">Read article →</div>
+    </a>
+
+    <a class="post-card" href="./kundehistorier-norske-bedrifter.html">
+      <div class="post-cat" data-key="cat-cases">Case Studies</div>
+      <div class="post-title" data-key="p5-title">Kundehistorier fra norske bedrifter</div>
+      <p class="post-excerpt" data-key="p5-exc">Se hvordan Sultan Grill, Æra Frisør og Strobe brukte YAMS til å bygge en sterkere digital tilstedeværelse.</p>
+      <div class="post-meta"><span>23. juni 2026</span><span>·</span><span data-key="min5c">5 min read</span></div>
+      <div class="post-arrow" data-key="read-art5">Read article →</div>
+    </a>
+
+    <a class="post-card" href="./hva-koster-en-nettside-i-norge.html">
+      <div class="post-cat" data-key="cat-price2">Pricing & Budget</div>
+      <div class="post-title" data-key="p6-title">Hva koster en nettside i Norge i 2026?</div>
+      <p class="post-excerpt" data-key="p6-exc">Detaljert prisoversikt med tabell — fra enkle hjemmesider til avanserte nettbutikker. Hva bør du unngå?</p>
+      <div class="post-meta"><span>23. juni 2026</span><span>·</span><span data-key="min6b">6 min read</span></div>
+      <div class="post-arrow" data-key="read-art6">Read article →</div>
+    </a>
+
+    <a class="post-card" href="./hvorfor-bedriften-trenger-nettside.html">
+      <div class="post-cat" data-key="cat-strat2">Strategy</div>
+      <div class="post-title" data-key="p7-title">Hvorfor bedriften din trenger en profesjonell nettside i 2026</div>
+      <p class="post-excerpt" data-key="p7-exc">Over 80 % av norske forbrukere søker på nett før de kjøper. Uten en profesjonell nettside mister du kunder — hver dag.</p>
+      <div class="post-meta"><span>23. juni 2026</span><span>·</span><span data-key="min5d">5 min read</span></div>
+      <div class="post-arrow" data-key="read-art7">Read article →</div>
+    </a>
+
   </div>
 </div>
 
@@ -187,59 +208,44 @@ footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245
 </footer>
 
 <script>
-const T = {
-  en: {
+const T={
+  en:{
     'nav-services':'Services','nav-work':'Work','nav-process':'Process','nav-pricing':'Pricing','nav-blog':'Blog','nav-contact':'Contact','nav-cta':'Get a quote',
-    'hero-tag':'YAMS Insights',
-    'hero-h1':'Tips, trends<br/><span>&</span> digital advice',
-    'hero-p':'Practical articles on web design, SEO and digital solutions — written for businesses that want to grow online.',
-    'posts-title':'All posts','posts-count':'2 articles',
-    'cat-price':'Pricing & Budget','cat-strategy':'Strategy',
-    'p1-title':'What does a website cost in Norway in 2026?',
-    'p1-excerpt':'An overview of real website prices in Norway — from simple info sites to advanced e-commerce stores. We break down what you actually pay for and what to avoid.',
-    'read1':'6 min read','read2':'5 min read',
-    'read-more':'Read article →','read-more-2':'Read article →',
-    'p2-title':'Why your business needs a professional website in 2026',
-    'p2-excerpt':'Over 80% of Norwegian consumers search online before they buy. Without a professional website you lose customers to competitors — every single day.',
-    'cta-title':'Ready for a website that delivers?',
-    'cta-sub':'We help Norwegian businesses build websites that look great, load fast and rank on Google.',
-    'cta-btn':'Get a free quote',
-    'ft-home':'Home','ft-pricing':'Pricing','ft-blog':'Blog','ft-contact':'Contact','ft-privacy':'Privacy Policy',
-    'ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461',
+    'hero-tag':'YAMS Insights','hero-h1':'Tips, trends<br/><span>&</span> digital advice','hero-p':'Practical articles on web design, SEO and digital solutions — written for businesses that want to grow online.',
+    'posts-title':'All posts','posts-count':'7 articles',
+    'cat-price':'Pricing & Budget','cat-price2':'Pricing & Budget','cat-strat':'Strategy','cat-strat2':'Strategy','cat-seo-growth':'SEO & Growth','cat-cases':'Case Studies',
+    'p1-title':'What does a website cost in Norway?','p1-exc':'Everything you need to know about website pricing in Norway — what drives the cost and tips before you order.',
+    'p2-title':'Website for tradespeople','p2-exc':'Are you a plumber, electrician, painter or carpenter? See why a website is your most powerful marketing tool.',
+    'p3-title':'SEO for small businesses','p3-exc':'Practical guide to SEO for Norwegian small businesses. Rank higher on Google and attract more customers.',
+    'p4-title':'How to get more customers from Google?','p4-exc':'Practical tips for using Google to attract customers. Local SEO, Google Business Profile, reviews and content.',
+    'p5-title':'Customer stories from Norwegian businesses','p5-exc':'See how Sultan Grill, Æra Frisør and Strobe used YAMS to build a stronger digital presence.',
+    'p6-title':'What does a website cost in Norway in 2026?','p6-exc':'Detailed pricing table — from simple info sites to advanced e-commerce stores. What should you avoid?',
+    'p7-title':'Why your business needs a professional website in 2026','p7-exc':'Over 80% of Norwegian consumers search online before buying. Without a professional website you lose customers every day.',
+    'min5':'5 min read','min5b':'5 min read','min5c':'5 min read','min5d':'5 min read','min6':'6 min read','min6b':'6 min read','min7':'7 min read',
+    'read-art':'Read article →','read-art2':'Read article →','read-art3':'Read article →','read-art4':'Read article →','read-art5':'Read article →','read-art6':'Read article →','read-art7':'Read article →',
+    'cta-title':'Ready for a website that delivers?','cta-sub':'We help Norwegian businesses build websites that look great, load fast and rank on Google.','cta-btn':'Get a free quote',
+    'ft-home':'Home','ft-pricing':'Pricing','ft-blog':'Blog','ft-contact':'Contact','ft-privacy':'Privacy Policy','ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461',
   },
-  no: {
+  no:{
     'nav-services':'Tjenester','nav-work':'Arbeid','nav-process':'Prosess','nav-pricing':'Priser','nav-blog':'Blogg','nav-contact':'Kontakt','nav-cta':'Få et tilbud',
-    'hero-tag':'YAMS Innsikt',
-    'hero-h1':'Tips, trender<br/><span>&</span> digitale råd',
-    'hero-p':'Praktiske artikler om webdesign, SEO og digitale løsninger — skrevet for norske bedrifter som vil vokse på nett.',
-    'posts-title':'Alle innlegg','posts-count':'2 artikler',
-    'cat-price':'Priser & Budsjett','cat-strategy':'Strategi',
-    'p1-title':'Hva koster en nettside i Norge i 2026?',
-    'p1-excerpt':'Oversikt over reelle priser på nettsider i Norge — fra enkle hjemmesider til avanserte nettbutikker. Vi bryter ned hva du faktisk betaler for, og hva du bør unngå.',
-    'read1':'6 min lesing','read2':'5 min lesing',
-    'read-more':'Les artikkelen →','read-more-2':'Les artikkelen →',
-    'p2-title':'Hvorfor bedriften din trenger en profesjonell nettside i 2026',
-    'p2-excerpt':'Over 80 % av norske forbrukere søker på nett før de kjøper. Uten en profesjonell nettside mister du kunder til konkurrentene — hver eneste dag.',
-    'cta-title':'Klar for en nettside som faktisk leverer?',
-    'cta-sub':'Vi hjelper norske bedrifter med å bygge nettsider som ser bra ut, lastes raskt og rangerer på Google.',
-    'cta-btn':'Få et gratis tilbud',
-    'ft-home':'Forside','ft-pricing':'Priser','ft-blog':'Blogg','ft-contact':'Kontakt','ft-privacy':'Personvern',
-    'ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461',
+    'hero-tag':'YAMS Innsikt','hero-h1':'Tips, trender<br/><span>&</span> digitale råd','hero-p':'Praktiske artikler om webdesign, SEO og digitale løsninger — skrevet for norske bedrifter som vil vokse på nett.',
+    'posts-title':'Alle innlegg','posts-count':'7 artikler',
+    'cat-price':'Priser & Budsjett','cat-price2':'Priser & Budsjett','cat-strat':'Strategi','cat-strat2':'Strategi','cat-seo-growth':'SEO & Vekst','cat-cases':'Kundehistorier',
+    'p1-title':'Hva koster en nettside i Norge?','p1-exc':'Alt du trenger å vite om nettside-priser — hva påvirker prisen, ulike typer nettsider og tips før du bestiller.',
+    'p2-title':'Nettside for håndverkere','p2-exc':'Er du rørlegger, elektriker, maler eller snekker? Se hvorfor en nettside er ditt kraftigste markedsføringsverktøy.',
+    'p3-title':'SEO for små bedrifter','p3-exc':'Praktisk guide til SEO for norske småbedrifter. Ranger høyere på Google og tiltrekk flere kunder — uten å bruke en formue.',
+    'p4-title':'Hvordan få flere kunder fra Google?','p4-exc':'Praktiske tips for å bruke Google til å tiltrekke kunder. Lokal SEO, Google Business Profile, anmeldelser og innhold.',
+    'p5-title':'Kundehistorier fra norske bedrifter','p5-exc':'Se hvordan Sultan Grill, Æra Frisør og Strobe brukte YAMS til å bygge en sterkere digital tilstedeværelse.',
+    'p6-title':'Hva koster en nettside i Norge i 2026?','p6-exc':'Detaljert prisoversikt med tabell — fra enkle hjemmesider til avanserte nettbutikker. Hva bør du unngå?',
+    'p7-title':'Hvorfor bedriften din trenger en profesjonell nettside i 2026','p7-exc':'Over 80 % av norske forbrukere søker på nett før de kjøper. Uten en profesjonell nettside mister du kunder — hver dag.',
+    'min5':'5 min lesing','min5b':'5 min lesing','min5c':'5 min lesing','min5d':'5 min lesing','min6':'6 min lesing','min6b':'6 min lesing','min7':'7 min lesing',
+    'read-art':'Les artikkelen →','read-art2':'Les artikkelen →','read-art3':'Les artikkelen →','read-art4':'Les artikkelen →','read-art5':'Les artikkelen →','read-art6':'Les artikkelen →','read-art7':'Les artikkelen →',
+    'cta-title':'Klar for en nettside som faktisk leverer?','cta-sub':'Vi hjelper norske bedrifter med å bygge nettsider som ser bra ut, lastes raskt og rangerer på Google.','cta-btn':'Få et gratis tilbud',
+    'ft-home':'Forside','ft-pricing':'Priser','ft-blog':'Blogg','ft-contact':'Kontakt','ft-privacy':'Personvern','ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461',
   }
 };
-
-function setLang(lang) {
-  localStorage.setItem('yams_lang', lang);
-  document.getElementById('lb-en').classList.toggle('active', lang === 'en');
-  document.getElementById('lb-no').classList.toggle('active', lang === 'no');
-  document.documentElement.lang = lang;
-  document.querySelectorAll('[data-key]').forEach(el => {
-    const val = T[lang][el.dataset.key];
-    if (val !== undefined) el.innerHTML = val;
-  });
-}
-
-setLang(localStorage.getItem('yams_lang') || 'en');
+function setLang(lang){localStorage.setItem('yams_lang',lang);document.getElementById('lb-en').classList.toggle('active',lang==='en');document.getElementById('lb-no').classList.toggle('active',lang==='no');document.documentElement.lang=lang;document.querySelectorAll('[data-key]').forEach(el=>{const v=T[lang][el.dataset.key];if(v!==undefined)el.innerHTML=v;});}
+setLang(localStorage.getItem('yams_lang')||'en');
 </script>
 </body>
 </html>
