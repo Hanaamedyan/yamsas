@@ -49,14 +49,14 @@ html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 a{text-decoration:none;color:inherit;}
 img{display:block;max-width:100%;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 3rem;background:rgba(10,10,10,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(245,242,236,.07);}
+nav{position:fixed;top:34px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 3rem;background:rgba(10,10,10,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(245,242,236,.07);}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--white);letter-spacing:.05em;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
 .nav-links a{font-size:.73rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white);opacity:.65;transition:opacity .2s;}
 .nav-links a:hover,.nav-links a.active{opacity:1;}
 .nav-cta{font-size:.73rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--black);background:var(--white);padding:.55rem 1.3rem;transition:background .2s;}
 .nav-cta:hover{background:var(--off-white);}
-.art-hero{padding:8rem 3rem 3.5rem;max-width:1100px;margin:0 auto;}
+.art-hero{padding:10rem 3rem 3.5rem;max-width:1100px;margin:0 auto;}
 .art-breadcrumb{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,242,236,.35);margin-bottom:1.5rem;display:flex;align-items:center;gap:.7rem;}
 .art-breadcrumb a{color:rgba(245,242,236,.35);transition:color .2s;}
 .art-breadcrumb a:hover{color:var(--white);}
@@ -111,7 +111,7 @@ footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245
 @media(max-width:900px){
   nav{padding:1.2rem 1.5rem;}
   .nav-links,.nav-cta{display:none;}
-  .art-hero{padding:6rem 1.5rem 2.5rem;}
+  .art-hero{padding:8rem 1.5rem 2.5rem;}
   .art-layout{grid-template-columns:1fr;padding:0 1.5rem 4rem;gap:3rem;}
   .art-sidebar{position:static;}
   .stat-grid{grid-template-columns:1fr;}
@@ -119,27 +119,39 @@ footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245
   .related-grid{grid-template-columns:1fr;}
   footer{padding:2rem 1.5rem;}
 }
+/* LANG BAR */
+#lang-bar{position:fixed;top:0;left:0;right:0;height:34px;z-index:200;background:rgba(10,10,10,.98);border-bottom:1px solid rgba(245,242,236,.07);display:flex;align-items:center;justify-content:flex-end;padding:0 52px;gap:4px;backdrop-filter:blur(10px);}
+.lb-label{font-size:.6rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,236,.25);margin-right:6px;}
+.lb-btn{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:2px;border:1px solid transparent;background:none;cursor:pointer;color:rgba(245,242,236,.4);transition:color .2s,background .2s,border-color .2s;}
+.lb-btn:hover{color:rgba(245,242,236,.75);}
+.lb-btn.active{color:var(--white);background:var(--green);border-color:var(--green);}
 </style>
 </head>
 <body>
 
+<div id="lang-bar">
+  <span class="lb-label">Language</span>
+  <button class="lb-btn" id="lb-en" onclick="setLang('en')">EN</button>
+  <button class="lb-btn" id="lb-no" onclick="setLang('no')">NO</button>
+</div>
+
 <nav>
   <a class="nav-logo" href="../">YAMS</a>
   <ul class="nav-links">
-    <li><a href="../#services">Tjenester</a></li>
-    <li><a href="../#work">Arbeid</a></li>
-    <li><a href="../#process">Prosess</a></li>
-    <li><a href="../yams-pakker/">Priser</a></li>
-    <li><a href="./index.html" class="active">Blogg</a></li>
-    <li><a href="../#contact">Kontakt</a></li>
+    <li><a href="../#services" data-key="nav-services">Tjenester</a></li>
+    <li><a href="../#work" data-key="nav-work">Arbeid</a></li>
+    <li><a href="../#process" data-key="nav-process">Prosess</a></li>
+    <li><a href="../yams-pakker/" data-key="nav-pricing">Priser</a></li>
+    <li><a href="./index.html" class="active" data-key="nav-blog">Blogg</a></li>
+    <li><a href="../#contact" data-key="nav-contact">Kontakt</a></li>
   </ul>
-  <a class="nav-cta" href="../#contact">Få et tilbud</a>
+  <a class="nav-cta" href="../#contact" data-key="nav-cta">Få et tilbud</a>
 </nav>
 
 <article>
   <div class="art-hero">
     <div class="art-breadcrumb">
-      <a href="../">YAMS</a> › <a href="./index.html">Blogg</a> › Strategi
+      <a href="../" data-key="crumb-home">Forside</a> › <a href="./index.html" data-key="crumb-blog">Blogg</a> › Strategi
     </div>
     <div class="art-cat">Strategi</div>
     <h1>Hvorfor bedriften din trenger en profesjonell nettside i 2026</h1>
@@ -237,7 +249,7 @@ footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245
 
     <aside class="art-sidebar">
       <div class="sidebar-box">
-        <h4>I denne artikkelen</h4>
+        <h4 data-key="sb-toc">I denne artikkelen</h4>
         <ul class="sidebar-toc">
           <li><a href="#grunn1">1. Jobber 24/7</a></li>
           <li><a href="#grunn2">2. Google-synlighet</a></li>
@@ -248,7 +260,7 @@ footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245
         </ul>
       </div>
       <div class="sidebar-cta">
-        <h4>Klar for en nettside?</h4>
+        <h4 data-key="sb-cta-title">Klar for en nettside?</h4>
         <p>Vi bygger nettsider som faktisk hjelper bedriften å vokse.</p>
         <a href="../#contact">Gratis konsultasjon →</a>
       </div>
@@ -257,7 +269,7 @@ footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245
 </article>
 
 <div class="related">
-  <h2>Les også</h2>
+  <h2 data-key="related-title">Les også</h2>
   <div class="related-grid">
     <a class="related-card" href="./hva-koster-en-nettside-i-norge.html">
       <div class="related-cat">Priser & Budsjett</div>
@@ -282,9 +294,49 @@ footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245
       <li><a href="../#contact">Kontakt</a></li>
       <li><a href="../privacy.html">Personvern</a></li>
     </ul>
-    <span class="footer-copy">© 2026 YAMS AS · Org.nr. 937 814 461</span>
+    <span class="footer-copy" data-key="ft-copy">© 2026 YAMS AS · Org.nr. 937 814 461</span>
   </div>
 </footer>
 
+
+<script>
+const BT = {
+  en: {
+    'nav-services':'Services','nav-work':'Work','nav-process':'Process','nav-pricing':'Pricing','nav-blog':'Blog','nav-contact':'Contact','nav-cta':'Get a quote',
+    'crumb-home':'Home','crumb-blog':'Blog',
+    'sb-toc':'In this article',
+    'sb-cta-title':'Get a quote',
+    'sb-cta-p':'We build websites that look great, load fast and rank on Google.',
+    'sb-cta-link':'Start here →',
+    'related-title':'Read also',
+    'ft-home':'Home','ft-pricing':'Pricing','ft-blog':'Blog','ft-contact':'Contact','ft-privacy':'Privacy Policy',
+    'ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461',
+    'art-by':'By YAMS',
+  },
+  no: {
+    'nav-services':'Tjenester','nav-work':'Arbeid','nav-process':'Prosess','nav-pricing':'Priser','nav-blog':'Blogg','nav-contact':'Kontakt','nav-cta':'Få et tilbud',
+    'crumb-home':'Forside','crumb-blog':'Blogg',
+    'sb-toc':'I denne artikkelen',
+    'sb-cta-title':'Få et tilbud',
+    'sb-cta-p':'Vi lager nettsider som ser bra ut, laster raskt og rangerer på Google.',
+    'sb-cta-link':'Start her →',
+    'related-title':'Les også',
+    'ft-home':'Forside','ft-pricing':'Priser','ft-blog':'Blogg','ft-contact':'Kontakt','ft-privacy':'Personvern',
+    'ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461',
+    'art-by':'Av YAMS',
+  }
+};
+function setLang(lang) {
+  localStorage.setItem('yams_lang', lang);
+  document.getElementById('lb-en').classList.toggle('active', lang==='en');
+  document.getElementById('lb-no').classList.toggle('active', lang==='no');
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const val = BT[lang][el.dataset.key];
+    if (val !== undefined) el.innerHTML = val;
+  });
+}
+setLang(localStorage.getItem('yams_lang') || 'en');
+</script>
 </body>
 </html>
