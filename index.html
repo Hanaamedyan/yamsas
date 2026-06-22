@@ -59,11 +59,11 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; cursor: none; -webkit-font-smoothing: antialiased; }
+body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 a { text-decoration: none; }
 
 /* CURSOR */
-.cursor {
+.cursor { display:none !important; /* removed custom cursor */
   position: fixed; width: 12px; height: 12px;
   background: var(--white); border-radius: 50%;
   pointer-events: none; z-index: 9999;
@@ -460,7 +460,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   <button class="lb-btn" id="lb-no" onclick="setLang('no')" aria-label="Bytt til norsk" aria-pressed="false">NO</button>
 </div>
 
-<div class="cursor" id="cursor"></div>
+
 
 <!-- NAV -->
 <nav id="mainNav">
