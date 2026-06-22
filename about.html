@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HRB3N53CVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HRB3N53CVK');
+</script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About Us — Hana & Johan | YAMS</title>
+<meta name="description" content="Meet Hana and Johan — the team behind YAMS. Two people with years of experience in online businesses and website building, dedicated to growing Norwegian businesses online."/>
+<link rel="canonical" href="https://hanaamedyan.github.io/yamsas/about.html"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231B3D2F'/%3E%3Cline x1='8' y1='6' x2='16' y2='17' stroke='white' stroke-width='2.8' stroke-linecap='round'/%3E%3Cline x1='24' y1='6' x2='16' y2='17' stroke='white' stroke-width='2.8' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='17' r='2.5' fill='%23C8A660'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#1B3D2F"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://hanaamedyan.github.io/yamsas/about.html"/>
+<meta property="og:title" content="About Us — Hana & Johan | YAMS"/>
+<meta property="og:description" content="Meet the team behind YAMS — two people passionate about building websites that actually grow businesses."/>
+<meta property="og:site_name" content="YAMS"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --black:#0A0A0A;--white:#F5F2EC;--green:#1B3D2F;--green-light:#2C5E46;
+  --green-muted:#4a7c5f;--accent:#3D7A5C;--gold:#C8A660;--off-white:#EDEAE2;
+  --muted:rgba(245,242,236,.55);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+
+/* LANG BAR */
+#lang-bar{position:fixed;top:0;left:0;right:0;height:34px;z-index:200;background:rgba(10,10,10,.98);border-bottom:1px solid rgba(245,242,236,.07);display:flex;align-items:center;justify-content:flex-end;padding:0 52px;gap:4px;backdrop-filter:blur(10px);}
+.lb-label{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,236,.25);margin-right:6px;}
+.lb-btn{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:2px;border:1px solid transparent;background:none;cursor:pointer;color:rgba(245,242,236,.4);transition:all .2s;}
+.lb-btn:hover{color:rgba(245,242,236,.75);}
+.lb-btn.active{color:var(--white);background:var(--green);border-color:var(--green);}
+
+/* NAV */
+nav{position:fixed;top:34px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 3rem;background:rgba(10,10,10,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(245,242,236,.07);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--white);letter-spacing:.05em;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:.73rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white);opacity:.65;transition:opacity .2s;}
+.nav-links a:hover,.nav-links a.active{opacity:1;}
+.nav-cta{font-size:.73rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--black);background:var(--white);padding:.55rem 1.3rem;transition:background .2s;}
+.nav-cta:hover{background:var(--off-white);}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;}
+.burger span{display:block;width:22px;height:1.5px;background:var(--white);}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--black);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--white);opacity:.6;transition:opacity .2s;}
+.mobile-menu a:hover{opacity:1;}
+.mob-cta-link{background:var(--white);color:var(--black) !important;opacity:1 !important;font-family:'DM Sans',sans-serif !important;font-size:.8rem !important;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:1rem 2.5rem;margin-top:1rem;}
+
+/* HERO */
+.hero{padding:10rem 3rem 6rem;max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:6rem;align-items:center;}
+.hero-eyebrow{font-size:.65rem;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);margin-bottom:1.4rem;display:flex;align-items:center;gap:.8rem;}
+.hero-eyebrow::before{content:'';width:2rem;height:1px;background:var(--accent);}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,8vw,8rem);line-height:.92;letter-spacing:.02em;margin-bottom:2rem;}
+.hero h1 .green{color:var(--green-muted);}
+.hero-sub{font-size:1.05rem;color:var(--muted);line-height:1.8;max-width:460px;margin-bottom:2.5rem;}
+.hero-phones{display:flex;flex-direction:column;gap:.6rem;margin-bottom:2.5rem;}
+.hero-phones a{display:inline-flex;align-items:center;gap:.7rem;font-size:1.05rem;font-weight:600;color:var(--white);transition:color .2s;}
+.hero-phones a:hover{color:var(--gold);}
+.hero-phones a svg{width:16px;height:16px;color:var(--accent);}
+.hero-ctas{display:flex;gap:.8rem;flex-wrap:wrap;}
+.btn-primary{display:inline-flex;align-items:center;gap:.6rem;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--black);background:var(--white);padding:1.1rem 2rem;transition:background .2s,transform .2s;}
+.btn-primary:hover{background:var(--off-white);transform:translateY(-2px);}
+.btn-green{display:inline-flex;align-items:center;gap:.6rem;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--white);background:var(--green);padding:1.1rem 2rem;border:1px solid var(--green);transition:background .2s,transform .2s;}
+.btn-green:hover{background:var(--green-light);transform:translateY(-2px);}
+.btn-outline-w{display:inline-flex;align-items:center;gap:.6rem;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--white);padding:1.1rem 2rem;border:1.5px solid rgba(245,242,236,.3);transition:border-color .2s,transform .2s;}
+.btn-outline-w:hover{border-color:var(--white);transform:translateY(-2px);}
+.hero-visual{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(245,242,236,.06);}
+.stat-block{background:var(--black);padding:2.5rem 2rem;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--white);line-height:1;margin-bottom:.4rem;}
+.stat-num span{color:var(--accent);}
+.stat-label{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+
+/* DIVIDER */
+.divider-line{height:1px;background:rgba(245,242,236,.08);max-width:1300px;margin:0 auto;}
+
+/* TEAM SECTION */
+.team-section{max-width:1300px;margin:0 auto;padding:7rem 3rem;}
+.section-label{font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:.8rem;}
+.section-label::before{content:'';width:2rem;height:1px;background:var(--accent);}
+.section-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,5rem);line-height:.95;margin-bottom:1.5rem;}
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:4rem;background:rgba(245,242,236,.06);}
+.team-card{background:var(--black);padding:3rem;position:relative;overflow:hidden;}
+.team-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .4s ease;}
+.team-card:hover::before{transform:scaleX(1);}
+.team-initial{font-family:'Bebas Neue',sans-serif;font-size:5rem;color:rgba(245,242,236,.06);line-height:1;margin-bottom:1rem;transition:color .3s;}
+.team-card:hover .team-initial{color:rgba(61,122,92,.15);}
+.team-name{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:.04em;margin-bottom:.3rem;}
+.team-role{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;}
+.team-bio{font-size:.95rem;color:var(--muted);line-height:1.8;}
+.team-contact{margin-top:1.5rem;display:flex;flex-direction:column;gap:.5rem;}
+.team-contact a{font-size:.85rem;color:rgba(245,242,236,.5);transition:color .2s;display:inline-flex;align-items:center;gap:.5rem;}
+.team-contact a:hover{color:var(--white);}
+
+/* WHY SECTION */
+.why-section{background:#0f1a14;padding:7rem 3rem;}
+.why-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:8rem;align-items:start;}
+.why-text p{font-size:1.05rem;color:var(--muted);line-height:1.85;margin-bottom:1.2rem;}
+.why-quote{font-family:'Playfair Display',serif;font-size:1.35rem;font-style:italic;color:var(--off-white);line-height:1.6;border-left:3px solid var(--gold);padding-left:1.8rem;margin:2rem 0;}
+.why-cta-inline{margin-top:2rem;display:flex;flex-direction:column;gap:.8rem;align-items:flex-start;}
+
+/* DIFFERENTIATORS */
+.diff-section{max-width:1300px;margin:0 auto;padding:7rem 3rem;}
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:4rem;background:rgba(245,242,236,.06);}
+.diff-card{background:var(--black);padding:2.8rem 2.2rem;transition:background .25s;}
+.diff-card:hover{background:#0d0d0d;}
+.diff-icon{width:48px;height:3px;background:var(--green);margin-bottom:2rem;transition:width .3s;}
+.diff-card:hover .diff-icon{width:80px;}
+.diff-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.04em;margin-bottom:1rem;}
+.diff-body{font-size:.92rem;color:var(--muted);line-height:1.8;}
+.diff-highlight{color:var(--white);font-weight:600;}
+
+/* CTA BAND */
+.cta-band{background:var(--green);padding:5rem 3rem;}
+.cta-band-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:center;}
+.cta-band h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,5rem);line-height:.95;margin-bottom:1rem;}
+.cta-band p{font-size:1rem;color:rgba(245,242,236,.75);line-height:1.75;}
+.cta-band-btns{display:flex;flex-direction:column;gap:.8rem;}
+.btn-cta-white{display:flex;align-items:center;justify-content:space-between;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--black);background:var(--white);padding:1.2rem 1.8rem;transition:background .2s,transform .2s;}
+.btn-cta-white:hover{background:var(--off-white);transform:translateX(4px);}
+.btn-cta-outline{display:flex;align-items:center;justify-content:space-between;font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--white);padding:1.2rem 1.8rem;border:1.5px solid rgba(245,242,236,.4);transition:border-color .2s,transform .2s;}
+.btn-cta-outline:hover{border-color:var(--white);transform:translateX(4px);}
+.btn-arrow{font-size:1.1rem;}
+
+/* CONTACT STRIP */
+.contact-strip{max-width:1300px;margin:0 auto;padding:6rem 3rem;text-align:center;}
+.contact-strip h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,6rem);line-height:.92;margin-bottom:1.5rem;}
+.contact-strip h2 .g{color:var(--green-muted);}
+.contact-strip p{font-size:1rem;color:var(--muted);max-width:480px;margin:0 auto 2.5rem;line-height:1.8;}
+.contact-phones{display:flex;justify-content:center;gap:3rem;margin-bottom:2.5rem;flex-wrap:wrap;}
+.contact-phone-item{display:flex;flex-direction:column;align-items:center;gap:.4rem;}
+.contact-phone-name{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);}
+.contact-phone-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.04em;color:var(--white);transition:color .2s;}
+.contact-phone-num:hover{color:var(--gold);}
+.contact-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245,242,236,.1);}
+.footer-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.footer-brand{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--white);}
+.footer-copy{font-size:.72rem;color:rgba(245,242,236,.4);}
+.footer-links{display:flex;gap:2rem;list-style:none;}
+.footer-links a{font-size:.72rem;color:rgba(245,242,236,.5);transition:color .2s;}
+.footer-links a:hover{color:var(--white);}
+
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr;gap:3rem;}
+  .hero-visual{display:none;}
+  .why-inner{grid-template-columns:1fr;gap:3rem;}
+  .cta-band-inner{grid-template-columns:1fr;}
+  .diff-grid{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  #lang-bar{padding:0 1.5rem;}
+  nav{padding:1.2rem 1.5rem;}
+  .nav-links,.nav-cta{display:none;}
+  .burger{display:flex;}
+  .hero{padding:8rem 1.5rem 4rem;}
+  .team-section,.diff-section,.contact-strip{padding:5rem 1.5rem;}
+  .why-section{padding:5rem 1.5rem;}
+  .cta-band{padding:4rem 1.5rem;}
+  .team-grid,.diff-grid{grid-template-columns:1fr;}
+  .contact-phones{gap:2rem;}
+  footer{padding:2rem 1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<div id="lang-bar">
+  <span class="lb-label">Language</span>
+  <button class="lb-btn active" id="lb-en" onclick="setLang('en')">EN</button>
+  <button class="lb-btn" id="lb-no" onclick="setLang('no')">NO</button>
+</div>
+
+<nav>
+  <a class="nav-logo" href="./">YAMS</a>
+  <ul class="nav-links">
+    <li><a href="./#services" data-key="nav-services">Services</a></li>
+    <li><a href="./#work" data-key="nav-work">Work</a></li>
+    <li><a href="./#process" data-key="nav-process">Process</a></li>
+    <li><a href="./yams-pakker/" data-key="nav-pricing">Pricing</a></li>
+    <li><a href="./about.html" class="active" data-key="nav-about">About</a></li>
+    <li><a href="./blog/" data-key="nav-blog">Blog</a></li>
+    <li><a href="./#contact" data-key="nav-contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="./#contact" data-key="nav-cta">Book Free Consultation</a>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="./#services" data-key="nav-services">Services</a>
+  <a href="./#work" data-key="nav-work">Work</a>
+  <a href="./#process" data-key="nav-process">Process</a>
+  <a href="./yams-pakker/" data-key="nav-pricing">Pricing</a>
+  <a href="./about.html" data-key="nav-about">About</a>
+  <a href="./blog/" data-key="nav-blog">Blog</a>
+  <a href="./#contact" data-key="nav-contact">Contact</a>
+  <a href="./#contact" class="mob-cta-link" data-key="nav-cta">Book Free Consultation</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow" data-key="hero-eyebrow">The team behind YAMS</div>
+    <h1 data-key="hero-h1">Two people.<br/><span class="green">One</span><br/>mission.</h1>
+    <p class="hero-sub" data-key="hero-sub">We are Hana and Johan — two driven individuals with years of experience in online businesses and website building. We started YAMS because we believe every Norwegian business deserves a professional digital presence.</p>
+    <div class="hero-phones">
+      <a href="tel:99109943">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Hana — 99 10 99 43
+      </a>
+      <a href="tel:90721481">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Johan — 90 72 14 81
+      </a>
+    </div>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="./#contact" data-key="cta-book">Book Free Consultation</a>
+      <a class="btn-outline-w" href="./#contact" data-key="cta-audit">Get Your Website Audit</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="stat-block">
+      <div class="stat-num">5<span>+</span></div>
+      <div class="stat-label" data-key="stat1">Years of experience</div>
+    </div>
+    <div class="stat-block" style="background:#0d0d0d;">
+      <div class="stat-num" style="color:var(--accent);">24<span style="color:var(--accent);">/7</span></div>
+      <div class="stat-label" data-key="stat2">Response time</div>
+    </div>
+    <div class="stat-block" style="background:#0d0d0d;">
+      <div class="stat-num">30<span>+</span></div>
+      <div class="stat-label" data-key="stat3">Projects delivered</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num" style="color:var(--gold);">100<span style="color:var(--gold);">%</span></div>
+      <div class="stat-label" data-key="stat4">Client satisfaction</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<!-- TEAM -->
+<section class="team-section">
+  <div class="section-label" data-key="team-label">Who we are</div>
+  <h2 class="section-h" data-key="team-h">Meet<br/>the team</h2>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-initial">H</div>
+      <div class="team-name">Hana</div>
+      <div class="team-role" data-key="hana-role">Co-Founder & Design Lead</div>
+      <p class="team-bio" data-key="hana-bio">Hana brings a sharp eye for visual identity and user experience. With years of hands-on experience building online businesses, she understands what makes a website not just beautiful — but effective. She has an instinct for what works online and a passion for helping businesses stand out.</p>
+      <div class="team-contact">
+        <a href="tel:99109943">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          99 10 99 43
+        </a>
+        <a href="mailto:yamsasno@gmail.com">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          yamsasno@gmail.com
+        </a>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-initial">J</div>
+      <div class="team-name">Johan</div>
+      <div class="team-role" data-key="johan-role">Co-Founder & Strategy Lead</div>
+      <p class="team-bio" data-key="johan-bio">Johan combines technical expertise with a deep understanding of what drives online growth. He has spent years working with digital businesses — from small local shops to growing e-commerce brands — and knows exactly what separates a website that sits idle from one that generates revenue.</p>
+      <div class="team-contact">
+        <a href="tel:90721481">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          90 72 14 81
+        </a>
+        <a href="mailto:yamsasno@gmail.com">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          yamsasno@gmail.com
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<!-- WHY WE STARTED -->
+<section class="why-section">
+  <div class="why-inner">
+    <div>
+      <div class="section-label" data-key="why-label">Why we started</div>
+      <h2 class="section-h" data-key="why-h">We got tired of<br/>watching great businesses<br/>go unseen online.</h2>
+    </div>
+    <div>
+      <p class="why-text" data-key="why-p1">Too many Norwegian businesses — good ones, with real expertise and happy customers — were losing leads to competitors every single day. Not because they were worse. Because their website was.</p>
+      <div class="why-quote" data-key="why-quote">«We started YAMS because we wanted to give small and medium-sized Norwegian businesses the same quality digital presence that big companies pay agencies ten times more for.»</div>
+      <p class="why-text" data-key="why-p2">We know the online world deeply — both from building our own digital businesses and from helping others grow theirs. That experience is what we bring to every project.</p>
+      <div class="why-cta-inline">
+        <a class="btn-green" href="./#contact" data-key="why-cta">Receive Your Proposal Today →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT SETS US APART -->
+<section class="diff-section">
+  <div class="section-label" data-key="diff-label">What sets us apart</div>
+  <h2 class="section-h" data-key="diff-h">Why clients<br/>choose YAMS</h2>
+  <div class="diff-grid">
+    <div class="diff-card">
+      <div class="diff-icon"></div>
+      <div class="diff-title" data-key="diff1-title">Competitive Pricing</div>
+      <p class="diff-body" data-key="diff1-body">We offer agency-quality results without the agency price tag. Our lean team and efficient process means you get a <span class="diff-highlight">professional, high-performing website at a price that makes sense</span> for your business — not just for the big players.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-icon"></div>
+      <div class="diff-title" data-key="diff2-title">24/7 Response Time</div>
+      <p class="diff-body" data-key="diff2-body">When you have a question or an urgent update, you reach <span class="diff-highlight">a real person — fast</span>. No ticket systems. No waiting three days for a reply. We are available when you need us, because your business doesn't stop at 5 PM.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-icon"></div>
+      <div class="diff-title" data-key="diff3-title">Fresh Eye for Online</div>
+      <p class="diff-body" data-key="diff3-body">We are young, current, and deeply embedded in the digital world. We know <span class="diff-highlight">what works online right now</span> — what converts, what Google rewards, and what makes visitors stay. Not based on outdated playbooks, but on real results.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-band-inner">
+    <div>
+      <h2 data-key="cta-band-h">Ready to work<br/>with us?</h2>
+      <p data-key="cta-band-p">We keep our client list intentionally small so every project gets our full attention. Spots are limited — reach out today.</p>
+    </div>
+    <div class="cta-band-btns">
+      <a class="btn-cta-white" href="./#contact" data-key="cta1">Book Free Consultation <span class="btn-arrow">→</span></a>
+      <a class="btn-cta-white" href="./#contact" data-key="cta2">Get Your Website Audit <span class="btn-arrow">→</span></a>
+      <a class="btn-cta-outline" href="./#contact" data-key="cta3">Receive Your Proposal Today <span class="btn-arrow">→</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT STRIP -->
+<section class="contact-strip">
+  <h2 data-key="cs-h">Call us<br/><span class="g">directly</span></h2>
+  <p data-key="cs-p">Prefer to talk? Pick up the phone — we're real people and we love a good conversation about your project.</p>
+  <div class="contact-phones">
+    <div class="contact-phone-item">
+      <span class="contact-phone-name">Hana</span>
+      <a class="contact-phone-num" href="tel:99109943">99 10 99 43</a>
+    </div>
+    <div class="contact-phone-item">
+      <span class="contact-phone-name">Johan</span>
+      <a class="contact-phone-num" href="tel:90721481">90 72 14 81</a>
+    </div>
+  </div>
+  <div class="contact-ctas">
+    <a class="btn-primary" href="./#contact" data-key="cs-cta1">Book Free Consultation</a>
+    <a class="btn-outline-w" href="mailto:yamsasno@gmail.com" data-key="cs-cta2">Email us directly</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">YAMS</div>
+    <ul class="footer-links">
+      <li><a href="./" data-key="ft-home">Home</a></li>
+      <li><a href="./about.html" data-key="ft-about">About</a></li>
+      <li><a href="./yams-pakker/" data-key="ft-pricing">Pricing</a></li>
+      <li><a href="./blog/" data-key="ft-blog">Blog</a></li>
+      <li><a href="./#contact" data-key="ft-contact">Contact</a></li>
+      <li><a href="./privacy.html" data-key="ft-privacy">Privacy Policy</a></li>
+    </ul>
+    <span class="footer-copy" data-key="ft-copy">© 2026 YAMS AS · Org.nr. 937 814 461</span>
+  </div>
+</footer>
+
+<script>
+const T = {
+  en: {
+    'nav-services':'Services','nav-work':'Work','nav-process':'Process','nav-pricing':'Pricing',
+    'nav-about':'About','nav-blog':'Blog','nav-contact':'Contact','nav-cta':'Book Free Consultation',
+    'hero-eyebrow':'The team behind YAMS',
+    'hero-h1':'Two people.<br/><span class="green">One</span><br/>mission.',
+    'hero-sub':'We are Hana and Johan — two driven individuals with years of experience in online businesses and website building. We started YAMS because we believe every Norwegian business deserves a professional digital presence.',
+    'cta-book':'Book Free Consultation','cta-audit':'Get Your Website Audit',
+    'stat1':'Years of experience','stat2':'Response time','stat3':'Projects delivered','stat4':'Client satisfaction',
+    'team-label':'Who we are','team-h':'Meet<br/>the team',
+    'hana-role':'Co-Founder & Design Lead',
+    'hana-bio':'Hana brings a sharp eye for visual identity and user experience. With years of hands-on experience building online businesses, she understands what makes a website not just beautiful — but effective. She has an instinct for what works online and a passion for helping businesses stand out.',
+    'johan-role':'Co-Founder & Strategy Lead',
+    'johan-bio':'Johan combines technical expertise with a deep understanding of what drives online growth. He has spent years working with digital businesses and knows exactly what separates a website that sits idle from one that generates revenue.',
+    'why-label':'Why we started',
+    'why-h':'We got tired of<br/>watching great businesses<br/>go unseen online.',
+    'why-p1':'Too many Norwegian businesses — good ones, with real expertise and happy customers — were losing leads to competitors every single day. Not because they were worse. Because their website was.',
+    'why-quote':'«We started YAMS because we wanted to give small and medium-sized Norwegian businesses the same quality digital presence that big companies pay agencies ten times more for.»',
+    'why-p2':'We know the online world deeply — both from building our own digital businesses and from helping others grow theirs. That experience is what we bring to every project.',
+    'why-cta':'Receive Your Proposal Today →',
+    'diff-label':'What sets us apart','diff-h':'Why clients<br/>choose YAMS',
+    'diff1-title':'Competitive Pricing',
+    'diff1-body':'We offer agency-quality results without the agency price tag. Our lean team and efficient process means you get a <span class="diff-highlight">professional, high-performing website at a price that makes sense</span> for your business.',
+    'diff2-title':'24/7 Response Time',
+    'diff2-body':'When you have a question or an urgent update, you reach <span class="diff-highlight">a real person — fast</span>. No ticket systems. No waiting three days for a reply. We are available when you need us.',
+    'diff3-title':'Fresh Eye for Online',
+    'diff3-body':'We are young, current, and deeply embedded in the digital world. We know <span class="diff-highlight">what works online right now</span> — what converts, what Google rewards, and what makes visitors stay.',
+    'cta-band-h':'Ready to work<br/>with us?',
+    'cta-band-p':'We keep our client list intentionally small so every project gets our full attention. Spots are limited — reach out today.',
+    'cta1':'Book Free Consultation','cta2':'Get Your Website Audit','cta3':'Receive Your Proposal Today',
+    'cs-h':'Call us<br/><span class="g">directly</span>',
+    'cs-p':'Prefer to talk? Pick up the phone — we\'re real people and we love a good conversation about your project.',
+    'cs-cta1':'Book Free Consultation','cs-cta2':'Email us directly',
+    'ft-home':'Home','ft-about':'About','ft-pricing':'Pricing','ft-blog':'Blog','ft-contact':'Contact','ft-privacy':'Privacy Policy',
+    'ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461',
+  },
+  no: {
+    'nav-services':'Tjenester','nav-work':'Arbeid','nav-process':'Prosess','nav-pricing':'Priser',
+    'nav-about':'Om oss','nav-blog':'Blogg','nav-contact':'Kontakt','nav-cta':'Book gratis konsultasjon',
+    'hero-eyebrow':'Teamet bak YAMS',
+    'hero-h1':'To mennesker.<br/><span class="green">Én</span><br/>misjon.',
+    'hero-sub':'Vi er Hana og Johan — to dedikerte personer med flere års erfaring innen online virksomheter og nettsidebygging. Vi startet YAMS fordi vi mener alle norske bedrifter fortjener en profesjonell digital tilstedeværelse.',
+    'cta-book':'Book gratis konsultasjon','cta-audit':'Få din nettside-analyse',
+    'stat1':'Års erfaring','stat2':'Responstid','stat3':'Prosjekter levert','stat4':'Kundetilfredshet',
+    'team-label':'Hvem er vi','team-h':'Møt<br/>teamet',
+    'hana-role':'Medgründer & Designansvarlig',
+    'hana-bio':'Hana har et skarpt øye for visuell identitet og brukeropplevelse. Med flere års praktisk erfaring med å bygge online virksomheter, forstår hun hva som gjør en nettside ikke bare vakker — men effektiv.',
+    'johan-role':'Medgründer & Strategiansvarlig',
+    'johan-bio':'Johan kombinerer teknisk ekspertise med en dyp forståelse av hva som driver vekst på nett. Han har brukt år på å jobbe med digitale virksomheter og vet nøyaktig hva som skiller en nettside som sitter stille fra en som genererer inntekter.',
+    'why-label':'Hvorfor vi startet',
+    'why-h':'Vi ble lei av å se<br/>gode bedrifter gå<br/>usynlige på nett.',
+    'why-p1':'For mange norske bedrifter — gode bedrifter med ekte ekspertise og fornøyde kunder — mistet leads til konkurrenter hver eneste dag. Ikke fordi de var dårligere. Men fordi nettsiden deres var.',
+    'why-quote':'«Vi startet YAMS fordi vi ønsket å gi små og mellomstore norske bedrifter den samme kvaliteten på digital tilstedeværelse som store selskaper betaler byråer ti ganger mer for.»',
+    'why-p2':'Vi kjenner den digitale verden godt — både fra å bygge våre egne virksomheter på nett og fra å hjelpe andre å vokse. Den erfaringen tar vi med til hvert eneste prosjekt.',
+    'why-cta':'Motta ditt tilbud i dag →',
+    'diff-label':'Hva skiller oss ut','diff-h':'Hvorfor kunder<br/>velger YAMS',
+    'diff1-title':'Konkurransedyktige priser',
+    'diff1-body':'Vi tilbyr byråkvalitet uten byrå-prislapp. Vårt slanke team og effektive prosess betyr at du får en <span class="diff-highlight">profesjonell, høytytende nettside til en pris som gir mening</span> for din bedrift.',
+    'diff2-title':'24/7 Responstid',
+    'diff2-body':'Når du har et spørsmål eller en hasteoppdatering, når du <span class="diff-highlight">en ekte person — raskt</span>. Ingen ticket-systemer. Ingen tre dagers ventetid. Vi er tilgjengelige når du trenger oss.',
+    'diff3-title':'Friskt blikk på online',
+    'diff3-body':'Vi er unge, oppdaterte og dypt forankret i den digitale verden. Vi vet <span class="diff-highlight">hva som fungerer på nett akkurat nå</span> — hva som konverterer, hva Google belønner og hva som holder besøkende.',
+    'cta-band-h':'Klar til å jobbe<br/>med oss?',
+    'cta-band-p':'Vi holder kundelisten vår bevisst liten slik at hvert prosjekt får vår fulle oppmerksomhet. Plasser er begrenset — ta kontakt i dag.',
+    'cta1':'Book gratis konsultasjon','cta2':'Få din nettside-analyse','cta3':'Motta ditt tilbud i dag',
+    'cs-h':'Ring oss<br/><span class="g">direkte</span>',
+    'cs-p':'Foretrekker du å snakke? Ta opp telefonen — vi er ekte mennesker og elsker en god samtale om prosjektet ditt.',
+    'cs-cta1':'Book gratis konsultasjon','cs-cta2':'Send oss en e-post',
+    'ft-home':'Forside','ft-about':'Om oss','ft-pricing':'Priser','ft-blog':'Blogg','ft-contact':'Kontakt','ft-privacy':'Personvern',
+    'ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461',
+  }
+};
+
+function setLang(lang) {
+  localStorage.setItem('yams_lang', lang);
+  document.getElementById('lb-en').classList.toggle('active', lang === 'en');
+  document.getElementById('lb-no').classList.toggle('active', lang === 'no');
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const v = T[lang][el.dataset.key];
+    if (v !== undefined) el.innerHTML = v;
+  });
+}
+
+document.getElementById('burger').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.toggle('open');
+});
+document.querySelectorAll('.mobile-menu a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+});
+
+setLang(localStorage.getItem('yams_lang') || 'en');
+</script>
+</body>
+</html>
