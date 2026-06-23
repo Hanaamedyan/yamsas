@@ -450,37 +450,38 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .cb-accept, .cb-decline { flex: 1; text-align: center; }
 }
 
-/* ── GOOGLE REVIEWS ── */
+
+
+/* ── GOOGLE REVIEWS (redesigned) ── */
 .reviews-section { background: var(--black); padding: 7rem 3rem; border-top: 1px solid rgba(245,242,236,.08); }
-.reviews-inner { max-width: 1300px; margin: 0 auto; }
-.reviews-top { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 2rem; margin-bottom: 3.5rem; }
-.reviews-score-block { display: flex; align-items: center; gap: 2rem; }
-.google-badge { display: flex; align-items: center; gap: .7rem; }
-.google-g { width: 36px; height: 36px; }
-.google-badge-label { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(245,242,236,.4); }
-.reviews-score { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--white); line-height: 1; }
-.reviews-stars { display: flex; gap: 3px; margin: .3rem 0 .2rem; }
-.reviews-stars svg { width: 16px; height: 16px; }
-.reviews-count { font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(245,242,236,.4); }
-.btn-google { display: inline-flex; align-items: center; gap: .6rem; font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--white); border: 1.5px solid rgba(245,242,236,.25); padding: .75rem 1.4rem; border-radius: 2px; transition: border-color .2s; }
-.btn-google:hover { border-color: var(--white); }
-.btn-google svg { width: 16px; height: 16px; }
-.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(245,242,236,.06); }
-.review-card { background: var(--black); padding: 2rem; display: flex; flex-direction: column; gap: 1rem; transition: background .2s; }
-.review-card:hover { background: #0d0d0d; }
-.review-header { display: flex; align-items: center; gap: .85rem; }
-.review-avatar { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--white); flex-shrink: 0; }
-.review-name { font-size: .88rem; font-weight: 600; color: var(--white); margin-bottom: .15rem; }
-.review-date { font-size: .6rem; letter-spacing: .1em; color: rgba(245,242,236,.35); text-transform: uppercase; }
-.review-card-stars { display: flex; gap: 2px; }
-.review-card-stars svg { width: 13px; height: 13px; }
-.review-text { font-size: .9rem; color: rgba(245,242,236,.7); line-height: 1.75; font-style: italic; flex: 1; }
-.reviews-cta-strip { margin-top: 3rem; text-align: center; }
-.reviews-cta-strip p { font-size: .85rem; color: rgba(245,242,236,.4); margin-bottom: 1.2rem; }
-@media(max-width: 900px) {
+.reviews-inner { max-width: 1100px; margin: 0 auto; }
+.reviews-label { font-size: .62rem; letter-spacing: .32em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: .8rem; }
+.reviews-label::before { content: ''; width: 2rem; height: 1px; background: var(--accent); }
+.reviews-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem,5vw,4.5rem); line-height: .95; margin-bottom: 3.5rem; }
+.reviews-layout { display: grid; grid-template-columns: 220px 1fr; gap: 3rem; align-items: center; }
+.reviews-score-col { display: flex; flex-direction: column; align-items: center; gap: 1rem; padding: 2.5rem 2rem; background: #0d0d0d; border: 1px solid rgba(245,242,236,.08); border-radius: 2px; text-align: center; }
+.reviews-g-logo { margin-bottom: .5rem; }
+.reviews-big-score { font-family: 'Bebas Neue', sans-serif; font-size: 5rem; color: var(--white); line-height: 1; }
+.reviews-stars-row { display: flex; gap: 3px; justify-content: center; }
+.reviews-score-label { font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(245,242,236,.35); line-height: 1.5; }
+.review-single-card { position: relative; background: #0d0d0d; border: 1px solid rgba(245,242,236,.1); border-radius: 2px; padding: 3rem 3rem 2.5rem; overflow: hidden; transition: border-color .3s; }
+.review-single-card:hover { border-color: rgba(61,122,92,.4); }
+.review-single-card::before { content: '\201C'; font-family: 'Playfair Display', serif; font-size: 8rem; color: var(--green); line-height: 1; position: absolute; top: .5rem; left: 2rem; opacity: .35; }
+.review-quote-text { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-style: italic; line-height: 1.75; color: rgba(245,242,236,.9); margin-bottom: 2rem; position: relative; z-index: 1; padding-top: 2rem; }
+.review-card-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.review-card-stars-row { display: flex; gap: 3px; }
+.review-via-google { display: flex; align-items: center; gap: .5rem; font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(245,242,236,.35); }
+.reviews-actions { display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; }
+.btn-review-primary { display: inline-flex; align-items: center; gap: .6rem; font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--black); background: var(--white); padding: .85rem 1.6rem; transition: background .2s; }
+.btn-review-primary:hover { background: var(--off-white); }
+.btn-review-outline { display: inline-flex; align-items: center; gap: .6rem; font-size: .72rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(245,242,236,.6); border: 1px solid rgba(245,242,236,.2); padding: .85rem 1.6rem; transition: all .2s; }
+.btn-review-outline:hover { color: var(--white); border-color: rgba(245,242,236,.5); }
+@media(max-width: 768px) {
   .reviews-section { padding: 5rem 1.5rem; }
-  .reviews-grid { grid-template-columns: 1fr; }
-  .reviews-top { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .reviews-layout { grid-template-columns: 1fr; }
+  .reviews-score-col { flex-direction: row; justify-content: center; gap: 2rem; padding: 1.5rem; }
+  .review-single-card { padding: 2.5rem 1.5rem 2rem; }
+  .review-quote-text { font-size: 1.05rem; }
 }
 </style>
 </head>
@@ -712,61 +713,46 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
 <!-- GOOGLE REVIEWS -->
 <div class="reviews-section" id="reviews">
   <div class="reviews-inner">
-    <div class="reviews-top">
-      <div class="reviews-score-block">
-        <!-- Google G logo -->
-        <div class="google-badge">
-          <svg class="google-g" viewBox="0 0 48 48">
+    <div class="reviews-label" data-i18n-rev="rev-label">What our clients say</div>
+    <h2 class="reviews-heading" data-i18n-rev="rev-heading">Real reviews.<br/>Real results.</h2>
+
+    <div class="reviews-layout">
+      <!-- Score column -->
+      <div class="reviews-score-col">
+        <div class="reviews-g-logo">
+          <svg viewBox="0 0 48 48" width="40" height="40">
             <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
             <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
             <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
             <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
           </svg>
-          <div>
-            <div style="font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,242,236,.4);">Google Reviews</div>
-          </div>
         </div>
-        <div>
-          <div class="reviews-score">5.0</div>
-          <div class="reviews-stars">
-            <svg viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <div class="reviews-count" data-i18n-rev="rev-count">Based on Google Reviews</div>
-        </div>
+        <div class="reviews-big-score">5.0</div>
+        <div class="reviews-stars-row"><svg viewBox="0 0 24 24" fill="#FBBC04" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <div class="reviews-score-label" data-i18n-rev="rev-count">Google<br/>Reviews</div>
       </div>
-      <a class="btn-google" href="https://www.google.com/search?sca_esv=b0b27d55aead10f4&hl=no&authuser=0&sxsrf=APpeQnsZly065HmStA4Odec0l16PUNW5uQ:1782235555840&q=YAMS+%E2%80%94+Website+Solutions+%7C+Norway+Anmeldelser&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxK2NDczMDU3NjCwMDU2MDM2MTcz3cDI-IpRP9LRN1jhUcMUhfDUpOLMklSF4Pyc0pLM_LxihRoFv_yi8sRKBce83NSclNSc4tSiRayk6gAAQyZ_KH4AAAA&rldimm=9760573008530634765&tbm=lcl&sa=X&ved=2ahUKEwjHoNjp8J2VAxXDgf0HHUVoNU0Q9fQKegQIKhAG&biw=1190&bih=816&dpr=2#lkt=LocalPoiReviews" target="_blank" rel="noopener">
-        <svg viewBox="0 0 48 48" style="width:16px;height:16px;">
-          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-        </svg>
-        <span data-i18n-rev="rev-btn">See all reviews</span>
-      </a>
-    </div>
 
-    <div class="reviews-grid" style="grid-template-columns:1fr;">
-      <div class="review-card" style="max-width:680px;">
-        <div class="review-header">
-          <div class="review-avatar" style="background:#1B3D2F;">K</div>
-          <div>
-            <div class="review-name">Google-anmelder</div>
-            <div class="review-date">2026</div>
-          </div>
-          <div class="review-card-stars" style="margin-left:auto;">
-            <svg viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <!-- Review card -->
+      <div class="review-single-card">
+        <p class="review-quote-text">Kjempefornøyd med både service og nettsiden jeg fikk. Rask kommunikasjon og veldig bra sluttresultat. 5/5!</p>
+        <div class="review-card-footer">
+          <div class="review-card-stars-row"><svg viewBox="0 0 24 24" fill="#FBBC04" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+          <div class="review-via-google">
+            <svg viewBox="0 0 48 48" width="20" height="20">
+                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+              </svg>
+            <span data-i18n-rev="via-google">Via Google</span>
           </div>
         </div>
-        <p class="review-text">«Kjempefornøyd med både service og nettsiden jeg fikk. Rask kommunikasjon og veldig bra sluttresultat. 5/5!»</p>
       </div>
     </div>
 
-    <div class="reviews-cta-strip">
-      <p data-i18n-rev="rev-cta-sub">Trusted by businesses across Norway</p>
-      <a class="btn-google" href="https://www.google.com/search?sca_esv=b0b27d55aead10f4&hl=no&authuser=0&sxsrf=APpeQnsZly065HmStA4Odec0l16PUNW5uQ:1782235555840&q=YAMS+%E2%80%94+Website+Solutions+%7C+Norway+Anmeldelser&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxK2NDczMDU3NjCwMDU2MDM2MTcz3cDI-IpRP9LRN1jhUcMUhfDUpOLMklSF4Pyc0pLM_LxihRoFv_yi8sRKBce83NSclNSc4tSiRayk6gAAQyZ_KH4AAAA&rldimm=9760573008530634765&tbm=lcl&sa=X&ved=2ahUKEwjHoNjp8J2VAxXDgf0HHUVoNU0Q9fQKegQIKhAG&biw=1190&bih=816&dpr=2#lkt=LocalPoiReviews" target="_blank" rel="noopener" style="display:inline-flex;">
-        <span data-i18n-rev="rev-cta-btn">Leave us a review on Google</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      </a>
+    <div class="reviews-actions">
+      <a class="btn-review-primary" href="https://www.google.com/search?sca_esv=b0b27d55aead10f4&hl=no&authuser=0&sxsrf=APpeQnsZly065HmStA4Odec0l16PUNW5uQ:1782235555840&q=YAMS+%E2%80%94+Website+Solutions+%7C+Norway+Anmeldelser&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxK2NDczMDU3NjCwMDU2MDM2MTcz3cDI-IpRP9LRN1jhUcMUhfDUpOLMklSF4Pyc0pLM_LxihRoFv_yi8sRKBce83NSclNSc4tSiRayk6gAAQyZ_KH4AAAA&rldimm=9760573008530634765&tbm=lcl&sa=X&ved=2ahUKEwjHoNjp8J2VAxXDgf0HHUVoNU0Q9fQKegQIKhAG&biw=1190&bih=816&dpr=2#lkt=LocalPoiReviews" target="_blank" rel="noopener" data-i18n-rev="rev-btn">See all reviews on Google</a>
+      <a class="btn-review-outline" href="https://www.google.com/search?sca_esv=b0b27d55aead10f4&hl=no&authuser=0&sxsrf=APpeQnsZly065HmStA4Odec0l16PUNW5uQ:1782235555840&q=YAMS+%E2%80%94+Website+Solutions+%7C+Norway+Anmeldelser&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxK2NDczMDU3NjCwMDU2MDM2MTcz3cDI-IpRP9LRN1jhUcMUhfDUpOLMklSF4Pyc0pLM_LxihRoFv_yi8sRKBce83NSclNSc4tSiRayk6gAAQyZ_KH4AAAA&rldimm=9760573008530634765&tbm=lcl&sa=X&ved=2ahUKEwjHoNjp8J2VAxXDgf0HHUVoNU0Q9fQKegQIKhAG&biw=1190&bih=816&dpr=2#lkt=LocalPoiReviews" target="_blank" rel="noopener" data-i18n-rev="rev-cta-btn">Leave us a review ↗</a>
     </div>
   </div>
 </div>
@@ -1280,7 +1266,7 @@ const TRANSLATIONS = {
     'flabel-name':'Full Name','fph-name':'Your name','flabel-email':'Email Address','fph-email':'your@email.com','flabel-proj':'Project Description','fph-proj':'Tell us about your project, goals, and timeline...','flabel-budget':'Desired Budget',
     'form-submit':'Receive Your Proposal Today','suc-title':'Message Sent','suc-body':"Thanks for reaching out. We'll review your inquiry and get back to you within 24 hours.",
     'contact-email-t':'Or email us directly at',
-    'rev-count':'Based on Google Reviews','rev-btn':'See all reviews on Google',
+    'rev-label':'What our clients say','rev-heading':'Real reviews.<br/>Real results.','rev-count':'Google Reviews','via-google':'Via Google','rev-btn':'See all reviews on Google',
     'rev1':'"Incredible work from start to finish. YAMS delivered a website that exceeded all our expectations — fast, beautiful, and it actually ranks on Google. Hana and Johan are responsive and genuinely care about the result."',
     'rev2':'"Best investment we made for our business. The website looks professional, loads incredibly fast, and we started getting inquiries through it within the first week. 24/7 support is a real thing — they actually reply."',
     'rev3':'"We were quoted 3x the price by other agencies for a similar project. YAMS delivered in half the time and the quality is outstanding. Young, sharp team that knows what they're doing online."',
@@ -1331,7 +1317,7 @@ const TRANSLATIONS = {
     'flabel-name':'Fullt navn','fph-name':'Ditt navn','flabel-email':'E-postadresse','fph-email':'din@epost.no','flabel-proj':'Prosjektbeskrivelse','fph-proj':'Fortell oss om prosjektet ditt, mål og tidslinje...','flabel-budget':'Ønsket budsjett',
     'form-submit':'Motta ditt tilbud i dag','suc-title':'Melding sendt','suc-body':'Takk for at du tok kontakt. Vi gjennomgår forespørselen din og svarer innen 24 timer.',
     'contact-email-t':'Eller e-post oss direkte på',
-    'rev-count':'Basert på Google-anmeldelser','rev-btn':'Se alle anmeldelser på Google',
+    'rev-label':'Hva kundene sier','rev-heading':'Ekte anmeldelser.<br/>Ekte resultater.','rev-count':'Google-anmeldelser','via-google':'Via Google','rev-btn':'Se alle anmeldelser på Google',
     'rev1':'"Utrolig arbeid fra start til slutt. YAMS leverte en nettside som overgikk alle forventningene våre — rask, vakker og den rangerer faktisk på Google. Hana og Johan er responsive og bryr seg genuint om resultatet."',
     'rev2':'"Beste investering vi har gjort for bedriften vår. Nettsiden ser profesjonell ut, laster utrolig raskt, og vi begynte å få henvendelser gjennom den allerede i løpet av den første uken. 24/7 support er ekte — de svarer faktisk."',
     'rev3':'"Vi fikk tilbud fra andre byråer til 3x prisen for et lignende prosjekt. YAMS leverte på halvparten av tiden og kvaliteten er enestående. Ungt, skarpt team som vet hva de driver med på nett."',
