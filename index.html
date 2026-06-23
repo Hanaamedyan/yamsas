@@ -1437,6 +1437,14 @@ function setLang(lang) {
   const upgD=document.querySelector('.price-card:not(.featured) [style*="line-height:1.6"]');
   if(upgT&&t['upgrade-t']) upgT.textContent=t['upgrade-t'];
   if(upgD&&t['upgrade-d']) upgD.textContent=t['upgrade-d'];
+  // CTA buttons (keep SVG arrow)
+  [['.price-card.featured .btn-card','cta-pkg1'],['.price-card:not(.featured) .btn-card','cta-pkg2']].forEach(([sel,key])=>{
+    const el=document.querySelector(sel);
+    if(!el||!t[key]) return;
+    const svg=el.querySelector('svg');
+    el.textContent=t[key]+' ';
+    if(svg) el.appendChild(svg);
+  });
   // Contact email line
   const ceEl=document.querySelector('.contact-email');
 
