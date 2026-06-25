@@ -483,6 +483,76 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .review-single-card { padding: 2.5rem 1.5rem 2rem; }
   .review-quote-text { font-size: 1.05rem; }
 }
+
+/* ── COMPREHENSIVE MOBILE FIXES ── */
+@media(max-width:768px){
+  /* Lang bar */
+  #lang-bar { padding: 0 1.2rem; }
+
+  /* Hero */
+  .hero { height: 100svh; min-height: 560px; padding: 0 1.2rem 2.5rem; }
+  .hero-title { font-size: clamp(3.8rem,14vw,7rem); }
+  .hero-bg-text { font-size: clamp(7rem,28vw,14rem); }
+  .hero-tagline { font-size: .88rem; max-width: 100%; }
+  .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+  .stat-num { font-size: 1.8rem; }
+
+  /* Generic section padding */
+  section, .manifesto, .process, .contact { padding: 5rem 1.2rem; }
+  .services { padding: 0; }
+
+  /* Manifesto */
+  .manifesto-left { position: static; }
+  .manifesto-num { font-size: 5rem; }
+  .manifesto-quote { font-size: clamp(1.5rem,5vw,2rem); }
+
+  /* Services */
+  .service-content { padding: 3rem 1.2rem; }
+  .service-title { font-size: clamp(3rem,10vw,5rem); }
+  .service-visual { height: 200px; }
+
+  /* Work */
+  .work-section { padding: 4rem 0; }
+  .work-header { padding: 0 1.2rem; margin-bottom: 2rem; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .work-title { font-size: clamp(2.5rem,9vw,4rem); }
+  .work-scroll-track { padding: 0 1.2rem; gap: 1rem; }
+  .work-card-link { flex: 0 0 240px; }
+
+  /* Process */
+  .process { padding: 5rem 1.2rem; }
+  .process-step { padding: 2rem 1.2rem; }
+
+  /* Pricing */
+  .pricing { padding: 5rem 1.2rem; }
+
+  /* Contact */
+  .contact { padding: 6rem 1.2rem; }
+  .contact-title { font-size: clamp(3rem,10vw,5rem); }
+
+  /* Footer */
+  footer { padding: 3.5rem 1.2rem 1.5rem; }
+  .footer-top { gap: 2rem; margin-bottom: 2.5rem; }
+  .footer-brand { font-size: 2rem; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 1.2rem; padding-top: 1.5rem; }
+  .footer-socials { flex-wrap: wrap; gap: 1rem; }
+}
+
+@media(max-width:480px){
+  .hero-title { font-size: clamp(3.2rem,14vw,5rem); }
+  .hero-stats { gap: 1.2rem; }
+  .hero-stat { min-width: 70px; }
+  .stat-num { font-size: 1.6rem; }
+  .manifesto-quote { font-size: 1.5rem; }
+  .work-card-link { flex: 0 0 210px; }
+  .service-visual { height: 160px; }
+  .contact-title { font-size: clamp(2.8rem,12vw,4rem); }
+  .pricing { padding: 4rem 1rem; }
+  .price-card { padding: 24px 18px; }
+  .reviews-section { padding: 4rem 1rem; }
+  .reviews-actions { flex-direction: column; }
+  .btn-review-primary, .btn-review-outline { width: 100%; justify-content: center; }
+  footer { padding: 3rem 1rem 1.2rem; }
+}
 </style>
 </head>
 <body>
