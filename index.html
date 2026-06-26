@@ -471,6 +471,10 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
 .review-card-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
 .review-card-stars-row { display: flex; gap: 3px; }
 .review-via-google { display: flex; align-items: center; gap: .5rem; font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(245,242,236,.35); }
+.review-author { display: flex; align-items: center; gap: .85rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(245,242,236,.08); }
+.review-author-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--white); flex-shrink: 0; }
+.review-author-name { font-size: .82rem; font-weight: 600; color: var(--white); }
+.review-author-role { font-size: .7rem; color: rgba(245,242,236,.4); margin-top: .1rem; }
 .reviews-actions { display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; }
 .btn-review-primary { display: inline-flex; align-items: center; gap: .6rem; font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--black); background: var(--white); padding: .85rem 1.6rem; transition: background .2s; }
 .btn-review-primary:hover { background: var(--off-white); }
@@ -1045,7 +1049,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
 
       <!-- Review card -->
       <div class="review-single-card">
-        <p class="review-quote-text">Kjempefornøyd med både service og nettsiden jeg fikk. Rask kommunikasjon og veldig bra sluttresultat. 5/5!</p>
+        <p class="review-quote-text" data-i18n-rev="rev-quote">Kjempefornøyd med både service og nettsiden jeg fikk. Rask kommunikasjon og veldig bra sluttresultat. 5/5!</p>
         <div class="review-card-footer">
           <div class="review-card-stars-row"><svg viewBox="0 0 24 24" fill="#FBBC04" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24" fill="#FBBC04" width="18" height="18"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <div class="review-via-google">
@@ -1056,6 +1060,13 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
                 <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
               </svg>
             <span data-i18n-rev="via-google">Via Google</span>
+          </div>
+        </div>
+        <div class="review-author">
+          <div class="review-author-avatar">MK</div>
+          <div>
+            <div class="review-author-name" data-i18n-rev="rev-author-name">Martin K.</div>
+            <div class="review-author-role" data-i18n-rev="rev-author-role">Daglig leder, Kjelsberg AS</div>
           </div>
         </div>
       </div>
@@ -1297,6 +1308,8 @@ const TRANSLATIONS = {
     'form-submit':'Receive Your Proposal Today','suc-title':'Message Sent','suc-body':"Thanks for reaching out. We'll review your inquiry and get back to you within 24 hours.",
     'contact-email-t':'Or email us directly at',
     'rev-label':'What our clients say','rev-heading':'Real reviews.<br/>Real results.','rev-count':'Google Reviews','via-google':'Via Google','rev-btn':'See all reviews on Google',
+    'rev-quote':'"Really happy with both the service and the website I received. Fast communication and a great end result. 5/5!"',
+    'rev-author-name':'Martin K.','rev-author-role':'CEO, Kjelsberg AS',
     'rev1':'"Incredible work from start to finish. YAMS delivered a website that exceeded all our expectations — fast, beautiful, and it actually ranks on Google. Hana and Johan are responsive and genuinely care about the result."',
     'rev2':'"Best investment we made for our business. The website looks professional, loads incredibly fast, and we started getting inquiries through it within the first week. 24/7 support is a real thing — they actually reply."',
     'rev3':'"We were quoted 3x the price by other agencies for a similar project. YAMS delivered in half the time and the quality is outstanding. Young, sharp team that knows what they\'re doing online."',
@@ -1345,6 +1358,8 @@ const TRANSLATIONS = {
     'form-submit':'Motta ditt tilbud i dag','suc-title':'Melding sendt','suc-body':'Takk for at du tok kontakt. Vi gjennomgår forespørselen din og svarer innen 24 timer.',
     'contact-email-t':'Eller e-post oss direkte på',
     'rev-label':'Hva kundene sier','rev-heading':'Ekte anmeldelser.<br/>Ekte resultater.','rev-count':'Google-anmeldelser','via-google':'Via Google','rev-btn':'Se alle anmeldelser på Google',
+    'rev-quote':'"Kjempefornøyd med både service og nettsiden jeg fikk. Rask kommunikasjon og veldig bra sluttresultat. 5/5!"',
+    'rev-author-name':'Martin K.','rev-author-role':'Daglig leder, Kjelsberg AS',
     'rev1':'"Utrolig arbeid fra start til slutt. YAMS leverte en nettside som overgikk alle forventningene våre — rask, vakker og den rangerer faktisk på Google. Hana og Johan er responsive og bryr seg genuint om resultatet."',
     'rev2':'"Beste investering vi har gjort for bedriften vår. Nettsiden ser profesjonell ut, laster utrolig raskt, og vi begynte å få henvendelser gjennom den allerede i løpet av den første uken. 24/7 support er ekte — de svarer faktisk."',
     'rev3':'"Vi fikk tilbud fra andre byråer til 3x prisen for et lignende prosjekt. YAMS leverte på halvparten av tiden og kvaliteten er enestående. Ungt, skarpt team som vet hva de driver med på nett."',
