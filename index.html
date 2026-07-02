@@ -584,81 +584,110 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
 .btn-review-outline { display: inline-flex; align-items: center; gap: .6rem; font-size: .72rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(245,242,236,.6); border: 1px solid rgba(245,242,236,.2); padding: .85rem 1.6rem; transition: all .2s; }
 .btn-review-outline:hover { color: var(--white); border-color: rgba(245,242,236,.5); }
 @media(max-width: 768px) {
-  .reviews-section { padding: 5rem 1.5rem; }
-  .reviews-layout { grid-template-columns: 1fr; }
-  .reviews-score-col { flex-direction: row; justify-content: center; gap: 2rem; padding: 1.5rem; }
-  .review-single-card { padding: 2.5rem 1.5rem 2rem; }
-  .review-quote-text { font-size: 1.05rem; }
+  .reviews-section { padding: 4rem 1.2rem; overflow: hidden; }
+  .reviews-inner { overflow: hidden; }
+  .reviews-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+  .reviews-heading { font-size: clamp(2rem,8vw,3rem); margin-bottom: 2rem; }
+  .reviews-score-col {
+    flex-direction: row; flex-wrap: wrap;
+    justify-content: center; align-items: center;
+    gap: 1rem; padding: 1.2rem;
+  }
+  .reviews-big-score { font-size: 3.5rem; }
+  .reviews-stars-row { gap: 2px; }
+  .reviews-score-label { font-size: .55rem; }
+  .review-single-card { padding: 2rem 1.2rem 1.5rem; overflow: hidden; }
+  .review-single-card::before { font-size: 5rem; top: .2rem; left: 1rem; }
+  .review-quote-text { font-size: .95rem; padding-top: 1.5rem; }
+  .review-card-footer { flex-direction: column; align-items: flex-start; gap: .6rem; }
+  .reviews-actions { flex-direction: column; }
+  .btn-review-primary, .btn-review-outline { width: 100%; justify-content: center; }
 }
 
 /* ── COMPREHENSIVE MOBILE FIXES ── */
 @media(max-width:768px){
+  /* Prevent global overflow */
+  html, body { overflow-x: hidden; max-width: 100vw; }
+
   /* Lang bar */
   #lang-bar { padding: 0 1.2rem; }
 
   /* Hero */
-  .hero { height: 100svh; min-height: 560px; padding: 0 1.2rem 2.5rem; }
-  .hero-title { font-size: clamp(3.8rem,14vw,7rem); }
-  .hero-bg-text { font-size: clamp(7rem,28vw,14rem); }
+  .hero { height: 100svh; min-height: 560px; padding: 0 1.2rem 2.5rem; overflow: hidden; }
+  .hero-title { font-size: clamp(3.2rem,13vw,6rem); }
+  .hero-bg-text { display: none; }
   .hero-tagline { font-size: .88rem; max-width: 100%; }
   .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
   .stat-num { font-size: 1.8rem; }
 
   /* Generic section padding */
-  section, .manifesto, .process, .contact { padding: 5rem 1.2rem; }
+  section, .manifesto, .process, .contact { padding: 4rem 1.2rem; }
   .services { padding: 0; }
 
   /* Manifesto */
   .manifesto-left { position: static; }
   .manifesto-num { font-size: 5rem; }
-  .manifesto-quote { font-size: clamp(1.5rem,5vw,2rem); }
+  .manifesto-quote { font-size: clamp(1.4rem,5vw,2rem); }
+  .manifesto-body { font-size: .88rem; }
 
   /* Services */
-  .service-content { padding: 3rem 1.2rem; }
-  .service-title { font-size: clamp(3rem,10vw,5rem); }
+  .service-content { padding: 2.5rem 1.2rem; }
+  .service-title { font-size: clamp(2.5rem,10vw,4.5rem); }
+  .service-desc { font-size: .85rem; }
   .service-visual { height: 200px; }
 
   /* Work */
-  .work-section { padding: 4rem 0; }
+  .work-section { padding: 4rem 0; overflow: hidden; }
   .work-header { padding: 0 1.2rem; margin-bottom: 2rem; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-  .work-title { font-size: clamp(2.5rem,9vw,4rem); }
+  .work-title { font-size: clamp(2.2rem,9vw,3.5rem); }
   .work-scroll-track { padding: 0 1.2rem; gap: 1rem; }
   .work-card-link { flex: 0 0 240px; }
 
   /* Process */
-  .process { padding: 5rem 1.2rem; }
+  .process { padding: 4rem 1.2rem; }
+  .process-header { gap: 1.5rem; }
+  .process-title { font-size: clamp(2.5rem,8vw,4rem); }
   .process-step { padding: 2rem 1.2rem; }
+  .step-desc { font-size: .82rem; }
 
   /* Pricing */
-  .pricing { padding: 5rem 1.2rem; }
+  .pricing { padding: 4rem 1.2rem; }
+  .pricing-title { font-size: clamp(2.5rem,8vw,4rem); }
+  .cards-grid { grid-template-columns: 1fr; }
+  .price-card { padding: 28px 20px; overflow: hidden; }
+  .price-amount { font-size: clamp(1.5rem,6vw,2rem); }
 
   /* Contact */
-  .contact { padding: 6rem 1.2rem; }
-  .contact-title { font-size: clamp(3rem,10vw,5rem); }
+  .contact { padding: 5rem 1.2rem; overflow: hidden; }
+  .contact-title { font-size: clamp(2.8rem,10vw,5rem); }
+  .contact-bg { font-size: clamp(6rem,18vw,12rem); }
+  .contact-form-wrap { margin-top: 2.5rem; }
+  .form-row { grid-template-columns: 1fr; }
 
   /* Footer */
-  footer { padding: 3.5rem 1.2rem 1.5rem; }
-  .footer-top { gap: 2rem; margin-bottom: 2.5rem; }
+  footer { padding: 3.5rem 1.2rem 1.5rem; overflow: hidden; }
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2.5rem; }
   .footer-brand { font-size: 2rem; }
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: 1.2rem; padding-top: 1.5rem; }
   .footer-socials { flex-wrap: wrap; gap: 1rem; }
+  .footer-tagline { max-width: 100%; }
 }
 
 @media(max-width:480px){
-  .hero-title { font-size: clamp(3.2rem,14vw,5rem); }
+  .hero-title { font-size: clamp(2.8rem,13vw,4.5rem); }
   .hero-stats { gap: 1.2rem; }
   .hero-stat { min-width: 70px; }
   .stat-num { font-size: 1.6rem; }
-  .manifesto-quote { font-size: 1.5rem; }
-  .work-card-link { flex: 0 0 210px; }
+  .manifesto-quote { font-size: 1.4rem; }
+  .work-card-link { flex: 0 0 200px; }
   .service-visual { height: 160px; }
-  .contact-title { font-size: clamp(2.8rem,12vw,4rem); }
-  .pricing { padding: 4rem 1rem; }
-  .price-card { padding: 24px 18px; }
-  .reviews-section { padding: 4rem 1rem; }
-  .reviews-actions { flex-direction: column; }
-  .btn-review-primary, .btn-review-outline { width: 100%; justify-content: center; }
+  .service-title { font-size: clamp(2rem,10vw,3.5rem); }
+  .contact-title { font-size: clamp(2.4rem,11vw,3.5rem); }
+  .pricing { padding: 3.5rem 1rem; }
+  .price-card { padding: 22px 16px; }
   footer { padding: 3rem 1rem 1.2rem; }
+  .process-steps { grid-template-columns: 1fr; }
+  .ticker-item { font-size: .85rem; padding: 0 1.5rem; }
 }
 
 /* ── BRIGHTER TEXT + SEGMENT POP ── */
