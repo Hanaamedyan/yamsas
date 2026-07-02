@@ -424,8 +424,9 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .manifesto{padding:5rem 1.5rem;}
   .process{padding:5rem 1.5rem;}
   .manifesto-grid{grid-template-columns:1fr;}
-  .service-block{grid-template-columns:1fr;}
-  .service-visual{height:300px;}
+  .service-block{display:flex;flex-direction:column;}
+  .service-content{order:1;}
+  .service-visual,.service-visual.alt{order:2;height:260px;}
   .process-steps{grid-template-columns:1fr 1fr;}
   .footer-top{grid-template-columns:1fr 1fr;gap:2.5rem;margin-bottom:2rem;}
   .work-card-link{flex:0 0 280px;}
