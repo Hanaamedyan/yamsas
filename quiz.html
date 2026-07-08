@@ -380,11 +380,105 @@ function applyLang() {
     const match = pl.textContent.match(/\d+/g);
     if(match) pl.textContent = t.progLabel(match[0], TOTAL);
   }
+  translateOptions();
 }
 
 function setText(id, html) { const el = document.getElementById(id); if(el) el.innerHTML = html; }
 function setLabel(id, text) { const el = document.getElementById(id); if(el) el.textContent = text; }
 function setAttr(id, attr, val) { const el = document.getElementById(id); if(el) el.setAttribute(attr, val); }
+
+/* ── OPTION TRANSLATIONS ── */
+const optLabels = {
+  en: {
+    // Step 2: site type
+    'Enkel presentasjonsside (1–3 sider)':        {b:'Simple presentation site',  s:'1–3 pages, contact info, about us'},
+    'Portfolio / galleri':                         {b:'Portfolio / Gallery',        s:'Showcase work, projects or photos'},
+    'Nettbutikk / e-handel':                       {b:'Online Shop / E-commerce',   s:'Sell products or services online'},
+    'Restaurant / café / bar':                     {b:'Restaurant / Café / Bar',    s:'Menu, reservations, opening hours'},
+    'Musikk / artist / band':                      {b:'Music / Artist / Band',      s:'Biography, music, merch, concerts'},
+    'Bedriftsside med flere sider (5+)':           {b:'Larger business site',       s:'Services, team, blog, case studies'},
+    'Booking / timebestilling':                    {b:'Booking / Appointments',     s:'Hair salon, clinic, PT, coaching'},
+    'Annet (beskrives i notater)':                 {b:'Other',                      s:'Describe it at the end'},
+    // Step 3: style
+    'Minimalistisk og rent — mye luft, få farger':             {b:'Minimalist',        s:'Lots of space, few colors, elegant'},
+    'Moderne og dristig — stor typografi, sterk visuell identitet': {b:'Modern & Bold', s:'Large typography, strong identity'},
+    'Luksus og eksklusiv — mørke toner, gull, premium følelse':{b:'Luxury',           s:'Dark tones, gold, premium'},
+    'Lys og vennlig — fargerik, tilgjengelig, positiv stemning':{b:'Light & Friendly', s:'Colorful, accessible, positive'},
+    'Profesjonelt og seriøst — tillitvekkende, corporate':     {b:'Professional',      s:'Trustworthy, corporate'},
+    'Kreativt og uvanlig — skille seg ut, eksperimentelt':     {b:'Creative & Unusual',s:'Stand out, experimental'},
+    // Step 3: colors (simple labels)
+    'Svart & Hvit':'Black & White','Grønn & Gull':'Green & Gold','Marineblå & Hvit':'Navy & White',
+    'Beige & Brun':'Beige & Brown','Rosa & Lilla':'Pink & Purple','Rød & Sort':'Red & Black',
+    'Oransje & Krem':'Orange & Cream','Lyseblå & Hvit':'Light Blue & White','Grå & Sølv':'Grey & Silver',
+    'Lys & Naturlig (off-white, sand, grønn)':'Light & Natural','Mørk & Luksus (sort, gull, burgunder)':'Dark & Luxury',
+    'Fargerikt & Dristig':'Colorful & Bold',
+    // Step 4: pages
+    'Forside':'🏠 Homepage','Om oss':'👥 About Us','Tjenester':'⚙️ Services',
+    'Produkter / Nettbutikk':'🛍️ Products / Shop','Galleri / Portfolio':'🖼️ Gallery / Portfolio',
+    'Blogg':'📝 Blog','Kontakt':'📬 Contact','FAQ':'❓ FAQ','Booking / Timebestilling':'📅 Booking',
+    // Step 4: features
+    'Kontaktskjema':'📩 Contact form','Google Maps / Kart':'📍 Map',
+    'Flerspråklig (NO + EN)':'🌍 Multilingual (NO + EN)','Animasjoner og bevegelse':'✨ Animations',
+    'Instagram-integrasjon':'📸 Instagram','Spotify-integrasjon':'🎵 Spotify',
+    'Chat / AI-assistent':'💬 Chat / AI','Google Analytics':'📊 Analytics','SEO-optimalisering':'🔍 SEO',
+    // Step 5: content-text
+    'Ja, tekst er klar':'✅ Yes, ready','Delvis — noe tekst er klar':'🔶 Partially ready',
+    'Nei — trenger hjelp med tekst':'❌ No, need help','Vet ikke ennå':'🤷 Don\'t know yet',
+    // Step 5: content-img
+    'Ja, logo og bilder er klart':'✅ Yes, all ready','Har logo men ikke bilder':'🔶 Have logo, not images',
+    'Ingen ting klart ennå':'❌ Nothing ready yet','Trenger produktfoto fra YAMS':'📸 Need photos from YAMS',
+    // Step 6: timeline
+    'Så snart som mulig (innen 2 uker)':'🚀 As soon as possible',
+    '1–2 måneder':'📆 1–2 months','2–4 måneder':'🗓️ 2–4 months',
+    'Fleksibelt — ingen fast frist':'😌 Flexible',
+    // Step 6: budget
+    'Under 20 000 kr':'💸 Under NOK 20,000','20 000–40 000 kr':'💰 NOK 20,000–40,000',
+    '40 000–80 000 kr':'💎 NOK 40,000–80,000','Vet ikke':'🤷 Don\'t know',
+  }
+};
+
+function translateOptions() {
+  document.querySelectorAll('.opt-card input').forEach(inp => {
+    const val = inp.value;
+    const tr = lang === 'en' ? optLabels.en[val] : null;
+    const card = inp.closest('.opt-card');
+    if (!card) return;
+    const bEl = card.querySelector('b');
+    const sEl = card.querySelector('small');
+    if (bEl) {
+      // Structured option (site-type, style)
+      if (lang === 'en' && tr && typeof tr === 'object') {
+        bEl.textContent = tr.b;
+        if (sEl && tr.s) sEl.textContent = tr.s;
+      } else if (lang === 'no') {
+        // Restore from value (value IS the NO string for structured opts)
+        // b/small text is set from HTML — reload page resets; just leave if no cache
+      }
+    } else {
+      // Simple label (colors, pages, features, content, timeline, budget)
+      const lbl = card.querySelector('.opt-label');
+      if (!lbl) return;
+      if (lang === 'en' && tr) {
+        const text = typeof tr === 'string' ? tr : tr.b;
+        // Preserve color-swatch if present
+        const swatch = lbl.querySelector('.color-swatch');
+        if (swatch) {
+          lbl.childNodes.forEach(n => { if (n.nodeType === 3) n.textContent = text; });
+        } else {
+          lbl.textContent = text;
+        }
+      } else if (lang === 'no') {
+        // Restore NO label — value is the NO text (emoji already included for simple opts)
+        const swatch = lbl.querySelector('.color-swatch');
+        if (swatch) {
+          lbl.childNodes.forEach(n => { if (n.nodeType === 3) n.textContent = val; });
+        } else {
+          lbl.textContent = val;
+        }
+      }
+    }
+  });
+}
 
 function startQuiz() {
   document.getElementById('quiz-hero').style.display = 'none';
