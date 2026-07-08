@@ -701,6 +701,51 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .ticker-item { font-size: .85rem; padding: 0 1.5rem; }
 }
 
+/* ── MOBILE POLISH ── */
+@media(max-width:768px){
+  /* Budget display */
+  .budget-display{font-size:.85rem;}
+
+  /* Chat button — smaller, won't block form */
+  #yams-bot-btn{width:48px;height:48px;bottom:14px;right:14px;}
+  #yams-bot-btn svg{width:20px;height:20px;}
+  #yams-chat{bottom:72px;}
+
+  /* Process — ensure title visible */
+  .process-title{font-size:clamp(2.2rem,8vw,3.5rem);}
+  .process-intro{font-size:.85rem;}
+
+  /* Manifesto quote */
+  .manifesto-quote{font-size:clamp(1.35rem,5vw,1.8rem);}
+
+  /* Contact — tighter form */
+  .contact-title{font-size:clamp(2.5rem,9vw,4rem);}
+  .contact-sub{font-size:.9rem;}
+  .form-input{font-size:.85rem;padding:.8rem 1rem;}
+  .form-submit{font-size:.65rem;padding:1rem;}
+
+  /* Work section */
+  .work-title{font-size:clamp(2rem,8vw,3.2rem);}
+
+  /* Reviews score col on mobile — stacked */
+  .reviews-score-col{flex-direction:column;align-items:center;gap:.6rem;padding:1.5rem;}
+  .reviews-big-score{font-size:4rem;}
+  .review-quote-text{font-size:.95rem;}
+
+  /* Pricing */
+  .pricing-title{font-size:clamp(2rem,7vw,3.5rem);}
+  .card-name{font-size:clamp(2rem,6vw,3rem);}
+  .price-amount{font-size:clamp(1.5rem,5vw,2rem);}
+
+  /* Footer */
+  .footer-top{grid-template-columns:1fr 1fr;gap:2rem;}
+  .footer-brand{font-size:2.2rem;}
+}
+@media(max-width:480px){
+  .footer-top{grid-template-columns:1fr;}
+  #yams-bot-btn{bottom:12px;right:12px;}
+}
+
 /* ── BRIGHTER TEXT + SEGMENT POP ── */
 .hero-tagline  { color: rgba(245,242,236,.95); }
 .hero-scroll   { color: rgba(245,242,236,.72); }
