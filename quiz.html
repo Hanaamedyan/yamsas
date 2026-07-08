@@ -67,10 +67,12 @@ nav{position:fixed;top:34px;left:0;right:0;z-index:100;display:flex;align-items:
 .step-tracker{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:2rem;}
 .tracker-item{display:flex;align-items:center;gap:0;}
 .tracker-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.6rem;font-weight:600;letter-spacing:.04em;border:1.5px solid rgba(245,242,236,.15);background:rgba(245,242,236,.04);color:rgba(245,242,236,.3);transition:all .3s cubic-bezier(.22,1,.36,1);position:relative;flex-shrink:0;}
-.tracker-dot.done{background:var(--accent);border-color:var(--accent);color:var(--white);}
+.tracker-dot.done{background:var(--accent);border-color:var(--accent);color:var(--white);cursor:pointer;}
 .tracker-dot.done::after{content:'✓';font-size:.65rem;}
 .tracker-dot.done span{display:none;}
-.tracker-dot.active{background:transparent;border-color:var(--accent);color:var(--accent);box-shadow:0 0 0 3px rgba(61,122,92,.18);}
+.tracker-dot.done:hover{background:var(--green-light);transform:scale(1.12);}
+.tracker-dot.active{background:transparent;border-color:var(--accent);color:var(--accent);box-shadow:0 0 0 3px rgba(61,122,92,.18);cursor:pointer;}
+.tracker-dot.active:hover{transform:scale(1.08);}
 .tracker-line{width:28px;height:1.5px;background:rgba(245,242,236,.1);transition:background .3s ease;flex-shrink:0;}
 .tracker-line.done{background:var(--accent);}
 @media(max-width:400px){.tracker-dot{width:26px;height:26px;font-size:.52rem;}.tracker-line{width:18px;}}
@@ -142,6 +144,7 @@ footer{border-top:1px solid rgba(245,242,236,.07);padding:2rem 3rem;display:flex
 </style>
 <script>
 const TOTAL = 6;
+let maxStep = 1;
 
 /* ── LANGUAGE ── */
 const T = {
@@ -372,6 +375,7 @@ function startQuiz() {
 
 function updateProgress(step) {
   const t = T[lang];
+  if (step > maxStep) maxStep = step;
   const pct = Math.round((step / TOTAL) * 100);
   document.getElementById('prog-label').textContent = t.progLabel(step, TOTAL);
   document.getElementById('prog-pct').textContent = pct + '%';
@@ -381,6 +385,11 @@ function updateProgress(step) {
     if (!dot) continue;
     dot.classList.toggle('done', i < step);
     dot.classList.toggle('active', i === step);
+    if (i <= maxStep) {
+      dot.onclick = (function(n){ return function(){ goTo(n); }; })(i);
+    } else {
+      dot.onclick = null;
+    }
     if (i < TOTAL) {
       const line = document.getElementById('tline-' + i);
       if (line) line.classList.toggle('done', i < step);
