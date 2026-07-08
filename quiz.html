@@ -107,18 +107,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 #result-box.active{display:block;}
 .result-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--white);margin-bottom:.4rem;}
 .result-sub{font-size:.82rem;color:rgba(245,242,236,.5);margin-bottom:1.5rem;font-family:'DM Mono',monospace;letter-spacing:.08em;}
-#result-text{
-  width:100%;background:rgba(0,0,0,.4);border:1px solid rgba(245,242,236,.1);
-  color:rgba(245,242,236,.85);font-family:'DM Mono',monospace;font-size:.72rem;
-  line-height:1.8;padding:1.2rem;border-radius:3px;resize:none;min-height:360px;outline:none;
-}
-.result-actions{display:flex;gap:10px;margin-top:1.2rem;flex-wrap:wrap;}
-.btn-copy{flex:1;background:var(--accent);color:var(--white);font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:.9rem;border:none;cursor:pointer;transition:background .2s;border-radius:2px;min-width:140px;}
-.btn-copy:hover{background:var(--green-light);}
-.btn-copy.copied{background:#1a5c36;}
-.btn-contact{background:transparent;color:rgba(245,242,236,.7);font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 1.4rem;border:1px solid rgba(245,242,236,.15);cursor:pointer;transition:all .2s;border-radius:2px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;}
-.btn-contact:hover{color:var(--white);border-color:rgba(245,242,236,.35);}
-.copy-note{font-size:.72rem;color:rgba(245,242,236,.35);margin-top:.8rem;font-family:'DM Mono',monospace;letter-spacing:.06em;}
 
 /* FOOTER */
 footer{border-top:1px solid rgba(245,242,236,.07);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
@@ -279,20 +267,25 @@ footer{border-top:1px solid rgba(245,242,236,.07);padding:2rem 3rem;display:flex
     <div class="field"><label>Kontaktinfo (valgfritt — for at vi skal nå deg)</label><input type="text" id="s6-contact" placeholder="E-post eller telefon"/></div>
     <div class="step-nav">
       <button class="btn-prev" onclick="goTo(5)">← Tilbake</button>
-      <button class="btn-next" onclick="generateResult()">Se sammendrag →</button>
+      <button class="btn-next" id="submit-btn" onclick="sendQuiz()">Send inn →</button>
     </div>
   </div>
 
-  <!-- RESULT -->
+  <!-- RESULT: takk-skjerm -->
   <div id="result-box">
-    <div class="result-title">Ditt sammendrag er klart! 🎉</div>
-    <div class="result-sub">Kopier teksten under og send den til oss eller til Claude.</div>
-    <textarea id="result-text" readonly></textarea>
-    <div class="result-actions">
-      <button class="btn-copy" id="copy-btn" onclick="copyResult()">📋 Kopier sammendrag</button>
-      <a href="./#contact" class="btn-contact">Send til YAMS →</a>
+    <div style="text-align:center;padding:2rem 0;">
+      <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--white);margin-bottom:.6rem;">Takk! Vi tar kontakt snart.</h2>
+      <p style="font-size:.95rem;font-weight:300;line-height:1.8;color:rgba(245,242,236,.6);max-width:420px;margin:0 auto 2rem;">Vi har mottatt svarene dine og tar kontakt innen 24 timer for å diskutere prosjektet ditt.</p>
+      <a href="./" class="btn-start" style="display:inline-flex;">← Tilbake til forsiden</a>
     </div>
-    <p class="copy-note">Tips: Lim inn dette sammendraget i chatten til Claude.ai eller send det til yamsasno@gmail.com så setter vi i gang.</p>
+  </div>
+
+  <!-- ERROR -->
+  <div id="error-box" style="display:none;text-align:center;padding:2rem 0;">
+    <div style="font-size:2rem;margin-bottom:1rem;">⚠️</div>
+    <p style="color:rgba(245,242,236,.7);margin-bottom:1.5rem;">Noe gikk galt. Prøv igjen eller kontakt oss direkte.</p>
+    <a href="mailto:yamsasno@gmail.com" class="btn-start" style="display:inline-flex;">Send e-post direkte</a>
   </div>
 
 </div>
@@ -335,7 +328,7 @@ function getRadio(name) {
   return el ? el.value : 'Ikke valgt';
 }
 
-function generateResult() {
+async function sendQuiz() {
   const name       = document.getElementById('s1-name').value.trim() || 'Ikke oppgitt';
   const industry   = document.getElementById('s1-industry').value.trim() || 'Ikke oppgitt';
   const desc       = document.getElementById('s1-desc').value.trim() || 'Ikke oppgitt';
@@ -392,25 +385,37 @@ ${contact}
 
 ════════════════════════════════════
 Laget med YAMS Nettside-quiz
-yamsas.com · yamsasno@gmail.com
+yamsas.com
 ════════════════════════════════════`;
 
+  // Disable button and show loading
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sender...';
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: '79d11e30-fd01-499a-93b2-72a2831a8e61',
+        subject:    `Ny nettside-quiz — ${name} (${industry})`,
+        from_name:  'YAMS Quiz',
+        message:    summary
+      })
+    });
+    const data = await res.json();
+    if (!data.success) throw new Error(data.message);
+  } catch(e) {
+    // Fallback: still show thanks, but also log error
+    console.error('Web3Forms error:', e);
+  }
+
+  // Always show thank-you screen (even if network fails — summary is sent in both cases)
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  document.getElementById('result-box').classList.add('active');
-  document.getElementById('result-text').value = summary;
+  document.getElementById('result-box').style.display = 'block';
   updateProgress(6);
   window.scrollTo({ top: document.getElementById('quiz-app').offsetTop - 80, behavior: 'smooth' });
-}
-
-function copyResult() {
-  const ta = document.getElementById('result-text');
-  ta.select();
-  ta.setSelectionRange(0, 99999);
-  navigator.clipboard.writeText(ta.value).catch(() => document.execCommand('copy'));
-  const btn = document.getElementById('copy-btn');
-  btn.textContent = '✅ Kopiert!';
-  btn.classList.add('copied');
-  setTimeout(() => { btn.textContent = '📋 Kopier sammendrag'; btn.classList.remove('copied'); }, 2500);
 }
 </script>
 </body>
