@@ -1972,55 +1972,57 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
   /* ── KNOWLEDGE BASE — bilingual ── */
   const KB_EN = {
     greeting: [
-      "Hey there! 👋 I'm the YAMS AI assistant. I can answer questions about our services, pricing, process, and more. What can I help you with today?",
-      "Hi! Welcome to YAMS. I'm here to help you find out about our web solutions. What would you like to know?"
+      "Hey there! 👋 I'm the YAMS assistant. I can answer questions about our services, process, timeline and more — or help you get started with a free website plan. What can I help you with?",
+      "Hi! Welcome to YAMS. Take our 2-minute quiz to get a free website plan tailored to your business — or ask me anything. What would you like to know?"
     ],
-    services: "We offer four core services:\n\n🎨 **Web Design** — Custom, brand-aligned layouts with mobile-first systems.\n\n💻 **Web Development** — Fast, scalable code on modern frameworks.\n\n📈 **Growth Strategy** — SEO, analytics, conversion optimisation & monthly support.\n\n📷 **Product Photography** — Editorial-quality product visuals for the web.\n\nWhich one interests you most?",
-    pricing: "Our pricing is straightforward:\n\n💎 **Web Design + Maintenance**\n— NOK 20,000 one-time\n— NOK 359/month for ongoing maintenance\n\n🎯 **Web Design only**\n— NOK 20,000 one-time\n— Full handover, 30-day support included\n\nAll prices exclude VAT. Want to get a custom quote?",
-    process: "Our 4-step process:\n\n1️⃣ **Discovery** — We dig into your goals and audience.\n2️⃣ **Design** — High-fidelity mockups, 2 rounds of revisions.\n3️⃣ **Build** — Clean, performant code, mobile-first.\n4️⃣ **Launch & Grow** — We handle deployment + ongoing support.\n\nTypically 1–3 weeks from brief to launch.",
-    contact: "You can reach us at:\n\n📧 yamsasno@gmail.com\n🌍 Norway-based, working globally\n⏱️ We reply within 24 hours\n\nOr just fill in the contact form at the bottom of this page!",
-    timeline: "Typical delivery is **1–3 weeks** from the initial brief, depending on complexity. Custom projects may take longer. We'll give you a clear timeline estimate before starting.",
-    about: "YAMS is a Norwegian website solutions studio. We combine strategic thinking, refined design, and rock-solid development to give your brand the digital presence it deserves.\n\nWe work with startups and established brands alike — always with the same level of craft and ambition.",
+    services: "We offer four core services:\n\n🎨 **Web Design** — Custom, brand-aligned layouts with mobile-first systems.\n\n💻 **Web Development** — Fast, scalable code on modern frameworks.\n\n📈 **Growth Strategy** — SEO, analytics, conversion optimisation & monthly support.\n\n📷 **Product Photography** — Editorial-quality product visuals for the web.\n\nNot sure what you need? **Take our free 2-minute quiz** at yamsas.com/quiz and we'll build a tailored plan for you.",
+    quiz: "Our free website quiz takes about 2 minutes. Answer a few questions about your business and goals — and we'll send you a tailored proposal within 24 hours. No obligation.\n\n👉 **Start the quiz:** yamsas.com/quiz",
+    pricing: "Pricing depends on your project — every business is different. The best way to get an accurate quote is to **take our free 2-minute quiz** at yamsas.com/quiz.\n\nWe'll review your answers and send you a tailored proposal within 24 hours. No obligation.",
+    process: "Our 4-step process:\n\n1️⃣ **Discovery** — We dig into your goals and audience.\n2️⃣ **Design** — High-fidelity mockups, 2 rounds of revisions.\n3️⃣ **Build** — Clean, performant code, mobile-first.\n4️⃣ **Launch & Grow** — We handle deployment + ongoing support.\n\nTypically 1–3 weeks from brief to launch. Start with our quiz to kick things off!",
+    contact: "You can reach us at:\n\n📧 yamsasno@gmail.com\n📞 Hana: 90 72 14 81 · Johan: 99 10 99 43\n⏱️ We reply within 24 hours\n\nOr take the **free 2-minute quiz** to get a tailored proposal: yamsas.com/quiz",
+    timeline: "Typical delivery is **1–3 weeks** from the initial brief, depending on complexity. We'll give you a clear timeline estimate once we know your project — take the quiz to get started!",
+    about: "YAMS is a Norwegian website solutions studio run by Hana and Johan. We combine strategic thinking, refined design, and rock-solid development to give your brand the digital presence it deserves.\n\nWe work with startups and established brands alike — always with the same level of craft and ambition.",
     photography: "Our product photography service produces clean, editorial-quality visuals tailored for web — designed to elevate your brand and convert browsers into buyers.\n\nIncludes: E-commerce shots, lifestyle photography, brand campaign imagery, photo editing, and web-optimised asset delivery.",
     design: "Web design at YAMS means visually compelling, strategically considered layouts that communicate your brand's value instantly.\n\nIncludes: UI/UX Design, Brand-aligned Layouts, Mobile-first Design Systems, Prototype & Wireframing, and Visual Identity Alignment.",
     development: "Our web development covers fast, secure, and scalable code built on modern frameworks.\n\nIncludes: Custom Web Applications, E-commerce Platforms, CMS Development, API Integrations, and Performance & SEO optimisation.",
     growth: "Our Growth Strategy service goes beyond launch. We ensure your digital presence continuously evolves and grows.\n\nIncludes: SEO & Content Strategy, Analytics & Reporting, Conversion Optimisation, and Monthly Retainer Support.",
-    maintenance: "The NOK 359/month maintenance package includes updates, security monitoring, backups, hosting, priority support, and minor content updates. You can add it to the Web Design package anytime.",
+    maintenance: "We offer ongoing maintenance — updates, security monitoring, backups, hosting, priority support, and minor content updates. Ask us about adding it to your project.",
     fallback: [
-      "That's a great question! I'd recommend reaching out directly to our team at yamsasno@gmail.com — we reply within 24 hours. 💬",
-      "I'm not sure about that specific detail, but our team can answer it! Contact us at yamsasno@gmail.com or use the contact form below.",
-      "For that I'd point you to our team — they're best placed to answer. Email yamsasno@gmail.com and we'll get back to you within 24 hours!"
+      "Great question! The quickest way to get answers tailored to your business is to **take our free quiz** at yamsas.com/quiz — or email us at yamsasno@gmail.com. 💬",
+      "I'm not sure about that specific detail, but our team can help! Take the **free 2-minute quiz** at yamsas.com/quiz or email yamsasno@gmail.com.",
+      "For that I'd point you to our team — email yamsasno@gmail.com and we'll get back to you within 24 hours. Or start with the **free quiz** at yamsas.com/quiz!"
     ]
   };
 
   const KB_NO = {
     greeting: [
-      "Hei! 👋 Jeg er YAMS AI-assistenten. Jeg kan svare på spørsmål om tjenester, priser, prosess og mer. Hva kan jeg hjelpe deg med i dag?",
-      "Hei og velkommen til YAMS! Jeg er her for å hjelpe deg finne ut om nettstedløsningene våre. Hva vil du vite?"
+      "Hei! 👋 Jeg er YAMS-assistenten. Jeg kan svare på spørsmål om tjenester, prosess, leveringstid og mer — eller hjelpe deg å komme i gang med en gratis nettsideplan. Hva kan jeg hjelpe deg med?",
+      "Hei og velkommen til YAMS! Ta vår 2-minutters quiz for å få en gratis nettsideplan tilpasset bedriften din — eller still meg et spørsmål. Hva vil du vite?"
     ],
-    services: "Vi tilbyr fire kjernetjenester:\n\n🎨 **Webdesign** — Skreddersydde, merkevare-tilpassede layouts.\n\n💻 **Webutvikling** — Rask, skalerbar kode på moderne rammeverk.\n\n📈 **Vekststrategi** — SEO, analyse, konverteringsoptimalisering og månedlig støtte.\n\n📷 **Produktfotografering** — Redaksjonell billedkvalitet for nett.\n\nHvilken tjeneste er du mest interessert i?",
-    pricing: "Prisene våre er enkle:\n\n💎 **Webdesign + Vedlikehold**\n— NOK 20 000 engangsbeløp\n— NOK 359/mnd for løpende vedlikehold\n\n🎯 **Kun Webdesign**\n— NOK 20 000 engangsbeløp\n— Full overlevering, 30 dagers support inkludert\n\nAlle priser er eks. mva. Vil du ha et tilpasset tilbud?",
-    process: "Vår 4-stegs prosess:\n\n1️⃣ **Oppdagelse** — Vi setter oss inn i dine mål og målgruppe.\n2️⃣ **Design** — Høy-fidelity mockups, 2 runder med revisjoner.\n3️⃣ **Bygging** — Ren, ytelsesdyktig kode, mobile-first.\n4️⃣ **Lansering og vekst** — Vi håndterer utrulling og løpende støtte.\n\nTypisk 1–3 uker fra brief til lansering.",
-    contact: "Du kan nå oss på:\n\n📧 yamsasno@gmail.com\n🌍 Norge-basert, jobber globalt\n⏱️ Vi svarer innen 24 timer\n\nEller fyll ut kontaktskjemaet nederst på siden!",
-    timeline: "Typisk leveringstid er **1–3 uker** fra første brief, avhengig av kompleksitet. Vi gir deg et klart estimat før vi starter.",
-    about: "YAMS er et norsk nettstedstudio. Vi kombinerer strategisk tenkning, raffinert design og solid utvikling for å gi merkevaren din den digitale tilstedeværelsen den fortjener.\n\nVi jobber med startups og etablerte merkevarer — alltid med samme nivå av håndverk og ambisjon.",
-    photography: "Vår produktfotograferingstjeneste produserer rene, redaksjonelle visuals tilpasset nett — designet for å løfte merkevaren din.\n\nInkluderer: E-handelsbilder, livsstilsfotografering, merkevare­kampanje bilder, bilderedigering og nett-optimaliserte filer.",
+    services: "Vi tilbyr fire kjernetjenester:\n\n🎨 **Webdesign** — Skreddersydde, merkevare-tilpassede layouts.\n\n💻 **Webutvikling** — Rask, skalerbar kode på moderne rammeverk.\n\n📈 **Vekststrategi** — SEO, analyse, konverteringsoptimalisering og månedlig støtte.\n\n📷 **Produktfotografering** — Redaksjonell billedkvalitet for nett.\n\nUsikker på hva du trenger? **Ta vår gratis 2-minutters quiz** på yamsas.com/quiz og vi lager en skreddersydd plan for deg.",
+    quiz: "Quizen vår tar ca. 2 minutter. Svar på noen spørsmål om bedriften og målene dine — så sender vi deg et skreddersydd tilbud innen 24 timer. Ingen forpliktelse.\n\n👉 **Start quizen:** yamsas.com/quiz",
+    pricing: "Prisen avhenger av prosjektet ditt — alle bedrifter er forskjellige. Den beste måten å få et nøyaktig tilbud på er å **ta vår gratis 2-minutters quiz** på yamsas.com/quiz.\n\nVi gjennomgår svarene dine og sender deg et skreddersydd tilbud innen 24 timer. Ingen forpliktelse.",
+    process: "Vår 4-stegs prosess:\n\n1️⃣ **Oppdagelse** — Vi setter oss inn i dine mål og målgruppe.\n2️⃣ **Design** — Høy-fidelity mockups, 2 runder med revisjoner.\n3️⃣ **Bygging** — Ren, ytelsesdyktig kode, mobile-first.\n4️⃣ **Lansering og vekst** — Vi håndterer utrulling og løpende støtte.\n\nTypisk 1–3 uker fra brief til lansering. Start med quizen for å komme i gang!",
+    contact: "Du kan nå oss på:\n\n📧 yamsasno@gmail.com\n📞 Hana: 90 72 14 81 · Johan: 99 10 99 43\n⏱️ Vi svarer innen 24 timer\n\nEller ta **den gratis 2-minutters quizen** for å få et skreddersydd tilbud: yamsas.com/quiz",
+    timeline: "Typisk leveringstid er **1–3 uker** fra første brief, avhengig av kompleksitet. Vi gir deg et klart estimat når vi kjenner prosjektet ditt — ta quizen for å komme i gang!",
+    about: "YAMS er et norsk nettstedstudio drevet av Hana og Johan. Vi kombinerer strategisk tenkning, raffinert design og solid utvikling for å gi merkevaren din den digitale tilstedeværelsen den fortjener.\n\nVi jobber med startups og etablerte merkevarer — alltid med samme nivå av håndverk og ambisjon.",
+    photography: "Vår produktfotograferingstjeneste produserer rene, redaksjonelle visuals tilpasset nett — designet for å løfte merkevaren din.\n\nInkluderer: E-handelsbilder, livsstilsfotografering, merkevarekampanjebilder, bilderedigering og nett-optimaliserte filer.",
     design: "Webdesign hos YAMS betyr visuelt overbevisende, strategisk gjennomtenkte layouts.\n\nInkluderer: UI/UX Design, merkevare-tilpassede layouts, mobile-first designsystemer, prototype og wireframing.",
     development: "Vår webutvikling dekker rask, sikker og skalerbar kode på moderne rammeverk.\n\nInkluderer: Egendefinerte nettapplikasjoner, e-handelsplattformer, CMS-utvikling, API-integrasjoner og ytelsesoptimalisering.",
     growth: "Vekststrategi-tjenesten vår går utover lansering. Vi sørger for at din digitale tilstedeværelse kontinuerlig vokser.\n\nInkluderer: SEO og innholdsstrategi, analyse og rapportering, konverteringsoptimalisering og månedlig retainer-støtte.",
-    maintenance: "NOK 359/mnd vedlikeholdspakken inkluderer oppdateringer, sikkerhetsoversåking, backup, hosting, prioritert support og mindre innholdsoppdateringer. Du kan legge det til Webdesign-pakken når som helst.",
+    maintenance: "Vi tilbyr løpende vedlikehold — oppdateringer, sikkerhetsoversåking, backup, hosting, prioritert support og mindre innholdsoppdateringer. Spør oss om å legge det til prosjektet ditt.",
     fallback: [
-      "Det er et godt spørsmål! Jeg anbefaler å ta kontakt direkte med teamet på yamsasno@gmail.com — vi svarer innen 24 timer. 💬",
-      "Det er jeg ikke helt sikker på, men teamet vårt kan svare! Kontakt oss på yamsasno@gmail.com eller bruk kontaktskjemaet nedenfor.",
-      "For det vil jeg peke deg til teamet vårt — de er best plassert til å svare. Send e-post til yamsasno@gmail.com og vi svarer innen 24 timer!"
+      "Godt spørsmål! Den raskeste måten å få svar tilpasset bedriften din er å **ta den gratis quizen** på yamsas.com/quiz — eller send oss e-post på yamsasno@gmail.com. 💬",
+      "Det er jeg ikke helt sikker på, men teamet vårt kan hjelpe! Ta den **gratis 2-minutters quizen** på yamsas.com/quiz eller send e-post til yamsasno@gmail.com.",
+      "For det vil jeg peke deg til teamet vårt — send e-post til yamsasno@gmail.com og vi svarer innen 24 timer. Eller start med den **gratis quizen** på yamsas.com/quiz!"
     ]
   };
 
   /* ── Language helpers — read from localStorage at call time ── */
   function getLang(){ return localStorage.getItem('yams_lang') || 'en'; }
   function getKB()  { return getLang() === 'no' ? KB_NO : KB_EN; }
-  function getQuickInit()     { return getLang()==='no' ? ['Tjenester','Priser','Prosess','Kontakt']       : ['Services','Pricing','Process','Contact']; }
-  function getQuickFollowup() { return getLang()==='no' ? ['Webdesign','Priser','Leveringstid','Kontakt']  : ['Web Design','Pricing','Timeline','Contact']; }
+  function getQuickInit()     { return getLang()==='no' ? ['Ta quizen','Tjenester','Prosess','Kontakt']      : ['Take the quiz','Services','Process','Contact']; }
+  function getQuickFollowup() { return getLang()==='no' ? ['Ta quizen','Webdesign','Leveringstid','Kontakt'] : ['Take the quiz','Web Design','Timeline','Contact']; }
 
   /* Called by setLang() — updates chatbot UI and re-greets if open */
   window.setChatLang = function(lang) {
@@ -2051,12 +2053,13 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
     const m  = msg.toLowerCase();
     const kb = getKB();
     if(/\b(hi|hello|hey|hei|hallo|howdy)\b/.test(m))                                          return pickRandom(kb.greeting);
+    if(/(quiz|plan|tilbud|quote|gratis|free plan|nettside-plan|website plan)/.test(m))        return kb.quiz;
     if(/\b(services?|offer|what do you|tjeneste|tilbyr)\b/.test(m))                           return kb.services;
     if(/(pric|cost|fee|how much|nok|krone|koste|pris|pakk|billig|dyr|budget|budsjett)/.test(m)) return kb.pricing;
     if(/(process|prosess|workflow|how do|how long|how does|steg|trinn|fremgang)/.test(m))      return kb.process;
     if(/\b(contact|email|e-post|epost|reach|get in touch|kontakt|ring|phone)\b/.test(m))      return kb.contact;
     if(/(timeline|time|when|how long|delivery|week|deliver|levering|tid|rask|raskt|fort)/.test(m)) return kb.timeline;
-    if(/\b(about|who are|company|yams|om oss|hvem er|bakgrunn)\b/.test(m))                    return kb.about;
+    if(/\b(about|who are|company|yams|om oss|hvem er|bakgrunn|hana|johan)\b/.test(m))         return kb.about;
     if(/(photo|photograph|camera|bilde|foto|produkt|product)/.test(m))                        return kb.photography;
     if(/(design|ux|ui|layout|visual|wireframe|mockup|utseende)/.test(m))                      return kb.design;
     if(/(develop|code|coding|build|app|cms|api|utvikl|kode|nettapp|nettside)/.test(m))        return kb.development;
