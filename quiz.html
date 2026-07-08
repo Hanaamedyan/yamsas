@@ -73,9 +73,9 @@ nav{position:fixed;top:34px;left:0;right:0;z-index:100;display:flex;align-items:
 .tracker-dot.done:hover{background:var(--green-light);transform:scale(1.12);}
 .tracker-dot.active{background:transparent;border-color:var(--accent);color:var(--accent);box-shadow:0 0 0 3px rgba(61,122,92,.18);cursor:pointer;}
 .tracker-dot.active:hover{transform:scale(1.08);}
-.tracker-line{width:28px;height:1.5px;background:rgba(245,242,236,.1);transition:background .3s ease;flex-shrink:0;}
+.tracker-line{width:20px;height:1.5px;background:rgba(245,242,236,.1);transition:background .3s ease;flex-shrink:0;}
 .tracker-line.done{background:var(--accent);}
-@media(max-width:400px){.tracker-dot{width:26px;height:26px;font-size:.52rem;}.tracker-line{width:18px;}}
+@media(max-width:400px){.tracker-dot{width:26px;height:26px;font-size:.52rem;}.tracker-line{width:12px;}}
 
 /* STEP */
 .step{display:none;}
@@ -137,13 +137,26 @@ nav{position:fixed;top:34px;left:0;right:0;z-index:100;display:flex;align-items:
 .color-swatch{width:32px;height:32px;border-radius:50%;flex-shrink:0;border:2px solid rgba(245,242,236,.1);}
 .color-card input:checked + .opt-label .color-swatch{border-color:var(--accent);}
 
+/* SUMMARY */
+.sum-section{border:1px solid rgba(245,242,236,.1);border-radius:4px;padding:1.2rem 1.4rem;margin-bottom:.8rem;background:rgba(245,242,236,.02);}
+.sum-section-header{display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem;}
+.sum-icon{font-size:1rem;flex-shrink:0;}
+.sum-label{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,236,.4);flex:1;}
+.sum-edit-btn{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:none;border:1px solid rgba(61,122,92,.35);padding:4px 12px;cursor:pointer;border-radius:2px;transition:background .2s,border-color .2s;white-space:nowrap;}
+.sum-edit-btn:hover{background:rgba(61,122,92,.12);border-color:var(--accent);}
+.sum-row{display:flex;gap:.8rem;margin-bottom:.35rem;line-height:1.5;}
+.sum-row:last-child{margin-bottom:0;}
+.sum-key{font-family:'DM Mono',monospace;font-size:.62rem;color:rgba(245,242,236,.35);min-width:80px;flex-shrink:0;padding-top:.05rem;}
+.sum-val{font-size:.85rem;color:var(--white);}
+.sum-val.empty{color:rgba(245,242,236,.25);font-style:italic;}
+
 /* FOOTER */
 footer{border-top:1px solid rgba(245,242,236,.07);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
 .ft-copy{font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(245,242,236,.25);letter-spacing:.08em;}
 @media(max-width:600px){footer{padding:1.5rem 1.2rem;flex-direction:column;align-items:flex-start;}}
 </style>
 <script>
-const TOTAL = 6;
+const TOTAL = 7;
 let maxStep = 1;
 
 /* ── LANGUAGE ── */
@@ -225,6 +238,9 @@ const T = {
     notSpecified:'Not specified',
     none:        'None',
     noneSelected:'None selected',
+    s7Title:     'Review<br/>your answers.',
+    s7Hint:      'Does everything look right? Click "Edit" to go back and change.',
+    editBtn:     'Edit',
     sending:     'Sending...',
   },
   no: {
@@ -304,6 +320,9 @@ const T = {
     notSpecified:'Ikke spesifisert',
     none:        'Ingen',
     noneSelected:'Ingen valgt',
+    s7Title:     'Se over<br/>svarene dine.',
+    s7Hint:      'Stemmer alt? Trykk «Endre» for å gå tilbake og redigere.',
+    editBtn:     'Endre',
     sending:     'Sender...',
   }
 };
@@ -342,6 +361,7 @@ function applyLang() {
   setText('s5-textq', t.s5TextQ); setText('s5-imgq', t.s5ImgQ);
   setLabel('lbl-s5-domain', t.s5Domain); setAttr('s5-domain','placeholder', t.s5DomainPh);
   setText('s6-title', t.s6Title); setText('s6-hint', t.s6Hint);
+  setText('s7-title', t.s7Title); setText('s7-hint', t.s7Hint);
   setText('s6-timeq', t.s6TimeQ); setText('s6-budgetq', t.s6BudgetQ); setLabel('lbl-s6-notes', t.s6Notes);
   setAttr('s6-notes','placeholder', t.s6NotesPh); setLabel('lbl-s6-contact', t.s6Contact);
   setAttr('s6-contact','placeholder', t.s6ContactPh);
@@ -400,8 +420,76 @@ function updateProgress(step) {
 function goTo(n) {
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
   const next = document.getElementById('step-' + n);
-  if (next) { next.classList.add('active'); updateProgress(n); }
+  if (next) {
+    next.classList.add('active');
+    updateProgress(n);
+    if (n === TOTAL) buildSummaryUI();
+  }
   window.scrollTo({ top: document.getElementById('quiz-app').offsetTop - 80, behavior: 'smooth' });
+}
+
+function buildSummaryUI() {
+  const t = T[lang];
+  const np = t.notProvided, ns = t.notSelected, none = t.none, noneS = t.noneSelected, notSpec = t.notSpecified;
+
+  const colorsArr = getChecked('colors');
+  const colOther = document.getElementById('s3-colors-other').value.trim();
+  if (colOther) colorsArr.push(colOther);
+
+  const sections = [
+    {
+      icon: '📌', label: t.sumBiz, step: 1,
+      rows: [
+        { key: t.sumName, val: document.getElementById('s1-name').value.trim() || np },
+        { key: t.sumInd,  val: document.getElementById('s1-industry').value.trim() || np },
+        { key: t.sumDesc, val: document.getElementById('s1-desc').value.trim() || np },
+      ]
+    },
+    {
+      icon: '🌐', label: t.sumType, step: 2,
+      rows: [{ key: '', val: getRadio('site-type') }]
+    },
+    {
+      icon: '⚙️', label: t.sumPages + ' & ' + t.sumFeatures, step: 4,
+      rows: [
+        { key: t.sumPages,    val: getChecked('pages').join(', ') || noneS },
+        { key: t.sumFeatures, val: getChecked('features').join(', ') || noneS },
+      ]
+    },
+    {
+      icon: '🎨', label: t.sumDesign, step: 3,
+      rows: [
+        { key: t.sumStyle,  val: getRadio('style') },
+        { key: t.sumInspo,  val: document.getElementById('s3-inspo').value.trim() || none },
+        { key: t.sumColors, val: colorsArr.length ? colorsArr.join(', ') : notSpec },
+      ]
+    },
+    {
+      icon: '⏱️', label: t.sumTimeline, step: 6,
+      rows: [
+        { key: t.sumTimeline, val: getRadio('timeline') },
+        { key: t.sumBudget,   val: getRadio('budget') },
+        { key: t.sumContact,  val: document.getElementById('s6-contact').value.trim() || np },
+        { key: t.sumNotes,    val: document.getElementById('s6-notes').value.trim() || none },
+      ]
+    },
+  ];
+
+  document.getElementById('summary-content').innerHTML = sections.map(s => `
+    <div class="sum-section">
+      <div class="sum-section-header">
+        <span class="sum-icon">${s.icon}</span>
+        <span class="sum-label">${s.label}</span>
+        <button class="sum-edit-btn" onclick="goTo(${s.step})">${t.editBtn}</button>
+      </div>
+      <div>
+        ${s.rows.map(r => `
+          <div class="sum-row">
+            ${r.key ? `<span class="sum-key">${r.key}</span>` : ''}
+            <span class="sum-val${r.val === np || r.val === ns || r.val === noneS || r.val === notSpec || r.val === none ? ' empty' : ''}">${r.val}</span>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
 }
 
 function getChecked(name) {
@@ -559,6 +647,8 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="tracker-item"><div class="tracker-dot" id="tdot-5"><span>5</span></div></div>
     <div class="tracker-line" id="tline-5"></div>
     <div class="tracker-item"><div class="tracker-dot" id="tdot-6"><span>6</span></div></div>
+    <div class="tracker-line" id="tline-6"></div>
+    <div class="tracker-item"><div class="tracker-dot" id="tdot-7"><span>7</span></div></div>
   </div>
 
   <!-- PROGRESS -->
@@ -718,6 +808,17 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="field"><label id="lbl-s6-contact">Kontaktinfo (valgfritt — for at vi skal nå deg)</label><input type="text" id="s6-contact" placeholder="E-post eller telefon"/></div>
     <div class="step-nav">
       <button class="btn-prev" onclick="goTo(5)">← Tilbake</button>
+      <button class="btn-next" onclick="goTo(7)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- STEP 7: Oppsummering -->
+  <div class="step" id="step-7">
+    <h2 class="step-title" id="s7-title">Se over<br/>svarene dine.</h2>
+    <p class="step-hint" id="s7-hint">Stemmer alt? Trykk «Endre» for å gå tilbake og redigere.</p>
+    <div id="summary-content"></div>
+    <div class="step-nav" style="margin-top:2.5rem;">
+      <button class="btn-prev" onclick="goTo(6)">← Tilbake</button>
       <button class="btn-next" id="submit-btn" onclick="sendQuiz()">Send inn →</button>
     </div>
   </div>
