@@ -183,6 +183,8 @@ const T = {
     s6Title:     'Last details.',
     s6Hint:      'Tell us about your timeline and any special wishes.',
     s6TimeQ:     'When do you need the website?',
+    s6BudgetQ:   'What is your budget?',
+    sumBudget:   'Budget:',
     s6Notes:     'Special wishes, features or things you\'d like to add?',
     s6NotesPh:   'E.g.: We want a dark style with animations. The website should sell 3 products and have an about page with team photos...',
     s6Contact:   'Contact info (optional — so we can reach you)',
@@ -260,6 +262,8 @@ const T = {
     s6Title:     'Siste detaljer.',
     s6Hint:      'Fortell oss om tidslinje og eventuelle spesielle ønsker.',
     s6TimeQ:     'Når trenger du nettsiden?',
+    s6BudgetQ:   'Hva er budsjettet ditt?',
+    sumBudget:   'Budsjett:',
     s6Notes:     'Spesielle ønsker, funksjoner eller ting du vil si?',
     s6NotesPh:   'F.eks.: Vi vil ha en mørk stil med animasjoner. Nettsiden skal selge 3 produkter og ha en om-side med teambilder...',
     s6Contact:   'Kontaktinfo (valgfritt — for at vi skal nå deg)',
@@ -335,7 +339,7 @@ function applyLang() {
   setText('s5-textq', t.s5TextQ); setText('s5-imgq', t.s5ImgQ);
   setLabel('lbl-s5-domain', t.s5Domain); setAttr('s5-domain','placeholder', t.s5DomainPh);
   setText('s6-title', t.s6Title); setText('s6-hint', t.s6Hint);
-  setText('s6-timeq', t.s6TimeQ); setLabel('lbl-s6-notes', t.s6Notes);
+  setText('s6-timeq', t.s6TimeQ); setText('s6-budgetq', t.s6BudgetQ); setLabel('lbl-s6-notes', t.s6Notes);
   setAttr('s6-notes','placeholder', t.s6NotesPh); setLabel('lbl-s6-contact', t.s6Contact);
   setAttr('s6-contact','placeholder', t.s6ContactPh);
   // Buttons
@@ -418,6 +422,7 @@ async function sendQuiz() {
   const contentImg = getRadio('content-img');
   const domain     = document.getElementById('s5-domain').value.trim() || t.notProvided;
   const timeline   = getRadio('timeline');
+  const budget     = getRadio('budget');
   const notes      = document.getElementById('s6-notes').value.trim() || t.none;
   const contact    = document.getElementById('s6-contact').value.trim() || t.notProvided;
 
@@ -452,6 +457,9 @@ ${t.sumDomain.padEnd(13)} ${domain}
 
 ⏱️ ${t.sumTimeline}
 ${timeline}
+
+💵 ${t.sumBudget}
+${budget}
 
 💬 ${t.sumNotes}
 ${notes}
@@ -689,6 +697,14 @@ document.addEventListener('DOMContentLoaded', function() {
       <label class="opt-card"><input type="radio" name="timeline" value="1–2 måneder"/><span class="opt-label">📆 1–2 måneder</span></label>
       <label class="opt-card"><input type="radio" name="timeline" value="2–4 måneder"/><span class="opt-label">🗓️ 2–4 måneder</span></label>
       <label class="opt-card"><input type="radio" name="timeline" value="Fleksibelt — ingen fast frist"/><span class="opt-label">😌 Fleksibelt</span></label>
+    </div>
+    <div class="field" style="margin-top:1.2rem;"><label id="s6-budgetq">Hva er budsjettet ditt?</label></div>
+    <div class="option-grid">
+      <label class="opt-card"><input type="radio" name="budget" value="Under 5 000 kr"/><span class="opt-label">💸 Under 5 000 kr</span></label>
+      <label class="opt-card"><input type="radio" name="budget" value="5 000–15 000 kr"/><span class="opt-label">💰 5 000–15 000 kr</span></label>
+      <label class="opt-card"><input type="radio" name="budget" value="15 000–30 000 kr"/><span class="opt-label">💎 15 000–30 000 kr</span></label>
+      <label class="opt-card"><input type="radio" name="budget" value="30 000+ kr"/><span class="opt-label">🏆 30 000+ kr</span></label>
+      <label class="opt-card"><input type="radio" name="budget" value="Vet ikke ennå"/><span class="opt-label">🤷 Vet ikke ennå</span></label>
     </div>
     <div class="field"><label id="lbl-s6-notes">Spesielle ønsker, funksjoner eller ting du vil si?</label><textarea id="s6-notes" placeholder="F.eks.: Vi vil ha en mørk stil med animasjoner. Nettsiden skal selge 3 produkter og ha en om-side med teambilder. Vi har bilder men trenger hjelp med tekst..."></textarea></div>
     <div class="field"><label id="lbl-s6-contact">Kontaktinfo (valgfritt — for at vi skal nå deg)</label><input type="text" id="s6-contact" placeholder="E-post eller telefon"/></div>
