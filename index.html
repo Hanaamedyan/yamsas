@@ -383,7 +383,7 @@ section, .manifesto, .services, .work-section, .process, .contact { padding: 8re
 .btn-quiz-cta:hover{background:var(--off-white);transform:translateY(-2px);}
 .quiz-cta-note{margin-top:1.4rem;font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,242,236,.3);}
 /* HERO QUIZ PILL */
-.hero-quiz-pill{display:inline-flex;align-items:center;gap:8px;margin-top:1.2rem;font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(61,122,92,.45);padding:7px 16px;border-radius:40px;transition:all .2s;text-decoration:none;}
+.hero-quiz-pill{display:inline-flex;align-items:center;gap:8px;margin-top:1.4rem;font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(61,122,92,.45);padding:7px 16px;border-radius:40px;transition:all .2s;text-decoration:none;position:relative;z-index:3;}
 .hero-quiz-pill:hover{background:rgba(61,122,92,.12);border-color:var(--accent);}
 @media(max-width:600px){.quiz-cta-section{padding:5rem 1.2rem;}.quiz-steps{gap:.6rem;}}
 
@@ -462,6 +462,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .scroll-line{width:40px;height:1px;}
   .hero-title{font-size:clamp(3.5rem,14vw,14rem);}
   .process-steps{grid-template-columns:1fr;}
+  .hero-quiz-pill{display:flex;justify-content:center;width:100%;margin-top:1.6rem;padding:1rem 1.5rem;border-radius:3px;background:var(--accent);border-color:var(--accent);color:var(--white);font-size:.68rem;}
   .footer-top{grid-template-columns:1fr;}
   .footer-bottom{flex-direction:column;gap:1.5rem;text-align:center;}
   .form-row{grid-template-columns:1fr;}
@@ -865,9 +866,9 @@ footer { border-top-color:rgba(245,242,236,.2); }
   <div class="hero-bg-text" aria-hidden="true">YAMS</div>
   <div class="hero-eyebrow">Website Solutions — Est. Norway</div>
   <h1 class="hero-title">We Build<br><span class="green">Digital</span><br>Presence</h1>
+  <a href="./quiz.html" class="hero-quiz-pill" id="hero-quiz-pill">Få en gratis nettsideplan på 2 minutter →</a>
   <div class="hero-bottom">
     <p class="hero-tagline">From startups to established brands — we craft high-performance websites that convert, engage, and endure.</p>
-    <a href="./quiz.html" class="hero-quiz-pill" id="hero-quiz-pill">Få en gratis nettsideplan på 2 minutter →</a>
     <div class="hero-stats">
       <div class="hero-stat">
         <span class="stat-num">100%</span>
