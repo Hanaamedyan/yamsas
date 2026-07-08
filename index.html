@@ -366,13 +366,26 @@ section, .manifesto, .services, .work-section, .process, .contact { padding: 8re
 .contact-email a { color: rgba(245,242,236,.7); border-bottom: 1px solid rgba(245,242,236,.3); }
 
 /* QUIZ CTA */
-.quiz-cta-section{background:var(--black);border-top:1px solid rgba(245,242,236,.07);padding:7rem 3rem;text-align:center;}
-.quiz-cta-eyebrow{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:1.2rem;}
-.quiz-cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,6rem);color:var(--white);line-height:.92;margin-bottom:1.2rem;}
-.quiz-cta-sub{font-size:1rem;font-weight:300;color:rgba(245,242,236,.6);max-width:420px;margin:0 auto 2.8rem;line-height:1.8;}
-.btn-quiz-cta{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--white);font-family:'DM Mono',monospace;font-size:.7rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:1.1rem 3rem;transition:background .2s,transform .15s;text-decoration:none;}
-.btn-quiz-cta:hover{background:var(--green-light);transform:translateY(-2px);}
-@media(max-width:600px){.quiz-cta-section{padding:4rem 1.2rem;}}
+/* QUIZ CTA SECTION */
+.quiz-cta-section{background:var(--green);padding:9rem 3rem;text-align:center;position:relative;overflow:hidden;}
+.quiz-cta-section::before{content:'QUIZ';position:absolute;font-family:'Bebas Neue',sans-serif;font-size:clamp(14rem,25vw,30rem);color:rgba(245,242,236,.04);left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;letter-spacing:-.02em;white-space:nowrap;}
+.quiz-cta-inner{position:relative;z-index:1;}
+.quiz-cta-eyebrow{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,242,236,.5);display:block;margin-bottom:1.4rem;}
+.quiz-cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,8vw,8rem);color:var(--white);line-height:.9;margin-bottom:1.4rem;}
+.quiz-cta-title em{font-style:normal;color:var(--gold);}
+.quiz-cta-sub{font-size:1rem;font-weight:300;color:rgba(245,242,236,.7);max-width:440px;margin:0 auto 3rem;line-height:1.8;}
+.quiz-steps{display:flex;align-items:center;justify-content:center;gap:1rem;margin:0 auto 3rem;flex-wrap:wrap;max-width:560px;}
+.quiz-step-item{display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+.quiz-step-num{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:rgba(245,242,236,.12);line-height:1;}
+.quiz-step-txt{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,242,236,.55);}
+.quiz-step-arr{font-size:.9rem;color:rgba(245,242,236,.2);flex-shrink:0;margin-bottom:.8rem;}
+.btn-quiz-cta{display:inline-flex;align-items:center;gap:10px;background:var(--white);color:var(--green);font-family:'DM Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:1.2rem 3rem;transition:background .2s,transform .15s;text-decoration:none;}
+.btn-quiz-cta:hover{background:var(--off-white);transform:translateY(-2px);}
+.quiz-cta-note{margin-top:1.4rem;font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,242,236,.3);}
+/* HERO QUIZ PILL */
+.hero-quiz-pill{display:inline-flex;align-items:center;gap:8px;margin-top:1.2rem;font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(61,122,92,.45);padding:7px 16px;border-radius:40px;transition:all .2s;text-decoration:none;}
+.hero-quiz-pill:hover{background:rgba(61,122,92,.12);border-color:var(--accent);}
+@media(max-width:600px){.quiz-cta-section{padding:5rem 1.2rem;}.quiz-steps{gap:.6rem;}}
 
 /* CONTACT FORM */
 .contact-form-wrap { position: relative; max-width: 680px; margin: 4rem auto 0; text-align: left; }
@@ -856,6 +869,7 @@ footer { border-top-color:rgba(245,242,236,.2); }
   <h1 class="hero-title">We Build<br><span class="green">Digital</span><br>Presence</h1>
   <div class="hero-bottom">
     <p class="hero-tagline">From startups to established brands — we craft high-performance websites that convert, engage, and endure.</p>
+    <a href="./quiz.html" class="hero-quiz-pill">Ta quizen, få et tilbud →</a>
     <div class="hero-stats">
       <div class="hero-stat">
         <span class="stat-num">100%</span>
@@ -1288,10 +1302,29 @@ footer { border-top-color:rgba(245,242,236,.2); }
 
 <!-- QUIZ CTA -->
 <div class="quiz-cta-section" id="quiz-cta">
-  <span class="quiz-cta-eyebrow" id="quiz-cta-label">Gratis verktøy</span>
-  <h2 class="quiz-cta-title" id="quiz-cta-title">Ikke sikker på<br/>hva du trenger?</h2>
-  <p class="quiz-cta-sub" id="quiz-cta-sub">Svar på noen enkle spørsmål — så finner vi den perfekte løsningen for deg.</p>
-  <a href="quiz.html" class="btn-quiz-cta" id="quiz-cta-btn">Ta quizen →</a>
+  <div class="quiz-cta-inner">
+    <span class="quiz-cta-eyebrow" id="quiz-cta-label">Gratis · Tar 2 minutter</span>
+    <h2 class="quiz-cta-title" id="quiz-cta-title">Ta quizen.<br/>Få et <em>tilbud</em>.</h2>
+    <p class="quiz-cta-sub" id="quiz-cta-sub">Fortell oss om prosjektet ditt — vi sender deg et skreddersydd tilbud innen 24 timer.</p>
+    <div class="quiz-steps">
+      <div class="quiz-step-item">
+        <span class="quiz-step-num">01</span>
+        <span class="quiz-step-txt" id="qstep1">Svar på spørsmål</span>
+      </div>
+      <span class="quiz-step-arr">→</span>
+      <div class="quiz-step-item">
+        <span class="quiz-step-num">02</span>
+        <span class="quiz-step-txt" id="qstep2">Vi lager tilbud</span>
+      </div>
+      <span class="quiz-step-arr">→</span>
+      <div class="quiz-step-item">
+        <span class="quiz-step-num">03</span>
+        <span class="quiz-step-txt" id="qstep3">Vi bygger siden din</span>
+      </div>
+    </div>
+    <a href="quiz.html" class="btn-quiz-cta" id="quiz-cta-btn">Ta quizen, få et tilbud →</a>
+    <p class="quiz-cta-note" id="quiz-cta-note">Ingen forpliktelse · Vi svarer innen 24 timer</p>
+  </div>
 </div>
 
 <!-- GOOGLE REVIEWS -->
@@ -1572,7 +1605,7 @@ const TRANSLATIONS = {
     'f2-1':'Professional, custom web design','f2-2':'Responsive — perfect on all devices','f2-3':'Full handover of all files','f2-4':'SEO foundation and fast load times','f2-5':'30-day support after delivery',
     'upgrade-t':'Upgrade anytime',
     'cta-pkg2':'Take the quiz — get a quote',
-    'quiz-cta-label':'Free · Takes 2 minutes','quiz-cta-title':'Take the quiz.<br/>Get a <em>quote</em>.','quiz-cta-sub':'Tell us about your project — we\'ll send you a tailored proposal within 24 hours.','quiz-cta-btn':'Take the quiz — get a quote →',
+    'quiz-cta-label':'Free · Takes 2 minutes','quiz-cta-title':'Take the quiz.<br/>Get a <em>quote</em>.','quiz-cta-sub':'Tell us about your project — we\'ll send you a tailored proposal within 24 hours.','quiz-cta-btn':'Take the quiz, get a quote →','quiz-cta-note':'No obligation · We respond within 24 hours','qstep1':'Answer questions','qstep2':'We prepare a quote','qstep3':'We build your site',
     'contact-bg':"LET'S TALK",'contact-label':'Ready when you are','contact-title':'Ready to Grow?<br>Let\'s Build It.','contact-sub':"Book a free consultation, get a website audit, or receive your proposal today — we respond within 24 hours.",
     'flabel-name':'Full Name','fph-name':'Your name','flabel-email':'Email Address','fph-email':'your@email.com','flabel-proj':'Project Description','fph-proj':'Tell us about your project, goals, and timeline...','flabel-budget':'Desired Budget',
     'form-submit':'Receive Your Proposal Today','suc-title':'Message Sent','suc-body':"Thanks for reaching out. We'll review your inquiry and get back to you within 24 hours.",
@@ -1623,7 +1656,7 @@ const TRANSLATIONS = {
     'f2-1':'Profesjonelt, skreddersydd webdesign','f2-2':'Responsivt — perfekt på alle enheter','f2-3':'Fullstendig overlevering av alle filer','f2-4':'SEO-grunnlag og rask lastetid','f2-5':'30 dagers support etter levering',
     'upgrade-t':'Oppgrader når som helst',
     'cta-pkg2':'Ta quizen, få et tilbud',
-    'quiz-cta-label':'Gratis · Tar 2 minutter','quiz-cta-title':'Ta quizen.<br/>Få et <em>tilbud</em>.','quiz-cta-sub':'Fortell oss om prosjektet ditt — vi sender deg et skreddersydd tilbud innen 24 timer.','quiz-cta-btn':'Ta quizen, få et tilbud →',
+    'quiz-cta-label':'Gratis · Tar 2 minutter','quiz-cta-title':'Ta quizen.<br/>Få et <em>tilbud</em>.','quiz-cta-sub':'Fortell oss om prosjektet ditt — vi sender deg et skreddersydd tilbud innen 24 timer.','quiz-cta-btn':'Ta quizen, få et tilbud →','quiz-cta-note':'Ingen forpliktelse · Vi svarer innen 24 timer','qstep1':'Svar på spørsmål','qstep2':'Vi lager tilbud','qstep3':'Vi bygger siden din',
     'contact-bg':'LA OSS PRATE','contact-label':'Klar når du er klar','contact-title':'Klar for vekst?<br>La oss bygge.','contact-sub':'Book en gratis konsultasjon, få en nettside-analyse, eller motta ditt tilbud i dag — vi svarer innen 24 timer.',
     'flabel-name':'Fullt navn','fph-name':'Ditt navn','flabel-email':'E-postadresse','fph-email':'din@epost.no','flabel-proj':'Prosjektbeskrivelse','fph-proj':'Fortell oss om prosjektet ditt, mål og tidslinje...','flabel-budget':'Ønsket budsjett',
     'form-submit':'Motta ditt tilbud i dag','suc-title':'Melding sendt','suc-body':'Takk for at du tok kontakt. Vi gjennomgår forespørselen din og svarer innen 24 timer.',
@@ -1670,7 +1703,7 @@ const T_MAP = [
   ['.pricing-header .section-label','price-label','t'],['.pricing-title','price-title','h'],
   ['.price-card.featured .card-name','pkg1-name','h'],['.price-card.featured .card-desc','pkg1-desc','t'],
   ['.price-card:not(.featured) .card-name','pkg2-name','h'],['.price-card:not(.featured) .card-desc','pkg2-desc','t'],
-  ['#quiz-cta-label','quiz-cta-label','t'],['#quiz-cta-title','quiz-cta-title','h'],['#quiz-cta-sub','quiz-cta-sub','t'],['#quiz-cta-btn','quiz-cta-btn','t'],
+  ['#quiz-cta-label','quiz-cta-label','t'],['#quiz-cta-title','quiz-cta-title','h'],['#quiz-cta-sub','quiz-cta-sub','t'],['#quiz-cta-btn','quiz-cta-btn','t'],['#quiz-cta-note','quiz-cta-note','t'],['#qstep1','qstep1','t'],['#qstep2','qstep2','t'],['#qstep3','qstep3','t'],
   ['.contact-bg','contact-bg','t'],['.contact-label','contact-label','t'],['.contact-title','contact-title','h'],['.contact-sub','contact-sub','t'],
   ['#formSubmit','form-submit','t'],['.form-success-title','suc-title','t'],['.form-success-body','suc-body','t'],
   ['#fname','fph-name','p'],['#femail','fph-email','p'],['#fproject','fph-proj','p'],
