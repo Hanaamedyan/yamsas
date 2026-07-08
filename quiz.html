@@ -437,43 +437,63 @@ const optLabels = {
   }
 };
 
-function translateOptions() {
+function cacheOptionLabels() {
   document.querySelectorAll('.opt-card input').forEach(inp => {
-    const val = inp.value;
-    const tr = lang === 'en' ? optLabels.en[val] : null;
     const card = inp.closest('.opt-card');
     if (!card) return;
     const bEl = card.querySelector('b');
     const sEl = card.querySelector('small');
     if (bEl) {
-      // Structured option (site-type, style)
-      if (lang === 'en' && tr && typeof tr === 'object') {
-        bEl.textContent = tr.b;
-        if (sEl && tr.s) sEl.textContent = tr.s;
-      } else if (lang === 'no') {
-        // Restore from value (value IS the NO string for structured opts)
-        // b/small text is set from HTML — reload page resets; just leave if no cache
-      }
+      inp.dataset.noB = bEl.textContent;
+      if (sEl) inp.dataset.noS = sEl.textContent;
     } else {
-      // Simple label (colors, pages, features, content, timeline, budget)
       const lbl = card.querySelector('.opt-label');
       if (!lbl) return;
-      if (lang === 'en' && tr) {
+      const swatch = lbl.querySelector('.color-swatch');
+      if (swatch) {
+        lbl.childNodes.forEach(n => { if (n.nodeType === 3 && n.textContent.trim()) inp.dataset.noLabel = n.textContent; });
+      } else {
+        inp.dataset.noLabel = lbl.textContent;
+      }
+    }
+  });
+}
+
+function translateOptions() {
+  document.querySelectorAll('.opt-card input').forEach(inp => {
+    const val = inp.value;
+    const card = inp.closest('.opt-card');
+    if (!card) return;
+    const bEl = card.querySelector('b');
+    const sEl = card.querySelector('small');
+
+    if (bEl) {
+      if (lang === 'en') {
+        const tr = optLabels.en[val];
+        if (tr) { bEl.textContent = tr.b; if (sEl && tr.s) sEl.textContent = tr.s; }
+      } else {
+        if (inp.dataset.noB) bEl.textContent = inp.dataset.noB;
+        if (sEl && inp.dataset.noS) sEl.textContent = inp.dataset.noS;
+      }
+    } else {
+      const lbl = card.querySelector('.opt-label');
+      if (!lbl) return;
+      const swatch = lbl.querySelector('.color-swatch');
+      if (lang === 'en') {
+        const tr = optLabels.en[val];
+        if (!tr) return;
         const text = typeof tr === 'string' ? tr : tr.b;
-        // Preserve color-swatch if present
-        const swatch = lbl.querySelector('.color-swatch');
         if (swatch) {
           lbl.childNodes.forEach(n => { if (n.nodeType === 3) n.textContent = text; });
         } else {
           lbl.textContent = text;
         }
-      } else if (lang === 'no') {
-        // Restore NO label — value is the NO text (emoji already included for simple opts)
-        const swatch = lbl.querySelector('.color-swatch');
+      } else {
+        const noText = inp.dataset.noLabel || val;
         if (swatch) {
-          lbl.childNodes.forEach(n => { if (n.nodeType === 3) n.textContent = val; });
+          lbl.childNodes.forEach(n => { if (n.nodeType === 3) n.textContent = noText; });
         } else {
-          lbl.textContent = val;
+          lbl.textContent = noText;
         }
       }
     }
@@ -695,6 +715,7 @@ yamsas.com · Lang: ${lang.toUpperCase()}
 
 // Init language on load
 document.addEventListener('DOMContentLoaded', function() {
+  cacheOptionLabels();
   const l = localStorage.getItem('yams_lang') || 'no';
   lang = l;
   document.getElementById('lb-en').classList.toggle('active', l === 'en');
