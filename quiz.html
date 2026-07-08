@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HRB3N53CVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HRB3N53CVK');
+</script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nettside-quiz — YAMS</title>
+<meta name="description" content="Finn ut hvilken nettside du trenger — svar på noen enkle spørsmål og få et sammendrag klar til å sende til YAMS."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0A0A0A;--white:#F5F2EC;--green:#1B3D2F;
+  --green-light:#2C5E46;--accent:#3D7A5C;--off-white:#EDEAE2;
+  --gold:#C8A660;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white);min-height:100vh;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(10,10,10,.95);border-bottom:1px solid rgba(245,242,236,.07);backdrop-filter:blur(16px);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.06em;color:var(--white);}
+.nav-back{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,242,236,.5);transition:color .2s;}
+.nav-back:hover{color:var(--white);}
+@media(max-width:600px){nav{padding:1rem 1.2rem;}}
+
+/* HERO */
+.quiz-hero{padding:120px 3rem 60px;max-width:720px;margin:0 auto;text-align:center;}
+.quiz-eyebrow{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;}
+.quiz-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,5.5rem);line-height:.92;color:var(--white);margin-bottom:1.2rem;}
+.quiz-title em{font-style:normal;color:var(--accent);}
+.quiz-sub{font-size:1rem;font-weight:300;line-height:1.8;color:rgba(245,242,236,.7);max-width:480px;margin:0 auto 2.5rem;}
+.btn-start{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--white);font-family:'DM Mono',monospace;font-size:.7rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2.5rem;border:none;cursor:pointer;transition:background .2s,transform .15s;}
+.btn-start:hover{background:var(--green-light);transform:translateY(-2px);}
+@media(max-width:600px){.quiz-hero{padding:100px 1.2rem 40px;}}
+
+/* QUIZ WRAPPER */
+#quiz-app{display:none;max-width:680px;margin:0 auto;padding:40px 3rem 80px;}
+#quiz-app.active{display:block;}
+@media(max-width:600px){#quiz-app{padding:30px 1.2rem 60px;}}
+
+/* PROGRESS */
+.progress-wrap{margin-bottom:2.5rem;}
+.progress-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem;}
+.progress-step{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,236,.4);}
+.progress-bar{height:2px;background:rgba(245,242,236,.1);border-radius:2px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width .4s cubic-bezier(.22,1,.36,1);}
+
+/* STEP */
+.step{display:none;}
+.step.active{display:block;animation:fadeIn .35s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.step-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,3rem);color:var(--white);line-height:.95;margin-bottom:.5rem;}
+.step-hint{font-size:.85rem;font-weight:300;color:rgba(245,242,236,.5);margin-bottom:2rem;line-height:1.6;}
+
+/* INPUTS */
+.field{margin-bottom:1.4rem;}
+.field label{display:block;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,236,.5);margin-bottom:.5rem;}
+.field input,.field textarea,.field select{
+  width:100%;background:rgba(245,242,236,.05);border:1px solid rgba(245,242,236,.12);
+  color:var(--white);font-family:'DM Sans',sans-serif;font-size:.9rem;
+  padding:.85rem 1.1rem;outline:none;transition:border-color .2s;border-radius:2px;
+}
+.field input::placeholder,.field textarea::placeholder{color:rgba(245,242,236,.2);}
+.field input:focus,.field textarea:focus{border-color:rgba(61,122,92,.7);}
+.field textarea{min-height:110px;resize:vertical;}
+
+/* RADIO / CHECKBOX CARDS */
+.option-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.4rem;}
+.option-grid.cols-1{grid-template-columns:1fr;}
+.option-grid.cols-3{grid-template-columns:1fr 1fr 1fr;}
+@media(max-width:520px){.option-grid,.option-grid.cols-3{grid-template-columns:1fr 1fr;}}
+.opt-card{position:relative;cursor:pointer;}
+.opt-card input{position:absolute;opacity:0;width:0;height:0;}
+.opt-label{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:14px 16px;
+  background:rgba(245,242,236,.04);border:1px solid rgba(245,242,236,.1);border-radius:3px;
+  transition:border-color .2s,background .2s;cursor:pointer;
+  font-size:.85rem;line-height:1.4;color:rgba(245,242,236,.75);
+}
+.opt-card input:checked + .opt-label{
+  border-color:var(--accent);background:rgba(61,122,92,.12);color:var(--white);
+}
+.opt-icon{font-size:1.2rem;flex-shrink:0;margin-top:1px;}
+.opt-text b{display:block;font-size:.82rem;font-weight:600;color:var(--white);margin-bottom:2px;}
+.opt-text small{font-size:.72rem;color:rgba(245,242,236,.45);}
+
+/* NAV BUTTONS */
+.step-nav{display:flex;gap:10px;margin-top:2rem;}
+.btn-next{flex:1;background:var(--accent);color:var(--white);font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:.9rem;border:none;cursor:pointer;transition:background .2s;border-radius:2px;}
+.btn-next:hover{background:var(--green-light);}
+.btn-prev{background:transparent;color:rgba(245,242,236,.5);font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 1.4rem;border:1px solid rgba(245,242,236,.12);cursor:pointer;transition:all .2s;border-radius:2px;}
+.btn-prev:hover{color:var(--white);border-color:rgba(245,242,236,.3);}
+
+/* RESULT */
+#result-box{display:none;background:#0f1a14;border:1px solid rgba(61,122,92,.35);border-radius:4px;padding:2rem;}
+#result-box.active{display:block;}
+.result-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--white);margin-bottom:.4rem;}
+.result-sub{font-size:.82rem;color:rgba(245,242,236,.5);margin-bottom:1.5rem;font-family:'DM Mono',monospace;letter-spacing:.08em;}
+#result-text{
+  width:100%;background:rgba(0,0,0,.4);border:1px solid rgba(245,242,236,.1);
+  color:rgba(245,242,236,.85);font-family:'DM Mono',monospace;font-size:.72rem;
+  line-height:1.8;padding:1.2rem;border-radius:3px;resize:none;min-height:360px;outline:none;
+}
+.result-actions{display:flex;gap:10px;margin-top:1.2rem;flex-wrap:wrap;}
+.btn-copy{flex:1;background:var(--accent);color:var(--white);font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:.9rem;border:none;cursor:pointer;transition:background .2s;border-radius:2px;min-width:140px;}
+.btn-copy:hover{background:var(--green-light);}
+.btn-copy.copied{background:#1a5c36;}
+.btn-contact{background:transparent;color:rgba(245,242,236,.7);font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:.9rem 1.4rem;border:1px solid rgba(245,242,236,.15);cursor:pointer;transition:all .2s;border-radius:2px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;}
+.btn-contact:hover{color:var(--white);border-color:rgba(245,242,236,.35);}
+.copy-note{font-size:.72rem;color:rgba(245,242,236,.35);margin-top:.8rem;font-family:'DM Mono',monospace;letter-spacing:.06em;}
+
+/* FOOTER */
+footer{border-top:1px solid rgba(245,242,236,.07);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.ft-copy{font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(245,242,236,.25);letter-spacing:.08em;}
+@media(max-width:600px){footer{padding:1.5rem 1.2rem;flex-direction:column;align-items:flex-start;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="./" class="nav-logo">YAMS</a>
+  <a href="./" class="nav-back">← Tilbake til forsiden</a>
+</nav>
+
+<!-- HERO -->
+<div class="quiz-hero" id="quiz-hero">
+  <div class="quiz-eyebrow">Gratis verktøy</div>
+  <h1 class="quiz-title">Finn din<br/><em>perfekte</em><br/>nettside.</h1>
+  <p class="quiz-sub">Svar på noen enkle spørsmål — så genererer vi et sammendrag du kan sende direkte til oss eller til Claude for å bygge siden.</p>
+  <button class="btn-start" onclick="startQuiz()">Start quiz &nbsp;→</button>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz-app">
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span class="progress-step" id="prog-label">Steg 1 av 6</span>
+      <span class="progress-step" id="prog-pct">17%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:17%"></div></div>
+  </div>
+
+  <!-- STEP 1: Bedrift -->
+  <div class="step active" id="step-1">
+    <h2 class="step-title">Fortell oss om<br/>bedriften din.</h2>
+    <p class="step-hint">Vi trenger litt bakgrunn for å forstå hva du driver med.</p>
+    <div class="field"><label>Bedriftsnavn *</label><input type="text" id="s1-name" placeholder="F.eks. Larsens Bakeri"/></div>
+    <div class="field"><label>Bransje / type virksomhet *</label><input type="text" id="s1-industry" placeholder="F.eks. Restaurant, Frisør, Konsulent, Musikk..."/></div>
+    <div class="field"><label>Kort beskrivelse av hva dere gjør</label><textarea id="s1-desc" placeholder="Beskriv virksomheten din med 2-3 setninger..."></textarea></div>
+    <div class="step-nav">
+      <button class="btn-next" onclick="goTo(2)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: Type nettside -->
+  <div class="step" id="step-2">
+    <h2 class="step-title">Hvilken type<br/>nettside trenger du?</h2>
+    <p class="step-hint">Velg det som passer best — du kan beskrive mer detaljert senere.</p>
+    <div class="option-grid cols-1">
+      <label class="opt-card"><input type="radio" name="site-type" value="Enkel presentasjonsside (1–3 sider)"/><span class="opt-label"><span class="opt-icon">🌐</span><span class="opt-text"><b>Enkel presentasjonsside</b><small>1–3 sider, kontaktinfo, om oss</small></span></span></label>
+      <label class="opt-card"><input type="radio" name="site-type" value="Portfolio / galleri"/><span class="opt-label"><span class="opt-icon">🖼️</span><span class="opt-text"><b>Portfolio / Galleri</b><small>Vise frem arbeider, prosjekter eller bilder</small></span></span></label>
+      <label class="opt-card"><input type="radio" name="site-type" value="Nettbutikk / e-handel"/><span class="opt-label"><span class="opt-icon">🛍️</span><span class="opt-text"><b>Nettbutikk / E-handel</b><small>Selge produkter eller tjenester online</small></span></span></label>
+      <label class="opt-card"><input type="radio" name="site-type" value="Restaurant / café / bar"/><span class="opt-label"><span class="opt-icon">🍽️</span><span class="opt-text"><b>Restaurant / Café / Bar</b><small>Meny, reservasjon, åpningstider</small></span></span></label>
+      <label class="opt-card"><input type="radio" name="site-type" value="Musikk / artist / band"/><span class="opt-label"><span class="opt-icon">🎵</span><span class="opt-text"><b>Musikk / Artist / Band</b><small>Biografi, musikk, merch, konserter</small></span></span></label>
+      <label class="opt-card"><input type="radio" name="site-type" value="Bedriftsside med flere sider (5+)"/><span class="opt-label"><span class="opt-icon">🏢</span><span class="opt-text"><b>Større bedriftsside</b><small>Tjenester, team, blogg, case studies</small></span></span></label>
+      <label class="opt-card"><input type="radio" name="site-type" value="Booking / timebestilling"/><span class="opt-label"><span class="opt-icon">📅</span><span class="opt-text"><b>Booking / Timebestilling</b><small>Frisør, klinikk, PT, coaching</small></span></span></label>
+      <label class="opt-card"><input type="radio" name="site-type" value="Annet (beskrives i notater)"/><span class="opt-label"><span class="opt-icon">✏️</span><span class="opt-text"><b>Annet</b><small>Noe annet — beskriv det mot slutten</small></span></span></label>
+    </div>
+    <div class="step-nav">
+      <button class="btn-prev" onclick="goTo(1)">← Tilbake</button>
+      <button class="btn-next" onclick="goTo(3)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Design og stil -->
+  <div class="step" id="step-3">
+    <h2 class="step-title">Hvilken stil<br/>ønsker du?</h2>
+    <p class="step-hint">Velg den stilen som føles riktig for merkevaren din.</p>
+    <div class="option-grid">
+      <label class="opt-card"><input type="radio" name="style" value="Minimalistisk og rent — mye luft, få farger"/><span class="opt-label"><span class="opt-icon">◻️</span><span class="opt-text"><b>Minimalistisk</b><small>Mye luft, få farger, elegant</small></span></span></label>
+      <label class="opt-card"><input type="radio" name="style" value="Moderne og dristig — stor typografi, sterk visuell identitet"/><span class="opt-label"><span class="opt-icon">⚡</span><span class="opt-text"><b>Moderne & dristig</b><small>Stor typografi, sterk identitet</small></span></span></label>
+      <label class="opt-card"><input type="radio" name="style" value="Luksus og eksklusiv — mørke toner, gull, premium følelse"/><span class="opt-label"><span class="opt-icon">✨</span><span class="opt-text"><b>Luksus</b><small>Mørke toner, gull, premium</small></span></span></label>
+      <label class="opt-card"><input type="radio" name="style" value="Lys og vennlig — fargerik, tilgjengelig, positiv stemning"/><span class="opt-label"><span class="opt-icon">🌿</span><span class="opt-text"><b>Lys & vennlig</b><small>Fargerikt, tilgjengelig, positiv</small></span></span></label>
+      <label class="opt-card"><input type="radio" name="style" value="Profesjonelt og seriøst — tillitvekkende, corporate"/><span class="opt-label"><span class="opt-icon">💼</span><span class="opt-text"><b>Profesjonelt</b><small>Tillitvekkende, corporate</small></span></span></label>
+      <label class="opt-card"><input type="radio" name="style" value="Kreativt og uvanlig — skille seg ut, eksperimentelt"/><span class="opt-label"><span class="opt-icon">🎨</span><span class="opt-text"><b>Kreativt & uvanlig</b><small>Skille seg ut, eksperimentelt</small></span></span></label>
+    </div>
+    <div class="field"><label>Farger du liker (valgfritt)</label><input type="text" id="s3-colors" placeholder="F.eks. svart og hvit, grønn og gull, blå og beige..."/></div>
+    <div class="field"><label>Nettsider du liker / inspirasjon (valgfritt)</label><input type="text" id="s3-inspo" placeholder="F.eks. apple.com, notion.so, eller beskriv en stil..."/></div>
+    <div class="step-nav">
+      <button class="btn-prev" onclick="goTo(2)">← Tilbake</button>
+      <button class="btn-next" onclick="goTo(4)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: Sider og funksjoner -->
+  <div class="step" id="step-4">
+    <h2 class="step-title">Hvilke sider og<br/>funksjoner trenger du?</h2>
+    <p class="step-hint">Velg alt som er aktuelt — du kan velge flere.</p>
+    <div class="field"><label>Sider (velg alle du trenger)</label></div>
+    <div class="option-grid cols-3" id="pages-grid">
+      <label class="opt-card"><input type="checkbox" name="pages" value="Forside"/><span class="opt-label">🏠 Forside</span></label>
+      <label class="opt-card"><input type="checkbox" name="pages" value="Om oss"/><span class="opt-label">👥 Om oss</span></label>
+      <label class="opt-card"><input type="checkbox" name="pages" value="Tjenester"/><span class="opt-label">⚙️ Tjenester</span></label>
+      <label class="opt-card"><input type="checkbox" name="pages" value="Produkter / Nettbutikk"/><span class="opt-label">🛍️ Produkter</span></label>
+      <label class="opt-card"><input type="checkbox" name="pages" value="Galleri / Portfolio"/><span class="opt-label">🖼️ Galleri</span></label>
+      <label class="opt-card"><input type="checkbox" name="pages" value="Blogg"/><span class="opt-label">📝 Blogg</span></label>
+      <label class="opt-card"><input type="checkbox" name="pages" value="Kontakt"/><span class="opt-label">📬 Kontakt</span></label>
+      <label class="opt-card"><input type="checkbox" name="pages" value="FAQ"/><span class="opt-label">❓ FAQ</span></label>
+      <label class="opt-card"><input type="checkbox" name="pages" value="Booking / Timebestilling"/><span class="opt-label">📅 Booking</span></label>
+    </div>
+    <div class="field" style="margin-top:1.2rem;"><label>Ekstra funksjoner (velg alle du trenger)</label></div>
+    <div class="option-grid cols-3">
+      <label class="opt-card"><input type="checkbox" name="features" value="Kontaktskjema"/><span class="opt-label">📩 Kontaktskjema</span></label>
+      <label class="opt-card"><input type="checkbox" name="features" value="Google Maps / Kart"/><span class="opt-label">📍 Kart</span></label>
+      <label class="opt-card"><input type="checkbox" name="features" value="Flerspråklig (NO + EN)"/><span class="opt-label">🌍 Flerspråklig</span></label>
+      <label class="opt-card"><input type="checkbox" name="features" value="Animasjoner og bevegelse"/><span class="opt-label">✨ Animasjoner</span></label>
+      <label class="opt-card"><input type="checkbox" name="features" value="Instagram-integrasjon"/><span class="opt-label">📸 Instagram</span></label>
+      <label class="opt-card"><input type="checkbox" name="features" value="Spotify-integrasjon"/><span class="opt-label">🎵 Spotify</span></label>
+      <label class="opt-card"><input type="checkbox" name="features" value="Chat / AI-assistent"/><span class="opt-label">💬 Chat</span></label>
+      <label class="opt-card"><input type="checkbox" name="features" value="Google Analytics"/><span class="opt-label">📊 Analytics</span></label>
+      <label class="opt-card"><input type="checkbox" name="features" value="SEO-optimalisering"/><span class="opt-label">🔍 SEO</span></label>
+    </div>
+    <div class="step-nav">
+      <button class="btn-prev" onclick="goTo(3)">← Tilbake</button>
+      <button class="btn-next" onclick="goTo(5)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- STEP 5: Innhold -->
+  <div class="step" id="step-5">
+    <h2 class="step-title">Hva har du<br/>klart fra før?</h2>
+    <p class="step-hint">Dette hjelper oss å forstå hvor mye vi må hjelpe med innhold.</p>
+    <div class="field"><label>Har du tekst / innhold klart?</label></div>
+    <div class="option-grid">
+      <label class="opt-card"><input type="radio" name="content-text" value="Ja, tekst er klar"/><span class="opt-label">✅ Ja, klar</span></label>
+      <label class="opt-card"><input type="radio" name="content-text" value="Delvis — noe tekst er klar"/><span class="opt-label">🔶 Delvis klar</span></label>
+      <label class="opt-card"><input type="radio" name="content-text" value="Nei — trenger hjelp med tekst"/><span class="opt-label">❌ Nei, trenger hjelp</span></label>
+      <label class="opt-card"><input type="radio" name="content-text" value="Vet ikke ennå"/><span class="opt-label">🤷 Vet ikke ennå</span></label>
+    </div>
+    <div class="field"><label>Har du logo og bilder klart?</label></div>
+    <div class="option-grid">
+      <label class="opt-card"><input type="radio" name="content-img" value="Ja, logo og bilder er klart"/><span class="opt-label">✅ Ja, alt klart</span></label>
+      <label class="opt-card"><input type="radio" name="content-img" value="Har logo men ikke bilder"/><span class="opt-label">🔶 Har logo</span></label>
+      <label class="opt-card"><input type="radio" name="content-img" value="Ingen ting klart ennå"/><span class="opt-label">❌ Ingenting klart</span></label>
+      <label class="opt-card"><input type="radio" name="content-img" value="Trenger produktfoto fra YAMS"/><span class="opt-label">📸 Trenger foto</span></label>
+    </div>
+    <div class="field"><label>Har du et domenenavn? (valgfritt)</label><input type="text" id="s5-domain" placeholder="F.eks. mittfirma.no eller nei, trenger hjelp med det"/></div>
+    <div class="step-nav">
+      <button class="btn-prev" onclick="goTo(4)">← Tilbake</button>
+      <button class="btn-next" onclick="goTo(6)">Neste →</button>
+    </div>
+  </div>
+
+  <!-- STEP 6: Tidslinje og notater -->
+  <div class="step" id="step-6">
+    <h2 class="step-title">Siste detaljer.</h2>
+    <p class="step-hint">Fortell oss om tidslinje og eventuelle spesielle ønsker.</p>
+    <div class="field"><label>Når trenger du nettsiden?</label></div>
+    <div class="option-grid">
+      <label class="opt-card"><input type="radio" name="timeline" value="Så snart som mulig (innen 2 uker)"/><span class="opt-label">🚀 Så snart som mulig</span></label>
+      <label class="opt-card"><input type="radio" name="timeline" value="1–2 måneder"/><span class="opt-label">📆 1–2 måneder</span></label>
+      <label class="opt-card"><input type="radio" name="timeline" value="2–4 måneder"/><span class="opt-label">🗓️ 2–4 måneder</span></label>
+      <label class="opt-card"><input type="radio" name="timeline" value="Fleksibelt — ingen fast frist"/><span class="opt-label">😌 Fleksibelt</span></label>
+    </div>
+    <div class="field"><label>Spesielle ønsker, funksjoner eller ting du vil si?</label><textarea id="s6-notes" placeholder="F.eks.: Vi vil ha en mørk stil med animasjoner. Nettsiden skal selge 3 produkter og ha en om-side med teambilder. Vi har bilder men trenger hjelp med tekst..."></textarea></div>
+    <div class="field"><label>Kontaktinfo (valgfritt — for at vi skal nå deg)</label><input type="text" id="s6-contact" placeholder="E-post eller telefon"/></div>
+    <div class="step-nav">
+      <button class="btn-prev" onclick="goTo(5)">← Tilbake</button>
+      <button class="btn-next" onclick="generateResult()">Se sammendrag →</button>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div id="result-box">
+    <div class="result-title">Ditt sammendrag er klart! 🎉</div>
+    <div class="result-sub">Kopier teksten under og send den til oss eller til Claude.</div>
+    <textarea id="result-text" readonly></textarea>
+    <div class="result-actions">
+      <button class="btn-copy" id="copy-btn" onclick="copyResult()">📋 Kopier sammendrag</button>
+      <a href="./#contact" class="btn-contact">Send til YAMS →</a>
+    </div>
+    <p class="copy-note">Tips: Lim inn dette sammendraget i chatten til Claude.ai eller send det til yamsasno@gmail.com så setter vi i gang.</p>
+  </div>
+
+</div>
+
+<footer>
+  <span class="ft-copy">© 2026 YAMS AS — Website Solutions</span>
+  <span class="ft-copy">yamsasno@gmail.com</span>
+</footer>
+
+<script>
+const TOTAL = 6;
+
+function startQuiz() {
+  document.getElementById('quiz-hero').style.display = 'none';
+  const app = document.getElementById('quiz-app');
+  app.classList.add('active');
+  updateProgress(1);
+}
+
+function updateProgress(step) {
+  const pct = Math.round((step / TOTAL) * 100);
+  document.getElementById('prog-label').textContent = `Steg ${step} av ${TOTAL}`;
+  document.getElementById('prog-pct').textContent = pct + '%';
+  document.getElementById('prog-fill').style.width = pct + '%';
+}
+
+function goTo(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  const next = document.getElementById('step-' + n);
+  if (next) { next.classList.add('active'); updateProgress(n); }
+  window.scrollTo({ top: document.getElementById('quiz-app').offsetTop - 80, behavior: 'smooth' });
+}
+
+function getChecked(name) {
+  return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value);
+}
+
+function getRadio(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.value : 'Ikke valgt';
+}
+
+function generateResult() {
+  const name       = document.getElementById('s1-name').value.trim() || 'Ikke oppgitt';
+  const industry   = document.getElementById('s1-industry').value.trim() || 'Ikke oppgitt';
+  const desc       = document.getElementById('s1-desc').value.trim() || 'Ikke oppgitt';
+  const siteType   = getRadio('site-type');
+  const style      = getRadio('style');
+  const colors     = document.getElementById('s3-colors').value.trim() || 'Ikke spesifisert';
+  const inspo      = document.getElementById('s3-inspo').value.trim() || 'Ingen';
+  const pages      = getChecked('pages').join(', ') || 'Ingen valgt';
+  const features   = getChecked('features').join(', ') || 'Ingen valgt';
+  const contentTxt = getRadio('content-text');
+  const contentImg = getRadio('content-img');
+  const domain     = document.getElementById('s5-domain').value.trim() || 'Ikke oppgitt';
+  const timeline   = getRadio('timeline');
+  const notes      = document.getElementById('s6-notes').value.trim() || 'Ingen spesielle ønsker';
+  const contact    = document.getElementById('s6-contact').value.trim() || 'Ikke oppgitt';
+
+  const summary = `════════════════════════════════════
+YAMS NETTSIDE-BRIEF
+Generert via yamsas.com/quiz
+════════════════════════════════════
+
+📌 BEDRIFT
+Navn:        ${name}
+Bransje:     ${industry}
+Beskrivelse: ${desc}
+
+🌐 TYPE NETTSIDE
+${siteType}
+
+🎨 DESIGN & STIL
+Stil:        ${style}
+Farger:      ${colors}
+Inspirasjon: ${inspo}
+
+📄 SIDER SOM TRENGS
+${pages}
+
+⚙️ FUNKSJONER
+${features}
+
+📦 INNHOLD
+Tekst klar:  ${contentTxt}
+Bilder/logo: ${contentImg}
+Domene:      ${domain}
+
+⏱️ TIDSLINJE
+${timeline}
+
+💬 SPESIELLE ØNSKER
+${notes}
+
+📬 KONTAKT
+${contact}
+
+════════════════════════════════════
+Laget med YAMS Nettside-quiz
+yamsas.com · yamsasno@gmail.com
+════════════════════════════════════`;
+
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('result-box').classList.add('active');
+  document.getElementById('result-text').value = summary;
+  updateProgress(6);
+  window.scrollTo({ top: document.getElementById('quiz-app').offsetTop - 80, behavior: 'smooth' });
+}
+
+function copyResult() {
+  const ta = document.getElementById('result-text');
+  ta.select();
+  ta.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(ta.value).catch(() => document.execCommand('copy'));
+  const btn = document.getElementById('copy-btn');
+  btn.textContent = '✅ Kopiert!';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = '📋 Kopier sammendrag'; btn.classList.remove('copied'); }, 2500);
+}
+</script>
+</body>
+</html>
