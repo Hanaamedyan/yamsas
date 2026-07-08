@@ -344,7 +344,7 @@ function applyLang() {
   document.getElementById('nav-back-link').innerHTML = t.navBack;
   document.getElementById('hero-eyebrow').textContent = t.eyebrow;
   document.getElementById('hero-title').innerHTML = t.heroTitle;
-  document.getElementById('hero-sub').textContent = t.heroSub;
+  const heroSub = document.getElementById('hero-sub'); if(heroSub) heroSub.textContent = t.heroSub;
   document.getElementById('hero-btn').textContent = t.heroBtn;
   // Steps
   setText('s1-title', t.s1Title); setText('s1-hint', t.s1Hint);
