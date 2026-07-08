@@ -154,6 +154,69 @@ nav{position:fixed;top:34px;left:0;right:0;z-index:100;display:flex;align-items:
 footer{border-top:1px solid rgba(245,242,236,.07);padding:2rem 3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
 .ft-copy{font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(245,242,236,.25);letter-spacing:.08em;}
 @media(max-width:600px){footer{padding:1.5rem 1.2rem;flex-direction:column;align-items:flex-start;}}
+
+/* ── MOBILE OPTIMIZATIONS ── */
+@media(max-width:600px){
+  /* Hero */
+  .quiz-hero{padding:90px 1rem 32px;}
+  .quiz-title{font-size:clamp(2.2rem,10vw,3.5rem);margin-bottom:1rem;}
+  .btn-start{width:100%;justify-content:center;padding:1.1rem 1.5rem;font-size:.68rem;}
+
+  /* Quiz wrapper */
+  #quiz-app{padding:24px 1rem 80px;}
+
+  /* Tracker — smaller dots & lines */
+  .step-tracker{margin-bottom:1.4rem;}
+  .tracker-dot{width:28px;height:28px;font-size:.5rem;}
+  .tracker-line{width:14px;}
+
+  /* Progress */
+  .progress-wrap{margin-bottom:1.8rem;}
+
+  /* Step */
+  .step-title{font-size:clamp(1.7rem,8vw,2.5rem);margin-bottom:.4rem;}
+  .step-hint{font-size:.82rem;margin-bottom:1.4rem;}
+
+  /* Inputs — 16px prevents iOS zoom */
+  .field input,.field textarea,.field select{font-size:1rem;padding:.8rem 1rem;}
+  .field{margin-bottom:1.1rem;}
+  .field label{font-size:.58rem;}
+
+  /* Option cards */
+  .option-grid{gap:8px;margin-bottom:1.1rem;}
+  .option-grid.cols-1,.option-grid,.option-grid.cols-3{grid-template-columns:1fr 1fr;}
+  .option-grid.cols-1{grid-template-columns:1fr;}
+  .opt-label{padding:11px 12px;font-size:.82rem;}
+  .opt-text b{font-size:.78rem;}
+  .opt-text small{font-size:.68rem;}
+  .opt-icon{font-size:1.1rem;}
+
+  /* Color swatches */
+  .color-grid{grid-template-columns:1fr 1fr !important;}
+  .color-swatch{width:26px;height:26px;}
+
+  /* Nav buttons — larger touch targets */
+  .step-nav{gap:8px;margin-top:1.6rem;}
+  .btn-next{padding:1rem;font-size:.65rem;min-height:48px;}
+  .btn-prev{padding:1rem 1.1rem;font-size:.65rem;min-height:48px;}
+
+  /* Summary */
+  .sum-section{padding:1rem 1rem;}
+  .sum-row{flex-direction:column;gap:.2rem;}
+  .sum-key{min-width:unset;font-size:.58rem;}
+  .sum-val{font-size:.82rem;}
+
+  /* Result box */
+  #result-box{padding:1.4rem 1rem;}
+}
+
+@media(max-width:360px){
+  .tracker-dot{width:24px;height:24px;font-size:.46rem;}
+  .tracker-line{width:10px;}
+  .quiz-title{font-size:2rem;}
+  #quiz-app{padding:20px .85rem 70px;}
+  .opt-label{padding:9px 10px;}
+}
 </style>
 <script>
 const TOTAL = 7;
