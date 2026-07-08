@@ -63,6 +63,18 @@ nav{position:fixed;top:34px;left:0;right:0;z-index:100;display:flex;align-items:
 .progress-bar{height:2px;background:rgba(245,242,236,.1);border-radius:2px;overflow:hidden;}
 .progress-fill{height:100%;background:var(--accent);border-radius:2px;transition:width .4s cubic-bezier(.22,1,.36,1);}
 
+/* STEP TRACKER */
+.step-tracker{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:2rem;}
+.tracker-item{display:flex;align-items:center;gap:0;}
+.tracker-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.6rem;font-weight:600;letter-spacing:.04em;border:1.5px solid rgba(245,242,236,.15);background:rgba(245,242,236,.04);color:rgba(245,242,236,.3);transition:all .3s cubic-bezier(.22,1,.36,1);position:relative;flex-shrink:0;}
+.tracker-dot.done{background:var(--accent);border-color:var(--accent);color:var(--white);}
+.tracker-dot.done::after{content:'✓';font-size:.65rem;}
+.tracker-dot.done span{display:none;}
+.tracker-dot.active{background:transparent;border-color:var(--accent);color:var(--accent);box-shadow:0 0 0 3px rgba(61,122,92,.18);}
+.tracker-line{width:28px;height:1.5px;background:rgba(245,242,236,.1);transition:background .3s ease;flex-shrink:0;}
+.tracker-line.done{background:var(--accent);}
+@media(max-width:400px){.tracker-dot{width:26px;height:26px;font-size:.52rem;}.tracker-line{width:18px;}}
+
 /* STEP */
 .step{display:none;}
 .step.active{display:block;animation:fadeIn .35s ease;}
@@ -128,6 +140,370 @@ footer{border-top:1px solid rgba(245,242,236,.07);padding:2rem 3rem;display:flex
 .ft-copy{font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(245,242,236,.25);letter-spacing:.08em;}
 @media(max-width:600px){footer{padding:1.5rem 1.2rem;flex-direction:column;align-items:flex-start;}}
 </style>
+<script>
+const TOTAL = 6;
+
+/* ── LANGUAGE ── */
+const T = {
+  en: {
+    pageTitle:   'Website Quiz — YAMS',
+    navBack:     '← Back to homepage',
+    eyebrow:     'Free tool',
+    heroTitle:   'Find your<br/><em>perfect</em><br/>website.',
+    heroSub:     '',
+    heroBtn:     'Start quiz →',
+    progLabel:   (s,t) => `Step ${s} of ${t}`,
+    s1Title:     'Tell us about<br/>your business.',
+    s1Hint:      'We need some background to understand what you do.',
+    s1Name:      'Business name *',
+    s1Industry:  'Industry / type of business *',
+    s1Desc:      'Brief description of what you do',
+    s1NamePh:    'E.g. Larsen\'s Bakery',
+    s1IndPh:     'E.g. Restaurant, Hair salon, Consultant, Music...',
+    s1DescPh:    'Describe your business in 2-3 sentences...',
+    s2Title:     'What type of<br/>website do you need?',
+    s2Hint:      'Choose what fits best — you can describe more in detail later.',
+    s3Title:     'What style<br/>do you want?',
+    s3Hint:      'Choose the style that feels right for your brand.',
+    s3Colors:    'Colors you like — select multiple (optional)',
+    s3ColOther:  'Other colors (optional)',
+    s3ColPh:     'E.g. coral and mint green...',
+    s3Inspo:     'Websites you like / inspiration (optional)',
+    s3InspoPh:   'E.g. apple.com, notion.so, or describe a style...',
+    s4Title:     'Which pages and<br/>features do you need?',
+    s4Hint:      'Select all that apply — you can choose multiple.',
+    s4Pages:     'Pages (select all you need)',
+    s4Features:  'Extra features (select all you need)',
+    s5Title:     'What do you<br/>already have ready?',
+    s5Hint:      'This helps us understand how much content support you need.',
+    s5TextQ:     'Do you have text / content ready?',
+    s5ImgQ:      'Do you have a logo and images ready?',
+    s5Domain:    'Do you have a domain name? (optional)',
+    s5DomainPh:  'E.g. mycompany.com or no, need help with that',
+    s6Title:     'Last details.',
+    s6Hint:      'Tell us about your timeline and any special wishes.',
+    s6TimeQ:     'When do you need the website?',
+    s6Notes:     'Special wishes, features or things you\'d like to add?',
+    s6NotesPh:   'E.g.: We want a dark style with animations. The website should sell 3 products and have an about page with team photos...',
+    s6Contact:   'Contact info (optional — so we can reach you)',
+    s6ContactPh: 'Email or phone number',
+    nextBtn:     'Next →',
+    prevBtn:     '← Back',
+    submitBtn:   'Submit →',
+    thankTitle:  'Thank you! We\'ll be in touch soon.',
+    thankSub:    'We\'ve received your answers and will contact you within 24 hours to discuss your project.',
+    thankBtn:    '← Back to homepage',
+    emailBtn:    'Send email directly',
+    summaryHead: 'YAMS WEBSITE BRIEF',
+    summaryGen:  'Generated via yamsas.com/quiz',
+    sumBiz:      'BUSINESS',
+    sumName:     'Name:',
+    sumInd:      'Industry:',
+    sumDesc:     'Description:',
+    sumType:     'WEBSITE TYPE',
+    sumDesign:   'DESIGN & STYLE',
+    sumStyle:    'Style:',
+    sumColors:   'Colors:',
+    sumInspo:    'Inspiration:',
+    sumPages:    'PAGES NEEDED',
+    sumFeatures: 'FEATURES',
+    sumContent:  'CONTENT',
+    sumText:     'Text ready:',
+    sumImg:      'Images/logo:',
+    sumDomain:   'Domain:',
+    sumTimeline: 'TIMELINE',
+    sumNotes:    'SPECIAL WISHES',
+    sumContact:  'CONTACT',
+    sumFooter:   'Made with YAMS Website Quiz',
+    notSelected: 'Not selected',
+    notProvided: 'Not provided',
+    notSpecified:'Not specified',
+    none:        'None',
+    noneSelected:'None selected',
+    sending:     'Sending...',
+  },
+  no: {
+    pageTitle:   'Nettside-quiz — YAMS',
+    navBack:     '← Tilbake til forsiden',
+    eyebrow:     'Gratis verktøy',
+    heroTitle:   'Finn din<br/><em>perfekte</em><br/>nettside.',
+    heroSub:     '',
+    heroBtn:     'Start quiz →',
+    progLabel:   (s,t) => `Steg ${s} av ${t}`,
+    s1Title:     'Fortell oss om<br/>bedriften din.',
+    s1Hint:      'Vi trenger litt bakgrunn for å forstå hva du driver med.',
+    s1Name:      'Bedriftsnavn *',
+    s1Industry:  'Bransje / type virksomhet *',
+    s1Desc:      'Kort beskrivelse av hva dere gjør',
+    s1NamePh:    'F.eks. Larsens Bakeri',
+    s1IndPh:     'F.eks. Restaurant, Frisør, Konsulent, Musikk...',
+    s1DescPh:    'Beskriv virksomheten din med 2-3 setninger...',
+    s2Title:     'Hvilken type<br/>nettside trenger du?',
+    s2Hint:      'Velg det som passer best — du kan beskrive mer detaljert senere.',
+    s3Title:     'Hvilken stil<br/>ønsker du?',
+    s3Hint:      'Velg den stilen som føles riktig for merkevaren din.',
+    s3Colors:    'Farger du liker — velg gjerne flere (valgfritt)',
+    s3ColOther:  'Andre farger (valgfritt)',
+    s3ColPh:     'F.eks. korall og mintgrønn...',
+    s3Inspo:     'Nettsider du liker / inspirasjon (valgfritt)',
+    s3InspoPh:   'F.eks. apple.com, notion.so, eller beskriv en stil...',
+    s4Title:     'Hvilke sider og<br/>funksjoner trenger du?',
+    s4Hint:      'Velg alt som er aktuelt — du kan velge flere.',
+    s4Pages:     'Sider (velg alle du trenger)',
+    s4Features:  'Ekstra funksjoner (velg alle du trenger)',
+    s5Title:     'Hva har du<br/>klart fra før?',
+    s5Hint:      'Dette hjelper oss å forstå hvor mye vi må hjelpe med innhold.',
+    s5TextQ:     'Har du tekst / innhold klart?',
+    s5ImgQ:      'Har du logo og bilder klart?',
+    s5Domain:    'Har du et domenenavn? (valgfritt)',
+    s5DomainPh:  'F.eks. mittfirma.no eller nei, trenger hjelp med det',
+    s6Title:     'Siste detaljer.',
+    s6Hint:      'Fortell oss om tidslinje og eventuelle spesielle ønsker.',
+    s6TimeQ:     'Når trenger du nettsiden?',
+    s6Notes:     'Spesielle ønsker, funksjoner eller ting du vil si?',
+    s6NotesPh:   'F.eks.: Vi vil ha en mørk stil med animasjoner. Nettsiden skal selge 3 produkter og ha en om-side med teambilder...',
+    s6Contact:   'Kontaktinfo (valgfritt — for at vi skal nå deg)',
+    s6ContactPh: 'E-post eller telefon',
+    nextBtn:     'Neste →',
+    prevBtn:     '← Tilbake',
+    submitBtn:   'Send inn →',
+    thankTitle:  'Takk! Vi tar kontakt snart.',
+    thankSub:    'Vi har mottatt svarene dine og tar kontakt innen 24 timer for å diskutere prosjektet ditt.',
+    thankBtn:    '← Tilbake til forsiden',
+    emailBtn:    'Send e-post direkte',
+    summaryHead: 'YAMS NETTSIDE-BRIEF',
+    summaryGen:  'Generert via yamsas.com/quiz',
+    sumBiz:      'BEDRIFT',
+    sumName:     'Navn:',
+    sumInd:      'Bransje:',
+    sumDesc:     'Beskrivelse:',
+    sumType:     'TYPE NETTSIDE',
+    sumDesign:   'DESIGN & STIL',
+    sumStyle:    'Stil:',
+    sumColors:   'Farger:',
+    sumInspo:    'Inspirasjon:',
+    sumPages:    'SIDER SOM TRENGS',
+    sumFeatures: 'FUNKSJONER',
+    sumContent:  'INNHOLD',
+    sumText:     'Tekst klar:',
+    sumImg:      'Bilder/logo:',
+    sumDomain:   'Domene:',
+    sumTimeline: 'TIDSLINJE',
+    sumNotes:    'SPESIELLE ØNSKER',
+    sumContact:  'KONTAKT',
+    sumFooter:   'Laget med YAMS Nettside-quiz',
+    notSelected: 'Ikke valgt',
+    notProvided: 'Ikke oppgitt',
+    notSpecified:'Ikke spesifisert',
+    none:        'Ingen',
+    noneSelected:'Ingen valgt',
+    sending:     'Sender...',
+  }
+};
+
+let lang = localStorage.getItem('yams_lang') || 'no';
+
+function setLang(l) {
+  lang = l;
+  localStorage.setItem('yams_lang', l);
+  document.getElementById('lb-en').classList.toggle('active', l === 'en');
+  document.getElementById('lb-no').classList.toggle('active', l === 'no');
+  document.documentElement.lang = l;
+  applyLang();
+}
+
+function applyLang() {
+  const t = T[lang];
+  document.getElementById('page-title').textContent = t.pageTitle;
+  document.getElementById('nav-back-link').innerHTML = t.navBack;
+  document.getElementById('hero-eyebrow').textContent = t.eyebrow;
+  document.getElementById('hero-title').innerHTML = t.heroTitle;
+  document.getElementById('hero-sub').textContent = t.heroSub;
+  document.getElementById('hero-btn').textContent = t.heroBtn;
+  // Steps
+  setText('s1-title', t.s1Title); setText('s1-hint', t.s1Hint);
+  setLabel('lbl-s1-name', t.s1Name); setLabel('lbl-s1-ind', t.s1Industry); setLabel('lbl-s1-desc', t.s1Desc);
+  setAttr('s1-name','placeholder', t.s1NamePh); setAttr('s1-industry','placeholder', t.s1IndPh); setAttr('s1-desc','placeholder', t.s1DescPh);
+  setText('s2-title', t.s2Title); setText('s2-hint', t.s2Hint);
+  setText('s3-title', t.s3Title); setText('s3-hint', t.s3Hint);
+  setLabel('lbl-s3-colors', t.s3Colors); setLabel('lbl-s3-colother', t.s3ColOther);
+  setAttr('s3-colors-other','placeholder', t.s3ColPh);
+  setLabel('lbl-s3-inspo', t.s3Inspo); setAttr('s3-inspo','placeholder', t.s3InspoPh);
+  setText('s4-title', t.s4Title); setText('s4-hint', t.s4Hint);
+  setLabel('lbl-s4-pages', t.s4Pages); setLabel('lbl-s4-features', t.s4Features);
+  setText('s5-title', t.s5Title); setText('s5-hint', t.s5Hint);
+  setText('s5-textq', t.s5TextQ); setText('s5-imgq', t.s5ImgQ);
+  setLabel('lbl-s5-domain', t.s5Domain); setAttr('s5-domain','placeholder', t.s5DomainPh);
+  setText('s6-title', t.s6Title); setText('s6-hint', t.s6Hint);
+  setText('s6-timeq', t.s6TimeQ); setLabel('lbl-s6-notes', t.s6Notes);
+  setAttr('s6-notes','placeholder', t.s6NotesPh); setLabel('lbl-s6-contact', t.s6Contact);
+  setAttr('s6-contact','placeholder', t.s6ContactPh);
+  // Buttons
+  document.querySelectorAll('.btn-next:not(#submit-btn)').forEach(b => b.textContent = t.nextBtn);
+  document.querySelectorAll('.btn-prev').forEach(b => b.textContent = t.prevBtn);
+  const sub = document.getElementById('submit-btn'); if(sub) sub.textContent = t.submitBtn;
+  // Thank you
+  const tTitle = document.getElementById('thank-title'); if(tTitle) tTitle.textContent = t.thankTitle;
+  const tSub = document.getElementById('thank-sub'); if(tSub) tSub.textContent = t.thankSub;
+  const tBtn = document.getElementById('thank-btn'); if(tBtn) tBtn.textContent = t.thankBtn;
+  const eBtn = document.getElementById('email-btn'); if(eBtn) eBtn.textContent = t.emailBtn;
+  // Update progress label if visible
+  const pl = document.getElementById('prog-label');
+  if(pl && pl.textContent) {
+    const match = pl.textContent.match(/\d+/g);
+    if(match) pl.textContent = t.progLabel(match[0], TOTAL);
+  }
+}
+
+function setText(id, html) { const el = document.getElementById(id); if(el) el.innerHTML = html; }
+function setLabel(id, text) { const el = document.getElementById(id); if(el) el.textContent = text; }
+function setAttr(id, attr, val) { const el = document.getElementById(id); if(el) el.setAttribute(attr, val); }
+
+function startQuiz() {
+  document.getElementById('quiz-hero').style.display = 'none';
+  const app = document.getElementById('quiz-app');
+  app.classList.add('active');
+  updateProgress(1);
+}
+
+function updateProgress(step) {
+  const t = T[lang];
+  const pct = Math.round((step / TOTAL) * 100);
+  document.getElementById('prog-label').textContent = t.progLabel(step, TOTAL);
+  document.getElementById('prog-pct').textContent = pct + '%';
+  document.getElementById('prog-fill').style.width = pct + '%';
+  for (let i = 1; i <= TOTAL; i++) {
+    const dot = document.getElementById('tdot-' + i);
+    if (!dot) continue;
+    dot.classList.toggle('done', i < step);
+    dot.classList.toggle('active', i === step);
+    if (i < TOTAL) {
+      const line = document.getElementById('tline-' + i);
+      if (line) line.classList.toggle('done', i < step);
+    }
+  }
+}
+
+function goTo(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  const next = document.getElementById('step-' + n);
+  if (next) { next.classList.add('active'); updateProgress(n); }
+  window.scrollTo({ top: document.getElementById('quiz-app').offsetTop - 80, behavior: 'smooth' });
+}
+
+function getChecked(name) {
+  return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value);
+}
+
+function getRadio(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.value : T[lang].notSelected;
+}
+
+async function sendQuiz() {
+  const t = T[lang];
+  const name       = document.getElementById('s1-name').value.trim() || t.notProvided;
+  const industry   = document.getElementById('s1-industry').value.trim() || t.notProvided;
+  const desc       = document.getElementById('s1-desc').value.trim() || t.notProvided;
+  const siteType   = getRadio('site-type');
+  const style      = getRadio('style');
+  const colorsArr  = getChecked('colors');
+  const colorsOther = document.getElementById('s3-colors-other').value.trim();
+  if (colorsOther) colorsArr.push(colorsOther);
+  const colors     = colorsArr.length ? colorsArr.join(', ') : t.notSpecified;
+  const inspo      = document.getElementById('s3-inspo').value.trim() || t.none;
+  const pages      = getChecked('pages').join(', ') || t.noneSelected;
+  const features   = getChecked('features').join(', ') || t.noneSelected;
+  const contentTxt = getRadio('content-text');
+  const contentImg = getRadio('content-img');
+  const domain     = document.getElementById('s5-domain').value.trim() || t.notProvided;
+  const timeline   = getRadio('timeline');
+  const notes      = document.getElementById('s6-notes').value.trim() || t.none;
+  const contact    = document.getElementById('s6-contact').value.trim() || t.notProvided;
+
+  const summary = `════════════════════════════════════
+${t.summaryHead}
+${t.summaryGen}
+════════════════════════════════════
+
+📌 ${t.sumBiz}
+${t.sumName.padEnd(13)} ${name}
+${t.sumInd.padEnd(13)} ${industry}
+${t.sumDesc.padEnd(13)} ${desc}
+
+🌐 ${t.sumType}
+${siteType}
+
+🎨 ${t.sumDesign}
+${t.sumStyle.padEnd(13)} ${style}
+${t.sumColors.padEnd(13)} ${colors}
+${t.sumInspo.padEnd(13)} ${inspo}
+
+📄 ${t.sumPages}
+${pages}
+
+⚙️ ${t.sumFeatures}
+${features}
+
+📦 ${t.sumContent}
+${t.sumText.padEnd(13)} ${contentTxt}
+${t.sumImg.padEnd(13)} ${contentImg}
+${t.sumDomain.padEnd(13)} ${domain}
+
+⏱️ ${t.sumTimeline}
+${timeline}
+
+💬 ${t.sumNotes}
+${notes}
+
+📬 ${t.sumContact}
+${contact}
+
+════════════════════════════════════
+${t.sumFooter}
+yamsas.com · Lang: ${lang.toUpperCase()}
+════════════════════════════════════`;
+
+  // Disable button and show loading
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = t.sending;
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: '79d11e30-fd01-499a-93b2-72a2831a8e61',
+        subject:    `Ny nettside-quiz — ${name} (${industry})`,
+        from_name:  'YAMS Quiz',
+        message:    summary
+      })
+    });
+    const data = await res.json();
+    if (!data.success) throw new Error(data.message);
+  } catch(e) {
+    // Fallback: still show thanks, but also log error
+    console.error('Web3Forms error:', e);
+  }
+
+  // Always show thank-you screen (even if network fails — summary is sent in both cases)
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('result-box').style.display = 'block';
+  updateProgress(6);
+  window.scrollTo({ top: document.getElementById('quiz-app').offsetTop - 80, behavior: 'smooth' });
+}
+
+// Init language on load
+document.addEventListener('DOMContentLoaded', function() {
+  const l = localStorage.getItem('yams_lang') || 'no';
+  lang = l;
+  document.getElementById('lb-en').classList.toggle('active', l === 'en');
+  document.getElementById('lb-no').classList.toggle('active', l === 'no');
+  document.documentElement.lang = l;
+  applyLang();
+});
+</script>
 </head>
 <body>
 
@@ -147,12 +523,26 @@ footer{border-top:1px solid rgba(245,242,236,.07);padding:2rem 3rem;display:flex
 <div class="quiz-hero" id="quiz-hero">
   <div class="quiz-eyebrow" id="hero-eyebrow">Gratis verktøy</div>
   <h1 class="quiz-title" id="hero-title">Finn din<br/><em>perfekte</em><br/>nettside.</h1>
-  <p class="quiz-sub" id="hero-sub">Svar på noen enkle spørsmål — så genererer vi et sammendrag du kan sende direkte til oss eller til Claude for å bygge siden.</p>
   <button class="btn-start" id="hero-btn" onclick="startQuiz()">Start quiz &nbsp;→</button>
 </div>
 
 <!-- QUIZ -->
 <div id="quiz-app">
+
+  <!-- STEP TRACKER -->
+  <div class="step-tracker" id="step-tracker">
+    <div class="tracker-item"><div class="tracker-dot active" id="tdot-1"><span>1</span></div></div>
+    <div class="tracker-line" id="tline-1"></div>
+    <div class="tracker-item"><div class="tracker-dot" id="tdot-2"><span>2</span></div></div>
+    <div class="tracker-line" id="tline-2"></div>
+    <div class="tracker-item"><div class="tracker-dot" id="tdot-3"><span>3</span></div></div>
+    <div class="tracker-line" id="tline-3"></div>
+    <div class="tracker-item"><div class="tracker-dot" id="tdot-4"><span>4</span></div></div>
+    <div class="tracker-line" id="tline-4"></div>
+    <div class="tracker-item"><div class="tracker-dot" id="tdot-5"><span>5</span></div></div>
+    <div class="tracker-line" id="tline-5"></div>
+    <div class="tracker-item"><div class="tracker-dot" id="tdot-6"><span>6</span></div></div>
+  </div>
 
   <!-- PROGRESS -->
   <div class="progress-wrap">
@@ -332,359 +722,5 @@ footer{border-top:1px solid rgba(245,242,236,.07);padding:2rem 3rem;display:flex
   <span class="ft-copy">yamsasno@gmail.com</span>
 </footer>
 
-<script>
-const TOTAL = 6;
-
-/* ── LANGUAGE ── */
-const T = {
-  en: {
-    pageTitle:   'Website Quiz — YAMS',
-    navBack:     '← Back to homepage',
-    eyebrow:     'Free tool',
-    heroTitle:   'Find your<br/><em>perfect</em><br/>website.',
-    heroSub:     'Answer a few simple questions — we\'ll generate a summary you can send directly to us or to Claude to build the site.',
-    heroBtn:     'Start quiz →',
-    progLabel:   (s,t) => `Step ${s} of ${t}`,
-    s1Title:     'Tell us about<br/>your business.',
-    s1Hint:      'We need some background to understand what you do.',
-    s1Name:      'Business name *',
-    s1Industry:  'Industry / type of business *',
-    s1Desc:      'Brief description of what you do',
-    s1NamePh:    'E.g. Larsen\'s Bakery',
-    s1IndPh:     'E.g. Restaurant, Hair salon, Consultant, Music...',
-    s1DescPh:    'Describe your business in 2-3 sentences...',
-    s2Title:     'What type of<br/>website do you need?',
-    s2Hint:      'Choose what fits best — you can describe more in detail later.',
-    s3Title:     'What style<br/>do you want?',
-    s3Hint:      'Choose the style that feels right for your brand.',
-    s3Colors:    'Colors you like — select multiple (optional)',
-    s3ColOther:  'Other colors (optional)',
-    s3ColPh:     'E.g. coral and mint green...',
-    s3Inspo:     'Websites you like / inspiration (optional)',
-    s3InspoPh:   'E.g. apple.com, notion.so, or describe a style...',
-    s4Title:     'Which pages and<br/>features do you need?',
-    s4Hint:      'Select all that apply — you can choose multiple.',
-    s4Pages:     'Pages (select all you need)',
-    s4Features:  'Extra features (select all you need)',
-    s5Title:     'What do you<br/>already have ready?',
-    s5Hint:      'This helps us understand how much content support you need.',
-    s5TextQ:     'Do you have text / content ready?',
-    s5ImgQ:      'Do you have a logo and images ready?',
-    s5Domain:    'Do you have a domain name? (optional)',
-    s5DomainPh:  'E.g. mycompany.com or no, need help with that',
-    s6Title:     'Last details.',
-    s6Hint:      'Tell us about your timeline and any special wishes.',
-    s6TimeQ:     'When do you need the website?',
-    s6Notes:     'Special wishes, features or things you\'d like to add?',
-    s6NotesPh:   'E.g.: We want a dark style with animations. The website should sell 3 products and have an about page with team photos...',
-    s6Contact:   'Contact info (optional — so we can reach you)',
-    s6ContactPh: 'Email or phone number',
-    nextBtn:     'Next →',
-    prevBtn:     '← Back',
-    submitBtn:   'Submit →',
-    thankTitle:  'Thank you! We\'ll be in touch soon.',
-    thankSub:    'We\'ve received your answers and will contact you within 24 hours to discuss your project.',
-    thankBtn:    '← Back to homepage',
-    emailBtn:    'Send email directly',
-    summaryHead: 'YAMS WEBSITE BRIEF',
-    summaryGen:  'Generated via yamsas.com/quiz',
-    sumBiz:      'BUSINESS',
-    sumName:     'Name:',
-    sumInd:      'Industry:',
-    sumDesc:     'Description:',
-    sumType:     'WEBSITE TYPE',
-    sumDesign:   'DESIGN & STYLE',
-    sumStyle:    'Style:',
-    sumColors:   'Colors:',
-    sumInspo:    'Inspiration:',
-    sumPages:    'PAGES NEEDED',
-    sumFeatures: 'FEATURES',
-    sumContent:  'CONTENT',
-    sumText:     'Text ready:',
-    sumImg:      'Images/logo:',
-    sumDomain:   'Domain:',
-    sumTimeline: 'TIMELINE',
-    sumNotes:    'SPECIAL WISHES',
-    sumContact:  'CONTACT',
-    sumFooter:   'Made with YAMS Website Quiz',
-    notSelected: 'Not selected',
-    notProvided: 'Not provided',
-    notSpecified:'Not specified',
-    none:        'None',
-    noneSelected:'None selected',
-    sending:     'Sending...',
-  },
-  no: {
-    pageTitle:   'Nettside-quiz — YAMS',
-    navBack:     '← Tilbake til forsiden',
-    eyebrow:     'Gratis verktøy',
-    heroTitle:   'Finn din<br/><em>perfekte</em><br/>nettside.',
-    heroSub:     'Svar på noen enkle spørsmål — så genererer vi et sammendrag du kan sende direkte til oss eller til Claude for å bygge siden.',
-    heroBtn:     'Start quiz →',
-    progLabel:   (s,t) => `Steg ${s} av ${t}`,
-    s1Title:     'Fortell oss om<br/>bedriften din.',
-    s1Hint:      'Vi trenger litt bakgrunn for å forstå hva du driver med.',
-    s1Name:      'Bedriftsnavn *',
-    s1Industry:  'Bransje / type virksomhet *',
-    s1Desc:      'Kort beskrivelse av hva dere gjør',
-    s1NamePh:    'F.eks. Larsens Bakeri',
-    s1IndPh:     'F.eks. Restaurant, Frisør, Konsulent, Musikk...',
-    s1DescPh:    'Beskriv virksomheten din med 2-3 setninger...',
-    s2Title:     'Hvilken type<br/>nettside trenger du?',
-    s2Hint:      'Velg det som passer best — du kan beskrive mer detaljert senere.',
-    s3Title:     'Hvilken stil<br/>ønsker du?',
-    s3Hint:      'Velg den stilen som føles riktig for merkevaren din.',
-    s3Colors:    'Farger du liker — velg gjerne flere (valgfritt)',
-    s3ColOther:  'Andre farger (valgfritt)',
-    s3ColPh:     'F.eks. korall og mintgrønn...',
-    s3Inspo:     'Nettsider du liker / inspirasjon (valgfritt)',
-    s3InspoPh:   'F.eks. apple.com, notion.so, eller beskriv en stil...',
-    s4Title:     'Hvilke sider og<br/>funksjoner trenger du?',
-    s4Hint:      'Velg alt som er aktuelt — du kan velge flere.',
-    s4Pages:     'Sider (velg alle du trenger)',
-    s4Features:  'Ekstra funksjoner (velg alle du trenger)',
-    s5Title:     'Hva har du<br/>klart fra før?',
-    s5Hint:      'Dette hjelper oss å forstå hvor mye vi må hjelpe med innhold.',
-    s5TextQ:     'Har du tekst / innhold klart?',
-    s5ImgQ:      'Har du logo og bilder klart?',
-    s5Domain:    'Har du et domenenavn? (valgfritt)',
-    s5DomainPh:  'F.eks. mittfirma.no eller nei, trenger hjelp med det',
-    s6Title:     'Siste detaljer.',
-    s6Hint:      'Fortell oss om tidslinje og eventuelle spesielle ønsker.',
-    s6TimeQ:     'Når trenger du nettsiden?',
-    s6Notes:     'Spesielle ønsker, funksjoner eller ting du vil si?',
-    s6NotesPh:   'F.eks.: Vi vil ha en mørk stil med animasjoner. Nettsiden skal selge 3 produkter og ha en om-side med teambilder...',
-    s6Contact:   'Kontaktinfo (valgfritt — for at vi skal nå deg)',
-    s6ContactPh: 'E-post eller telefon',
-    nextBtn:     'Neste →',
-    prevBtn:     '← Tilbake',
-    submitBtn:   'Send inn →',
-    thankTitle:  'Takk! Vi tar kontakt snart.',
-    thankSub:    'Vi har mottatt svarene dine og tar kontakt innen 24 timer for å diskutere prosjektet ditt.',
-    thankBtn:    '← Tilbake til forsiden',
-    emailBtn:    'Send e-post direkte',
-    summaryHead: 'YAMS NETTSIDE-BRIEF',
-    summaryGen:  'Generert via yamsas.com/quiz',
-    sumBiz:      'BEDRIFT',
-    sumName:     'Navn:',
-    sumInd:      'Bransje:',
-    sumDesc:     'Beskrivelse:',
-    sumType:     'TYPE NETTSIDE',
-    sumDesign:   'DESIGN & STIL',
-    sumStyle:    'Stil:',
-    sumColors:   'Farger:',
-    sumInspo:    'Inspirasjon:',
-    sumPages:    'SIDER SOM TRENGS',
-    sumFeatures: 'FUNKSJONER',
-    sumContent:  'INNHOLD',
-    sumText:     'Tekst klar:',
-    sumImg:      'Bilder/logo:',
-    sumDomain:   'Domene:',
-    sumTimeline: 'TIDSLINJE',
-    sumNotes:    'SPESIELLE ØNSKER',
-    sumContact:  'KONTAKT',
-    sumFooter:   'Laget med YAMS Nettside-quiz',
-    notSelected: 'Ikke valgt',
-    notProvided: 'Ikke oppgitt',
-    notSpecified:'Ikke spesifisert',
-    none:        'Ingen',
-    noneSelected:'Ingen valgt',
-    sending:     'Sender...',
-  }
-};
-
-let lang = localStorage.getItem('yams_lang') || 'no';
-
-function setLang(l) {
-  lang = l;
-  localStorage.setItem('yams_lang', l);
-  document.getElementById('lb-en').classList.toggle('active', l === 'en');
-  document.getElementById('lb-no').classList.toggle('active', l === 'no');
-  document.documentElement.lang = l;
-  applyLang();
-}
-
-function applyLang() {
-  const t = T[lang];
-  document.getElementById('page-title').textContent = t.pageTitle;
-  document.getElementById('nav-back-link').innerHTML = t.navBack;
-  document.getElementById('hero-eyebrow').textContent = t.eyebrow;
-  document.getElementById('hero-title').innerHTML = t.heroTitle;
-  document.getElementById('hero-sub').textContent = t.heroSub;
-  document.getElementById('hero-btn').textContent = t.heroBtn;
-  // Steps
-  setText('s1-title', t.s1Title); setText('s1-hint', t.s1Hint);
-  setLabel('lbl-s1-name', t.s1Name); setLabel('lbl-s1-ind', t.s1Industry); setLabel('lbl-s1-desc', t.s1Desc);
-  setAttr('s1-name','placeholder', t.s1NamePh); setAttr('s1-industry','placeholder', t.s1IndPh); setAttr('s1-desc','placeholder', t.s1DescPh);
-  setText('s2-title', t.s2Title); setText('s2-hint', t.s2Hint);
-  setText('s3-title', t.s3Title); setText('s3-hint', t.s3Hint);
-  setLabel('lbl-s3-colors', t.s3Colors); setLabel('lbl-s3-colother', t.s3ColOther);
-  setAttr('s3-colors-other','placeholder', t.s3ColPh);
-  setLabel('lbl-s3-inspo', t.s3Inspo); setAttr('s3-inspo','placeholder', t.s3InspoPh);
-  setText('s4-title', t.s4Title); setText('s4-hint', t.s4Hint);
-  setLabel('lbl-s4-pages', t.s4Pages); setLabel('lbl-s4-features', t.s4Features);
-  setText('s5-title', t.s5Title); setText('s5-hint', t.s5Hint);
-  setText('s5-textq', t.s5TextQ); setText('s5-imgq', t.s5ImgQ);
-  setLabel('lbl-s5-domain', t.s5Domain); setAttr('s5-domain','placeholder', t.s5DomainPh);
-  setText('s6-title', t.s6Title); setText('s6-hint', t.s6Hint);
-  setText('s6-timeq', t.s6TimeQ); setLabel('lbl-s6-notes', t.s6Notes);
-  setAttr('s6-notes','placeholder', t.s6NotesPh); setLabel('lbl-s6-contact', t.s6Contact);
-  setAttr('s6-contact','placeholder', t.s6ContactPh);
-  // Buttons
-  document.querySelectorAll('.btn-next:not(#submit-btn)').forEach(b => b.textContent = t.nextBtn);
-  document.querySelectorAll('.btn-prev').forEach(b => b.textContent = t.prevBtn);
-  const sub = document.getElementById('submit-btn'); if(sub) sub.textContent = t.submitBtn;
-  // Thank you
-  const tTitle = document.getElementById('thank-title'); if(tTitle) tTitle.textContent = t.thankTitle;
-  const tSub = document.getElementById('thank-sub'); if(tSub) tSub.textContent = t.thankSub;
-  const tBtn = document.getElementById('thank-btn'); if(tBtn) tBtn.textContent = t.thankBtn;
-  const eBtn = document.getElementById('email-btn'); if(eBtn) eBtn.textContent = t.emailBtn;
-  // Update progress label if visible
-  const pl = document.getElementById('prog-label');
-  if(pl && pl.textContent) {
-    const match = pl.textContent.match(/\d+/g);
-    if(match) pl.textContent = t.progLabel(match[0], TOTAL);
-  }
-}
-
-function setText(id, html) { const el = document.getElementById(id); if(el) el.innerHTML = html; }
-function setLabel(id, text) { const el = document.getElementById(id); if(el) el.textContent = text; }
-function setAttr(id, attr, val) { const el = document.getElementById(id); if(el) el.setAttribute(attr, val); }
-
-function startQuiz() {
-  document.getElementById('quiz-hero').style.display = 'none';
-  const app = document.getElementById('quiz-app');
-  app.classList.add('active');
-  updateProgress(1);
-}
-
-function updateProgress(step) {
-  const t = T[lang];
-  const pct = Math.round((step / TOTAL) * 100);
-  document.getElementById('prog-label').textContent = t.progLabel(step, TOTAL);
-  document.getElementById('prog-pct').textContent = pct + '%';
-  document.getElementById('prog-fill').style.width = pct + '%';
-}
-
-function goTo(n) {
-  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  const next = document.getElementById('step-' + n);
-  if (next) { next.classList.add('active'); updateProgress(n); }
-  window.scrollTo({ top: document.getElementById('quiz-app').offsetTop - 80, behavior: 'smooth' });
-}
-
-function getChecked(name) {
-  return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(i => i.value);
-}
-
-function getRadio(name) {
-  const el = document.querySelector(`input[name="${name}"]:checked`);
-  return el ? el.value : T[lang].notSelected;
-}
-
-async function sendQuiz() {
-  const t = T[lang];
-  const name       = document.getElementById('s1-name').value.trim() || t.notProvided;
-  const industry   = document.getElementById('s1-industry').value.trim() || t.notProvided;
-  const desc       = document.getElementById('s1-desc').value.trim() || t.notProvided;
-  const siteType   = getRadio('site-type');
-  const style      = getRadio('style');
-  const colorsArr  = getChecked('colors');
-  const colorsOther = document.getElementById('s3-colors-other').value.trim();
-  if (colorsOther) colorsArr.push(colorsOther);
-  const colors     = colorsArr.length ? colorsArr.join(', ') : t.notSpecified;
-  const inspo      = document.getElementById('s3-inspo').value.trim() || t.none;
-  const pages      = getChecked('pages').join(', ') || t.noneSelected;
-  const features   = getChecked('features').join(', ') || t.noneSelected;
-  const contentTxt = getRadio('content-text');
-  const contentImg = getRadio('content-img');
-  const domain     = document.getElementById('s5-domain').value.trim() || t.notProvided;
-  const timeline   = getRadio('timeline');
-  const notes      = document.getElementById('s6-notes').value.trim() || t.none;
-  const contact    = document.getElementById('s6-contact').value.trim() || t.notProvided;
-
-  const summary = `════════════════════════════════════
-${t.summaryHead}
-${t.summaryGen}
-════════════════════════════════════
-
-📌 ${t.sumBiz}
-${t.sumName.padEnd(13)} ${name}
-${t.sumInd.padEnd(13)} ${industry}
-${t.sumDesc.padEnd(13)} ${desc}
-
-🌐 ${t.sumType}
-${siteType}
-
-🎨 ${t.sumDesign}
-${t.sumStyle.padEnd(13)} ${style}
-${t.sumColors.padEnd(13)} ${colors}
-${t.sumInspo.padEnd(13)} ${inspo}
-
-📄 ${t.sumPages}
-${pages}
-
-⚙️ ${t.sumFeatures}
-${features}
-
-📦 ${t.sumContent}
-${t.sumText.padEnd(13)} ${contentTxt}
-${t.sumImg.padEnd(13)} ${contentImg}
-${t.sumDomain.padEnd(13)} ${domain}
-
-⏱️ ${t.sumTimeline}
-${timeline}
-
-💬 ${t.sumNotes}
-${notes}
-
-📬 ${t.sumContact}
-${contact}
-
-════════════════════════════════════
-${t.sumFooter}
-yamsas.com · Lang: ${lang.toUpperCase()}
-════════════════════════════════════`;
-
-  // Disable button and show loading
-  const btn = document.getElementById('submit-btn');
-  btn.disabled = true;
-  btn.textContent = t.sending;
-
-  try {
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        access_key: '79d11e30-fd01-499a-93b2-72a2831a8e61',
-        subject:    `Ny nettside-quiz — ${name} (${industry})`,
-        from_name:  'YAMS Quiz',
-        message:    summary
-      })
-    });
-    const data = await res.json();
-    if (!data.success) throw new Error(data.message);
-  } catch(e) {
-    // Fallback: still show thanks, but also log error
-    console.error('Web3Forms error:', e);
-  }
-
-  // Always show thank-you screen (even if network fails — summary is sent in both cases)
-  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  document.getElementById('result-box').style.display = 'block';
-  updateProgress(6);
-  window.scrollTo({ top: document.getElementById('quiz-app').offsetTop - 80, behavior: 'smooth' });
-}
-
-// Init language on load
-(function() {
-  const l = localStorage.getItem('yams_lang') || 'no';
-  lang = l;
-  document.getElementById('lb-en').classList.toggle('active', l === 'en');
-  document.getElementById('lb-no').classList.toggle('active', l === 'no');
-  document.documentElement.lang = l;
-  applyLang();
-})();
-</script>
 </body>
 </html>
