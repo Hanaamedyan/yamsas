@@ -472,6 +472,68 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
 /* ── TICKER pause on hover ── */
 .ticker:hover .ticker-inner { animation-play-state: paused; }
 
+/* ── LAPTOP OPTIMIZATION (1024px – 1439px) ──
+   Targets typical laptop screens (13"–15", 1280–1440px wide, 768–900px tall).
+   Reduces excessive vertical whitespace without touching mobile breakpoints. */
+@media(min-width:1024px) and (max-width:1439px){
+  /* Compact nav */
+  nav { padding: 1.1rem 2.5rem; }
+  #lang-bar { padding: 0 2.5rem; }
+  .nav-links { gap: 1.6rem; }
+  .nav-links a { font-size: .68rem; }
+
+  /* Hero */
+  .hero { padding: 0 2.5rem 3rem; }
+  .hero-stats { gap: 2.2rem; }
+  .stat-num { font-size: 2rem; }
+  .hero-left { gap: 1rem; }
+
+  /* Section padding — from 8rem → 5.5rem saves ~40px per section */
+  section,
+  .manifesto,
+  .process,
+  .contact { padding: 5.5rem 2.5rem; }
+
+  /* Manifesto grid tighter */
+  .manifesto-grid { gap: 3rem; }
+  .manifesto-quote { font-size: clamp(1.6rem,2.5vw,2.2rem); }
+
+  /* Service blocks less tall (70vh → 55vh on 768px = 422px) */
+  .service-block { min-height: 55vh; }
+  .service-content { padding: 4rem 2.5rem; }
+
+  /* Work section */
+  .work-section { padding: 5rem 0; }
+  .work-header { padding: 0 2.5rem; margin-bottom: 2.2rem; }
+  .work-scroll-track { padding: 0 2.5rem; }
+  .work-card-link { flex: 0 0 290px; }
+
+  /* Process */
+  .process { padding: 5.5rem 2.5rem; }
+  .process-header { margin-bottom: 3.5rem; gap: 2rem; }
+
+  /* Quiz CTA from 9rem → 5.5rem */
+  .quiz-cta-section { padding: 5.5rem 2.5rem; }
+  .quiz-cta-title { font-size: clamp(3rem,6vw,6rem); }
+  .quiz-steps { margin: 0 auto 2.2rem; }
+
+  /* Contact from 10rem → 5.5rem */
+  .contact { padding: 5.5rem 2.5rem; }
+  .contact-title { font-size: clamp(3rem,6vw,7rem); }
+  .contact-form-wrap { margin-top: 3rem; }
+
+  /* Reviews */
+  .reviews-section { padding: 5rem 2.5rem; }
+
+  /* Footer */
+  footer { padding: 5rem 2.5rem 2rem; }
+  .footer-top { max-width: 100%; }
+
+  /* Hover transitions more snappy on mouse devices */
+  .work-card { transition: transform .2s ease; }
+  .btn-dark, .btn-white, .nav-cta { transition-duration: .15s; }
+}
+
 /* ── prefers-reduced-motion ──
    Use duration:0.01ms so animations still COMPLETE (preventing opacity:0 lockouts)
    but are effectively instant. Never use animation:none — it traps elements at
