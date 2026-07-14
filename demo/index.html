@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DEMO — Kreativt Webdesign Studio</title>
+<meta name="description" content="Vi bygger og drifter nettsider som skiller seg ut. Kreativt webdesign for ambisiøse merkevarer."/>
+<meta property="og:title" content="DEMO — Kreativt Webdesign Studio"/>
+<meta property="og:description" content="Vi bygger og drifter nettsider som skiller seg ut."/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --black:#0A0A0A;--dark:#111;--dark2:#1A1A1A;
+  --green:#1B3D2F;--green-l:#2C5E46;--green-b:#3D7A5C;
+  --gold:#C8A660;--gold-l:#D4B483;
+  --beige:#E8DCC8;--cream:#F5F0E8;--brown:#6B4C2A;
+  --red:#B71C1C;--orange:#D4691E;--grey:#888;
+  --white:#FFFFFF;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Syne',sans-serif;background:var(--black);color:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--black);}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+
+/* ── LANG BAR ── */
+#lang-bar{position:fixed;top:0;left:0;right:0;height:32px;z-index:300;background:rgba(10,10,10,.98);border-bottom:1px solid rgba(200,166,96,.12);display:flex;align-items:center;justify-content:flex-end;padding:0 48px;gap:4px;}
+.lb-label{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.25);margin-right:6px;}
+.lb-btn{font-family:'DM Mono',monospace;font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:2px;border:1px solid transparent;background:none;cursor:pointer;color:rgba(245,240,232,.35);transition:all .2s;}
+.lb-btn.active{color:var(--gold);border-color:rgba(200,166,96,.4);background:rgba(200,166,96,.08);}
+.lb-btn:hover:not(.active){color:rgba(245,240,232,.7);}
+
+/* ── NAV ── */
+nav{position:fixed;top:32px;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;transition:background .3s,border-color .3s;}
+nav.scrolled{background:rgba(10,10,10,.96);border-bottom:1px solid rgba(200,166,96,.1);backdrop-filter:blur(20px);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.08em;color:var(--cream);display:flex;align-items:center;gap:10px;}
+.nav-logo em{font-style:normal;color:var(--gold);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,240,232,.55);transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{font-family:'DM Mono',monospace;font-size:.65rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;background:var(--gold);color:var(--black);padding:.55rem 1.4rem;border-radius:2px;transition:background .2s;}
+.nav-cta:hover{background:var(--gold-l);}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;}
+.nav-burger span{display:block;width:22px;height:1.5px;background:var(--cream);transition:all .3s;}
+@media(max-width:768px){.nav-links,.nav-cta{display:none;}.nav-burger{display:flex;}nav{padding:0 1.2rem;}}
+
+/* ── MOB MENU ── */
+.mob-menu{display:none;position:fixed;inset:0;background:var(--black);z-index:150;flex-direction:column;align-items:center;justify-content:center;gap:12px;border-top:2px solid var(--gold);}
+.mob-menu.open{display:flex;}
+.mob-menu a{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:rgba(245,240,232,.65);transition:color .2s;}
+.mob-menu a:hover{color:var(--gold);}
+.mob-cta{background:var(--gold)!important;color:var(--black)!important;font-family:'DM Mono',monospace!important;font-size:.8rem!important;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:1rem 2.5rem;margin-top:1rem;}
+
+/* ── HERO ── */
+.hero{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:160px 48px 72px;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0A0A0A 0%,#0f1a14 40%,#0A0A0A 100%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,166,96,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(200,166,96,.04) 1px,transparent 1px);background-size:80px 80px;pointer-events:none;}
+.hero-noise{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");pointer-events:none;}
+.hero-tag{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;opacity:0;animation:fadeUp .7s .3s ease forwards;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,12vw,14rem);line-height:.88;letter-spacing:-.5px;color:var(--cream);position:relative;z-index:1;opacity:0;animation:fadeUp .8s .5s ease forwards;}
+.hero-title .line-green{color:var(--green-b);}
+.hero-title .line-gold{color:var(--gold);}
+.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;margin-top:3rem;position:relative;z-index:1;opacity:0;animation:fadeUp .7s .8s ease forwards;}
+.hero-sub{font-size:1rem;font-weight:400;line-height:1.75;color:rgba(245,240,232,.6);max-width:380px;}
+.hero-stats{display:flex;gap:3rem;}
+.hero-stat .n{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--gold);line-height:1;}
+.hero-stat .l{font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.4);margin-top:2px;}
+.hero-scroll{display:flex;flex-direction:column;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.3);}
+.hero-scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease infinite;}
+@keyframes scrollPulse{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.hero-badge{position:absolute;top:50%;right:48px;transform:translateY(-50%);width:140px;height:140px;border-radius:50%;background:var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;animation:rotateBadge 20s linear infinite;z-index:2;}
+.hero-badge span{font-family:'DM Mono',monospace;font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--black);line-height:1.6;}
+@keyframes rotateBadge{from{transform:translateY(-50%) rotate(0deg)}to{transform:translateY(-50%) rotate(360deg)}}
+@media(max-width:768px){.hero{padding:120px 1.2rem 48px;}.hero-bottom{flex-direction:column;gap:2rem;align-items:flex-start;}.hero-badge{display:none;}.hero-stats{gap:2rem;}}
+
+/* ── MARQUEE ── */
+.marquee-wrap{background:var(--gold);padding:14px 0;overflow:hidden;white-space:nowrap;}
+.marquee-inner{display:inline-flex;animation:marquee 18s linear infinite;}
+.marquee-inner span{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.12em;color:var(--black);padding:0 28px;}
+.marquee-inner span.dot{color:rgba(10,10,10,.4);}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── ABOUT ── */
+.about{padding:10rem 48px;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1400px;margin:0 auto;}
+.about-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem;}
+.about-label::before{content:'';width:2rem;height:1px;background:var(--gold);}
+.about-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,5vw,5.5rem);line-height:.92;color:var(--cream);margin-bottom:1.8rem;}
+.about-title em{font-style:normal;color:var(--green-b);}
+.about-body{font-size:1rem;line-height:1.9;color:rgba(245,240,232,.65);margin-bottom:2rem;}
+.about-right{position:relative;}
+.about-img-wrap{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:4/5;}
+.about-img-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(27,61,47,.6),rgba(200,166,96,.2));z-index:1;}
+.about-img-placeholder{width:100%;height:100%;background:linear-gradient(135deg,var(--green) 0%,var(--dark2) 50%,var(--brown) 100%);display:flex;align-items:center;justify-content:center;}
+.about-img-placeholder span{font-family:'Bebas Neue',sans-serif;font-size:6rem;color:rgba(245,240,232,.08);}
+.about-badge{position:absolute;bottom:-20px;left:-20px;background:var(--gold);color:var(--black);padding:1.4rem 1.8rem;border-radius:3px;z-index:2;}
+.about-badge .n{font-family:'Bebas Neue',sans-serif;font-size:3rem;line-height:1;}
+.about-badge .t{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.7;}
+@media(max-width:768px){.about{grid-template-columns:1fr;padding:5rem 1.2rem;gap:3rem;}.about-badge{bottom:-12px;left:12px;}}
+
+/* ── SERVICES ── */
+.services{padding:8rem 48px;background:var(--dark2);}
+.services-inner{max-width:1400px;margin:0 auto;}
+.section-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:.8rem;}
+.section-label::before{content:'';width:2rem;height:1px;background:var(--gold);}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,6vw,6rem);line-height:.9;color:var(--cream);margin-bottom:4rem;}
+.section-title em{font-style:normal;color:var(--gold);}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:rgba(200,166,96,.1);}
+.service-card{background:var(--dark2);padding:2.8rem;border:1px solid rgba(200,166,96,.06);transition:background .3s,border-color .3s;position:relative;overflow:hidden;}
+.service-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(27,61,47,.0),rgba(27,61,47,.3));opacity:0;transition:opacity .3s;}
+.service-card:hover{border-color:rgba(200,166,96,.2);}
+.service-card:hover::before{opacity:1;}
+.svc-num{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:rgba(200,166,96,.1);line-height:1;margin-bottom:1rem;}
+.svc-title{font-size:1.1rem;font-weight:700;color:var(--cream);margin-bottom:.8rem;}
+.svc-desc{font-size:.88rem;line-height:1.8;color:rgba(245,240,232,.5);}
+.svc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:1.5rem;}
+.svc-tag{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1px solid rgba(200,166,96,.2);color:rgba(200,166,96,.6);border-radius:2px;}
+@media(max-width:768px){.services{padding:5rem 1.2rem;}.services-grid{grid-template-columns:1fr;}}
+@media(max-width:1024px){.services-grid{grid-template-columns:1fr 1fr;}}
+
+/* ── PORTFOLIO ── */
+.portfolio{padding:8rem 0 8rem 48px;}
+.portfolio-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;padding-right:48px;}
+.portfolio-track{display:flex;gap:24px;overflow-x:auto;padding-bottom:24px;scrollbar-width:thin;scrollbar-color:var(--gold) var(--dark);}
+.portfolio-track::-webkit-scrollbar{height:3px;}
+.portfolio-track::-webkit-scrollbar-thumb{background:var(--gold);}
+.port-card{flex:0 0 380px;border-radius:4px;overflow:hidden;position:relative;aspect-ratio:3/4;background:var(--dark2);border:1px solid rgba(200,166,96,.08);transition:border-color .3s;}
+.port-card:hover{border-color:rgba(200,166,96,.25);}
+.port-card-bg{position:absolute;inset:0;}
+.port-card-bg-1{background:linear-gradient(135deg,#0f1a14,#1B3D2F);}
+.port-card-bg-2{background:linear-gradient(135deg,#1a0f0f,#3D1515);}
+.port-card-bg-3{background:linear-gradient(135deg,#1a140f,#3D2A1A);}
+.port-card-bg-4{background:linear-gradient(135deg,#0f1214,#1a2030);}
+.port-card-num{position:absolute;top:24px;left:24px;font-family:'Bebas Neue',sans-serif;font-size:5rem;color:rgba(245,240,232,.06);line-height:1;}
+.port-card-content{position:absolute;bottom:0;left:0;right:0;padding:28px;background:linear-gradient(to top,rgba(10,10,10,.9),transparent);}
+.port-tag{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;}
+.port-name{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--cream);line-height:1;margin-bottom:.3rem;}
+.port-sub{font-size:.78rem;color:rgba(245,240,232,.45);}
+@media(max-width:768px){.portfolio{padding:5rem 0 5rem 1.2rem;}.port-card{flex:0 0 280px;}.portfolio-header{padding-right:1.2rem;}}
+
+/* ── PROCESS ── */
+.process{padding:8rem 48px;background:var(--green);position:relative;overflow:hidden;}
+.process::before{content:'PROSESS';position:absolute;font-family:'Bebas Neue',sans-serif;font-size:clamp(10rem,18vw,22rem);color:rgba(245,240,232,.04);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;}
+.process-inner{max-width:1400px;margin:0 auto;position:relative;z-index:1;}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:4rem;}
+.process-step{padding:2.5rem 2rem;border-right:1px solid rgba(245,240,232,.12);position:relative;}
+.process-step:last-child{border-right:none;}
+.ps-num{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:rgba(245,240,232,.15);line-height:1;margin-bottom:1.2rem;}
+.ps-title{font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cream);margin-bottom:.8rem;}
+.ps-desc{font-size:.85rem;line-height:1.8;color:rgba(245,240,232,.65);}
+@media(max-width:768px){.process{padding:5rem 1.2rem;}.process-steps{grid-template-columns:1fr 1fr;}.process-step{border-right:none;border-bottom:1px solid rgba(245,240,232,.12);padding:2rem 1rem;}}
+@media(max-width:480px){.process-steps{grid-template-columns:1fr;}}
+
+/* ── BLOG ── */
+.blog{padding:8rem 48px;}
+.blog-inner{max-width:1400px;margin:0 auto;}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem;}
+.blog-card{border:1px solid rgba(200,166,96,.08);border-radius:3px;overflow:hidden;background:var(--dark2);transition:border-color .3s,transform .3s;}
+.blog-card:hover{border-color:rgba(200,166,96,.2);transform:translateY(-4px);}
+.blog-card-img{height:200px;background:linear-gradient(135deg,var(--dark2),var(--dark));display:flex;align-items:center;justify-content:center;}
+.blog-card-img span{font-family:'Bebas Neue',sans-serif;font-size:5rem;color:rgba(200,166,96,.12);}
+.blog-card-body{padding:1.6rem;}
+.blog-cat{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;}
+.blog-title{font-size:1.05rem;font-weight:700;color:var(--cream);margin-bottom:.6rem;line-height:1.4;}
+.blog-meta{font-size:.75rem;color:rgba(245,240,232,.35);}
+@media(max-width:768px){.blog{padding:5rem 1.2rem;}.blog-grid{grid-template-columns:1fr;}}
+@media(max-width:1024px){.blog-grid{grid-template-columns:1fr 1fr;}}
+
+/* ── CONTACT ── */
+.contact{padding:10rem 48px;background:var(--dark2);}
+.contact-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;}
+.contact-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,7vw,8rem);line-height:.9;color:var(--cream);margin-bottom:1.5rem;}
+.contact-title em{font-style:normal;color:var(--gold);}
+.contact-sub{font-size:.95rem;line-height:1.8;color:rgba(245,240,232,.55);margin-bottom:2.5rem;}
+.contact-info{display:flex;flex-direction:column;gap:1rem;}
+.ci-row{display:flex;align-items:center;gap:.8rem;font-size:.9rem;color:rgba(245,240,232,.65);}
+.ci-row svg{width:16px;height:16px;color:var(--gold);flex-shrink:0;}
+.form{display:flex;flex-direction:column;gap:1.2rem;}
+.form-field{display:flex;flex-direction:column;gap:.4rem;}
+.form-label{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,240,232,.4);}
+.form-input{background:rgba(245,240,232,.04);border:1px solid rgba(200,166,96,.15);color:var(--cream);font-family:'Syne',sans-serif;font-size:.95rem;padding:.9rem 1.1rem;border-radius:3px;outline:none;transition:border-color .2s;width:100%;}
+.form-input:focus{border-color:rgba(200,166,96,.5);}
+.form-input::placeholder{color:rgba(245,240,232,.2);}
+textarea.form-input{min-height:130px;resize:vertical;}
+.btn-submit{background:var(--gold);color:var(--black);font-family:'DM Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:1.1rem;border:none;border-radius:3px;cursor:pointer;transition:background .2s;margin-top:.4rem;}
+.btn-submit:hover{background:var(--gold-l);}
+.form-success{display:none;text-align:center;padding:3rem;border:1px solid rgba(200,166,96,.3);border-radius:3px;background:rgba(200,166,96,.06);}
+.form-success .icon{font-size:2.5rem;margin-bottom:.8rem;}
+.form-success h3{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--gold);margin-bottom:.5rem;}
+.form-success p{font-size:.9rem;color:rgba(245,240,232,.55);}
+@media(max-width:768px){.contact{padding:5rem 1.2rem;}.contact-inner{grid-template-columns:1fr;gap:3rem;}}
+
+/* ── MAP ── */
+.map-wrap{height:340px;border-radius:4px;overflow:hidden;border:1px solid rgba(200,166,96,.12);margin-top:2.5rem;}
+.map-wrap iframe{width:100%;height:100%;border:none;filter:invert(.9) hue-rotate(180deg) brightness(.8);}
+
+/* ── FOOTER ── */
+footer{background:var(--black);border-top:1px solid rgba(200,166,96,.1);padding:4rem 48px 2rem;}
+.footer-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.footer-brand{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--cream);margin-bottom:.8rem;}
+.footer-brand em{font-style:normal;color:var(--gold);}
+.footer-tagline{font-size:.82rem;color:rgba(245,240,232,.35);line-height:1.7;}
+.footer-col h4{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,.3);margin-bottom:1.2rem;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.footer-col ul li a{font-size:.85rem;color:rgba(245,240,232,.5);transition:color .2s;}
+.footer-col ul li a:hover{color:var(--gold);}
+.footer-bottom{border-top:1px solid rgba(245,240,232,.06);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(245,240,232,.2);letter-spacing:.08em;}
+@media(max-width:768px){footer{padding:3rem 1.2rem 1.5rem;}.footer-inner{grid-template-columns:1fr 1fr;gap:2rem;}}
+@media(max-width:480px){.footer-inner{grid-template-columns:1fr;}}
+
+/* ── ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-l{opacity:0;transform:translateX(-32px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-l.visible{opacity:1;transform:none;}
+.rd1{transition-delay:.1s;}
+.rd2{transition-delay:.2s;}
+.rd3{transition-delay:.3s;}
+.rd4{transition-delay:.4s;}
+
+/* ── CHAT ── */
+#chat-btn{position:fixed;bottom:28px;right:28px;z-index:500;width:52px;height:52px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(200,166,96,.35);transition:transform .2s,box-shadow .2s;}
+#chat-btn:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(200,166,96,.45);}
+#chat-btn svg{width:22px;height:22px;color:var(--black);}
+#chat-win{position:fixed;bottom:92px;right:28px;z-index:500;width:320px;background:var(--dark2);border:1px solid rgba(200,166,96,.2);border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6);display:none;flex-direction:column;overflow:hidden;}
+#chat-win.open{display:flex;}
+.cw-header{background:var(--green);padding:1rem 1.2rem;display:flex;align-items:center;justify-content:space-between;}
+.cw-title{font-weight:700;font-size:.9rem;color:var(--cream);}
+.cw-sub{font-family:'DM Mono',monospace;font-size:.55rem;color:rgba(245,240,232,.55);letter-spacing:.08em;margin-top:2px;}
+.cw-close{background:none;border:none;color:rgba(245,240,232,.6);cursor:pointer;font-size:1.2rem;padding:0;}
+.cw-msgs{height:240px;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.7rem;}
+.cw-msg{max-width:85%;padding:.6rem .9rem;border-radius:8px;font-size:.83rem;line-height:1.5;}
+.cw-msg.bot{background:rgba(245,240,232,.07);color:rgba(245,240,232,.85);align-self:flex-start;border-radius:2px 8px 8px 8px;}
+.cw-msg.user{background:var(--gold);color:var(--black);align-self:flex-end;border-radius:8px 8px 2px 8px;}
+.cw-input-row{display:flex;border-top:1px solid rgba(200,166,96,.12);padding:.8rem;}
+.cw-input{flex:1;background:none;border:none;color:var(--cream);font-family:'Syne',sans-serif;font-size:.85rem;outline:none;}
+.cw-input::placeholder{color:rgba(245,240,232,.25);}
+.cw-send{background:var(--gold);border:none;padding:.4rem .8rem;border-radius:4px;cursor:pointer;color:var(--black);font-weight:700;font-size:.8rem;}
+</style>
+</head>
+<body>
+
+<!-- LANG BAR -->
+<div id="lang-bar">
+  <span class="lb-label">Lang</span>
+  <button class="lb-btn active" id="lb-no" onclick="setLang('no')">NO</button>
+  <button class="lb-btn" id="lb-en" onclick="setLang('en')">EN</button>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo">DEMO<em>.</em></div>
+  <ul class="nav-links">
+    <li><a href="#hjem" data-key="nav-home">Hjem</a></li>
+    <li><a href="#om" data-key="nav-about">Om oss</a></li>
+    <li><a href="#tjenester" data-key="nav-services">Tjenester</a></li>
+    <li><a href="#portefolje" data-key="nav-portfolio">Portefølje</a></li>
+    <li><a href="#blogg" data-key="nav-blog">Blogg</a></li>
+    <li><a href="#kontakt" data-key="nav-contact">Kontakt</a></li>
+  </ul>
+  <a href="#kontakt" class="nav-cta" data-key="nav-cta">Kom i gang</a>
+  <button class="nav-burger" id="navBurger" aria-label="Meny">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOB MENU -->
+<div class="mob-menu" id="mobMenu">
+  <a href="#hjem" class="mob-l" data-key="nav-home">Hjem</a>
+  <a href="#om" class="mob-l" data-key="nav-about">Om oss</a>
+  <a href="#tjenester" class="mob-l" data-key="nav-services">Tjenester</a>
+  <a href="#portefolje" class="mob-l" data-key="nav-portfolio">Portefølje</a>
+  <a href="#blogg" class="mob-l" data-key="nav-blog">Blogg</a>
+  <a href="#kontakt" class="mob-l" data-key="nav-contact">Kontakt</a>
+  <a href="#kontakt" class="mob-l mob-cta" data-key="nav-cta">Kom i gang</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hjem">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-badge">
+    <span>Kreativt<br/>Webdesign<br/>Studio</span>
+  </div>
+  <div class="hero-tag" data-key="hero-tag">Webdesign Studio — Est. Norge</div>
+  <h1 class="hero-title">
+    <span class="line-green" data-key="hero-line1">VI</span><br/>
+    <span data-key="hero-line2">BYGGER</span><br/>
+    <span class="line-gold" data-key="hero-line3">FREMTIDEN</span>
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-sub" data-key="hero-sub">Skreddersydde nettsider som skiller seg ut — fra konsept til lansering og videre vekst.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="n">100%</div><div class="l" data-key="stat1">Fornøyde kunder</div></div>
+      <div class="hero-stat"><div class="n">24h</div><div class="l" data-key="stat2">Responstid</div></div>
+    </div>
+    <div class="hero-scroll"><div class="hero-scroll-line"></div><span data-key="hero-scroll">Scroll</span></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-inner">
+    <span>Webdesign</span><span class="dot">·</span>
+    <span>Utvikling</span><span class="dot">·</span>
+    <span>SEO</span><span class="dot">·</span>
+    <span>Animasjoner</span><span class="dot">·</span>
+    <span>E-handel</span><span class="dot">·</span>
+    <span>Vekststrategi</span><span class="dot">·</span>
+    <span>Web Design</span><span class="dot">·</span>
+    <span>Development</span><span class="dot">·</span>
+    <span>SEO</span><span class="dot">·</span>
+    <span>Animations</span><span class="dot">·</span>
+    <span>E-commerce</span><span class="dot">·</span>
+    <span>Growth</span><span class="dot">·</span>
+    <span>Webdesign</span><span class="dot">·</span>
+    <span>Utvikling</span><span class="dot">·</span>
+    <span>SEO</span><span class="dot">·</span>
+    <span>Animasjoner</span><span class="dot">·</span>
+    <span>E-handel</span><span class="dot">·</span>
+    <span>Vekststrategi</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="om" style="background:var(--black);">
+  <div class="about">
+    <div class="reveal-l">
+      <div class="about-label" data-key="about-label">Om oss</div>
+      <h2 class="about-title" data-key="about-title">Vi bygger nettsider<br/>som <em>leverer</em><br/>resultater.</h2>
+      <p class="about-body" data-key="about-body">DEMO er et kreativt webdesign-studio som hjelper norske bedrifter å etablere en sterk digital tilstedeværelse. Vi kombinerer strategisk tenkning, moderne design og solid teknologi for å skape nettsider som ikke bare ser bra ut — de faktisk konverterer.</p>
+      <p class="about-body" data-key="about-body2">Fra enkel presentasjonsside til komplekse e-handelsplattformer — vi tar prosjektet ditt fra konsept til lansering, og fortsetter å støtte deg i vekstfasen.</p>
+    </div>
+    <div class="about-right reveal">
+      <div class="about-img-wrap">
+        <div class="about-img-placeholder"><span>DEMO</span></div>
+      </div>
+      <div class="about-badge">
+        <div class="n">3+</div>
+        <div class="t" data-key="about-badge">År med erfaring</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="tjenester" class="services">
+  <div class="services-inner">
+    <div class="section-label reveal" data-key="svc-label">Tjenester</div>
+    <h2 class="section-title reveal rd1" data-key="svc-title">Hva vi<br/><em>tilbyr</em></h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="svc-num">01</div>
+        <div class="svc-title" data-key="svc1-title">Webdesign</div>
+        <div class="svc-desc" data-key="svc1-desc">Visuelt overbevisende, strategisk gjennomtenkte layouts som kommuniserer merkevaren din umiddelbart.</div>
+        <div class="svc-tags"><span class="svc-tag">UI/UX</span><span class="svc-tag">Brand</span><span class="svc-tag">Mobile-first</span></div>
+      </div>
+      <div class="service-card reveal rd1">
+        <div class="svc-num">02</div>
+        <div class="svc-title" data-key="svc2-title">Webutvikling</div>
+        <div class="svc-desc" data-key="svc2-desc">Rask, sikker og skalerbar kode bygget på moderne rammeverk. Optimalisert for ytelse og SEO.</div>
+        <div class="svc-tags"><span class="svc-tag">HTML/CSS</span><span class="svc-tag">JavaScript</span><span class="svc-tag">CMS</span></div>
+      </div>
+      <div class="service-card reveal rd2">
+        <div class="svc-num">03</div>
+        <div class="svc-title" data-key="svc3-title">Vekststrategi</div>
+        <div class="svc-desc" data-key="svc3-desc">Vi går utover lansering. SEO, analyse, konverteringsoptimalisering og løpende support.</div>
+        <div class="svc-tags"><span class="svc-tag">SEO</span><span class="svc-tag">Analytics</span><span class="svc-tag">Support</span></div>
+      </div>
+      <div class="service-card reveal rd3">
+        <div class="svc-num">04</div>
+        <div class="svc-title" data-key="svc4-title">E-handel</div>
+        <div class="svc-desc" data-key="svc4-desc">Komplette nettbutikkløsninger med betalingsintegrasjon, produktstyring og konverteringsoptimalisert design.</div>
+        <div class="svc-tags"><span class="svc-tag">Shop</span><span class="svc-tag">Checkout</span><span class="svc-tag">Inventory</span></div>
+      </div>
+      <div class="service-card reveal rd4">
+        <div class="svc-num">05</div>
+        <div class="svc-title" data-key="svc5-title">Vedlikehold</div>
+        <div class="svc-desc" data-key="svc5-desc">Løpende oppdateringer, sikkerhetsoversåking, backup og hosting. Vi tar oss av teknikken mens du fokuserer på business.</div>
+        <div class="svc-tags"><span class="svc-tag">Hosting</span><span class="svc-tag">Security</span><span class="svc-tag">Updates</span></div>
+      </div>
+      <div class="service-card reveal rd4">
+        <div class="svc-num">06</div>
+        <div class="svc-title" data-key="svc6-title">Foto & Media</div>
+        <div class="svc-desc" data-key="svc6-desc">Redaksjonell produktfotografering og mediaproduksjon tilpasset nett — designet for å løfte merkevaren din.</div>
+        <div class="svc-tags"><span class="svc-tag">Foto</span><span class="svc-tag">Video</span><span class="svc-tag">Editing</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portefolje" style="background:var(--black);">
+  <div class="portfolio">
+    <div class="portfolio-header">
+      <div>
+        <div class="section-label reveal" data-key="port-label">Portefølje</div>
+        <h2 class="section-title reveal rd1" style="margin-bottom:0;" data-key="port-title">Nylige<br/><em>prosjekter</em></h2>
+      </div>
+      <a href="#kontakt" style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(200,166,96,.3);padding-bottom:2px;align-self:flex-end;" data-key="port-all">Se alle →</a>
+    </div>
+    <div class="portfolio-track">
+      <div class="port-card reveal">
+        <div class="port-card-bg port-card-bg-1"></div>
+        <div class="port-card-num">01</div>
+        <div class="port-card-content">
+          <div class="port-tag">Music & Merch</div>
+          <div class="port-name">STROBE</div>
+          <div class="port-sub">Artist Website & 3D Merch</div>
+        </div>
+      </div>
+      <div class="port-card reveal rd1">
+        <div class="port-card-bg port-card-bg-2"></div>
+        <div class="port-card-num">02</div>
+        <div class="port-card-content">
+          <div class="port-tag">Restaurant</div>
+          <div class="port-name">Pizza Pizza</div>
+          <div class="port-sub">Restaurant Website & Menu</div>
+        </div>
+      </div>
+      <div class="port-card reveal rd2">
+        <div class="port-card-bg port-card-bg-3"></div>
+        <div class="port-card-num">03</div>
+        <div class="port-card-content">
+          <div class="port-tag">Automotive</div>
+          <div class="port-name">Apex Motors</div>
+          <div class="port-sub">Dealer Website & Inventory</div>
+        </div>
+      </div>
+      <div class="port-card reveal rd3">
+        <div class="port-card-bg port-card-bg-4"></div>
+        <div class="port-card-num">04</div>
+        <div class="port-card-content">
+          <div class="port-tag">Webdesign</div>
+          <div class="port-name">YAMS AS</div>
+          <div class="port-sub">Agency Portfolio & Quiz</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="process-inner">
+    <div class="section-label reveal" data-key="proc-label">Prosess</div>
+    <h2 class="section-title reveal rd1" data-key="proc-title">Slik jobber<br/><em>vi</em></h2>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="ps-num">01</div>
+        <div class="ps-title" data-key="proc1-t">Oppdagelse</div>
+        <div class="ps-desc" data-key="proc1-d">Vi setter oss grundig inn i din bedrift, dine mål og målgruppe. Et solid fundament er nøkkelen til suksess.</div>
+      </div>
+      <div class="process-step reveal rd1">
+        <div class="ps-num">02</div>
+        <div class="ps-title" data-key="proc2-t">Design</div>
+        <div class="ps-desc" data-key="proc2-d">Høy-fidelity mockups med 2 runder revisjoner. Du godkjenner designet før vi begynner å bygge.</div>
+      </div>
+      <div class="process-step reveal rd2">
+        <div class="ps-num">03</div>
+        <div class="ps-title" data-key="proc3-t">Bygging</div>
+        <div class="ps-desc" data-key="proc3-d">Ren, ytelsesdyktig kode. Mobile-first, rask lastetid og fullt SEO-optimalisert fra dag én.</div>
+      </div>
+      <div class="process-step reveal rd3">
+        <div class="ps-num">04</div>
+        <div class="ps-title" data-key="proc4-t">Lansering & Vekst</div>
+        <div class="ps-desc" data-key="proc4-d">Vi håndterer utrulling og gir løpende support. Nettsiden din fortsetter å vokse etter lansering.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blogg" class="blog" style="background:var(--black);">
+  <div class="blog-inner">
+    <div class="section-label reveal" data-key="blog-label">Blogg</div>
+    <h2 class="section-title reveal rd1" data-key="blog-title">Tips & <em>innsikt</em></h2>
+    <div class="blog-grid">
+      <div class="blog-card reveal">
+        <div class="blog-card-img"><span>📱</span></div>
+        <div class="blog-card-body">
+          <div class="blog-cat" data-key="blog1-cat">Webdesign</div>
+          <div class="blog-title" data-key="blog1-title">Hvorfor mobile-first er viktigere enn noensinne</div>
+          <div class="blog-meta" data-key="blog1-meta">7 min lesing · Webdesign</div>
+        </div>
+      </div>
+      <div class="blog-card reveal rd1">
+        <div class="blog-card-img"><span>🔍</span></div>
+        <div class="blog-card-body">
+          <div class="blog-cat" data-key="blog2-cat">SEO</div>
+          <div class="blog-title" data-key="blog2-title">5 SEO-tips som faktisk fungerer for norske bedrifter</div>
+          <div class="blog-meta" data-key="blog2-meta">5 min lesing · SEO</div>
+        </div>
+      </div>
+      <div class="blog-card reveal rd2">
+        <div class="blog-card-img"><span>⚡</span></div>
+        <div class="blog-card-body">
+          <div class="blog-cat" data-key="blog3-cat">Ytelse</div>
+          <div class="blog-title" data-key="blog3-title">Slik gjør du nettsiden din lynrask — uten å ofre design</div>
+          <div class="blog-meta" data-key="blog3-meta">6 min lesing · Utvikling</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="kontakt" class="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-label reveal" data-key="contact-label">Kontakt</div>
+      <h2 class="contact-title reveal rd1" data-key="contact-title">La oss<br/>bygge noe<br/><em>stort.</em></h2>
+      <p class="contact-sub reveal rd2" data-key="contact-sub">Klar til å ta steget? Fortell oss om prosjektet ditt og vi kommer tilbake til deg innen 24 timer.</p>
+      <div class="contact-info reveal rd3">
+        <div class="ci-row"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span>yamsasno@gmail.com</span></div>
+        <div class="ci-row"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><span>90 72 14 81</span></div>
+        <div class="ci-row"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span data-key="contact-loc">Trondheim, Norge</span></div>
+      </div>
+      <div class="map-wrap reveal rd4">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=10.35%2C63.39%2C10.55%2C63.47&layer=mapnik&marker=63.430%2C10.395" loading="lazy" title="DEMO lokasjon" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="reveal rd1">
+      <form class="form" id="demoForm" novalidate>
+        <div class="form-field">
+          <label class="form-label" data-key="flabel-name">Navn</label>
+          <input class="form-input" type="text" id="fname" placeholder="Ditt navn" required/>
+        </div>
+        <div class="form-field">
+          <label class="form-label" data-key="flabel-email">E-post</label>
+          <input class="form-input" type="email" id="femail" placeholder="din@epost.no" required/>
+        </div>
+        <div class="form-field">
+          <label class="form-label" data-key="flabel-project">Prosjekt</label>
+          <textarea class="form-input" id="fproject" placeholder="Fortell oss om prosjektet ditt..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit" id="formSubmit" data-key="form-submit">Send melding →</button>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="icon">✅</div>
+        <h3 data-key="suc-title">Melding sendt!</h3>
+        <p data-key="suc-body">Vi tar kontakt innen 24 timer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">DEMO<em>.</em></div>
+      <p class="footer-tagline" data-key="ft-tagline">Kreativt webdesign-studio.<br/>Vi bygger nettsider som skiller seg ut.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-key="ft-h1">Tjenester</h4>
+      <ul>
+        <li><a href="#tjenester" data-key="ft-s1">Webdesign</a></li>
+        <li><a href="#tjenester" data-key="ft-s2">Utvikling</a></li>
+        <li><a href="#tjenester" data-key="ft-s3">E-handel</a></li>
+        <li><a href="#tjenester" data-key="ft-s4">Vekststrategi</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-key="ft-h2">Selskap</h4>
+      <ul>
+        <li><a href="#om" data-key="ft-c1">Om oss</a></li>
+        <li><a href="#portefolje" data-key="ft-c2">Portefølje</a></li>
+        <li><a href="#blogg" data-key="ft-c3">Blogg</a></li>
+        <li><a href="#kontakt" data-key="ft-c4">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-key="ft-h3">Kontakt</h4>
+      <ul>
+        <li><a href="mailto:yamsasno@gmail.com">yamsasno@gmail.com</a></li>
+        <li><a href="tel:90721481">90 72 14 81</a></li>
+        <li><a href="#" data-key="ft-loc">Trondheim, Norge</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy" data-key="ft-copy">© 2026 DEMO / YAMS AS · Org.nr. 937 814 461</span>
+    <span class="footer-copy" data-key="ft-rights">Alle rettigheter forbeholdt</span>
+  </div>
+</footer>
+
+<!-- CHAT -->
+<button id="chat-btn" aria-label="Chat">
+  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+</button>
+<div id="chat-win">
+  <div class="cw-header">
+    <div><div class="cw-title">DEMO Assistant</div><div class="cw-sub">● Online nå</div></div>
+    <button class="cw-close" id="chatClose">✕</button>
+  </div>
+  <div class="cw-msgs" id="cwMsgs"></div>
+  <div class="cw-input-row">
+    <input class="cw-input" id="cwInput" placeholder="Still meg et spørsmål..." autocomplete="off"/>
+    <button class="cw-send" id="cwSend">→</button>
+  </div>
+</div>
+
+<script>
+/* ── TRANSLATIONS ── */
+const T = {
+  no: {
+    'nav-home':'Hjem','nav-about':'Om oss','nav-services':'Tjenester','nav-portfolio':'Portefølje','nav-blog':'Blogg','nav-contact':'Kontakt','nav-cta':'Kom i gang',
+    'hero-tag':'Webdesign Studio — Est. Norge','hero-line1':'VI','hero-line2':'BYGGER','hero-line3':'FREMTIDEN',
+    'hero-sub':'Skreddersydde nettsider som skiller seg ut — fra konsept til lansering og videre vekst.',
+    'stat1':'Fornøyde kunder','stat2':'Responstid','hero-scroll':'Scroll',
+    'about-label':'Om oss','about-title':'Vi bygger nettsider<br/>som <em>leverer</em><br/>resultater.',
+    'about-body':'DEMO er et kreativt webdesign-studio som hjelper norske bedrifter å etablere en sterk digital tilstedeværelse. Vi kombinerer strategisk tenkning, moderne design og solid teknologi for å skape nettsider som ikke bare ser bra ut — de faktisk konverterer.',
+    'about-body2':'Fra enkel presentasjonsside til komplekse e-handelsplattformer — vi tar prosjektet ditt fra konsept til lansering, og fortsetter å støtte deg i vekstfasen.',
+    'about-badge':'År med erfaring',
+    'svc-label':'Tjenester','svc-title':'Hva vi<br/><em>tilbyr</em>',
+    'svc1-title':'Webdesign','svc1-desc':'Visuelt overbevisende, strategisk gjennomtenkte layouts som kommuniserer merkevaren din umiddelbart.',
+    'svc2-title':'Webutvikling','svc2-desc':'Rask, sikker og skalerbar kode bygget på moderne rammeverk. Optimalisert for ytelse og SEO.',
+    'svc3-title':'Vekststrategi','svc3-desc':'Vi går utover lansering. SEO, analyse, konverteringsoptimalisering og løpende support.',
+    'svc4-title':'E-handel','svc4-desc':'Komplette nettbutikkløsninger med betalingsintegrasjon, produktstyring og konverteringsoptimalisert design.',
+    'svc5-title':'Vedlikehold','svc5-desc':'Løpende oppdateringer, sikkerhetsoversåking, backup og hosting. Vi tar oss av teknikken.',
+    'svc6-title':'Foto & Media','svc6-desc':'Redaksjonell produktfotografering og mediaproduksjon tilpasset nett.',
+    'port-label':'Portefølje','port-title':'Nylige<br/><em>prosjekter</em>','port-all':'Se alle →',
+    'proc-label':'Prosess','proc-title':'Slik jobber<br/><em>vi</em>',
+    'proc1-t':'Oppdagelse','proc1-d':'Vi setter oss grundig inn i din bedrift, dine mål og målgruppe.',
+    'proc2-t':'Design','proc2-d':'Høy-fidelity mockups med 2 runder revisjoner. Du godkjenner designet før vi bygger.',
+    'proc3-t':'Bygging','proc3-d':'Ren, ytelsesdyktig kode. Mobile-first, rask lastetid og fullt SEO-optimalisert.',
+    'proc4-t':'Lansering & Vekst','proc4-d':'Vi håndterer utrulling og gir løpende support etter lansering.',
+    'blog-label':'Blogg','blog-title':'Tips & <em>innsikt</em>',
+    'blog1-cat':'Webdesign','blog1-title':'Hvorfor mobile-first er viktigere enn noensinne','blog1-meta':'7 min lesing · Webdesign',
+    'blog2-cat':'SEO','blog2-title':'5 SEO-tips som faktisk fungerer for norske bedrifter','blog2-meta':'5 min lesing · SEO',
+    'blog3-cat':'Ytelse','blog3-title':'Slik gjør du nettsiden din lynrask — uten å ofre design','blog3-meta':'6 min lesing · Utvikling',
+    'contact-label':'Kontakt','contact-title':'La oss<br/>bygge noe<br/><em>stort.</em>','contact-sub':'Klar til å ta steget? Fortell oss om prosjektet ditt og vi kommer tilbake til deg innen 24 timer.',
+    'contact-loc':'Trondheim, Norge',
+    'flabel-name':'Navn','flabel-email':'E-post','flabel-project':'Prosjekt',
+    'form-submit':'Send melding →','suc-title':'Melding sendt!','suc-body':'Vi tar kontakt innen 24 timer.',
+    'ft-tagline':'Kreativt webdesign-studio.<br/>Vi bygger nettsider som skiller seg ut.',
+    'ft-h1':'Tjenester','ft-h2':'Selskap','ft-h3':'Kontakt',
+    'ft-s1':'Webdesign','ft-s2':'Utvikling','ft-s3':'E-handel','ft-s4':'Vekststrategi',
+    'ft-c1':'Om oss','ft-c2':'Portefølje','ft-c3':'Blogg','ft-c4':'Kontakt',
+    'ft-loc':'Trondheim, Norge','ft-copy':'© 2026 DEMO / YAMS AS · Org.nr. 937 814 461','ft-rights':'Alle rettigheter forbeholdt',
+  },
+  en: {
+    'nav-home':'Home','nav-about':'About','nav-services':'Services','nav-portfolio':'Portfolio','nav-blog':'Blog','nav-contact':'Contact','nav-cta':'Get started',
+    'hero-tag':'Web Design Studio — Est. Norway','hero-line1':'WE','hero-line2':'BUILD','hero-line3':'THE FUTURE',
+    'hero-sub':'Custom websites that stand out — from concept to launch and beyond.',
+    'stat1':'Client satisfaction','stat2':'Response time','hero-scroll':'Scroll',
+    'about-label':'About us','about-title':'We build websites<br/>that <em>deliver</em><br/>results.',
+    'about-body':'DEMO is a creative web design studio helping Norwegian businesses establish a strong digital presence. We combine strategic thinking, modern design, and solid technology to create websites that don\'t just look great — they actually convert.',
+    'about-body2':'From simple presentation sites to complex e-commerce platforms — we take your project from concept to launch, and continue to support you in the growth phase.',
+    'about-badge':'Years of experience',
+    'svc-label':'Services','svc-title':'What we<br/><em>offer</em>',
+    'svc1-title':'Web Design','svc1-desc':'Visually compelling, strategically considered layouts that communicate your brand\'s value instantly.',
+    'svc2-title':'Web Development','svc2-desc':'Fast, secure, and scalable code built on modern frameworks. Optimized for performance and SEO.',
+    'svc3-title':'Growth Strategy','svc3-desc':'We go beyond launch. SEO, analytics, conversion optimisation and ongoing support.',
+    'svc4-title':'E-commerce','svc4-desc':'Complete online shop solutions with payment integration, inventory management and conversion-optimized design.',
+    'svc5-title':'Maintenance','svc5-desc':'Ongoing updates, security monitoring, backups and hosting. We handle the tech so you can focus on business.',
+    'svc6-title':'Photo & Media','svc6-desc':'Editorial product photography and media production tailored for the web.',
+    'port-label':'Portfolio','port-title':'Recent<br/><em>projects</em>','port-all':'See all →',
+    'proc-label':'Process','proc-title':'How we<br/><em>work</em>',
+    'proc1-t':'Discovery','proc1-d':'We dig deep into your business, goals and target audience. A solid foundation is key to success.',
+    'proc2-t':'Design','proc2-d':'High-fidelity mockups with 2 rounds of revisions. You approve the design before we build.',
+    'proc3-t':'Build','proc3-d':'Clean, performant code. Mobile-first, fast load times and fully SEO-optimized from day one.',
+    'proc4-t':'Launch & Grow','proc4-d':'We handle deployment and provide ongoing support. Your site keeps improving after launch.',
+    'blog-label':'Blog','blog-title':'Tips & <em>insights</em>',
+    'blog1-cat':'Web Design','blog1-title':'Why mobile-first is more important than ever','blog1-meta':'7 min read · Web Design',
+    'blog2-cat':'SEO','blog2-title':'5 SEO tips that actually work for Norwegian businesses','blog2-meta':'5 min read · SEO',
+    'blog3-cat':'Performance','blog3-title':'How to make your website lightning fast without sacrificing design','blog3-meta':'6 min read · Development',
+    'contact-label':'Contact','contact-title':'Let\'s build<br/>something<br/><em>great.</em>','contact-sub':'Ready to take the step? Tell us about your project and we\'ll get back to you within 24 hours.',
+    'contact-loc':'Trondheim, Norway',
+    'flabel-name':'Name','flabel-email':'Email','flabel-project':'Project',
+    'form-submit':'Send message →','suc-title':'Message sent!','suc-body':'We\'ll be in touch within 24 hours.',
+    'ft-tagline':'Creative web design studio.<br/>We build websites that stand out.',
+    'ft-h1':'Services','ft-h2':'Company','ft-h3':'Contact',
+    'ft-s1':'Web Design','ft-s2':'Development','ft-s3':'E-commerce','ft-s4':'Growth Strategy',
+    'ft-c1':'About','ft-c2':'Portfolio','ft-c3':'Blog','ft-c4':'Contact',
+    'ft-loc':'Trondheim, Norway','ft-copy':'© 2026 DEMO / YAMS AS · Org. 937 814 461','ft-rights':'All rights reserved',
+  }
+};
+
+let lang = localStorage.getItem('yams_lang') || 'no';
+
+function setLang(l) {
+  lang = l;
+  localStorage.setItem('yams_lang', l);
+  document.getElementById('lb-no').classList.toggle('active', l === 'no');
+  document.getElementById('lb-en').classList.toggle('active', l === 'en');
+  document.documentElement.lang = l;
+  applyLang();
+}
+
+function applyLang() {
+  const t = T[lang];
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const k = el.dataset.key;
+    if (!t[k]) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = t[k];
+    else el.innerHTML = t[k];
+  });
+  document.querySelector('.cw-input').placeholder = lang === 'no' ? 'Still meg et spørsmål...' : 'Ask me anything...';
+}
+
+/* ── NAV SCROLL ── */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+/* ── BURGER ── */
+const burger = document.getElementById('navBurger');
+const mob = document.getElementById('mobMenu');
+let menuOpen = false;
+burger.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  mob.classList.toggle('open', menuOpen);
+  const s = burger.querySelectorAll('span');
+  s[0].style.transform = menuOpen ? 'rotate(45deg) translate(5px,5px)' : '';
+  s[1].style.opacity = menuOpen ? '0' : '1';
+  s[2].style.transform = menuOpen ? 'rotate(-45deg) translate(5px,-5px)' : '';
+});
+document.querySelectorAll('.mob-l').forEach(l => l.addEventListener('click', () => {
+  menuOpen = false;
+  mob.classList.remove('open');
+  burger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = '1'; });
+}));
+
+/* ── SCROLL REVEAL ── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .12 });
+document.querySelectorAll('.reveal, .reveal-l').forEach(el => observer.observe(el));
+
+/* ── CONTACT FORM ── */
+document.getElementById('demoForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = document.getElementById('formSubmit');
+  btn.textContent = lang === 'no' ? 'Sender...' : 'Sending...';
+  btn.disabled = true;
+  try {
+    await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({
+        access_key: '79d11e30-fd01-499a-93b2-72a2831a8e61',
+        subject: 'Ny henvendelse — DEMO nettside',
+        from_name: 'DEMO',
+        name: document.getElementById('fname').value,
+        email: document.getElementById('femail').value,
+        message: document.getElementById('fproject').value
+      })
+    });
+  } catch(err) { console.error(err); }
+  document.getElementById('demoForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+});
+
+/* ── CHAT ── */
+const chatBtn = document.getElementById('chat-btn');
+const chatWin = document.getElementById('chat-win');
+const chatClose = document.getElementById('chatClose');
+const cwMsgs = document.getElementById('cwMsgs');
+const cwInput = document.getElementById('cwInput');
+const cwSend = document.getElementById('cwSend');
+let chatOpen = false;
+
+const KB = {
+  no: {
+    greeting: 'Hei! 👋 Jeg er DEMO-assistenten. Jeg kan svare på spørsmål om tjenester, priser og prosess. Hva kan jeg hjelpe deg med?',
+    services: 'Vi tilbyr webdesign, webutvikling, e-handel, vekststrategi, vedlikehold og foto. Hvilken tjeneste er du interessert i?',
+    pricing: 'Priser varierer etter prosjektets omfang. Ta kontakt på yamsasno@gmail.com for et skreddersydd tilbud — vi svarer innen 24 timer!',
+    process: 'Prosessen vår: 1) Oppdagelse → 2) Design → 3) Bygging → 4) Lansering. Typisk 1–3 uker fra brief til ferdig nettside.',
+    contact: '📧 yamsasno@gmail.com\n📞 90 72 14 81\n⏱️ Vi svarer innen 24 timer',
+    fallback: 'Godt spørsmål! Kontakt oss på yamsasno@gmail.com for et detaljert svar — vi svarer innen 24 timer. 💬',
+  },
+  en: {
+    greeting: 'Hi! 👋 I\'m the DEMO assistant. I can answer questions about services, pricing and process. What can I help you with?',
+    services: 'We offer web design, development, e-commerce, growth strategy, maintenance and photography. Which service interests you?',
+    pricing: 'Pricing varies by project scope. Contact us at yamsasno@gmail.com for a tailored quote — we respond within 24 hours!',
+    process: 'Our process: 1) Discovery → 2) Design → 3) Build → 4) Launch. Typically 1–3 weeks from brief to finished website.',
+    contact: '📧 yamsasno@gmail.com\n📞 90 72 14 81\n⏱️ We respond within 24 hours',
+    fallback: 'Great question! Contact us at yamsasno@gmail.com for a detailed answer — we reply within 24 hours. 💬',
+  }
+};
+
+function getBot(msg) {
+  const m = msg.toLowerCase();
+  const kb = KB[lang];
+  if (/(hei|hello|hi|hallo)/.test(m)) return kb.greeting;
+  if (/(tjeneste|service|offer|tilbyr)/.test(m)) return kb.services;
+  if (/(pris|price|cost|koste|budsjett|budget)/.test(m)) return kb.pricing;
+  if (/(prosess|process|tid|time|how long|levering)/.test(m)) return kb.process;
+  if (/(kontakt|contact|email|telefon|ring|phone)/.test(m)) return kb.contact;
+  return kb.fallback;
+}
+
+function addMsg(text, role) {
+  const d = document.createElement('div');
+  d.className = 'cw-msg ' + role;
+  d.innerHTML = text.replace(/\n/g,'<br>');
+  cwMsgs.appendChild(d);
+  cwMsgs.scrollTop = cwMsgs.scrollHeight;
+}
+
+function openChat() {
+  chatOpen = true;
+  chatWin.classList.add('open');
+  if (!cwMsgs.children.length) {
+    setTimeout(() => addMsg(KB[lang].greeting, 'bot'), 300);
+  }
+}
+
+chatBtn.addEventListener('click', () => chatOpen ? (chatOpen=false, chatWin.classList.remove('open')) : openChat());
+chatClose.addEventListener('click', () => { chatOpen=false; chatWin.classList.remove('open'); });
+
+function sendChat() {
+  const msg = cwInput.value.trim();
+  if (!msg) return;
+  addMsg(msg, 'user');
+  cwInput.value = '';
+  setTimeout(() => addMsg(getBot(msg), 'bot'), 600);
+}
+cwSend.addEventListener('click', sendChat);
+cwInput.addEventListener('keydown', e => e.key === 'Enter' && sendChat());
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('lb-no').classList.toggle('active', lang === 'no');
+  document.getElementById('lb-en').classList.toggle('active', lang === 'en');
+  document.documentElement.lang = lang;
+  applyLang();
+});
+</script>
+</body>
+</html>
