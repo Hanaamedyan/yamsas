@@ -141,11 +141,11 @@ footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245
 <article>
   <div class="art-hero">
     <div class="art-breadcrumb">
-      <a href="../">Forside</a> ›
-      <a href="./index.html">Blogg</a> ›
-      <span>Nettbygging</span>
+      <a href="../" data-key="crumb-home">Forside</a> ›
+      <a href="./index.html" data-key="crumb-blog">Blogg</a> ›
+      <span data-key="crumb-cat">Nettbygging</span>
     </div>
-    <div class="art-cat">Nettbygging</div>
+    <div class="art-cat" data-key="crumb-cat">Nettbygging</div>
     <h1>WordPress eller skreddersydd nettside — hva bør du velge?</h1>
     <div class="art-meta">
       <span>15. juli 2026</span>
@@ -286,37 +286,37 @@ footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245
 
     <aside class="art-sidebar">
       <div class="sidebar-box">
-        <h4>I denne artikkelen</h4>
+        <h4 data-key="sb-toc">I denne artikkelen</h4>
         <ul class="sidebar-toc">
-          <li><a href="#alternativer">De tre alternativene</a></li>
-          <li><a href="#sammenligning">Sammenligningstabel</a></li>
-          <li><a href="#seo">SEO og plattformvalg</a></li>
-          <li><a href="#wordpress-tips">WordPress-tips</a></li>
-          <li><a href="#nar-velge">Når velge hva?</a></li>
-          <li><a href="#konklusjon">Vår anbefaling</a></li>
+          <li><a href="#alternativer" data-key="toc-1">De tre alternativene</a></li>
+          <li><a href="#sammenligning" data-key="toc-2">Sammenligningstabel</a></li>
+          <li><a href="#seo" data-key="toc-3">SEO og plattformvalg</a></li>
+          <li><a href="#wordpress-tips" data-key="toc-4">WordPress-tips</a></li>
+          <li><a href="#nar-velge" data-key="toc-5">Når velge hva?</a></li>
+          <li><a href="#konklusjon" data-key="toc-6">Vår anbefaling</a></li>
         </ul>
       </div>
       <div class="sidebar-cta">
-        <h4>Få et tilbud</h4>
-        <p>Vi hjelper deg velge riktig plattform og bygger en nettside som rangerer på Google.</p>
-        <a href="../#contact">Start her →</a>
+        <h4 data-key="sb-cta-title">Få et tilbud</h4>
+        <p data-key="sb-cta-p">Vi hjelper deg velge riktig plattform og bygger en nettside som rangerer på Google.</p>
+        <a href="../#contact" data-key="sb-cta-link">Start her →</a>
       </div>
     </aside>
   </div>
 </article>
 
 <div class="related">
-  <h2>Les også</h2>
+  <h2 data-key="related-title">Les også</h2>
   <div class="related-grid">
     <a class="related-card" href="./nettside-pris-norge.html">
-      <div class="related-cat">Priser & Budsjett</div>
-      <div class="related-title">Hva koster en nettside i Norge?</div>
-      <div class="related-arrow">Les artikkelen →</div>
+      <div class="related-cat" data-key="rel1-cat">Priser & Budsjett</div>
+      <div class="related-title" data-key="rel1-title">Hva koster en nettside i Norge?</div>
+      <div class="related-arrow" data-key="read-art">Les artikkelen →</div>
     </a>
     <a class="related-card" href="./seo-for-sma-bedrifter.html">
       <div class="related-cat">SEO</div>
-      <div class="related-title">SEO for små bedrifter</div>
-      <div class="related-arrow">Les artikkelen →</div>
+      <div class="related-title" data-key="rel2-title">SEO for små bedrifter</div>
+      <div class="related-arrow" data-key="read-art2">Les artikkelen →</div>
     </a>
   </div>
 </div>
@@ -325,18 +325,37 @@ footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245
   <div class="footer-inner">
     <div class="footer-brand">YAMS</div>
     <ul class="footer-links">
-      <li><a href="../">Forside</a></li>
-      <li><a href="./index.html">Blogg</a></li>
-      <li><a href="../#contact">Kontakt</a></li>
-      <li><a href="../privacy.html">Personvern</a></li>
+      <li><a href="../" data-key="ft-home">Forside</a></li>
+      <li><a href="./index.html" data-key="ft-blog">Blogg</a></li>
+      <li><a href="../#contact" data-key="ft-contact">Kontakt</a></li>
+      <li><a href="../privacy.html" data-key="ft-privacy">Personvern</a></li>
       <li><a href="../quiz.html" style="color:#C8A660;">Quiz ✦</a></li>
     </ul>
-    <span class="footer-copy">© 2026 YAMS AS · Org.nr. 937 814 461</span>
+    <span class="footer-copy" data-key="ft-copy">© 2026 YAMS AS · Org.nr. 937 814 461</span>
   </div>
 </footer>
 
 <script>
-const BT={en:{'nav-services':'Services','nav-work':'Work','nav-process':'Process','nav-about':'About','nav-blog':'Blog','nav-contact':'Contact','nav-cta':'Get a quote'},no:{'nav-services':'Tjenester','nav-work':'Arbeid','nav-process':'Prosess','nav-about':'Om oss','nav-blog':'Blogg','nav-contact':'Kontakt','nav-cta':'Få et tilbud'}};
+const BT={
+  en:{
+    'nav-services':'Services','nav-work':'Work','nav-process':'Process','nav-about':'About','nav-blog':'Blog','nav-contact':'Contact','nav-cta':'Get a quote',
+    'crumb-home':'Home','crumb-blog':'Blog','crumb-cat':'Web Development',
+    'sb-toc':'In this article','sb-cta-title':'Get a quote','sb-cta-p':'We help you choose the right platform and build a website that ranks on Google.','sb-cta-link':'Start here →',
+    'toc-1':'The three options','toc-2':'Comparison table','toc-3':'SEO and platform','toc-4':'WordPress tips','toc-5':'When to choose what','toc-6':'Our recommendation',
+    'related-title':'Read also','rel1-cat':'Pricing & Budget','rel1-title':'What does a website cost in Norway?','rel2-title':'SEO for small businesses',
+    'read-art':'Read article →','read-art2':'Read article →',
+    'ft-home':'Home','ft-blog':'Blog','ft-contact':'Contact','ft-privacy':'Privacy Policy','ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461'
+  },
+  no:{
+    'nav-services':'Tjenester','nav-work':'Arbeid','nav-process':'Prosess','nav-about':'Om oss','nav-blog':'Blogg','nav-contact':'Kontakt','nav-cta':'Få et tilbud',
+    'crumb-home':'Forside','crumb-blog':'Blogg','crumb-cat':'Nettbygging',
+    'sb-toc':'I denne artikkelen','sb-cta-title':'Få et tilbud','sb-cta-p':'Vi hjelper deg velge riktig plattform og bygger en nettside som rangerer på Google.','sb-cta-link':'Start her →',
+    'toc-1':'De tre alternativene','toc-2':'Sammenligningstabel','toc-3':'SEO og plattformvalg','toc-4':'WordPress-tips','toc-5':'Når velge hva?','toc-6':'Vår anbefaling',
+    'related-title':'Les også','rel1-cat':'Priser & Budsjett','rel1-title':'Hva koster en nettside i Norge?','rel2-title':'SEO for små bedrifter',
+    'read-art':'Les artikkelen →','read-art2':'Les artikkelen →',
+    'ft-home':'Forside','ft-blog':'Blogg','ft-contact':'Kontakt','ft-privacy':'Personvern','ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461'
+  }
+};
 function setLang(lang){localStorage.setItem('yams_lang',lang);document.getElementById('lb-en').classList.toggle('active',lang==='en');document.getElementById('lb-no').classList.toggle('active',lang==='no');document.documentElement.lang=lang;document.querySelectorAll('[data-key]').forEach(el=>{const v=BT[lang][el.dataset.key];if(v!==undefined)el.innerHTML=v;});}
 setLang(localStorage.getItem('yams_lang')||'en');
 </script>
