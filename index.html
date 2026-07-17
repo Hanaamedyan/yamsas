@@ -896,7 +896,7 @@ footer { border-top-color:rgba(245,242,236,.2); }
     <li><a href="#work">Work</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#process">Process</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="./contact.html">Contact</a></li>
     <li><a href="./about.html">About</a></li>
     <li><a href="./blog/">Blog</a></li>
     <li><a href="./quiz.html" style="color:#C8A660;">Quiz</a></li>
@@ -913,7 +913,7 @@ footer { border-top-color:rgba(245,242,236,.2); }
     <li><a href="#work">Work</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#process">Process</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="./contact.html">Contact</a></li>
     <li><a href="./about.html">About</a></li>
     <li><a href="./blog/">Blog</a></li>
     <li><a href="./quiz.html" style="color:#C8A660;">Quiz</a></li>
@@ -1293,41 +1293,15 @@ footer { border-top-color:rgba(245,242,236,.2); }
 
 <!-- CONTACT -->
 <div class="contact" id="contact">
-  <div class="contact-bg" aria-hidden="true">LET'S TALK</div>
-  <span class="contact-label">Ready when you are</span>
-  <h2 class="contact-title">Let's Build<br>Something Great</h2>
-  <p class="contact-sub">Tell us about your project and we'll get back to you within 24 hours with a tailored proposal.</p>
-
-  <div class="contact-form-wrap">
-    <form id="contactForm" novalidate>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label" for="fname">Full Name</label>
-          <input class="form-input" type="text" id="fname" placeholder="Your name" required/>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="femail">Email Address</label>
-          <input class="form-input" type="email" id="femail" placeholder="your@email.com" required/>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="fproject">Project Description</label>
-        <textarea class="form-input form-textarea" id="fproject" placeholder="Tell us about your project, goals, and timeline..." required></textarea>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="fbudget">Desired Budget <span class="budget-display" id="budgetDisplay">NOK 30k</span></label>
-        <input class="form-range" type="range" id="fbudget" min="10000" max="50000" step="5000" value="30000"/>
-        <div class="range-labels"><span>NOK 10k</span><span>NOK 50k</span></div>
-      </div>
-      <button class="btn-white form-submit" type="submit" id="formSubmit">Send Your Inquiry</button>
-    </form>
-    <div class="form-success-msg" id="formSuccess">
-      <div class="form-success-title">Message Sent</div>
-      <p class="form-success-body">Thanks for reaching out. We'll review your inquiry and get back to you within 24 hours.</p>
-    </div>
-  </div>
-
-  <p class="contact-email">Or email us at <a href="mailto:yamsasno@gmail.com">yamsasno@gmail.com</a><br/>📞 Hana: <a href="tel:90721481" style="border-bottom:none;">90 72 14 81</a> &nbsp;·&nbsp; Johan: <a href="tel:99109943" style="border-bottom:none;">99 10 99 43</a></p>
+  <div class="contact-bg" aria-hidden="true" data-key="contact-bg">LET'S TALK</div>
+  <span class="contact-label" data-key="contact-label">Ready when you are</span>
+  <h2 class="contact-title" data-key="contact-title">Let's Build<br>Something Great</h2>
+  <p class="contact-sub" data-key="contact-sub">Tell us about your project and we'll get back to you within 24 hours with a tailored proposal.</p>
+  <a href="./contact.html" class="btn-white" style="display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--black);background:var(--white);padding:1.1rem 2.8rem;transition:background .2s;" data-key="contact-cta">Get In Touch →</a>
+  <p class="contact-email" style="margin-top:2.5rem;">
+    <span data-key="contact-email-t">Or email us at</span>
+    <a href="mailto:yamsasno@gmail.com">yamsasno@gmail.com</a>
+  </p>
 </div>
 
 <!-- QUIZ CTA -->
@@ -1432,7 +1406,7 @@ footer { border-top-color:rgba(245,242,236,.2); }
       <ul>
         <li><a href="#work">Our Work</a></li>
         <li><a href="#process">Process</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="./contact.html">Contact</a></li>
         <li><a href="./blog/">Blog</a></li>
         <li><a href="./quiz.html" style="color:#C8A660;">Nettside-quiz ✦</a></li>
       </ul>
@@ -1526,79 +1500,6 @@ if(slider && display){
   slider.addEventListener('input', () => { display.textContent = fmt(slider.value); });
 }
 
-/* CONTACT FORM — sends to yamsasno@gmail.com via Web3Forms */
-const form       = document.getElementById('contactForm');
-const successMsg = document.getElementById('formSuccess');
-const submitBtn  = document.getElementById('formSubmit');
-
-/*
- * ─────────────────────────────────────────────────────
- *  HOW TO ACTIVATE EMAIL DELIVERY:
- *  1. Go to https://web3forms.com
- *  2. Enter yamsasno@gmail.com → click "Create Access Key"
- *  3. Copy the key and paste it below replacing YOUR_ACCESS_KEY
- * ─────────────────────────────────────────────────────
- */
-const WEB3_KEY = '79d11e30-fd01-499a-93b2-72a2831a8e61';
-
-if(form){
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    const lang = localStorage.getItem('yams_lang') || 'en';
-    const isNo = lang === 'no';
-
-    const name    = document.getElementById('fname').value.trim();
-    const email   = document.getElementById('femail').value.trim();
-    const project = document.getElementById('fproject').value.trim();
-    const budget  = document.getElementById('budgetDisplay')?.textContent || '';
-
-    if(!name || !email) return;
-
-    submitBtn.disabled    = true;
-    submitBtn.textContent = isNo ? 'Sender...' : 'Sending...';
-
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          access_key:  WEB3_KEY,
-          subject:     `New inquiry from ${name} — YAMS`,
-          from_name:   'YAMS Website',
-          replyto:     email,
-          name:        name,
-          email:       email,
-          project:     project || '—',
-          budget:      budget  || '—',
-          message:     `Name: ${name}\nEmail: ${email}\n\nProject:\n${project}\n\nBudget: ${budget}`
-        })
-      });
-
-      const data = await res.json();
-
-      if(data.success) {
-        form.style.display = 'none';
-        if(successMsg) successMsg.style.display = 'block';
-      } else {
-        throw new Error(data.message || 'Failed');
-      }
-    } catch(err) {
-      /* Fallback: if no key set or network error, still show success UX
-         and open mailto as a backup */
-      if(WEB3_KEY === 'YOUR_ACCESS_KEY') {
-        /* No key configured — open mailto fallback */
-        const subject = encodeURIComponent(`New inquiry from ${name}`);
-        const body    = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nProject:\n${project}\n\nBudget: ${budget}`);
-        window.open(`mailto:yamsasno@gmail.com?subject=${subject}&body=${body}`);
-      }
-      form.style.display = 'none';
-      if(successMsg) successMsg.style.display = 'block';
-    } finally {
-      submitBtn.disabled    = false;
-      submitBtn.textContent = isNo ? 'Send forespørsel' : 'Send Your Inquiry';
-    }
-  });
-}
 </script>
 
 <script>
@@ -1636,10 +1537,10 @@ const TRANSLATIONS = {
     'cta-pkg2':'Start the quiz',
     'hero-quiz-pill':'Get a free website plan in 2 minutes →',
     'quiz-cta-label':'Free website plan','quiz-cta-title':'Get a free website<br/>plan in <em>2 minutes</em>.','quiz-cta-sub':'Answer a few questions — we\'ll send you a tailored proposal within 24 hours.','quiz-cta-btn':'Start the quiz →','quiz-cta-note':'No obligation · We respond within 24 hours','qstep1':'Answer questions','qstep2':'We prepare a quote','qstep3':'We build your site',
-    'contact-bg':"LET'S TALK",'contact-label':'Ready when you are','contact-title':'Ready to Grow?<br>Let\'s Build It.','contact-sub':"Book a free consultation, get a website audit, or receive your proposal today — we respond within 24 hours.",
+    'contact-bg':"LET'S TALK",'contact-label':'Ready when you are','contact-title':'Ready to Grow?<br>Let\'s Build It.','contact-sub':"Book a free consultation, get a website audit, or receive your proposal today — we respond within 24 hours.",'contact-cta':'Get In Touch →',
     'flabel-name':'Full Name','fph-name':'Your name','flabel-email':'Email Address','fph-email':'your@email.com','flabel-proj':'Project Description','fph-proj':'Tell us about your project, goals, and timeline...','flabel-budget':'Desired Budget',
     'form-submit':'Receive Your Proposal Today','suc-title':'Message Sent','suc-body':"Thanks for reaching out. We'll review your inquiry and get back to you within 24 hours.",
-    'contact-email-t':'Or email us directly at',
+    'contact-email-t':'Or email us at',
     'rev-label':'What our clients say','rev-heading':'Real reviews.<br/>Real results.','rev-count':'Google Reviews','via-google':'Via Google','rev-btn':'See all reviews on Google',
     'rev-quote':'"Really happy with both the service and the website I received. Fast communication and a great end result. 5/5!"',
     'rev-author-name':'Erlend Grande','rev-author-role':'Artist, Strobe',
@@ -1688,7 +1589,7 @@ const TRANSLATIONS = {
     'cta-pkg2':'Start quizen',
     'hero-quiz-pill':'Få en gratis nettsideplan på 2 minutter →',
     'quiz-cta-label':'Gratis nettsideplan','quiz-cta-title':'Få en gratis nettsideplan<br/>på <em>2 minutter</em>.','quiz-cta-sub':'Svar på noen spørsmål — vi sender deg et skreddersydd tilbud innen 24 timer.','quiz-cta-btn':'Start quizen →','quiz-cta-note':'Ingen forpliktelse · Vi svarer innen 24 timer','qstep1':'Svar på spørsmål','qstep2':'Vi lager tilbud','qstep3':'Vi bygger siden din',
-    'contact-bg':'LA OSS PRATE','contact-label':'Klar når du er klar','contact-title':'Klar for vekst?<br>La oss bygge.','contact-sub':'Book en gratis konsultasjon, få en nettside-analyse, eller motta ditt tilbud i dag — vi svarer innen 24 timer.',
+    'contact-bg':'LA OSS PRATE','contact-label':'Klar når du er klar','contact-title':'Klar for vekst?<br>La oss bygge.','contact-sub':'Book en gratis konsultasjon, få en nettside-analyse, eller motta ditt tilbud i dag — vi svarer innen 24 timer.','contact-cta':'Ta kontakt →',
     'flabel-name':'Fullt navn','fph-name':'Ditt navn','flabel-email':'E-postadresse','fph-email':'din@epost.no','flabel-proj':'Prosjektbeskrivelse','fph-proj':'Fortell oss om prosjektet ditt, mål og tidslinje...','flabel-budget':'Ønsket budsjett',
     'form-submit':'Motta ditt tilbud i dag','suc-title':'Melding sendt','suc-body':'Takk for at du tok kontakt. Vi gjennomgår forespørselen din og svarer innen 24 timer.',
     'contact-email-t':'Eller e-post oss direkte på',
