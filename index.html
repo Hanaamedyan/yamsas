@@ -109,6 +109,16 @@ nav {
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.5rem 3rem;
   mix-blend-mode: difference;
+  transition: background .35s, backdrop-filter .35s, border-color .35s;
+}
+@media(min-width:769px){
+  nav.scrolled {
+    mix-blend-mode: normal;
+    background: rgba(10,10,10,.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(245,242,236,.07);
+  }
 }
 @media(max-width:768px){
   nav {
@@ -2151,6 +2161,21 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
 
   // Init language
   applyLang(localStorage.getItem('yams_lang') || 'en');
+})();
+</script>
+
+<!-- Nav scroll behaviour (desktop only) -->
+<script>
+(function(){
+  const nav = document.getElementById('mainNav');
+  if(!nav) return;
+  function onScroll(){
+    if(window.innerWidth > 768){
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
 })();
 </script>
 
