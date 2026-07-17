@@ -110,6 +110,19 @@ footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245
   .related-grid{grid-template-columns:1fr;}
   footer{padding:2rem 1.5rem;}
 }
+
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:150;}
+.burger span{display:block;width:22px;height:1.5px;background:var(--white);transition:transform .3s,opacity .2s;}
+.burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.burger.open span:nth-child(2){opacity:0;}
+.burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.mobile-overlay{display:none;position:fixed;inset:0;background:var(--black);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;}
+.mobile-overlay.open{display:flex;}
+.mobile-overlay a{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,8vw,3rem);color:var(--white);opacity:.6;transition:opacity .2s;text-decoration:none;}
+.mobile-overlay a:hover{opacity:1;}
+@media(max-width:768px){
+  .burger{display:flex;}
+}
 </style>
 </head>
 <body>
@@ -130,7 +143,15 @@ footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245
     <li><a href="./index.html" class="active" data-key="nav-blog">Blogg</a></li>
     <li><a href="../quiz.html" style="color:#C8A660;">Quiz</a></li>
   </ul>
+  <button class="burger" id="burgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
+<div class="mobile-overlay" id="mobileOverlay">
+  <a href="../#work">Work</a>
+  <a href="../services.html">Services</a>
+  <a href="../contact.html">Contact</a>
+  <a href="../about.html">About</a>
+  <a href="../blog/">Blog</a>
+</div>
 
 <article>
   <div class="art-hero">
@@ -317,5 +338,22 @@ const BT={en:{'nav-services':'Services','nav-work':'Work','nav-process':'Process
 function setLang(lang){localStorage.setItem('yams_lang',lang);document.getElementById('lb-en').classList.toggle('active',lang==='en');document.getElementById('lb-no').classList.toggle('active',lang==='no');document.documentElement.lang=lang;document.querySelectorAll('[data-key]').forEach(el=>{const v=BT[lang][el.dataset.key];if(v!==undefined)el.innerHTML=v;});}
 setLang(localStorage.getItem('yams_lang')||'en');
 </script>
+<script>
+// Burger menu
+(function(){
+  const btn = document.getElementById('burgerBtn');
+  const menu = document.getElementById('mobileOverlay');
+  if(!btn || !menu) return;
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+})();</script>
 </body>
 </html>
