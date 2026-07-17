@@ -430,6 +430,24 @@ section, .manifesto, .services, .work-section, .process, .contact { padding: 8re
 /* FOOTER */
 footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgba(245,242,236,.12); }
 .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; max-width: 1300px; margin-left: auto; margin-right: auto; }
+
+/* Footer team accordion */
+.footer-team { max-width: 1300px; margin: 0 auto 3.5rem; border-top: 1px solid rgba(245,242,236,.1); }
+.footer-team-label { font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); padding: 1.8rem 0 1rem; }
+.footer-team-item { border-bottom: 1px solid rgba(245,242,236,.08); }
+.footer-team-row { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 0; cursor: pointer; gap: 1rem; }
+.footer-team-row:hover .footer-team-name { color: var(--white); }
+.footer-team-name { font-size: 1rem; font-weight: 600; color: rgba(245,242,236,.85); transition: color .2s; }
+.footer-team-role { font-size: .72rem; color: rgba(245,242,236,.35); letter-spacing: .03em; margin-top: .15rem; }
+.footer-team-btn { background: none; border: none; color: rgba(245,242,236,.3); font-size: 1.5rem; font-weight: 300; line-height: 1; cursor: pointer; transition: transform .3s ease, color .2s; flex-shrink: 0; width: 24px; text-align: center; }
+.footer-team-item.open .footer-team-btn { transform: rotate(45deg); color: var(--white); }
+.footer-team-item.open .footer-team-name { color: var(--white); }
+.footer-team-bio { max-height: 0; overflow: hidden; transition: max-height .35s ease, opacity .25s ease; opacity: 0; }
+.footer-team-item.open .footer-team-bio { max-height: 200px; opacity: 1; }
+.footer-team-bio-text { font-size: .85rem; color: rgba(245,242,236,.55); line-height: 1.8; padding-bottom: 1.2rem; }
+.footer-team-tel { display: inline-flex; align-items: center; gap: .45rem; font-size: .82rem; color: rgba(245,242,236,.4); margin-top: .4rem; margin-bottom: 1.2rem; transition: color .2s; text-decoration: none; }
+.footer-team-tel:hover { color: var(--white); }
+.footer-team-tel svg { flex-shrink: 0; }
 .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--white); margin-bottom: 1rem; line-height: 1; }
 .footer-tagline { font-size: .85rem; color: rgba(245,242,236,.65); line-height: 1.7; max-width: 260px; }
 .footer-col h4 { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; }
@@ -1279,6 +1297,63 @@ footer { border-top-color:rgba(245,242,236,.2); }
 
 <!-- FOOTER -->
 <footer>
+
+  <!-- TEAM ACCORDION -->
+  <div class="footer-team">
+    <div class="footer-team-label">Teamet</div>
+
+    <div class="footer-team-item">
+      <div class="footer-team-row" onclick="this.closest('.footer-team-item').classList.toggle('open')">
+        <div>
+          <div class="footer-team-name">Hana</div>
+          <div class="footer-team-role">Co-Founder &amp; Design Lead</div>
+        </div>
+        <button class="footer-team-btn" aria-label="Vis mer om Hana">+</button>
+      </div>
+      <div class="footer-team-bio">
+        <p class="footer-team-bio-text">Hana brings a sharp eye for visual identity and user experience. With years of hands-on experience building online businesses, she understands what makes a website not just beautiful — but effective.</p>
+        <a class="footer-team-tel" href="tel:+4790721481">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          +47 90 72 14 81
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-team-item">
+      <div class="footer-team-row" onclick="this.closest('.footer-team-item').classList.toggle('open')">
+        <div>
+          <div class="footer-team-name">Johan</div>
+          <div class="footer-team-role">Co-Founder &amp; Strategy Lead</div>
+        </div>
+        <button class="footer-team-btn" aria-label="Vis mer om Johan">+</button>
+      </div>
+      <div class="footer-team-bio">
+        <p class="footer-team-bio-text">Johan combines technical expertise with a deep understanding of what drives online growth. He knows exactly what separates a website that sits idle from one that generates revenue.</p>
+        <a class="footer-team-tel" href="tel:+4799109943">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          +47 99 10 99 43
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-team-item">
+      <div class="footer-team-row" onclick="this.closest('.footer-team-item').classList.toggle('open')">
+        <div>
+          <div class="footer-team-name">Cardo</div>
+          <div class="footer-team-role">Co-Founder &amp; Multimedia Designer</div>
+        </div>
+        <button class="footer-team-btn" aria-label="Vis mer om Cardo">+</button>
+      </div>
+      <div class="footer-team-bio">
+        <p class="footer-team-bio-text">Cardo brings creative energy and a multidisciplinary eye to every project — spanning visual design, motion and multimedia production. He elevates YAMS projects beyond the screen.</p>
+        <a class="footer-team-tel" href="tel:+4798181898">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          +47 98 18 18 98
+        </a>
+      </div>
+    </div>
+  </div>
+
   <div class="footer-top">
     <div>
       <div class="footer-brand">YAMS</div>
