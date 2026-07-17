@@ -191,52 +191,80 @@ footer{background:#0f1a14;padding:4rem 3rem 2rem;border-top:1px solid rgba(245,2
 </div>
 
 <footer>
-  <div class="footer-top">
-    <div>
-      <div class="footer-brand">YAMS</div>
-      <p class="footer-tagline" data-key="ft-tagline">Website solutions for businesses that want to grow. Norway-based, globally minded.</p>
+
+  <div class="footer-inner">
+
+    <!-- Til toppen -->
+    <button class="footer-totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+      Til toppen
+    </button>
+
+    <!-- Accordion -->
+    <div class="footer-acc-item">
+      <div class="footer-acc-row" onclick="this.closest('.footer-acc-item').classList.toggle('open')">
+        <span class="footer-acc-label">Tjenester</span>
+        <button class="footer-acc-btn" aria-label="Vis tjenester">+</button>
+      </div>
+      <div class="footer-acc-body">
+        <ul class="footer-acc-links">
+          <li><a href="./services.html">Web Design</a></li>
+          <li><a href="./services.html">Utvikling</a></li>
+          <li><a href="./services.html">E-handel</a></li>
+          <li><a href="./services.html">Vekststrategi</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4 data-key="ft-h1">Services</h4>
-      <ul>
-        <li><a href="./services.html" data-key="ft-s1">Web Design</a></li>
-        <li><a href="./services.html" data-key="ft-s2">Development</a></li>
-        <li><a href="./services.html" data-key="ft-s3">E-commerce</a></li>
-        <li><a href="./services.html" data-key="ft-s4">Growth Strategy</a></li>
+
+    <div class="footer-acc-item">
+      <div class="footer-acc-row" onclick="this.closest('.footer-acc-item').classList.toggle('open')">
+        <span class="footer-acc-label">Selskap</span>
+        <button class="footer-acc-btn" aria-label="Vis selskap">+</button>
+      </div>
+      <div class="footer-acc-body">
+        <ul class="footer-acc-links">
+          <li><a href="./index.html">Vårt arbeid</a></li>
+          <li><a href="./index.html#process">Prosess</a></li>
+          <li><a href="./contact.html">Kontakt</a></li>
+          <li><a href="./blog/" style="color:#C8A660;">Blogg</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-acc-item">
+      <div class="footer-acc-row" onclick="this.closest('.footer-acc-item').classList.toggle('open')">
+        <span class="footer-acc-label">Kontakt</span>
+        <button class="footer-acc-btn" aria-label="Vis kontakt">+</button>
+      </div>
+      <div class="footer-acc-body">
+        <ul class="footer-acc-links">
+          <li><a href="mailto:yamsasno@gmail.com">yamsasno@gmail.com</a></li>
+          <li><span style="color:rgba(245,242,236,.5);font-size:.88rem;">Trondheim, Norge</span></li>
+          <li><a href="tel:+4799109943">Johan: 99 10 99 43</a></li>
+          <li><a href="tel:+4790721481">Hana: 90 72 14 81</a></li>
+          <li><a href="tel:+4798181898">Cardo: 98 18 18 98</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 YAMS. All rights reserved. &nbsp;&middot;&nbsp; Org.nr. 937 814 461</span>
+      <ul class="footer-socials">
+        <li>
+          <a href="https://www.instagram.com/yamssolutions/" target="_blank" rel="noopener" aria-label="YAMS on Instagram" style="display:inline-flex;align-items:center;gap:.45rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/>
+            </svg>
+            Instagram
+          </a>
+        </li>
+        <li><a href="./privacy.html">Personvern</a></li>
       </ul>
     </div>
-    <div class="footer-col">
-      <h4 data-key="ft-h2">Company</h4>
-      <ul>
-        <li><a href="./#work" data-key="ft-c1">Our Work</a></li>
-        <li><a href="./about.html" data-key="ft-c2">About</a></li>
-        <li><a href="./contact.html" data-key="ft-c3">Contact</a></li>
-        <li><a href="./blog/" data-key="ft-c4">Blog</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4 data-key="ft-h3">Contact</h4>
-      <ul>
-        <li><a href="mailto:yamsasno@gmail.com">yamsasno@gmail.com</a></li>
-        <li><a href="tel:+4790721481">Hana: +47 90 72 14 81</a></li>
-        <li><a href="tel:+4799109943">Johan: +47 99 10 99 43</a></li>
-        <li><a href="tel:+4798181898">Cardo: +47 98 18 18 98</a></li>
-        <li style="color:rgba(245,242,236,.5);">Trondheim, Norway</li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy" data-key="ft-copy">&copy; 2026 YAMS. All rights reserved.</span>
-    <span class="footer-copy footer-orgno">Org.nr. 937 814 461</span>
-    <ul class="footer-socials">
-      <li>
-        <a href="https://www.instagram.com/yamssolutions/" target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
-          Instagram
-        </a>
-      </li>
-      <li><a href="./privacy.html" data-key="ft-priv">Privacy Policy</a></li>
-    </ul>
+
   </div>
 </footer>
 
