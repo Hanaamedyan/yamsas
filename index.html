@@ -428,24 +428,33 @@ section, .manifesto, .services, .work-section, .process, .contact { padding: 8re
 .form-success-body { font-size: 1rem; color: rgba(245,242,236,.6); line-height: 1.7; }
 
 /* FOOTER */
-footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgba(245,242,236,.12); }
-.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; max-width: 1300px; margin-left: auto; margin-right: auto; }
+/* ── FOOTER ── */
+footer { background: #0f1a14; padding: 2.5rem 3rem 2rem; border-top: 1px solid rgba(245,242,236,.12); }
+.footer-inner { max-width: 1300px; margin: 0 auto; }
 
-.footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--white); margin-bottom: 1rem; line-height: 1; }
-.footer-tagline { font-size: .85rem; color: rgba(245,242,236,.65); line-height: 1.7; max-width: 260px; }
-.footer-col h4 { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; }
-.footer-toggle { display: none; background: none; border: none; color: var(--accent); font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 2px; transition: transform .3s ease; flex-shrink: 0; }
-.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .8rem; }
-@media(max-width:768px){
-  .footer-toggle { display: block; }
-  .footer-col ul { max-height: 0; overflow: hidden; transition: max-height .35s ease, opacity .25s ease; opacity: 0; margin-top: 0; }
-  .footer-col.open ul { max-height: 400px; opacity: 1; margin-top: .8rem; }
-  .footer-col h4 { margin-bottom: .6rem; cursor: pointer; padding-bottom: .6rem; border-bottom: 1px solid rgba(245,242,236,.08); }
-  .footer-col.open .footer-toggle { transform: rotate(45deg); }
-}
-.footer-col ul a { font-size: .85rem; color: rgba(245,242,236,.72); transition: color .2s; }
-.footer-col ul a:hover { color: var(--white); }
-.footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2rem; border-top: 1px solid rgba(245,242,236,.12); max-width: 1300px; margin: 0 auto; }
+/* Til toppen */
+.footer-totop { display: inline-flex; align-items: center; gap: .5rem; font-size: .78rem; color: rgba(245,242,236,.4); letter-spacing: .04em; text-decoration: none; margin-bottom: 2rem; transition: color .2s; cursor: pointer; background: none; border: none; }
+.footer-totop:hover { color: rgba(245,242,236,.85); }
+.footer-totop svg { transition: transform .2s; }
+.footer-totop:hover svg { transform: translateY(-2px); }
+
+/* Accordion rows */
+.footer-acc-item { border-top: 1px solid rgba(245,242,236,.1); }
+.footer-acc-item:last-of-type { border-bottom: 1px solid rgba(245,242,236,.1); }
+.footer-acc-row { display: flex; align-items: center; justify-content: space-between; padding: 1.35rem 0; cursor: pointer; gap: 1rem; }
+.footer-acc-row:hover .footer-acc-label { color: var(--white); }
+.footer-acc-label { font-size: 1rem; font-weight: 500; color: rgba(245,242,236,.78); transition: color .2s; }
+.footer-acc-btn { background: none; border: none; color: rgba(245,242,236,.4); font-size: 1.4rem; font-weight: 300; line-height: 1; cursor: pointer; transition: transform .3s ease, color .2s; flex-shrink: 0; }
+.footer-acc-item.open .footer-acc-btn { transform: rotate(45deg); color: var(--white); }
+.footer-acc-item.open .footer-acc-label { color: var(--white); }
+.footer-acc-body { max-height: 0; overflow: hidden; transition: max-height .38s ease, opacity .25s ease; opacity: 0; }
+.footer-acc-item.open .footer-acc-body { max-height: 300px; opacity: 1; }
+.footer-acc-links { list-style: none; display: flex; flex-direction: column; gap: .65rem; padding: .4rem 0 1.6rem; }
+.footer-acc-links a { font-size: .88rem; color: rgba(245,242,236,.5); transition: color .2s; }
+.footer-acc-links a:hover { color: var(--white); }
+
+/* Bottom bar */
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2rem; margin-top: 2rem; border-top: 1px solid rgba(245,242,236,.1); flex-wrap: wrap; gap: 1rem; }
 .footer-copy { font-size: .75rem; color: rgba(245,242,236,.45); }
 .footer-orgno { letter-spacing: .12em; font-family: 'DM Mono', monospace; font-size: .65rem; opacity: .8; }
 .footer-socials { display: flex; gap: 2rem; list-style: none; }
@@ -478,7 +487,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .service-content{order:1;}
   .service-visual,.service-visual.alt{order:2;height:260px;}
   .process-track{flex-direction:column;width:100%;padding:0 1.2rem 2rem;} .stacked-card{width:100%;height:auto;} .card-glass{height:auto;padding:2rem 1.5rem;}
-  .footer-top{grid-template-columns:1fr 1fr;gap:2.5rem;margin-bottom:2rem;}
+  /* footer-top removed */
   .work-card-link{flex:0 0 280px;}
   .hero-stats{gap:2rem;}
   .process-header{flex-direction:column;}
@@ -491,7 +500,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .hero-title{font-size:clamp(3.5rem,14vw,14rem);}
   .process-steps{grid-template-columns:1fr;}
   .hero-quiz-pill{padding:.85rem 1.2rem;border-radius:3px;background:var(--accent);border-color:var(--accent);color:var(--white);font-size:.62rem;align-self:flex-start;max-width:55%;}
-  .footer-top{grid-template-columns:1fr;}
+  /* footer-top removed */
   .footer-bottom{flex-direction:column;gap:1.5rem;text-align:center;}
   .form-row{grid-template-columns:1fr;}
   .contact{padding:7rem 1.5rem;}
@@ -804,12 +813,9 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .btn-review-primary, .btn-review-outline { font-size: .62rem; padding: .55rem 1rem; }
 
   /* Footer */
-  footer { padding: 3.5rem 1.2rem 1.5rem; overflow: hidden; }
-  .footer-top { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2.5rem; }
-  .footer-brand { font-size: 2rem; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 1.2rem; padding-top: 1.5rem; }
+  footer { padding: 2rem 1.2rem 1.5rem; overflow: hidden; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 1rem; padding-top: 1.5rem; }
   .footer-socials { flex-wrap: wrap; gap: 1rem; }
-  .footer-tagline { max-width: 100%; }
 }
 
 @media(max-width:480px){
@@ -867,10 +873,9 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
 
   /* Footer */
   .footer-top{grid-template-columns:1fr 1fr;gap:2rem;}
-  .footer-brand{font-size:2.2rem;}
 }
 @media(max-width:480px){
-  .footer-top{grid-template-columns:1fr;}
+  /* footer-top removed */
   #yams-bot-btn{bottom:12px;right:12px;}
 }
 
@@ -911,8 +916,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
 .review-author-role { color:rgba(245,242,236,.65); }
 .review-via-google  { color:rgba(245,242,236,.55); }
 .reviews-score-label { color:rgba(245,242,236,.58); }
-.footer-tagline  { color:rgba(245,242,236,.88); }
-.footer-col ul a { color:rgba(245,242,236,.88); }
+.footer-acc-links a { color:rgba(245,242,236,.75); }
 .footer-copy     { color:rgba(245,242,236,.72); }
 .footer-socials a { color:rgba(245,242,236,.72); }
 footer { border-top-color:rgba(245,242,236,.2); }
@@ -1281,68 +1285,82 @@ footer { border-top-color:rgba(245,242,236,.2); }
 <!-- FOOTER -->
 <footer>
 
-  <div class="footer-top">
-    <div>
-      <div class="footer-brand">YAMS</div>
-      <p class="footer-tagline">Website solutions for businesses that want to grow. Norway-based, globally minded.</p>
+  <div class="footer-inner">
+
+    <!-- Til toppen -->
+    <button class="footer-totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+      Til toppen
+    </button>
+
+    <!-- Accordion -->
+    <div class="footer-acc-item">
+      <div class="footer-acc-row" onclick="this.closest('.footer-acc-item').classList.toggle('open')">
+        <span class="footer-acc-label">Prosjekter</span>
+        <button class="footer-acc-btn" aria-label="Vis prosjekter">+</button>
+      </div>
+      <div class="footer-acc-body">
+        <ul class="footer-acc-links">
+          <li><a href="#work">Vårt arbeid</a></li>
+          <li><a href="https://hanaamedyan.github.io/strobe-musikk/" target="_blank" rel="noopener">STROBE</a></li>
+          <li><a href="https://hanaamedyan.github.io/Vikhammer-Pizza-Grill-2/" target="_blank" rel="noopener">Pizza Pizza</a></li>
+          <li><a href="https://hanaamedyan.github.io/apex-motors-yams/" target="_blank" rel="noopener">Apex Motors</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Services<button class="footer-toggle" aria-label="Vis tjenester">+</button></h4>
-      <ul>
-        <li><a href="#services">Web Design</a></li>
-        <li><a href="#services">Development</a></li>
-        <li><a href="#services">E-commerce</a></li>
-        <li><a href="#services">Growth Strategy</a></li>
+
+    <div class="footer-acc-item">
+      <div class="footer-acc-row" onclick="this.closest('.footer-acc-item').classList.toggle('open')">
+        <span class="footer-acc-label">Tjenester</span>
+        <button class="footer-acc-btn" aria-label="Vis tjenester">+</button>
+      </div>
+      <div class="footer-acc-body">
+        <ul class="footer-acc-links">
+          <li><a href="./services.html">Web Design</a></li>
+          <li><a href="./services.html">Utvikling</a></li>
+          <li><a href="./services.html">E-handel</a></li>
+          <li><a href="./services.html">Vekststrategi</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-acc-item">
+      <div class="footer-acc-row" onclick="this.closest('.footer-acc-item').classList.toggle('open')">
+        <span class="footer-acc-label">Info</span>
+        <button class="footer-acc-btn" aria-label="Vis info">+</button>
+      </div>
+      <div class="footer-acc-body">
+        <ul class="footer-acc-links">
+          <li><a href="./about.html">Om oss</a></li>
+          <li><a href="./blog/">Blogg</a></li>
+          <li><a href="./contact.html">Kontakt</a></li>
+          <li><a href="mailto:yamsasno@gmail.com">yamsasno@gmail.com</a></li>
+          <li><a href="./quiz.html" style="color:#C8A660;">Nettside-quiz ✦</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 YAMS. All rights reserved. &nbsp;·&nbsp; Org.nr. 937 814 461</span>
+      <ul class="footer-socials">
+        <li>
+          <a href="https://www.instagram.com/yamssolutions/" target="_blank" rel="noopener" aria-label="YAMS on Instagram" style="display:inline-flex;align-items:center;gap:.45rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/>
+            </svg>
+            Instagram
+          </a>
+        </li>
+        <li><a href="./privacy.html">Personvern</a></li>
       </ul>
     </div>
-    <div class="footer-col">
-      <h4>Company<button class="footer-toggle" aria-label="Vis selskap">+</button></h4>
-      <ul>
-        <li><a href="#work">Our Work</a></li>
-        <li><a href="./contact.html">Contact</a></li>
-        <li><a href="./blog/">Blog</a></li>
-        <li><a href="./quiz.html" style="color:#C8A660;">Nettside-quiz ✦</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact<button class="footer-toggle" aria-label="Vis kontakt">+</button></h4>
-      <ul>
-        <li><a href="mailto:yamsasno@gmail.com">yamsasno@gmail.com</a></li>
-        <li><a href="tel:90721481">Hana: 90 72 14 81</a></li>
-        <li><a href="tel:99109943">Johan: 99 10 99 43</a></li>
-        <li><a href="#">Trondheim, Norway</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">&copy; 2026 YAMS. All rights reserved.</span>
-    <span class="footer-copy footer-orgno">Org.nr. 937 814 461</span>
-    <ul class="footer-socials">
-      <li>
-        <a href="https://www.instagram.com/yamssolutions/" target="_blank" rel="noopener" aria-label="YAMS on Instagram" style="display:inline-flex;align-items:center;gap:.45rem;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-            <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/>
-          </svg>
-          Instagram
-        </a>
-      </li>
-      <li><a href="./privacy.html">Privacy Policy</a></li>
-    </ul>
+
   </div>
 </footer>
 
-<script>
-/* FOOTER ACCORDION */
-document.querySelectorAll('.footer-toggle').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const col = btn.closest('.footer-col');
-    col.classList.toggle('open');
-    btn.setAttribute('aria-label', col.classList.contains('open') ? 'Skjul' : 'Vis');
-  });
-});
-</script>
 
 <script>
 /* CURSOR */
@@ -1545,12 +1563,11 @@ const T_MAP = [
   ['.contact-bg','contact-bg','t'],['.contact-label','contact-label','t'],['.contact-title','contact-title','h'],['.contact-sub','contact-sub','t'],
   ['#formSubmit','form-submit','t'],['.form-success-title','suc-title','t'],['.form-success-body','suc-body','t'],
   ['#fname','fph-name','p'],['#femail','fph-email','p'],['#fproject','fph-proj','p'],
-  ['.footer-tagline','ft-tagline','t'],
-  ['.footer-col:nth-child(2) h4','ft-h1','t'],['.footer-col:nth-child(3) h4','ft-h2','t'],['.footer-col:nth-child(4) h4','ft-h3','t'],
-  ['.footer-col:nth-child(2) ul li:nth-child(1) a','ft-s1','t'],['.footer-col:nth-child(2) ul li:nth-child(2) a','ft-s2','t'],['.footer-col:nth-child(2) ul li:nth-child(3) a','ft-s3','t'],['.footer-col:nth-child(2) ul li:nth-child(4) a','ft-s4','t'],
-  ['.footer-col:nth-child(3) ul li:nth-child(1) a','ft-c1','t'],['.footer-col:nth-child(3) ul li:nth-child(2) a','ft-c2','t'],['.footer-col:nth-child(3) ul li:nth-child(3) a','ft-c3','t'],['.footer-col:nth-child(3) ul li:nth-child(4) a','ft-c4','t'],
-  ['.footer-col:nth-child(4) ul li:nth-child(2) a','ft-addr','t'],['.footer-copy','ft-copy','t'],['.footer-orgno','ft-orgno','t'],
-  ['.footer-socials li:nth-child(3) a','ft-priv','t'],
+  ['.footer-acc-item:nth-child(1) .footer-acc-label','ft-h1','t'],
+  ['.footer-acc-item:nth-child(2) .footer-acc-label','ft-h2','t'],
+  ['.footer-acc-item:nth-child(3) .footer-acc-label','ft-h3','t'],
+  ['.footer-copy','ft-copy','t'],
+  ['.footer-socials li:nth-child(2) a','ft-priv','t'],
 ];
 
 let currentLang = localStorage.getItem('yams_lang') || 'en';
