@@ -2122,6 +2122,7 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
 <script>
 (function(){
   if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  if(window.matchMedia('(max-width:900px)').matches) return;
   gsap.registerPlugin(ScrollTrigger);
 
   const track = document.getElementById('processTrack');
