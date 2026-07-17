@@ -346,10 +346,18 @@ section, .manifesto, .services, .work-section, .process, .contact { padding: 8re
 .process-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 5rem; max-width: 1300px; margin-left: auto; margin-right: auto; gap: 2rem; }
 .process-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem,5vw,6rem); color: var(--white); line-height: .9; flex: 1; }
 .process-intro { font-size: .9rem; line-height: 1.9; color: rgba(245,242,236,.7); max-width: 380px; padding-top: 1rem; flex: 0 0 380px; }
-.process-steps { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; border: none; }
-.process-step { padding: 3rem 2rem; border: 1px solid rgba(245,242,236,.1); border-radius: 12px; background: linear-gradient(145deg, rgba(245,242,236,.08) 0%, rgba(245,242,236,.02) 60%, rgba(27,61,47,.08) 100%); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 4px 24px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.1); transition: background .4s, box-shadow .4s, border-color .4s; will-change: backdrop-filter; }
-.process-step:last-child { border-right: 1px solid rgba(245,242,236,.1); }
-.process-step:hover { background: linear-gradient(145deg, rgba(245,242,236,.13) 0%, rgba(245,242,236,.04) 60%, rgba(27,61,47,.12) 100%); box-shadow: 0 8px 40px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.16); border-color: rgba(245,242,236,.2); }
+/* Stacked process cards */
+.process-steps { max-width: 100%; margin: 0; padding: 0; }
+.card-sticky-wrap { height: 100vh; display: flex; align-items: center; justify-content: center; position: sticky; top: 0; }
+.stacked-card { position: relative; width: 70%; max-width: 860px; height: 420px; border-radius: 24px; isolation: isolate; transform-origin: center top; }
+.stacked-card::before { content: ''; position: absolute; inset: -3px; border-radius: 27px; background: conic-gradient(from 0deg, transparent 0deg, var(--cc) 60deg, var(--cc2) 120deg, transparent 180deg, var(--cc3) 240deg, transparent 360deg); z-index: -1; }
+.card-glass { position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 3rem; border-radius: 24px; background: linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.05)); backdrop-filter: blur(25px) saturate(180%); -webkit-backdrop-filter: blur(25px) saturate(180%); border: 1px solid rgba(255,255,255,.2); box-shadow: 0 8px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.3), inset 0 -1px 0 rgba(255,255,255,.1); overflow: hidden; }
+.card-reflect-top { position: absolute; top: 0; left: 0; right: 0; height: 60%; background: linear-gradient(135deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,.08) 50%, transparent 100%); pointer-events: none; border-radius: 24px 24px 0 0; }
+.card-shine { position: absolute; top: 10px; left: 10px; right: 10px; height: 2px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); border-radius: 1px; pointer-events: none; }
+.card-reflect-side { position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: linear-gradient(180deg, rgba(255,255,255,.28) 0%, transparent 50%); border-radius: 24px 0 0 24px; pointer-events: none; }
+.card-texture { position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,.1) 1px, transparent 2px), radial-gradient(circle at 80% 70%, rgba(255,255,255,.08) 1px, transparent 2px), radial-gradient(circle at 40% 80%, rgba(255,255,255,.06) 1px, transparent 2px); background-size: 30px 30px, 25px 25px, 35px 35px; pointer-events: none; border-radius: 24px; opacity: .6; }
+.card-body { position: relative; z-index: 1; }
+.process-step { display: none; } /* legacy — replaced */
 .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--white); opacity: .35; line-height: 1; margin-bottom: 1.5rem; }
 .step-title { font-size: .85rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--white); margin-bottom: 1rem; }
 .step-desc { font-size: .85rem; line-height: 1.8; color: rgba(245,242,236,.72); }
@@ -450,7 +458,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .service-block{display:flex;flex-direction:column;}
   .service-content{order:1;}
   .service-visual,.service-visual.alt{order:2;height:260px;}
-  .process-steps{grid-template-columns:1fr 1fr;}
+  .card-sticky-wrap{height:auto;position:relative;padding:1rem 1.5rem;} .stacked-card{width:100%;height:auto;} .card-glass{height:auto;padding:2rem 1.5rem;}
   .footer-top{grid-template-columns:1fr 1fr;gap:2.5rem;margin-bottom:2rem;}
   .work-card-link{flex:0 0 280px;}
   .hero-stats{gap:2rem;}
@@ -785,7 +793,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .pricing { padding: 3.5rem 1rem; }
   .price-card { padding: 22px 16px; }
   footer { padding: 3rem 1rem 1.2rem; }
-  .process-steps { grid-template-columns: 1fr; }
+  .process-steps { } /* stacked layout handles mobile already */
   .ticker-item { font-size: .85rem; padding: 0 1.5rem; }
 }
 
@@ -1163,27 +1171,72 @@ footer { border-top-color:rgba(245,242,236,.2); }
       <h2 class="process-title">Our<br>Process</h2>
     </div>
   </div>
-  <div class="process-steps">
-    <div class="process-step reveal reveal-delay-1">
-      <div class="step-num">01</div>
-      <h3 class="step-title">Discovery</h3>
-      <p class="step-desc">We dig into your goals, audience, and competitive landscape. No guesswork — just clarity before a single pixel is drawn.</p>
+  <div class="process-steps" id="process-stacked">
+
+    <div class="card-sticky-wrap">
+      <div class="stacked-card" data-index="0" style="--cc:rgba(61,122,92,0.8);--cc2:rgba(61,122,92,0.5);--cc3:rgba(61,122,92,0.3);top:calc(-5vh + 0px)">
+        <div class="card-glass">
+          <div class="card-reflect-top"></div>
+          <div class="card-shine"></div>
+          <div class="card-reflect-side"></div>
+          <div class="card-texture"></div>
+          <div class="card-body">
+            <div class="step-num">01</div>
+            <h3 class="step-title">Discovery</h3>
+            <p class="step-desc">We dig into your goals, audience, and competitive landscape. No guesswork — just clarity before a single pixel is drawn.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="process-step reveal reveal-delay-2">
-      <div class="step-num">02</div>
-      <h3 class="step-title">Design</h3>
-      <p class="step-desc">We craft wireframes and high-fidelity mockups that translate your brand vision into a coherent visual language.</p>
+
+    <div class="card-sticky-wrap">
+      <div class="stacked-card" data-index="1" style="--cc:rgba(200,166,96,0.8);--cc2:rgba(200,166,96,0.5);--cc3:rgba(200,166,96,0.3);top:calc(-5vh + 25px)">
+        <div class="card-glass">
+          <div class="card-reflect-top"></div>
+          <div class="card-shine"></div>
+          <div class="card-reflect-side"></div>
+          <div class="card-texture"></div>
+          <div class="card-body">
+            <div class="step-num">02</div>
+            <h3 class="step-title">Design</h3>
+            <p class="step-desc">We craft wireframes and high-fidelity mockups that translate your brand vision into a coherent visual language.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="process-step reveal reveal-delay-3">
-      <div class="step-num">03</div>
-      <h3 class="step-title">Build</h3>
-      <p class="step-desc">Clean, performant code. We build with modern frameworks, accessibility at the core, and mobile-first always.</p>
+
+    <div class="card-sticky-wrap">
+      <div class="stacked-card" data-index="2" style="--cc:rgba(100,160,230,0.8);--cc2:rgba(100,160,230,0.5);--cc3:rgba(100,160,230,0.3);top:calc(-5vh + 50px)">
+        <div class="card-glass">
+          <div class="card-reflect-top"></div>
+          <div class="card-shine"></div>
+          <div class="card-reflect-side"></div>
+          <div class="card-texture"></div>
+          <div class="card-body">
+            <div class="step-num">03</div>
+            <h3 class="step-title">Build</h3>
+            <p class="step-desc">Clean, performant code. We build with modern frameworks, accessibility at the core, and mobile-first always.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="process-step reveal reveal-delay-4">
-      <div class="step-num">04</div>
-      <h3 class="step-title">Launch & Grow</h3>
-      <p class="step-desc">Go live with confidence. We handle deployment, testing, and provide ongoing support so your site keeps improving.</p>
+
+    <div class="card-sticky-wrap">
+      <div class="stacked-card" data-index="3" style="--cc:rgba(245,242,236,0.6);--cc2:rgba(245,242,236,0.4);--cc3:rgba(245,242,236,0.2);top:calc(-5vh + 75px)">
+        <div class="card-glass">
+          <div class="card-reflect-top"></div>
+          <div class="card-shine"></div>
+          <div class="card-reflect-side"></div>
+          <div class="card-texture"></div>
+          <div class="card-body">
+            <div class="step-num">04</div>
+            <h3 class="step-title">Launch & Grow</h3>
+            <p class="step-desc">Go live with confidence. We handle deployment, testing, and provide ongoing support so your site keeps improving.</p>
+          </div>
+        </div>
+      </div>
     </div>
+
   </div>
 </div>
 
@@ -2101,6 +2154,37 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
 
   // Init language
   applyLang(localStorage.getItem('yams_lang') || 'en');
+})();
+</script>
+
+<!-- GSAP + ScrollTrigger -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const cards = document.querySelectorAll('#process-stacked .stacked-card');
+  const total = cards.length;
+
+  cards.forEach((card, index) => {
+    const wrap = card.closest('.card-sticky-wrap');
+    const targetScale = 1 - (total - index) * 0.05;
+
+    gsap.set(card, { scale: 1, transformOrigin: 'center top' });
+
+    ScrollTrigger.create({
+      trigger: wrap,
+      start: 'top center',
+      end: 'bottom center',
+      scrub: 1,
+      onUpdate(self) {
+        const scale = gsap.utils.interpolate(1, targetScale, self.progress);
+        gsap.set(card, { scale: Math.max(scale, targetScale), transformOrigin: 'center top' });
+      }
+    });
+  });
 })();
 </script>
 </body>
