@@ -476,8 +476,12 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .process-intro{flex:auto;max-width:100%;}
 }
 @media(max-width:600px){
+  .hero-bottom{flex-direction:column;gap:2rem;align-items:flex-start;}
+  .hero-scroll{flex-direction:row;}
+  .scroll-line{width:40px;height:1px;}
   .hero-title{font-size:clamp(3.5rem,14vw,14rem);}
   .process-steps{grid-template-columns:1fr;}
+  .hero-quiz-pill{padding:.85rem 1.2rem;border-radius:3px;background:var(--accent);border-color:var(--accent);color:var(--white);font-size:.62rem;align-self:flex-start;max-width:55%;}
   .footer-top{grid-template-columns:1fr;}
   .footer-bottom{flex-direction:column;gap:1.5rem;text-align:center;}
   .form-row{grid-template-columns:1fr;}
@@ -859,57 +863,6 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
 @media(max-width:480px){
   .footer-top{grid-template-columns:1fr;}
   #yams-bot-btn{bottom:12px;right:12px;}
-}
-
-/* ── MOBILE OPTIMIZATIONS ── */
-@media(max-width:768px){
-
-  /* Hero video — hidden on mobile to save data and battery */
-  .hero-video { display: none; }
-  .hero { background: #0a0a0a; }
-  .hero-video-overlay { background: linear-gradient(180deg, rgba(10,10,10,.6) 0%, rgba(10,10,10,.75) 60%, rgba(10,10,10,.95) 100%); }
-
-  /* Hero scroll indicator — useless on touch */
-  .hero-scroll { display: none; }
-
-  /* Hero quiz pill — full-width CTA on mobile */
-  .hero-quiz-pill {
-    display: block;
-    text-align: center;
-    width: 100%;
-    max-width: 100%;
-    padding: 1rem 1.5rem;
-    border-radius: 2px;
-    font-size: .68rem;
-    letter-spacing: .1em;
-  }
-
-  /* Hero stats — 2 cols, better spacing */
-  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem 2rem; width: 100%; }
-  .hero-bottom { flex-direction: column; align-items: flex-start; gap: 1.8rem; }
-  .hero-left { width: 100%; }
-
-  /* Manifesto — hide decorative MacBook (pure visual, kills performance) */
-  .macbook-wrap, .macbook-shadow { display: none; }
-
-  /* Process stacked cards — remove expensive backdrop-filter */
-  .card-glass {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    background: rgba(15, 40, 28, 0.92);
-    box-shadow: 0 4px 20px rgba(0,0,0,.4);
-  }
-  .card-reflect-top, .card-shine, .card-reflect-side, .card-texture { display: none; }
-  .stacked-card::before { animation: none; }
-}
-
-@media(max-width:480px){
-  /* Hero title — prevent overflow on 320px screens */
-  .hero-title { font-size: clamp(2.5rem, 13vw, 3.8rem); }
-  .hero-eyebrow { font-size: .6rem; }
-  .hero-tagline { font-size: .85rem; }
-  .stat-num { font-size: 1.5rem; }
-  .stat-label { font-size: .58rem; }
 }
 
 /* ── BRIGHTER TEXT + SEGMENT POP ── */
@@ -2190,28 +2143,6 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
       invalidateOnRefresh: true,
     }
   });
-})();
-</script>
-
-<script>
-// Mobile optimizations
-(function(){
-  const isMobile = window.matchMedia('(max-width:768px)').matches;
-
-  // Stop hero video on mobile — CSS hides it but some browsers still load/play it
-  if(isMobile){
-    const heroVid = document.querySelector('.hero-video');
-    if(heroVid){ heroVid.pause(); heroVid.removeAttribute('src'); heroVid.load(); }
-  }
-
-  // Pause service/section videos when off-screen (saves battery on all devices)
-  const videos = document.querySelectorAll('.svc-video');
-  if(videos.length && 'IntersectionObserver' in window){
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => e.isIntersecting ? e.target.play() : e.target.pause());
-    }, { threshold: 0.15 });
-    videos.forEach(v => obs.observe(v));
-  }
 })();
 </script>
 </body>
