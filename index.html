@@ -432,8 +432,16 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
 .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; max-width: 1300px; margin-left: auto; margin-right: auto; }
 .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--white); margin-bottom: 1rem; line-height: 1; }
 .footer-tagline { font-size: .85rem; color: rgba(245,242,236,.65); line-height: 1.7; max-width: 260px; }
-.footer-col h4 { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+.footer-col h4 { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+.footer-toggle { display: none; background: none; border: none; color: var(--accent); font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0 2px; transition: transform .3s ease; flex-shrink: 0; }
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .8rem; }
+@media(max-width:768px){
+  .footer-toggle { display: block; }
+  .footer-col ul { max-height: 0; overflow: hidden; transition: max-height .35s ease, opacity .25s ease; opacity: 0; margin-top: 0; }
+  .footer-col.open ul { max-height: 400px; opacity: 1; margin-top: .8rem; }
+  .footer-col h4 { margin-bottom: .6rem; cursor: pointer; padding-bottom: .6rem; border-bottom: 1px solid rgba(245,242,236,.08); }
+  .footer-col.open .footer-toggle { transform: rotate(45deg); }
+}
 .footer-col ul a { font-size: .85rem; color: rgba(245,242,236,.72); transition: color .2s; }
 .footer-col ul a:hover { color: var(--white); }
 .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 2rem; border-top: 1px solid rgba(245,242,236,.12); max-width: 1300px; margin: 0 auto; }
@@ -1277,7 +1285,7 @@ footer { border-top-color:rgba(245,242,236,.2); }
       <p class="footer-tagline">Website solutions for businesses that want to grow. Norway-based, globally minded.</p>
     </div>
     <div class="footer-col">
-      <h4>Services</h4>
+      <h4>Services<button class="footer-toggle" aria-label="Vis tjenester">+</button></h4>
       <ul>
         <li><a href="#services">Web Design</a></li>
         <li><a href="#services">Development</a></li>
@@ -1286,16 +1294,16 @@ footer { border-top-color:rgba(245,242,236,.2); }
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Company</h4>
+      <h4>Company<button class="footer-toggle" aria-label="Vis selskap">+</button></h4>
       <ul>
         <li><a href="#work">Our Work</a></li>
-            <li><a href="./contact.html">Contact</a></li>
+        <li><a href="./contact.html">Contact</a></li>
         <li><a href="./blog/">Blog</a></li>
         <li><a href="./quiz.html" style="color:#C8A660;">Nettside-quiz ✦</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Contact</h4>
+      <h4>Contact<button class="footer-toggle" aria-label="Vis kontakt">+</button></h4>
       <ul>
         <li><a href="mailto:yamsasno@gmail.com">yamsasno@gmail.com</a></li>
         <li><a href="tel:90721481">Hana: 90 72 14 81</a></li>
@@ -1322,6 +1330,17 @@ footer { border-top-color:rgba(245,242,236,.2); }
     </ul>
   </div>
 </footer>
+
+<script>
+/* FOOTER ACCORDION */
+document.querySelectorAll('.footer-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const col = btn.closest('.footer-col');
+    col.classList.toggle('open');
+    btn.setAttribute('aria-label', col.classList.contains('open') ? 'Skjul' : 'Vis');
+  });
+});
+</script>
 
 <script>
 /* CURSOR */
