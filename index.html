@@ -352,23 +352,25 @@ section, .manifesto, .services, .work-section, .process, .contact { padding: 8re
 .btn-dark-outline:hover { border-color: var(--black); }
 
 /* PROCESS */
-/* Process – horizontal scroll */
-.process-scroll-outer { position: relative; height: 300vh; }
-.process { background: #0f1c16; padding: 0; position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
-.process-inner { padding: 4rem 3rem; height: 100%; display: flex; flex-direction: column; justify-content: center; }
-.process-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 3.5rem; gap: 2rem; }
+.process { background: #0a0a0a; padding: 8rem 3rem; }
+.process-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 5rem; max-width: 1300px; margin-left: auto; margin-right: auto; gap: 2rem; }
 .process-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem,5vw,6rem); color: var(--white); line-height: .9; flex: 1; }
 .process-intro { font-size: .9rem; line-height: 1.9; color: rgba(245,242,236,.7); max-width: 380px; padding-top: 1rem; flex: 0 0 380px; }
-.process-steps-track { overflow: hidden; position: relative; }
-.process-steps { display: flex; flex-direction: row; gap: 0; will-change: transform; }
-.process-step { flex: 0 0 clamp(280px, 28vw, 420px); padding: 3rem 2.5rem; border-right: 1px solid rgba(245,242,236,.13); border-top: 1px solid rgba(245,242,236,.13); border-bottom: 1px solid rgba(245,242,236,.13); background: rgba(27,61,47,.18); transition: background .3s; }
-.process-step:first-child { border-left: 1px solid rgba(245,242,236,.13); }
-.process-step:hover { background: rgba(27,61,47,.35); }
-.step-num { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: var(--green-light); opacity: .6; line-height: 1; margin-bottom: 1.5rem; }
-.step-title { font-size: .85rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--white); margin-bottom: 1rem; }
-.step-desc { font-size: .85rem; line-height: 1.8; color: rgba(245,242,236,.72); }
-.process-progress { position: absolute; bottom: 2.5rem; left: 3rem; right: 3rem; height: 1px; background: rgba(245,242,236,.1); }
-.process-progress-bar { height: 100%; width: 0%; background: var(--accent); transition: width .05s linear; }
+/* Stacked process cards */
+.process-track-wrap { overflow: hidden; }
+.process-track { display: flex; gap: 2rem; padding: 0 3rem 3rem; width: max-content; will-change: transform; }
+.stacked-card { position: relative; width: min(68vw, 720px); height: 420px; border-radius: 24px; isolation: isolate; flex-shrink: 0; }
+.stacked-card::before { content: ''; position: absolute; inset: -3px; border-radius: 27px; background: conic-gradient(from 0deg, transparent 0deg, var(--cc) 60deg, var(--cc2) 120deg, transparent 180deg, var(--cc3) 240deg, transparent 360deg); z-index: -1; }
+.card-glass { position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 3rem; border-radius: 24px; background: linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.05)); backdrop-filter: blur(25px) saturate(180%); -webkit-backdrop-filter: blur(25px) saturate(180%); border: 1px solid rgba(255,255,255,.2); box-shadow: 0 8px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.3), inset 0 -1px 0 rgba(255,255,255,.1); overflow: hidden; }
+.card-reflect-top { position: absolute; top: 0; left: 0; right: 0; height: 60%; background: linear-gradient(135deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,.08) 50%, transparent 100%); pointer-events: none; border-radius: 24px 24px 0 0; }
+.card-shine { position: absolute; top: 10px; left: 10px; right: 10px; height: 2px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); border-radius: 1px; pointer-events: none; }
+.card-reflect-side { position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: linear-gradient(180deg, rgba(255,255,255,.28) 0%, transparent 50%); border-radius: 24px 0 0 24px; pointer-events: none; }
+.card-texture { position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,.1) 1px, transparent 2px), radial-gradient(circle at 80% 70%, rgba(255,255,255,.08) 1px, transparent 2px), radial-gradient(circle at 40% 80%, rgba(255,255,255,.06) 1px, transparent 2px); background-size: 30px 30px, 25px 25px, 35px 35px; pointer-events: none; border-radius: 24px; opacity: .6; }
+.card-body { position: relative; z-index: 1; }
+.process-step { display: none; } /* legacy — replaced */
+.step-num { font-family: 'Bebas Neue', sans-serif; font-size: 6rem; color: var(--white); opacity: .35; line-height: 1; margin-bottom: 1.5rem; }
+.step-title { font-size: 1.2rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--white); margin-bottom: 1rem; }
+.step-desc { font-size: 1.05rem; line-height: 1.85; color: rgba(245,242,236,.72); max-width: 520px; }
 
 /* CONTACT */
 .contact { background: #0D1510; padding: 10rem 3rem; text-align: center; position: relative; overflow: hidden; border-top: 1px solid rgba(61,122,92,.2); }
@@ -461,25 +463,24 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .nav-hamburger{display:flex;}
   .hero{padding:0 1.5rem 3rem;}
   .manifesto{padding:5rem 1.5rem;}
-  .process-scroll-outer{height:auto;} .process{position:relative;height:auto;} .process-inner{padding:4rem 1.5rem;} .process-steps-track{overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;} .process-steps{transform:none!important;} .process-step{scroll-snap-align:start;flex:0 0 80vw;max-width:320px;} .process-progress{display:none;}
+  .process{padding:5rem 1.5rem;}
   .manifesto-grid{grid-template-columns:1fr;}
   .service-block{display:flex;flex-direction:column;}
   .service-content{order:1;}
   .service-visual,.service-visual.alt{order:2;height:260px;}
-  /* process handled above */
+  .process-track{flex-direction:column;width:100%;padding:0 1.2rem 2rem;} .stacked-card{width:100%;height:auto;} .card-glass{height:auto;padding:2rem 1.5rem;}
   .footer-top{grid-template-columns:1fr 1fr;gap:2.5rem;margin-bottom:2rem;}
   .work-card-link{flex:0 0 280px;}
   .hero-stats{gap:2rem;}
   .process-header{flex-direction:column;}
   .process-intro{flex:auto;max-width:100%;}
-  .process-scroll-outer{height:auto;} .process-steps{transform:none!important;} .process-steps-track{overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;} .process-step{scroll-snap-align:start;flex:0 0 75vw;max-width:360px;}
 }
 @media(max-width:600px){
   .hero-bottom{flex-direction:column;gap:2rem;align-items:flex-start;}
   .hero-scroll{flex-direction:row;}
   .scroll-line{width:40px;height:1px;}
   .hero-title{font-size:clamp(3.5rem,14vw,14rem);}
-  /* process: mobile handled above */
+  .process-steps{grid-template-columns:1fr;}
   .hero-quiz-pill{padding:.85rem 1.2rem;border-radius:3px;background:var(--accent);border-color:var(--accent);color:var(--white);font-size:.62rem;align-self:flex-start;max-width:55%;}
   .footer-top{grid-template-columns:1fr;}
   .footer-bottom{flex-direction:column;gap:1.5rem;text-align:center;}
@@ -510,6 +511,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   /* Section padding — from 8rem → 5.5rem saves ~40px per section */
   section,
   .manifesto,
+  .process,
   .contact { padding: 5.5rem 2.5rem; }
 
   /* Manifesto grid tighter */
@@ -527,7 +529,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .work-card-link { flex: 0 0 290px; }
 
   /* Process */
-  .process-inner { padding: 3.5rem 2.5rem; }
+  .process { padding: 5.5rem 2.5rem; }
   .process-header { margin-bottom: 3.5rem; gap: 2rem; }
 
   /* Quiz CTA from 9rem → 5.5rem */
@@ -736,7 +738,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .stat-num { font-size: 1.8rem; }
 
   /* Generic section padding */
-  section, .manifesto, .contact { padding: 4rem 1.2rem; }
+  section, .manifesto, .process, .contact { padding: 4rem 1.2rem; }
   .services { padding: 0; }
 
   /* Manifesto */
@@ -759,7 +761,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .work-card-link { flex: 0 0 240px; }
 
   /* Process */
-  .process-inner { padding: 2.5rem 1.2rem; }
+  .process { padding: 4rem 1.2rem; }
   .process-header { gap: 1.5rem; }
   .process-title { font-size: clamp(2.5rem,8vw,4rem); }
   .process-step { padding: 2rem 1.2rem; }
@@ -814,7 +816,7 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
   .pricing { padding: 3.5rem 1rem; }
   .price-card { padding: 22px 16px; }
   footer { padding: 3rem 1rem 1.2rem; }
-  /* process-steps: flex handled above */
+  .process-steps { } /* stacked layout handles mobile already */
   .ticker-item { font-size: .85rem; padding: 0 1.5rem; }
 }
 
@@ -876,9 +878,10 @@ footer { background: #0f1a14; padding: 4rem 3rem 2rem; border-top: 1px solid rgb
 .service-num     { opacity:.35; }
 .service-block:hover .service-num { opacity:.72; }
 .work-card-sub   { color: rgba(245,242,236,.80); }
-.process-step    { border-color:rgba(245,242,236,.28); background:rgba(27,61,47,.35); }
-.process-step:hover { background:rgba(27,61,47,.6); }
-.step-num   { opacity:.9; color:var(--accent); }
+.process-steps   { border:none; }
+.process-step    { border-color:rgba(245,242,236,.28); background:rgba(255,255,255,.07); }
+.process-step:hover { background:rgba(255,255,255,.13); }
+.step-num   { opacity:.7; color:var(--white); }
 .step-title { color:var(--white); letter-spacing:.1em; }
 .step-desc  { color:rgba(245,242,236,.95); }
 .process-intro { color:rgba(245,242,236,.92); }
@@ -1051,6 +1054,66 @@ footer { border-top-color:rgba(245,242,236,.2); }
 </div>
 
 <!-- WORK -->
+<!-- PROCESS -->
+<div class="process" id="process">
+  <div class="process-header reveal">
+    <div>
+      <span class="section-label">How We Work</span>
+      <h2 class="process-title">Our<br>Process</h2>
+    </div>
+  </div>
+  <div class="process-track-wrap" id="process-stacked">
+    <div class="process-track" id="processTrack">
+
+      <div class="stacked-card" data-index="0" style="--cc:rgba(61,122,92,0.8);--cc2:rgba(61,122,92,0.5);--cc3:rgba(61,122,92,0.3)">
+        <div class="card-glass">
+          <div class="card-reflect-top"></div><div class="card-shine"></div><div class="card-reflect-side"></div><div class="card-texture"></div>
+          <div class="card-body">
+            <div class="step-num">01</div>
+            <h3 class="step-title">Discovery</h3>
+            <p class="step-desc">We dig into your goals, audience, and competitive landscape. No guesswork — just clarity before a single pixel is drawn.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stacked-card" data-index="1" style="--cc:rgba(61,122,92,0.8);--cc2:rgba(61,122,92,0.5);--cc3:rgba(61,122,92,0.3)">
+        <div class="card-glass">
+          <div class="card-reflect-top"></div><div class="card-shine"></div><div class="card-reflect-side"></div><div class="card-texture"></div>
+          <div class="card-body">
+            <div class="step-num">02</div>
+            <h3 class="step-title">Design</h3>
+            <p class="step-desc">We craft wireframes and high-fidelity mockups that translate your brand vision into a coherent visual language.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stacked-card" data-index="2" style="--cc:rgba(61,122,92,0.8);--cc2:rgba(61,122,92,0.5);--cc3:rgba(61,122,92,0.3)">
+        <div class="card-glass">
+          <div class="card-reflect-top"></div><div class="card-shine"></div><div class="card-reflect-side"></div><div class="card-texture"></div>
+          <div class="card-body">
+            <div class="step-num">03</div>
+            <h3 class="step-title">Build</h3>
+            <p class="step-desc">Clean, performant code. We build with modern frameworks, accessibility at the core, and mobile-first always.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stacked-card" data-index="3" style="--cc:rgba(61,122,92,0.8);--cc2:rgba(61,122,92,0.5);--cc3:rgba(61,122,92,0.3)">
+        <div class="card-glass">
+          <div class="card-reflect-top"></div><div class="card-shine"></div><div class="card-reflect-side"></div><div class="card-texture"></div>
+          <div class="card-body">
+            <div class="step-num">04</div>
+            <h3 class="step-title">Launch & Grow</h3>
+            <p class="step-desc">Go live with confidence. We handle deployment, testing, and provide ongoing support so your site keeps improving.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
 
 <div class="work-section" id="work">
   <div class="work-header">
@@ -1174,150 +1237,6 @@ footer { border-top-color:rgba(245,242,236,.2); }
       </div>
     </a>
   </div>
-</div>
-
-<!-- SERVICES -->
-<div class="services" id="services">
-
-  <div class="service-block">
-    <div class="service-content">
-      <div>
-        <div class="service-num">01</div>
-        <h2 class="service-title">Web<br><span>Design</span></h2>
-      </div>
-      <div>
-        <p class="service-desc">Visually compelling, strategically considered design that communicates your brand's value instantly — and keeps visitors coming back.</p>
-        <ul class="service-list">
-          <li>UI / UX Design</li>
-          <li>Brand-aligned Layouts</li>
-          <li>Mobile-first Design Systems</li>
-          <li>Prototype & Wireframing</li>
-          <li>Visual Identity Alignment</li>
-        </ul>
-      </div>
-    </div>
-    <div class="service-visual">
-      <video class="svc-video" autoplay muted loop playsinline>
-        <source src="https://videos.pexels.com/video-files/1350205/1350205-hd_1920_1080_30fps.mp4" type="video/mp4"/>
-      </video>
-      <div class="svc-video-overlay"></div>
-    </div>
-  </div>
-
-  <div class="service-block">
-    <div class="service-visual alt">
-      <video class="svc-video" autoplay muted loop playsinline>
-        <source src="https://videos.pexels.com/video-files/854053/854053-hd_1920_1080_25fps.mp4" type="video/mp4"/>
-      </video>
-      <div class="svc-video-overlay"></div>
-    </div>
-    <div class="service-content">
-      <div>
-        <div class="service-num">02</div>
-        <h2 class="service-title">Web<br><span>Development</span></h2>
-      </div>
-      <div>
-        <p class="service-desc">Fast, secure, and scalable code built on modern frameworks. We handle the technical heavy lifting so you can focus on your business.</p>
-        <ul class="service-list">
-          <li>Custom Web Applications</li>
-          <li>E-commerce Platforms</li>
-          <li>CMS Development</li>
-          <li>API Integrations</li>
-          <li>Performance & SEO</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="service-block">
-    <div class="service-content">
-      <div>
-        <div class="service-num">03</div>
-        <h2 class="service-title">Growth<br><span>Strategy</span></h2>
-      </div>
-      <div>
-        <p class="service-desc">We go beyond launch. Our ongoing strategy and support services ensure your digital presence continuously evolves and grows.</p>
-        <ul class="service-list">
-          <li>SEO & Content Strategy</li>
-          <li>Analytics & Reporting</li>
-          <li>Conversion Optimisation</li>
-          <li>Monthly Retainer Support</li>
-        </ul>
-      </div>
-    </div>
-    <div class="service-visual">
-      <video class="svc-video" autoplay muted loop playsinline>
-        <source src="https://videos.pexels.com/video-files/7947403/7947403-hd_1920_1080_30fps.mp4" type="video/mp4"/>
-      </video>
-      <div class="svc-video-overlay"></div>
-    </div>
-  </div>
-
-  <div class="service-block">
-    <div class="service-visual alt">
-      <video class="svc-video" autoplay muted loop playsinline>
-        <source src="https://videos.pexels.com/video-files/2239241/2239241-hd_1920_1080_24fps.mp4" type="video/mp4"/>
-      </video>
-      <div class="svc-video-overlay"></div>
-    </div>
-    <div class="service-content">
-      <div>
-        <div class="service-num">04</div>
-        <h2 class="service-title">Product<br><span>Photography</span></h2>
-      </div>
-      <div>
-        <p class="service-desc">Visuals that sell. We produce clean, editorial-quality product photography tailored for web — designed to elevate your brand and convert browsers into buyers.</p>
-        <ul class="service-list">
-          <li>E-commerce Product Shots</li>
-          <li>Editorial & Lifestyle Photography</li>
-          <li>Brand Campaign Imagery</li>
-          <li>Photo Editing & Retouching</li>
-          <li>Web-Optimised Asset Delivery</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- PROCESS -->
-<div class="process-scroll-outer" id="process">
-<div class="process">
-  <div class="process-inner">
-    <div class="process-header reveal">
-      <div>
-        <span class="section-label">How We Work</span>
-        <h2 class="process-title">Our<br>Process</h2>
-      </div>
-      <p class="process-intro">A clear, collaborative workflow that keeps you informed at every step — from first conversation to final launch and beyond.</p>
-    </div>
-    <div class="process-steps-track">
-      <div class="process-steps">
-        <div class="process-step">
-          <div class="step-num">01</div>
-          <h3 class="step-title">Discovery</h3>
-          <p class="step-desc">We dig into your goals, audience, and competitive landscape. No guesswork — just clarity before a single pixel is drawn.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-num">02</div>
-          <h3 class="step-title">Design</h3>
-          <p class="step-desc">We craft wireframes and high-fidelity mockups that translate your brand vision into a coherent visual language.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-num">03</div>
-          <h3 class="step-title">Build</h3>
-          <p class="step-desc">Clean, performant code. We build with modern frameworks, accessibility at the core, and mobile-first always.</p>
-        </div>
-        <div class="process-step">
-          <div class="step-num">04</div>
-          <h3 class="step-title">Launch & Grow</h3>
-          <p class="step-desc">Go live with confidence. We handle deployment, testing, and provide ongoing support so your site keeps improving.</p>
-        </div>
-      </div>
-    </div>
-    <div class="process-progress"><div class="process-progress-bar" id="processBar"></div></div>
-  </div>
-</div>
 </div>
 
 
@@ -1594,10 +1513,10 @@ const T_MAP = [
   ['.service-block:nth-child(4) .service-list li:nth-child(1)','svc4-li1','t'],['.service-block:nth-child(4) .service-list li:nth-child(2)','svc4-li2','t'],['.service-block:nth-child(4) .service-list li:nth-child(3)','svc4-li3','t'],['.service-block:nth-child(4) .service-list li:nth-child(4)','svc4-li4','t'],['.service-block:nth-child(4) .service-list li:nth-child(5)','svc4-li5','t'],
   ['.work-header .section-label','work-label','t'],['.work-title','work-title','h'],['.work-header .btn-dark','work-all','t'],
   ['.process-header .section-label','proc-label','t'],['.process-title','proc-title','h'],['.process-intro','proc-intro','t'],
-  ['.process-step:nth-child(1) .step-title','step1-t','t'],['.process-step:nth-child(1) .step-desc','step1-d','t'],
-  ['.process-step:nth-child(2) .step-title','step2-t','t'],['.process-step:nth-child(2) .step-desc','step2-d','t'],
-  ['.process-step:nth-child(3) .step-title','step3-t','t'],['.process-step:nth-child(3) .step-desc','step3-d','t'],
-  ['.process-step:nth-child(4) .step-title','step4-t','t'],['.process-step:nth-child(4) .step-desc','step4-d','t'],
+  ['#processTrack .stacked-card:nth-child(1) .step-title','step1-t','t'],['#processTrack .stacked-card:nth-child(1) .step-desc','step1-d','t'],
+  ['#processTrack .stacked-card:nth-child(2) .step-title','step2-t','t'],['#processTrack .stacked-card:nth-child(2) .step-desc','step2-d','t'],
+  ['#processTrack .stacked-card:nth-child(3) .step-title','step3-t','t'],['#processTrack .stacked-card:nth-child(3) .step-desc','step3-d','t'],
+  ['#processTrack .stacked-card:nth-child(4) .step-title','step4-t','t'],['#processTrack .stacked-card:nth-child(4) .step-desc','step4-d','t'],
   ['.pricing-header .section-label','price-label','t'],['.pricing-title','price-title','h'],
   ['.price-card.featured .card-name','pkg1-name','h'],['.price-card.featured .card-desc','pkg1-desc','t'],
   ['.price-card:not(.featured) .card-name','pkg2-name','h'],['.price-card:not(.featured) .card-desc','pkg2-desc','t'],
@@ -2197,30 +2116,33 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
 })();
 </script>
 
+<!-- GSAP + ScrollTrigger -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
-// Horizontal scroll — process section (desktop only)
-(function () {
-  const mq = window.matchMedia('(min-width: 900px)');
-  const outer = document.querySelector('.process-scroll-outer');
-  const steps = document.querySelector('.process-steps');
-  const bar   = document.getElementById('processBar');
-  if (!outer || !steps) return;
+(function(){
+  if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
 
-  function update() {
-    if (!mq.matches) { steps.style.transform = ''; if (bar) bar.style.width = ''; return; }
-    const rect       = outer.getBoundingClientRect();
-    const totalScroll = outer.offsetHeight - window.innerHeight;
-    const raw        = -rect.top / totalScroll;
-    const progress   = Math.max(0, Math.min(1, raw));
-    const track      = steps.parentElement;
-    const maxX       = steps.scrollWidth - track.offsetWidth;
-    steps.style.transform = 'translateX(-' + (progress * Math.max(0, maxX)) + 'px)';
-    if (bar) bar.style.width = (progress * 100) + '%';
-  }
+  const track = document.getElementById('processTrack');
+  const section = document.getElementById('process');
+  if(!track || !section) return;
 
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update, { passive: true });
-  update();
+  const getScrollAmount = () => -(track.scrollWidth - window.innerWidth + 96);
+
+  gsap.to(track, {
+    x: getScrollAmount,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top top+=68',
+      end: () => `+=${Math.abs(getScrollAmount())}`,
+      pin: true,
+      scrub: 1,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+    }
+  });
 })();
 </script>
 </body>
