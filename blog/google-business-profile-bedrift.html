@@ -110,29 +110,28 @@ footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245
 <nav>
   <a class="nav-logo" href="../">YAMS</a>
   <ul class="nav-links">
-    <li><a href="../#work">Work</a></li>
-    <li><a href="../#services">Services</a></li>
-    <li><a href="../about.html">About</a></li>
-    <li><a href="./index.html" class="active">Blog</a></li>
-    <li><a href="../#contact">Contact</a></li>
-  
+    <li><a href="../#work" data-key="nav-work">Arbeid</a></li>
+    <li><a href="../#services" data-key="nav-services">Tjenester</a></li>
+    <li><a href="../about.html" data-key="nav-about">Om oss</a></li>
+    <li><a href="./index.html" class="active" data-key="nav-blog">Blogg</a></li>
+    <li><a href="../#contact" data-key="nav-contact">Kontakt</a></li>
     <li><a href="../quiz.html" style="color:#C8A660;">Quiz</a></li>
   </ul>
-  <a class="nav-cta" href="../quiz.html">Get a quote</a>
+  <a class="nav-cta" href="../quiz.html" data-key="nav-cta">Få et tilbud</a>
 </nav>
 
 <div class="art-hero">
   <div class="art-breadcrumb">
-    <a href="../">YAMS</a> <span>›</span> <a href="./index.html">Blog</a> <span>›</span> Google Business Profile
+    <a href="../" data-key="crumb-home">Forside</a> <span>›</span> <a href="./index.html" data-key="crumb-blog">Blogg</a> <span>›</span> Google Business Profile
   </div>
   <div class="art-cat">Lokal SEO & Vekst</div>
   <h1>Google Business Profile for bedrifter i Norge: Komplett guide 2026</h1>
   <div class="art-meta">
     <span>1. juli 2026</span>
     <span class="dot">·</span>
-    <span>7 min lesing</span>
+    <span data-key="art-min">7 min lesing</span>
     <span class="dot">·</span>
-    <span>YAMS</span>
+    <span data-key="art-by">Av YAMS</span>
   </div>
   <img class="art-hero-img" src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1100&q=80" alt="Google søk på mobil"/>
 </div>
@@ -289,32 +288,48 @@ footer{background:#0f1a14;padding:3rem 3rem 1.5rem;border-top:1px solid rgba(245
 </div>
 
 <div class="art-footer-nav">
-  <a class="back-link" href="./index.html">← Tilbake til alle artikler</a>
+  <a class="back-link" href="./index.html" data-key="back-link">← Tilbake til alle artikler</a>
 </div>
 
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">YAMS</div>
     <ul class="footer-links">
-      <li><a href="../">Home</a></li>
-      <li><a href="./index.html">Blog</a></li>
-      <li><a href="../#contact">Contact</a></li>
-      <li><a href="../privacy.html">Privacy Policy</a></li>
-    
+      <li><a href="../" data-key="ft-home">Forside</a></li>
+      <li><a href="./index.html" data-key="ft-blog">Blogg</a></li>
+      <li><a href="../#contact" data-key="ft-contact">Kontakt</a></li>
+      <li><a href="../privacy.html" data-key="ft-privacy">Personvern</a></li>
       <li><a href="../quiz.html" style="color:#C8A660;">Quiz ✦</a></li>
     </ul>
-    <span class="footer-copy">© 2026 YAMS. All rights reserved.</span>
+    <span class="footer-copy" data-key="ft-copy">© 2026 YAMS AS · Org.nr. 937 814 461</span>
   </div>
 </footer>
 
 <script>
+const BT={
+  en:{
+    'nav-work':'Work','nav-services':'Services','nav-about':'About','nav-blog':'Blog','nav-contact':'Contact','nav-cta':'Get a quote',
+    'crumb-home':'Home','crumb-blog':'Blog',
+    'art-min':'7 min read','art-by':'By YAMS',
+    'back-link':'← Back to all articles',
+    'ft-home':'Home','ft-blog':'Blog','ft-contact':'Contact','ft-privacy':'Privacy Policy','ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461'
+  },
+  no:{
+    'nav-work':'Arbeid','nav-services':'Tjenester','nav-about':'Om oss','nav-blog':'Blogg','nav-contact':'Kontakt','nav-cta':'Få et tilbud',
+    'crumb-home':'Forside','crumb-blog':'Blogg',
+    'art-min':'7 min lesing','art-by':'Av YAMS',
+    'back-link':'← Tilbake til alle artikler',
+    'ft-home':'Forside','ft-blog':'Blogg','ft-contact':'Kontakt','ft-privacy':'Personvern','ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461'
+  }
+};
 function setLang(lang){
   localStorage.setItem('yams_lang',lang);
   document.getElementById('lb-en').classList.toggle('active',lang==='en');
   document.getElementById('lb-no').classList.toggle('active',lang==='no');
   document.documentElement.lang=lang;
+  document.querySelectorAll('[data-key]').forEach(el=>{const v=BT[lang][el.dataset.key];if(v!==undefined)el.innerHTML=v;});
 }
-setLang(localStorage.getItem('yams_lang')||'no');
+setLang(localStorage.getItem('yams_lang')||'en');
 </script>
 </body>
 </html>
