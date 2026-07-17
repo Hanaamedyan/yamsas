@@ -326,14 +326,15 @@ section, .manifesto, .services, .work-section, .process, .contact { padding: 8re
 .work-scroll-track::-webkit-scrollbar { display: none; }
 .work-scroll-track:active { cursor: grabbing; }
 .work-card-link { flex: 0 0 320px; display: block; outline: none; }
-.work-card { background: var(--black); position: relative; overflow: hidden; aspect-ratio: 3/4; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; transition: transform .3s ease; }
+.work-card { background: var(--black); position: relative; overflow: hidden; aspect-ratio: 3/4; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; transition: transform .3s ease; border-radius: 20px; }
 .work-card:hover { transform: translateY(-8px); }
-.work-card-bg { position: absolute; inset: 0; overflow: hidden; }
+.work-card-bg { position: absolute; inset: 0; overflow: hidden; border-radius: 20px; }
 .work-card-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; filter: brightness(.5) saturate(.7); transition: filter .4s ease, transform .5s ease; }
 .work-card:hover .work-card-img { filter: brightness(.65) saturate(.85); transform: scale(1.04); }
-.work-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,.9) 0%, rgba(10,10,10,.2) 50%, transparent 100%); }
+.work-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,.92) 0%, rgba(10,10,10,.35) 55%, transparent 100%); border-radius: 20px; }
+.work-card-glass { position: absolute; inset: 0; border-radius: 20px; background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); border: 1px solid rgba(255,255,255,.12); pointer-events: none; }
 .work-card-content { position: relative; z-index: 2; }
-.work-card-tag { display: inline-block; font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); padding: .3rem .7rem; margin-bottom: .8rem; }
+.work-card-tag { display: inline-block; font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: #6fcf97; border: 1px solid #6fcf97; background: rgba(111,207,151,.12); padding: .35rem .8rem; margin-bottom: .8rem; border-radius: 4px; font-weight: 600; }
 .work-card-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--white); line-height: 1.2; margin-bottom: .4rem; }
 .work-card-sub { font-size: .75rem; color: rgba(245,242,236,.45); }
 /* Preview label on work cards */
@@ -1133,6 +1134,7 @@ footer { border-top-color:rgba(245,242,236,.2); }
           <img class="work-card-img" src="https://hanaamedyan.github.io/strobe-musikk/strobe-photo.jpg" alt="STROBE — Norsk artistkollektiv" loading="lazy"/>
         </div>
         <div class="work-card-overlay"></div>
+        <div class="work-card-glass"></div>
         <span class="work-card-preview">Live preview</span>
         <div class="work-card-arrow"><svg viewBox="0 0 24 24"><polyline points="7 17 17 7"/><polyline points="7 7 17 7 17 17"/></svg></div>
         <div class="work-card-content">
@@ -1149,6 +1151,7 @@ footer { border-top-color:rgba(245,242,236,.2); }
           <img class="work-card-img" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80" alt="Pizza Pizza" loading="lazy"/>
         </div>
         <div class="work-card-overlay"></div>
+        <div class="work-card-glass"></div>
         <span class="work-card-preview">Live preview</span>
         <div class="work-card-arrow"><svg viewBox="0 0 24 24"><polyline points="7 17 17 7"/><polyline points="7 7 17 7 17 17"/></svg></div>
         <div class="work-card-content">
