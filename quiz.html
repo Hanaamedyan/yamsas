@@ -15,8 +15,24 @@
 <meta name="description" content="Find the perfect website for your business — answer a few questions and get a summary ready to send to YAMS."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>nav{position:fixed;top:34px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(10,10,10,.95);border-bottom:1px solid rgba(245,242,236,.07);backdrop-filter:blur(16px);}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.06em;color:var(--white);}
+<style>nav{position:fixed;top:34px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 3rem;background:rgba(10,10,10,.92);border-bottom:1px solid rgba(245,242,236,.07);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.05em;color:var(--white);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white);opacity:.7;transition:opacity .2s;}
+.nav-links a:hover,.nav-links a.active{opacity:1;}
+.nav-cta{font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--black);background:var(--white);padding:.6rem 1.4rem;transition:background .2s;border-radius:50px;}
+.nav-cta:hover{background:var(--off-white);}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:4px;width:32px;height:32px;}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:transform .3s ease,opacity .2s ease;transform-origin:center;}
+.nav-hamburger.active span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.nav-hamburger.active span:nth-child(2){opacity:0;}
+.nav-hamburger.active span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.mobile-menu{position:fixed;inset:0;background:var(--black);z-index:99;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s ease;overflow-y:auto;padding:5rem 2rem 4rem;}
+.mobile-menu.open{opacity:1;pointer-events:all;}
+.mobile-nav-links{list-style:none;display:flex;flex-direction:column;align-items:flex-start;gap:0;margin-bottom:1.5rem;width:100%;}
+.mobile-nav-links a{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,9vw,3.2rem);color:var(--white);letter-spacing:.04em;opacity:.55;transition:opacity .2s;display:block;line-height:1.2;}
+.mobile-nav-links a:hover{opacity:1;}
+.mobile-menu-cta{font-size:.72rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--green);background:var(--white);padding:.8rem 2rem;transition:background .2s;border-radius:50px;}
 
 :root{
   --black:#0A0A0A;--white:#F5F2EC;--green:#1B3D2F;
