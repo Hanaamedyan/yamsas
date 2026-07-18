@@ -54,6 +54,19 @@ nav{position:fixed;top:34px;left:0;right:0;z-index:100;display:flex;align-items:
 .service-list{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
 .service-list li{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,242,236,.4);padding-left:1rem;position:relative;}
 .service-list li::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:4px;height:4px;background:var(--accent);border-radius:50%;}
+
+/* Mobile service-list accordion */
+@media(max-width:768px){
+  .service-list-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;margin-bottom:.5rem;padding:.5rem 0;border-bottom:1px solid rgba(245,242,236,.08);}
+  .service-list-toggle-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,236,.4);}
+  .service-list-toggle-btn{background:none;border:none;color:rgba(245,242,236,.35);font-size:1.2rem;font-weight:300;line-height:1;cursor:pointer;transition:transform .3s ease;flex-shrink:0;}
+  .service-list-wrap.open .service-list-toggle-btn{transform:rotate(45deg);}
+  .service-list{max-height:0;overflow:hidden;transition:max-height .35s ease,opacity .25s ease;opacity:0;margin-top:0;}
+  .service-list-wrap.open .service-list{max-height:300px;opacity:1;margin-top:.6rem;}
+}
+@media(min-width:769px){
+  .service-list-toggle{display:none;}
+}
 .service-visual{background:var(--green);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
 .service-visual.alt{background:#0f1c16;}
 .svc-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;transition:opacity .5s;}
@@ -207,13 +220,19 @@ footer{background:#0f1a14;padding:2.5rem 3rem 2rem;border-top:1px solid rgba(245
       </div>
       <div>
         <p class="service-desc" data-key="svc1-desc">Visually compelling, strategically considered design that communicates your brand's value instantly — and keeps visitors coming back.</p>
-        <ul class="service-list">
-          <li data-key="svc1-li1">UI / UX Design</li>
-          <li data-key="svc1-li2">Brand-aligned Layouts</li>
-          <li data-key="svc1-li3">Mobile-first Design Systems</li>
-          <li data-key="svc1-li4">Prototype & Wireframing</li>
-          <li data-key="svc1-li5">Visual Identity Alignment</li>
-        </ul>
+        <div class="service-list-wrap">
+          <div class="service-list-toggle" onclick="this.closest('.service-list-wrap').classList.toggle('open')">
+            <span class="service-list-toggle-label">Inkluderer</span>
+            <button class="service-list-toggle-btn" aria-label="Vis liste">+</button>
+          </div>
+          <ul class="service-list">
+            <li data-key="svc1-li1">UI / UX Design</li>
+            <li data-key="svc1-li2">Brand-aligned Layouts</li>
+            <li data-key="svc1-li3">Mobile-first Design Systems</li>
+            <li data-key="svc1-li4">Prototype & Wireframing</li>
+            <li data-key="svc1-li5">Visual Identity Alignment</li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="service-visual">
@@ -238,13 +257,19 @@ footer{background:#0f1a14;padding:2.5rem 3rem 2rem;border-top:1px solid rgba(245
       </div>
       <div>
         <p class="service-desc" data-key="svc2-desc">Fast, secure, and scalable code built on modern frameworks. We handle the technical heavy lifting so you can focus on your business.</p>
-        <ul class="service-list">
-          <li data-key="svc2-li1">Custom Web Applications</li>
-          <li data-key="svc2-li2">E-commerce Platforms</li>
-          <li data-key="svc2-li3">CMS Development</li>
-          <li data-key="svc2-li4">API Integrations</li>
-          <li data-key="svc2-li5">Performance & SEO</li>
-        </ul>
+        <div class="service-list-wrap">
+          <div class="service-list-toggle" onclick="this.closest('.service-list-wrap').classList.toggle('open')">
+            <span class="service-list-toggle-label">Inkluderer</span>
+            <button class="service-list-toggle-btn" aria-label="Vis liste">+</button>
+          </div>
+          <ul class="service-list">
+            <li data-key="svc2-li1">Custom Web Applications</li>
+            <li data-key="svc2-li2">E-commerce Platforms</li>
+            <li data-key="svc2-li3">CMS Development</li>
+            <li data-key="svc2-li4">API Integrations</li>
+            <li data-key="svc2-li5">Performance & SEO</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -257,12 +282,18 @@ footer{background:#0f1a14;padding:2.5rem 3rem 2rem;border-top:1px solid rgba(245
       </div>
       <div>
         <p class="service-desc" data-key="svc3-desc">We go beyond launch. Our ongoing strategy and support services ensure your digital presence continuously evolves and grows.</p>
-        <ul class="service-list">
-          <li data-key="svc3-li1">SEO & Content Strategy</li>
-          <li data-key="svc3-li2">Analytics & Reporting</li>
-          <li data-key="svc3-li3">Conversion Optimisation</li>
-          <li data-key="svc3-li4">Monthly Retainer Support</li>
-        </ul>
+        <div class="service-list-wrap">
+          <div class="service-list-toggle" onclick="this.closest('.service-list-wrap').classList.toggle('open')">
+            <span class="service-list-toggle-label">Inkluderer</span>
+            <button class="service-list-toggle-btn" aria-label="Vis liste">+</button>
+          </div>
+          <ul class="service-list">
+            <li data-key="svc3-li1">SEO & Content Strategy</li>
+            <li data-key="svc3-li2">Analytics & Reporting</li>
+            <li data-key="svc3-li3">Conversion Optimisation</li>
+            <li data-key="svc3-li4">Monthly Retainer Support</li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="service-visual">
@@ -287,13 +318,19 @@ footer{background:#0f1a14;padding:2.5rem 3rem 2rem;border-top:1px solid rgba(245
       </div>
       <div>
         <p class="service-desc" data-key="svc4-desc">Visuals that sell. We produce clean, editorial-quality product photography tailored for web — designed to elevate your brand and convert browsers into buyers.</p>
-        <ul class="service-list">
-          <li data-key="svc4-li1">E-commerce Product Shots</li>
-          <li data-key="svc4-li2">Editorial & Lifestyle Photography</li>
-          <li data-key="svc4-li3">Brand Campaign Imagery</li>
-          <li data-key="svc4-li4">Photo Editing & Retouching</li>
-          <li data-key="svc4-li5">Web-Optimised Asset Delivery</li>
-        </ul>
+        <div class="service-list-wrap">
+          <div class="service-list-toggle" onclick="this.closest('.service-list-wrap').classList.toggle('open')">
+            <span class="service-list-toggle-label">Inkluderer</span>
+            <button class="service-list-toggle-btn" aria-label="Vis liste">+</button>
+          </div>
+          <ul class="service-list">
+            <li data-key="svc4-li1">E-commerce Product Shots</li>
+            <li data-key="svc4-li2">Editorial & Lifestyle Photography</li>
+            <li data-key="svc4-li3">Brand Campaign Imagery</li>
+            <li data-key="svc4-li4">Photo Editing & Retouching</li>
+            <li data-key="svc4-li5">Web-Optimised Asset Delivery</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
