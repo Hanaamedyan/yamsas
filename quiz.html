@@ -270,6 +270,7 @@ const T = {
   en: {
     pageTitle:   'Website Quiz — YAMS',
     navBack:     '← Back to homepage',
+    'nav-work':'Work','nav-services':'Services','nav-contact':'Contact','nav-about':'About','nav-blog':'Blog','nav-cta':'Start quiz',
     eyebrow:     'Gratis nettsideplan',
     heroTitle:   'Get a free website<br/>plan in <em>2 minutes</em>.',
     heroSub:     '',
@@ -352,6 +353,7 @@ const T = {
   no: {
     pageTitle:   'Nettside-quiz — YAMS',
     navBack:     '← Tilbake til forsiden',
+    'nav-work':'Arbeid','nav-services':'Tjenester','nav-contact':'Kontakt','nav-about':'Om oss','nav-blog':'Blogg','nav-cta':'Start quizen',
     eyebrow:     'Gratis nettsideplan',
     heroTitle:   'Få en gratis<br/>nettsideplan på <em>6 steg</em>.',
     heroSub:     '',
@@ -448,6 +450,10 @@ function applyLang() {
   const t = T[lang];
   document.getElementById('page-title').textContent = t.pageTitle;
   document.getElementById('nav-back-link').innerHTML = t.navBack;
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const v = t[el.dataset.key];
+    if(v !== undefined) el.innerHTML = v;
+  });
   document.getElementById('hero-eyebrow').textContent = t.eyebrow;
   document.getElementById('hero-title').innerHTML = t.heroTitle;
   const heroSub = document.getElementById('hero-sub'); if(heroSub) heroSub.textContent = t.heroSub;
