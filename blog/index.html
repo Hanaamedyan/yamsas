@@ -353,7 +353,7 @@ footer{background:#0f1a14;padding:2.5rem 3rem 2rem;border-top:1px solid rgba(245
 
     <!-- Bottom bar -->
     <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2026 YAMS. All rights reserved. &nbsp;&middot;&nbsp; Org.nr. 937 814 461 &nbsp;&middot;&nbsp; <a href="./privacy.html" style="color:inherit;text-decoration:none;">Personvern</a></span>
+      <span class="footer-copy">&copy; 2026 YAMS. All rights reserved. &nbsp;&middot;&nbsp; <span x-apple-data-detectors="false" style="pointer-events:none;">Org.nr.&nbsp;937&zwnj;&#8239;814&zwnj;&#8239;461</span> &nbsp;&middot;&nbsp; <a href="./privacy.html" style="color:inherit;text-decoration:none;">Personvern</a></span>
       <ul class="footer-socials">
         <li>
           <a href="https://www.instagram.com/yamssolutions/" target="_blank" rel="noopener" aria-label="YAMS on Instagram" style="display:inline-flex;align-items:center;gap:.45rem;">
@@ -397,8 +397,8 @@ const T={
     'ft-h1':'Services','ft-h2':'Company','ft-h3':'Contact',
     'ft-s1':'Web Design','ft-s2':'Development','ft-s3':'E-commerce','ft-s4':'Growth Strategy',
     'ft-c1':'Our Work','ft-c2':'About','ft-c3':'Contact','ft-c4':'Blog',
-    'ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461','ft-priv':'Privacy Policy',
-    'ft-home':'Home','ft-pricing':'Pricing','ft-blog':'Blog','ft-contact':'Contact','ft-privacy':'Privacy Policy','ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461',
+    'ft-copy':'© 2026 YAMS AS · <span x-apple-data-detectors="false" style="pointer-events:none;">Org.nr.&nbsp;937&zwnj;&#8239;814&zwnj;&#8239;461</span>','ft-priv':'Privacy Policy',
+    'ft-home':'Home','ft-pricing':'Pricing','ft-blog':'Blog','ft-contact':'Contact','ft-privacy':'Privacy Policy','ft-copy':'© 2026 YAMS AS · <span x-apple-data-detectors="false" style="pointer-events:none;">Org.nr.&nbsp;937&zwnj;&#8239;814&zwnj;&#8239;461</span>',
   },
   no:{
     'nav-services':'Tjenester','nav-work':'Arbeid','nav-process':'Prosess','nav-pricing':'Priser','nav-about':'Om oss','nav-blog':'Blogg','nav-contact':'Kontakt','nav-cta':'Start quizen',
@@ -423,8 +423,8 @@ const T={
     'ft-h1':'Tjenester','ft-h2':'Selskap','ft-h3':'Kontakt',
     'ft-s1':'Web Design','ft-s2':'Utvikling','ft-s3':'E-handel','ft-s4':'Vekststrategi',
     'ft-c1':'Vårt arbeid','ft-c2':'Om oss','ft-c3':'Kontakt','ft-c4':'Blogg',
-    'ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461','ft-priv':'Personvern',
-    'ft-home':'Forside','ft-pricing':'Priser','ft-blog':'Blogg','ft-contact':'Kontakt','ft-privacy':'Personvern','ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461',
+    'ft-copy':'© 2026 YAMS AS · <span x-apple-data-detectors="false" style="pointer-events:none;">Org.nr.&nbsp;937&zwnj;&#8239;814&zwnj;&#8239;461</span>','ft-priv':'Personvern',
+    'ft-home':'Forside','ft-pricing':'Priser','ft-blog':'Blogg','ft-contact':'Kontakt','ft-privacy':'Personvern','ft-copy':'© 2026 YAMS AS · <span x-apple-data-detectors="false" style="pointer-events:none;">Org.nr.&nbsp;937&zwnj;&#8239;814&zwnj;&#8239;461</span>',
   }
 };
 function setLang(lang){localStorage.setItem('yams_lang',lang);document.getElementById('lb-en').classList.toggle('active',lang==='en');document.getElementById('lb-no').classList.toggle('active',lang==='no');document.documentElement.lang=lang;document.querySelectorAll('[data-key]').forEach(el=>{const v=T[lang][el.dataset.key];if(v!==undefined)el.innerHTML=v;});}

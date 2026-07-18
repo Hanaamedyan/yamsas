@@ -385,7 +385,7 @@ footer{background:#0f1a14;padding:2.5rem 3rem 2rem;border-top:1px solid rgba(245
 
     <!-- Bottom bar -->
     <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2026 YAMS. All rights reserved. &nbsp;&middot;&nbsp; Org.nr. 937 814 461 &nbsp;&middot;&nbsp; <a href="./privacy.html" style="color:inherit;text-decoration:none;">Personvern</a></span>
+      <span class="footer-copy">&copy; 2026 YAMS. All rights reserved. &nbsp;&middot;&nbsp; <span x-apple-data-detectors="false" style="pointer-events:none;">Org.nr.&nbsp;937&zwnj;&#8239;814&zwnj;&#8239;461</span> &nbsp;&middot;&nbsp; <a href="./privacy.html" style="color:inherit;text-decoration:none;">Personvern</a></span>
       <ul class="footer-socials">
         <li>
           <a href="https://www.instagram.com/yamssolutions/" target="_blank" rel="noopener" aria-label="YAMS on Instagram" style="display:inline-flex;align-items:center;gap:.45rem;">
@@ -413,7 +413,7 @@ const BT={
     'toc-1':'Why restaurants need a website','toc-2':'What should it contain?','toc-3':'Local SEO for restaurants','toc-4':'Mobile optimisation','toc-5':'Pricing',
     'related-title':'Read also','rel1-cat':'Strategy','rel1-title':'Website for tradespeople','rel2-cat':'SEO & Growth','rel2-title':'How to get more customers from Google?',
     'read-art':'Read article →','read-art2':'Read article →',
-    'ft-home':'Home','ft-blog':'Blog','ft-contact':'Contact','ft-privacy':'Privacy Policy','ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461'
+    'ft-home':'Home','ft-blog':'Blog','ft-contact':'Contact','ft-privacy':'Privacy Policy','ft-copy':'© 2026 YAMS AS · <span x-apple-data-detectors="false" style="pointer-events:none;">Org.nr.&nbsp;937&zwnj;&#8239;814&zwnj;&#8239;461</span>'
   },
   no:{
     'nav-services':'Tjenester','nav-work':'Arbeid','nav-process':'Prosess','nav-about':'Om oss','nav-blog':'Blogg','nav-contact':'Kontakt','nav-cta':'Få et tilbud',
@@ -422,7 +422,7 @@ const BT={
     'toc-1':'Hvorfor restauranter trenger nettside','toc-2':'Hva bør nettsiden inneholde?','toc-3':'Lokal SEO for restauranter','toc-4':'Mobiloptimalisering','toc-5':'Priser',
     'related-title':'Les også','rel1-cat':'Strategi','rel1-title':'Nettside for håndverkere','rel2-cat':'SEO & Vekst','rel2-title':'Hvordan få flere kunder fra Google?',
     'read-art':'Les artikkelen →','read-art2':'Les artikkelen →',
-    'ft-home':'Forside','ft-blog':'Blogg','ft-contact':'Kontakt','ft-privacy':'Personvern','ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461'
+    'ft-home':'Forside','ft-blog':'Blogg','ft-contact':'Kontakt','ft-privacy':'Personvern','ft-copy':'© 2026 YAMS AS · <span x-apple-data-detectors="false" style="pointer-events:none;">Org.nr.&nbsp;937&zwnj;&#8239;814&zwnj;&#8239;461</span>'
   }
 };
 function setLang(lang){localStorage.setItem('yams_lang',lang);document.getElementById('lb-en').classList.toggle('active',lang==='en');document.getElementById('lb-no').classList.toggle('active',lang==='no');document.documentElement.lang=lang;document.querySelectorAll('[data-key]').forEach(el=>{const v=BT[lang][el.dataset.key];if(v!==undefined)el.innerHTML=v;});}

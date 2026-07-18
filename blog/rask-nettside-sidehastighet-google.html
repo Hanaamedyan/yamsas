@@ -382,7 +382,7 @@ footer{background:#0f1a14;padding:2.5rem 3rem 2rem;border-top:1px solid rgba(245
 
     <!-- Bottom bar -->
     <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2026 YAMS. All rights reserved. &nbsp;&middot;&nbsp; Org.nr. 937 814 461 &nbsp;&middot;&nbsp; <a href="./privacy.html" style="color:inherit;text-decoration:none;">Personvern</a></span>
+      <span class="footer-copy">&copy; 2026 YAMS. All rights reserved. &nbsp;&middot;&nbsp; <span x-apple-data-detectors="false" style="pointer-events:none;">Org.nr.&nbsp;937&zwnj;&#8239;814&zwnj;&#8239;461</span> &nbsp;&middot;&nbsp; <a href="./privacy.html" style="color:inherit;text-decoration:none;">Personvern</a></span>
       <ul class="footer-socials">
         <li>
           <a href="https://www.instagram.com/yamssolutions/" target="_blank" rel="noopener" aria-label="YAMS on Instagram" style="display:inline-flex;align-items:center;gap:.45rem;">
@@ -410,7 +410,7 @@ const BT={
     'toc-1':'Why speed is critical','toc-2':'Core Web Vitals explained','toc-3':'Common causes','toc-4':'Key improvements','toc-5':'Speed checklist',
     'related-title':'Read also','rel1-title':'SEO for small businesses','rel2-cat':'Web Development','rel2-title':'WordPress or custom website?',
     'read-art':'Read article →','read-art2':'Read article →',
-    'ft-home':'Home','ft-blog':'Blog','ft-contact':'Contact','ft-privacy':'Privacy Policy','ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461'
+    'ft-home':'Home','ft-blog':'Blog','ft-contact':'Contact','ft-privacy':'Privacy Policy','ft-copy':'© 2026 YAMS AS · <span x-apple-data-detectors="false" style="pointer-events:none;">Org.nr.&nbsp;937&zwnj;&#8239;814&zwnj;&#8239;461</span>'
   },
   no:{
     'nav-services':'Tjenester','nav-work':'Arbeid','nav-process':'Prosess','nav-about':'Om oss','nav-blog':'Blogg','nav-contact':'Kontakt','nav-cta':'Få et tilbud',
@@ -419,7 +419,7 @@ const BT={
     'toc-1':'Hvorfor hastighet er kritisk','toc-2':'Core Web Vitals forklart','toc-3':'Vanlige årsaker','toc-4':'De viktigste tiltakene','toc-5':'Hastighets-sjekkliste',
     'related-title':'Les også','rel1-title':'SEO for små bedrifter','rel2-cat':'Nettbygging','rel2-title':'WordPress eller skreddersydd nettside?',
     'read-art':'Les artikkelen →','read-art2':'Les artikkelen →',
-    'ft-home':'Forside','ft-blog':'Blogg','ft-contact':'Kontakt','ft-privacy':'Personvern','ft-copy':'© 2026 YAMS AS · Org.nr. 937 814 461'
+    'ft-home':'Forside','ft-blog':'Blogg','ft-contact':'Kontakt','ft-privacy':'Personvern','ft-copy':'© 2026 YAMS AS · <span x-apple-data-detectors="false" style="pointer-events:none;">Org.nr.&nbsp;937&zwnj;&#8239;814&zwnj;&#8239;461</span>'
   }
 };
 function setLang(lang){localStorage.setItem('yams_lang',lang);document.getElementById('lb-en').classList.toggle('active',lang==='en');document.getElementById('lb-no').classList.toggle('active',lang==='no');document.documentElement.lang=lang;document.querySelectorAll('[data-key]').forEach(el=>{const v=BT[lang][el.dataset.key];if(v!==undefined)el.innerHTML=v;});}
