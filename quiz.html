@@ -449,7 +449,7 @@ function setLang(l) {
 function applyLang() {
   const t = T[lang];
   document.getElementById('page-title').textContent = t.pageTitle;
-  document.getElementById('nav-back-link').innerHTML = t.navBack;
+  const navBack = document.getElementById('nav-back-link'); if(navBack) navBack.innerHTML = t.navBack;
   document.querySelectorAll('[data-key]').forEach(el => {
     const v = t[el.dataset.key];
     if(v !== undefined) el.innerHTML = v;
