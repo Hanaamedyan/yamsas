@@ -321,7 +321,7 @@ const submitBtn = document.getElementById('formSubmit');
 if(form){
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    const lang  = localStorage.getItem('yams_lang') || 'en';
+    const lang  = localStorage.getItem('yams_lang') || 'no';
     const isNo  = lang === 'no';
     const name  = document.getElementById('fname').value.trim();
     const email = document.getElementById('femail').value.trim();
@@ -409,7 +409,7 @@ function setLang(lang){
     if(v !== undefined) el.placeholder = v;
   });
 }
-setLang(localStorage.getItem('yams_lang') || 'en');
+setLang(localStorage.getItem('yams_lang') || 'no');
 </script>
 <script>
 // Burger menu

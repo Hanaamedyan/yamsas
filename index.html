@@ -1477,7 +1477,7 @@ const T_MAP = [
   ['.footer-copy a[href*="privacy"]','ft-priv','t'],
 ];
 
-let currentLang = localStorage.getItem('yams_lang') || 'en';
+let currentLang = localStorage.getItem('yams_lang') || 'no';
 
 function setLang(lang) {
   currentLang = lang;
@@ -1830,7 +1830,7 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
   };
 
   /* ── Language helpers — read from localStorage at call time ── */
-  function getLang(){ return localStorage.getItem('yams_lang') || 'en'; }
+  function getLang(){ return localStorage.getItem('yams_lang') || 'no'; }
   function getKB()  { return getLang() === 'no' ? KB_NO : KB_EN; }
   function getQuickInit()     { return getLang()==='no' ? ['Ta quizen','Tjenester','Prosess','Kontakt']      : ['Take the quiz','Services','Process','Contact']; }
   function getQuickFollowup() { return getLang()==='no' ? ['Ta quizen','Webdesign','Leveringstid','Kontakt'] : ['Take the quiz','Web Design','Timeline','Contact']; }
@@ -2042,7 +2042,7 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
   window._updateCookieBannerLang = function(lang) { applyLang(lang); };
 
   // Init language
-  applyLang(localStorage.getItem('yams_lang') || 'en');
+  applyLang(localStorage.getItem('yams_lang') || 'no');
 })();
 </script>
 

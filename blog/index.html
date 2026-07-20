@@ -438,7 +438,7 @@ const T={
   }
 };
 function setLang(lang){localStorage.setItem('yams_lang',lang);document.getElementById('lb-en').classList.toggle('active',lang==='en');document.getElementById('lb-no').classList.toggle('active',lang==='no');document.documentElement.lang=lang;document.querySelectorAll('[data-key]').forEach(el=>{const v=T[lang][el.dataset.key];if(v!==undefined)el.innerHTML=v;});}
-setLang(localStorage.getItem('yams_lang')||'en');
+setLang(localStorage.getItem('yams_lang')||'no');
 </script>
 <script>
 // Burger menu
