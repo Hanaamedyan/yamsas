@@ -977,8 +977,8 @@ footer { border-top-color:rgba(245,242,236,.2); }
   <div class="hero-eyebrow">Website Solutions — Est. Norway</div>
   <h1 class="hero-title">We Build<br><span class="green">Digital</span><br>Presence</h1>
   <div class="hero-cta-row">
-    <a href="./quiz.html" class="hero-btn-filled">Nettsidebygger</a>
-    <a href="./services.html" class="hero-btn-outline">Tjenester</a>
+    <a href="./quiz.html" class="hero-btn-filled" id="hero-btn-filled">Nettsidebygger</a>
+    <a href="./services.html" class="hero-btn-outline" id="hero-btn-outline">Tjenester</a>
   </div>
 </section>
 
@@ -1339,6 +1339,7 @@ const TRANSLATIONS = {
     'nav-services':'Services','nav-work':'Work','nav-process':'Process','nav-pricing':'Pricing','nav-contact':'Contact','nav-about':'About','nav-blog':'Blog',
     'nav-cta':'Start the quiz','mob-cta':'Start the quiz','mob-tagline':'YAMS — Website Solutions',
     'hero-eyebrow':'Website Solutions — Est. Norway',
+    'hero-btn-filled':'Website Builder','hero-btn-outline':'Services',
     'hero-h1':'We Build<br><span class="green">Digital</span><br>Presence',
     'hero-tagline':'From startups to established brands — we craft high-performance websites that convert, engage, and endure.',
     'stat-label-1':'Client Satisfaction','stat-label-2':'Support Response','hero-scroll':'Scroll',
@@ -1392,6 +1393,7 @@ const TRANSLATIONS = {
     'nav-services':'Tjenester','nav-work':'Arbeid','nav-process':'Prosess','nav-pricing':'Priser','nav-contact':'Kontakt','nav-about':'Om oss','nav-blog':'Blogg',
     'nav-cta':'Start quizen','mob-cta':'Start quizen','mob-tagline':'YAMS — Nettstedløsninger',
     'hero-eyebrow':'Nettstedløsninger — Est. Norge',
+    'hero-btn-filled':'Nettsidebygger','hero-btn-outline':'Tjenester',
     'hero-h1':'Vi Bygger<br><span class="green">Digital</span><br>Tilstedeværelse',
     'hero-tagline':'Fra startups til etablerte merkevarer — vi lager høyytende nettsteder som konverterer, engasjerer og varer.',
     'stat-label-1':'Kundetilfredshet','stat-label-2':'Responstid support','hero-scroll':'Rull',
@@ -1447,7 +1449,7 @@ const T_MAP = [
   ['.nav-links li:nth-child(1) a','nav-work','t'],['.nav-links li:nth-child(2) a','nav-services','t'],['.nav-links li:nth-child(3) a','nav-contact','t'],['.nav-links li:nth-child(4) a','nav-about','t'],['.nav-links li:nth-child(5) a','nav-blog','t'],
   ['.nav-cta','nav-cta','t'],['.mobile-menu-cta','mob-cta','t'],['.mobile-menu-tagline','mob-tagline','t'],
   ['.mobile-nav-links li:nth-child(1) a','nav-work','t'],['.mobile-nav-links li:nth-child(2) a','nav-services','t'],['.mobile-nav-links li:nth-child(3) a','nav-contact','t'],['.mobile-nav-links li:nth-child(4) a','nav-about','t'],['.mobile-nav-links li:nth-child(5) a','nav-blog','t'],
-  ['.hero-eyebrow','hero-eyebrow','t'],['.hero-title','hero-h1','h'],['.hero-tagline','hero-tagline','t'],
+  ['.hero-eyebrow','hero-eyebrow','t'],['.hero-title','hero-h1','h'],['.hero-tagline','hero-tagline','t'],['#hero-btn-filled','hero-btn-filled','t'],['#hero-btn-outline','hero-btn-outline','t'],
   ['.hero-stat:nth-child(1) .stat-label','stat-label-1','t'],['.hero-stat:nth-child(2) .stat-label','stat-label-2','t'],['.hero-scroll span','hero-scroll','t'],
   ['.manifesto-label','manifesto-label','t'],['.manifesto-quote','manifesto-quote','h'],['.manifesto-body:nth-of-type(1)','manifesto-b1','t'],['.manifesto .btn-dark','manifesto-cta','t'],
   ['.service-block:nth-child(1) .service-title','svc1-title','h'],['.service-block:nth-child(1) .service-desc','svc1-desc','t'],
