@@ -2137,31 +2137,31 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
   if(nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
 
   // Desktop drag
-  let startX = 0, startOffset = 0, isDragging = false, didSwipe = false;
-  function getOffset(){ return current * getItemWidth(); }
+  // Desktop mouse drag (no pointer capture so child links still work)
+  let startX = 0, isDragging = false, dragDist = 0;
 
-  track.addEventListener('pointerdown', e => {
+  track.addEventListener('mousedown', e => {
     if(isMobile()) return;
-    startX = e.clientX; startOffset = getOffset();
-    isDragging = true; didSwipe = false;
-    track.setPointerCapture(e.pointerId);
+    startX = e.clientX; isDragging = true; dragDist = 0;
     track.style.transition = 'none';
+    track.style.cursor = 'grabbing';
   });
-  track.addEventListener('pointermove', e => {
+  window.addEventListener('mousemove', e => {
     if(!isDragging) return;
-    const dx = e.clientX - startX;
-    if(Math.abs(dx) > 8) didSwipe = true;
-    track.style.transform = `translateX(${-(startOffset - dx)}px)`;
+    dragDist = e.clientX - startX;
+    const base = current * getItemWidth();
+    track.style.transform = `translateX(${-(base - dragDist)}px)`;
   });
-  track.addEventListener('pointerup', e => {
+  window.addEventListener('mouseup', e => {
     if(!isDragging) return;
     isDragging = false;
-    const dx = startX - e.clientX;
+    track.style.cursor = '';
     track.style.transition = '';
-    goTo(Math.abs(dx) > 50 ? (dx > 0 ? current + 1 : current - 1) : current);
+    goTo(Math.abs(dragDist) > 50 ? (dragDist < 0 ? current + 1 : current - 1) : current);
   });
+  // Only block link if actually dragged
   track.querySelectorAll('.g4-item').forEach(item => {
-    item.addEventListener('click', e => { if(didSwipe) e.preventDefault(); });
+    item.addEventListener('click', e => { if(Math.abs(dragDist) > 8) e.preventDefault(); });
   });
 
   // Mobile: sync dots with native scroll
