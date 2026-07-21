@@ -353,25 +353,33 @@ section, .manifesto, .services, .work-section, .process, .contact { padding: 8re
 .btn-dark-outline:hover { border-color: var(--black); }
 
 /* PROCESS */
-.process { background: #0a0a0a; padding: 8rem 3rem; }
-.process-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 5rem; max-width: 1300px; margin-left: auto; margin-right: auto; gap: 2rem; }
-.process-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem,5vw,6rem); color: var(--white); line-height: .9; flex: 1; }
-.process-intro { font-size: .9rem; line-height: 1.9; color: rgba(245,242,236,.7); max-width: 380px; padding-top: 1rem; flex: 0 0 380px; }
-/* Stacked process cards */
-.process-track-wrap { overflow: hidden; }
-.process-track { display: flex; gap: 2rem; padding: 0 3rem 3rem; width: max-content; will-change: transform; }
-.stacked-card { position: relative; width: min(48vw, 520px); height: 340px; border-radius: 24px; isolation: isolate; flex-shrink: 0; }
-.stacked-card::before { content: ''; position: absolute; inset: -3px; border-radius: 27px; background: conic-gradient(from 0deg, transparent 0deg, var(--cc) 60deg, var(--cc2) 120deg, transparent 180deg, var(--cc3) 240deg, transparent 360deg); z-index: -1; }
-.card-glass { position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 2rem 2.2rem; border-radius: 24px; background: linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.05)); backdrop-filter: blur(25px) saturate(180%); -webkit-backdrop-filter: blur(25px) saturate(180%); border: 1px solid rgba(255,255,255,.2); box-shadow: 0 8px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.3), inset 0 -1px 0 rgba(255,255,255,.1); overflow: hidden; }
-.card-reflect-top { position: absolute; top: 0; left: 0; right: 0; height: 60%; background: linear-gradient(135deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,.08) 50%, transparent 100%); pointer-events: none; border-radius: 24px 24px 0 0; }
-.card-shine { position: absolute; top: 10px; left: 10px; right: 10px; height: 2px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent); border-radius: 1px; pointer-events: none; }
-.card-reflect-side { position: absolute; top: 0; left: 0; width: 2px; height: 100%; background: linear-gradient(180deg, rgba(255,255,255,.28) 0%, transparent 50%); border-radius: 24px 0 0 24px; pointer-events: none; }
-.card-texture { position: absolute; inset: 0; background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,.1) 1px, transparent 2px), radial-gradient(circle at 80% 70%, rgba(255,255,255,.08) 1px, transparent 2px), radial-gradient(circle at 40% 80%, rgba(255,255,255,.06) 1px, transparent 2px); background-size: 30px 30px, 25px 25px, 35px 35px; pointer-events: none; border-radius: 24px; opacity: .6; }
-.card-body { position: relative; z-index: 1; }
-.process-step { display: none; } /* legacy — replaced */
-.step-num { font-family: 'Bebas Neue', sans-serif; font-size: 6rem; color: var(--white); opacity: .35; line-height: 1; margin-bottom: 1.5rem; }
-.step-title { font-size: 1.2rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--white); margin-bottom: 1rem; }
-.step-desc { font-size: 1.05rem; line-height: 1.85; color: rgba(245,242,236,.72); max-width: 520px; }
+/* ── GALLERY4 PROCESS ── */
+.g4-section { background: #0a0a0a; padding: 8rem 0 6rem; }
+.g4-header-wrap { display: flex; align-items: flex-end; justify-content: space-between; padding: 0 3rem; max-width: 1300px; margin: 0 auto 3.5rem; gap: 2rem; }
+.g4-header-left { display: flex; flex-direction: column; gap: 1rem; }
+.g4-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem,5vw,6rem); color: var(--white); line-height: .9; }
+.g4-desc { font-size: .9rem; line-height: 1.8; color: rgba(245,242,236,.6); max-width: 440px; }
+.g4-arrows { display: flex; gap: .5rem; flex-shrink: 0; }
+.g4-btn { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: rgba(245,242,236,.06); border: 1px solid rgba(245,242,236,.12); border-radius: 50%; cursor: pointer; color: var(--white); transition: background .2s, border-color .2s; }
+.g4-btn:hover:not(:disabled) { background: rgba(245,242,236,.12); border-color: rgba(245,242,236,.3); }
+.g4-btn:disabled { opacity: .3; cursor: not-allowed; }
+.g4-track-outer { overflow: hidden; }
+.g4-track { display: flex; gap: 20px; padding: 0 3rem 1rem; will-change: transform; }
+.g4-item { flex: 0 0 320px; display: block; text-decoration: none; border-radius: 16px; overflow: hidden; }
+.g4-img-wrap { position: relative; height: 27rem; border-radius: 16px; overflow: hidden; }
+.g4-img-wrap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.g4-item:hover .g4-img-wrap img { transform: scale(1.05); }
+.g4-gradient { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,.95) 0%, rgba(10,10,10,.4) 50%, transparent 100%); }
+.g4-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; }
+.g4-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--accent); opacity: .5; line-height: 1; margin-bottom: .5rem; }
+.g4-card-title { font-size: 1.2rem; font-weight: 600; color: var(--white); margin-bottom: .6rem; letter-spacing: .04em; }
+.g4-card-desc { font-size: .82rem; line-height: 1.7; color: rgba(245,242,236,.7); margin-bottom: 1.2rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.g4-read { font-size: .7rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); display: inline-flex; align-items: center; gap: .4rem; transition: gap .2s; }
+.g4-item:hover .g4-read { gap: .7rem; }
+.g4-dots { display: flex; justify-content: center; gap: 8px; margin-top: 2.5rem; }
+.g4-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(245,242,236,.2); border: none; cursor: pointer; transition: background .2s, transform .2s; padding: 0; }
+.g4-dot.active { background: var(--accent); transform: scale(1.3); }
+@media(max-width:768px) { .g4-header-wrap { padding: 0 1.2rem; flex-direction: column; align-items: flex-start; } .g4-track { padding: 0 1.2rem 1rem; } .g4-item { flex: 0 0 80vw; max-width: 300px; } .g4-img-wrap { height: 22rem; } .g4-arrows { display: none; } }
 
 /* CONTACT */
 .contact { background: #0D1510; padding: 10rem 3rem; text-align: center; position: relative; overflow: hidden; border-top: 1px solid rgba(61,122,92,.2); }
@@ -1056,63 +1064,76 @@ footer { border-top-color:rgba(245,242,236,.2); }
 
 <!-- WORK -->
 <!-- PROCESS -->
-<div class="process" id="process">
-  <div class="process-header reveal">
-    <div>
+<section class="g4-section" id="process">
+  <div class="g4-header-wrap">
+    <div class="g4-header-left">
       <span class="section-label">How We Work</span>
-      <h2 class="process-title">Our<br>Process</h2>
+      <h2 class="g4-title">Our<br><span class="green">Process</span></h2>
+      <p class="g4-desc" data-key="proc-intro">A clear, collaborative workflow — from first conversation to final launch and beyond.</p>
+    </div>
+    <div class="g4-arrows">
+      <button class="g4-btn" id="g4Prev" aria-label="Previous">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="g4-btn" id="g4Next" aria-label="Next">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
     </div>
   </div>
-  <div class="process-track-wrap" id="process-stacked">
-    <div class="process-track" id="processTrack">
-
-      <div class="stacked-card" data-index="0" style="--cc:rgba(61,122,92,0.8);--cc2:rgba(61,122,92,0.5);--cc3:rgba(61,122,92,0.3)">
-        <div class="card-glass">
-          <div class="card-reflect-top"></div><div class="card-shine"></div><div class="card-reflect-side"></div><div class="card-texture"></div>
-          <div class="card-body">
-            <div class="step-num">01</div>
-            <h3 class="step-title">Discovery</h3>
-            <p class="step-desc">We dig into your goals, audience, and competitive landscape. No guesswork — just clarity before a single pixel is drawn.</p>
+  <div class="g4-track-outer">
+    <div class="g4-track" id="g4Track">
+      <a class="g4-item" href="./quiz.html">
+        <div class="g4-img-wrap">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=720&q=80" alt="Discovery" loading="lazy"/>
+          <div class="g4-gradient"></div>
+          <div class="g4-content">
+            <div class="g4-num">01</div>
+            <h3 class="g4-card-title">Discovery</h3>
+            <p class="g4-card-desc">We dig into your goals, audience, and competitive landscape. No guesswork — just clarity before a single pixel is drawn.</p>
+            <span class="g4-read">Start here <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
           </div>
         </div>
-      </div>
-
-      <div class="stacked-card" data-index="1" style="--cc:rgba(61,122,92,0.8);--cc2:rgba(61,122,92,0.5);--cc3:rgba(61,122,92,0.3)">
-        <div class="card-glass">
-          <div class="card-reflect-top"></div><div class="card-shine"></div><div class="card-reflect-side"></div><div class="card-texture"></div>
-          <div class="card-body">
-            <div class="step-num">02</div>
-            <h3 class="step-title">Design</h3>
-            <p class="step-desc">We craft wireframes and high-fidelity mockups that translate your brand vision into a coherent visual language.</p>
+      </a>
+      <a class="g4-item" href="./services.html">
+        <div class="g4-img-wrap">
+          <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=720&q=80" alt="Design" loading="lazy"/>
+          <div class="g4-gradient"></div>
+          <div class="g4-content">
+            <div class="g4-num">02</div>
+            <h3 class="g4-card-title">Design</h3>
+            <p class="g4-card-desc">We craft wireframes and high-fidelity mockups that translate your brand vision into a coherent visual language.</p>
+            <span class="g4-read">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
           </div>
         </div>
-      </div>
-
-      <div class="stacked-card" data-index="2" style="--cc:rgba(61,122,92,0.8);--cc2:rgba(61,122,92,0.5);--cc3:rgba(61,122,92,0.3)">
-        <div class="card-glass">
-          <div class="card-reflect-top"></div><div class="card-shine"></div><div class="card-reflect-side"></div><div class="card-texture"></div>
-          <div class="card-body">
-            <div class="step-num">03</div>
-            <h3 class="step-title">Build</h3>
-            <p class="step-desc">Clean, performant code. We build with modern frameworks, accessibility at the core, and mobile-first always.</p>
+      </a>
+      <a class="g4-item" href="./services.html">
+        <div class="g4-img-wrap">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=720&q=80" alt="Build" loading="lazy"/>
+          <div class="g4-gradient"></div>
+          <div class="g4-content">
+            <div class="g4-num">03</div>
+            <h3 class="g4-card-title">Build</h3>
+            <p class="g4-card-desc">Clean, performant code. We build with modern frameworks, accessibility at the core, and mobile-first always.</p>
+            <span class="g4-read">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
           </div>
         </div>
-      </div>
-
-      <div class="stacked-card" data-index="3" style="--cc:rgba(61,122,92,0.8);--cc2:rgba(61,122,92,0.5);--cc3:rgba(61,122,92,0.3)">
-        <div class="card-glass">
-          <div class="card-reflect-top"></div><div class="card-shine"></div><div class="card-reflect-side"></div><div class="card-texture"></div>
-          <div class="card-body">
-            <div class="step-num">04</div>
-            <h3 class="step-title">Launch & Grow</h3>
-            <p class="step-desc">Go live with confidence. We handle deployment, testing, and provide ongoing support so your site keeps improving.</p>
+      </a>
+      <a class="g4-item" href="./contact.html">
+        <div class="g4-img-wrap">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=720&q=80" alt="Launch and Grow" loading="lazy"/>
+          <div class="g4-gradient"></div>
+          <div class="g4-content">
+            <div class="g4-num">04</div>
+            <h3 class="g4-card-title">Launch & Grow</h3>
+            <p class="g4-card-desc">Go live with confidence. We handle deployment, testing, and provide ongoing support so your site keeps improving.</p>
+            <span class="g4-read">Get started <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
           </div>
         </div>
-      </div>
-
+      </a>
     </div>
   </div>
-</div>
+  <div class="g4-dots" id="g4Dots"></div>
+</section>
 
 <!-- SERVICES -->
 
@@ -2063,34 +2084,56 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
 })();
 </script>
 
-<!-- GSAP + ScrollTrigger -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<!-- Gallery4 carousel -->
 <script>
 (function(){
-  if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-  if(window.matchMedia('(max-width:900px)').matches) return;
-  gsap.registerPlugin(ScrollTrigger);
+  const track = document.getElementById('g4Track');
+  const dotsWrap = document.getElementById('g4Dots');
+  const prevBtn = document.getElementById('g4Prev');
+  const nextBtn = document.getElementById('g4Next');
+  if(!track) return;
 
-  const track = document.getElementById('processTrack');
-  const section = document.getElementById('process');
-  if(!track || !section) return;
+  const items = track.querySelectorAll('.g4-item');
+  const count = items.length;
+  let current = 0;
 
-  const getScrollAmount = () => -(track.scrollWidth - window.innerWidth + 96);
-
-  gsap.to(track, {
-    x: getScrollAmount,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: section,
-      start: 'top top+=68',
-      end: () => `+=${Math.abs(getScrollAmount())}`,
-      pin: true,
-      scrub: 1,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-    }
+  // Build dots
+  items.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'g4-dot' + (i===0?' active':'');
+    d.setAttribute('aria-label', `Go to slide ${i+1}`);
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
   });
+
+  function getItemWidth() {
+    return items[0].offsetWidth + 20; // gap
+  }
+
+  function goTo(idx) {
+    current = Math.max(0, Math.min(idx, count - 1));
+    track.style.transform = `translateX(-${current * getItemWidth()}px)`;
+    track.style.transition = 'transform .4s cubic-bezier(.22,1,.36,1)';
+    dotsWrap.querySelectorAll('.g4-dot').forEach((d,i) => d.classList.toggle('active', i===current));
+    if(prevBtn) prevBtn.disabled = current === 0;
+    if(nextBtn) nextBtn.disabled = current === count - 1;
+  }
+
+  if(prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+  if(nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // Drag / swipe
+  let startX = 0, dragging = false;
+  track.addEventListener('pointerdown', e => { startX = e.clientX; dragging = true; track.setPointerCapture(e.pointerId); });
+  track.addEventListener('pointermove', e => { if(!dragging) return; });
+  track.addEventListener('pointerup', e => {
+    if(!dragging) return; dragging = false;
+    const diff = startX - e.clientX;
+    if(Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+  });
+
+  goTo(0);
+  window.addEventListener('resize', () => goTo(current));
 })();
 </script>
 </body>
