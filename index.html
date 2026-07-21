@@ -1082,7 +1082,7 @@ footer { border-top-color:rgba(245,242,236,.2); }
   </div>
   <div class="g4-track-outer">
     <div class="g4-track" id="g4Track">
-      <a class="g4-item" href="./quiz.html">
+      <a class="g4-item" href="https://www.yamsas.com/quiz.html">
         <div class="g4-img-wrap">
           <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=720&q=80" alt="Discovery" loading="lazy"/>
           <div class="g4-gradient"></div>
@@ -1094,7 +1094,7 @@ footer { border-top-color:rgba(245,242,236,.2); }
           </div>
         </div>
       </a>
-      <a class="g4-item" href="./quiz.html">
+      <a class="g4-item" href="https://www.yamsas.com/quiz.html">
         <div class="g4-img-wrap">
           <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=720&q=80" alt="Design" loading="lazy"/>
           <div class="g4-gradient"></div>
@@ -1106,7 +1106,7 @@ footer { border-top-color:rgba(245,242,236,.2); }
           </div>
         </div>
       </a>
-      <a class="g4-item" href="./quiz.html">
+      <a class="g4-item" href="https://www.yamsas.com/quiz.html">
         <div class="g4-img-wrap">
           <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=720&q=80" alt="Build" loading="lazy"/>
           <div class="g4-gradient"></div>
@@ -1118,7 +1118,7 @@ footer { border-top-color:rgba(245,242,236,.2); }
           </div>
         </div>
       </a>
-      <a class="g4-item" href="./quiz.html">
+      <a class="g4-item" href="https://www.yamsas.com/quiz.html">
         <div class="g4-img-wrap">
           <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=720&q=80" alt="Launch and Grow" loading="lazy"/>
           <div class="g4-gradient"></div>
@@ -2122,14 +2122,34 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
   if(prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
   if(nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
 
-  // Drag / swipe
-  let startX = 0, dragging = false;
-  track.addEventListener('pointerdown', e => { startX = e.clientX; dragging = true; track.setPointerCapture(e.pointerId); });
-  track.addEventListener('pointermove', e => { if(!dragging) return; });
+  // Swipe / drag — works on touch and mouse, prevents link click after swipe
+  let startX = 0, startOffset = 0, isDragging = false, didSwipe = false;
+  function getOffset(){ return current * getItemWidth(); }
+
+  track.addEventListener('pointerdown', e => {
+    startX = e.clientX; startOffset = getOffset();
+    isDragging = true; didSwipe = false;
+    track.setPointerCapture(e.pointerId);
+    track.style.transition = 'none';
+  }, {passive:true});
+
+  track.addEventListener('pointermove', e => {
+    if(!isDragging) return;
+    const dx = e.clientX - startX;
+    if(Math.abs(dx) > 8) didSwipe = true;
+    track.style.transform = `translateX(${-(startOffset - dx)}px)`;
+  }, {passive:true});
+
   track.addEventListener('pointerup', e => {
-    if(!dragging) return; dragging = false;
-    const diff = startX - e.clientX;
-    if(Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+    if(!isDragging) return;
+    isDragging = false;
+    const dx = startX - e.clientX;
+    track.style.transition = '';
+    goTo(Math.abs(dx) > 50 ? (dx > 0 ? current + 1 : current - 1) : current);
+  });
+
+  track.querySelectorAll('.g4-item').forEach(item => {
+    item.addEventListener('click', e => { if(didSwipe) e.preventDefault(); });
   });
 
   goTo(0);
