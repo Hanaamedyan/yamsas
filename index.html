@@ -367,6 +367,18 @@ section, .manifesto, .services, .work-section, .process, .contact { padding: 8re
 .g4-track { display: flex; gap: 20px; padding: 0 3rem 1rem; will-change: transform; }
 .g4-item { flex: 0 0 320px; display: block; text-decoration: none; border-radius: 16px; overflow: hidden; }
 .g4-img-wrap { position: relative; height: 27rem; border-radius: 16px; overflow: hidden; }
+
+/* Mobile: native scroll with snapping */
+@media(max-width:768px){
+  .g4-track-outer { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .g4-track-outer::-webkit-scrollbar { display: none; }
+  .g4-track { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; transform: none !important; transition: none !important; padding-bottom: 1rem; scrollbar-width: none; }
+  .g4-track::-webkit-scrollbar { display: none; }
+  .g4-item { scroll-snap-align: start; flex: 0 0 80vw; max-width: 300px; }
+  .g4-img-wrap { height: 22rem; }
+  .g4-arrows { display: none; }
+  .g4-header-wrap { padding: 0 1.2rem; flex-direction: column; align-items: flex-start; }
+}
 .g4-img-wrap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
 .g4-item:hover .g4-img-wrap img { transform: scale(1.05); }
 .g4-gradient { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,.95) 0%, rgba(10,10,10,.4) 50%, transparent 100%); }
@@ -379,7 +391,6 @@ section, .manifesto, .services, .work-section, .process, .contact { padding: 8re
 .g4-dots { display: flex; justify-content: center; gap: 8px; margin-top: 2.5rem; }
 .g4-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(245,242,236,.2); border: none; cursor: pointer; transition: background .2s, transform .2s; padding: 0; }
 .g4-dot.active { background: var(--accent); transform: scale(1.3); }
-@media(max-width:768px) { .g4-header-wrap { padding: 0 1.2rem; flex-direction: column; align-items: flex-start; } .g4-track { padding: 0 1.2rem 1rem; } .g4-item { flex: 0 0 80vw; max-width: 300px; } .g4-img-wrap { height: 22rem; } .g4-arrows { display: none; } }
 
 /* CONTACT */
 .contact { background: #0D1510; padding: 10rem 3rem; text-align: center; position: relative; overflow: hidden; border-top: 1px solid rgba(61,122,92,.2); }
@@ -2088,6 +2099,7 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
 <script>
 (function(){
   const track = document.getElementById('g4Track');
+  const outer = track ? track.parentElement : null;
   const dotsWrap = document.getElementById('g4Dots');
   const prevBtn = document.getElementById('g4Prev');
   const nextBtn = document.getElementById('g4Next');
@@ -2096,19 +2108,21 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
   const items = track.querySelectorAll('.g4-item');
   const count = items.length;
   let current = 0;
+  const isMobile = () => window.innerWidth <= 768;
 
   // Build dots
   items.forEach((_, i) => {
     const d = document.createElement('button');
     d.className = 'g4-dot' + (i===0?' active':'');
     d.setAttribute('aria-label', `Go to slide ${i+1}`);
-    d.addEventListener('click', () => goTo(i));
+    d.addEventListener('click', () => {
+      if(isMobile()) { items[i].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'}); }
+      else goTo(i);
+    });
     dotsWrap.appendChild(d);
   });
 
-  function getItemWidth() {
-    return items[0].offsetWidth + 20; // gap
-  }
+  function getItemWidth(){ return items[0].offsetWidth + 20; }
 
   function goTo(idx) {
     current = Math.max(0, Math.min(idx, count - 1));
@@ -2122,24 +2136,23 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
   if(prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
   if(nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
 
-  // Swipe / drag — works on touch and mouse, prevents link click after swipe
+  // Desktop drag
   let startX = 0, startOffset = 0, isDragging = false, didSwipe = false;
   function getOffset(){ return current * getItemWidth(); }
 
   track.addEventListener('pointerdown', e => {
+    if(isMobile()) return;
     startX = e.clientX; startOffset = getOffset();
     isDragging = true; didSwipe = false;
     track.setPointerCapture(e.pointerId);
     track.style.transition = 'none';
-  }, {passive:true});
-
+  });
   track.addEventListener('pointermove', e => {
     if(!isDragging) return;
     const dx = e.clientX - startX;
     if(Math.abs(dx) > 8) didSwipe = true;
     track.style.transform = `translateX(${-(startOffset - dx)}px)`;
-  }, {passive:true});
-
+  });
   track.addEventListener('pointerup', e => {
     if(!isDragging) return;
     isDragging = false;
@@ -2147,13 +2160,21 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
     track.style.transition = '';
     goTo(Math.abs(dx) > 50 ? (dx > 0 ? current + 1 : current - 1) : current);
   });
-
   track.querySelectorAll('.g4-item').forEach(item => {
     item.addEventListener('click', e => { if(didSwipe) e.preventDefault(); });
   });
 
+  // Mobile: sync dots with native scroll
+  if(outer) {
+    track.addEventListener('scroll', () => {
+      if(!isMobile()) return;
+      const idx = Math.round(track.scrollLeft / getItemWidth());
+      dotsWrap.querySelectorAll('.g4-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
+    }, {passive:true});
+  }
+
   goTo(0);
-  window.addEventListener('resize', () => goTo(current));
+  window.addEventListener('resize', () => { if(!isMobile()) goTo(current); });
 })();
 </script>
 </body>
