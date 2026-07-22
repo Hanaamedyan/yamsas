@@ -1090,8 +1090,8 @@ footer { border-top-color:rgba(245,242,236,.2); }
 <section class="g4-section" id="process">
   <div class="g4-header-wrap">
     <div class="g4-header-left">
-      <span class="section-label">How We Work</span>
-      <h2 class="g4-title">Our<br><span class="green">Process</span></h2>
+      <span class="section-label" data-key="proc-label">How We Work</span>
+      <h2 class="g4-title" data-key="proc-title">Our<br><span class="green">Process</span></h2>
       <p class="g4-desc" data-key="proc-intro">A clear, collaborative workflow — from first conversation to final launch and beyond.</p>
     </div>
     <div class="g4-arrows">
@@ -1409,7 +1409,7 @@ const TRANSLATIONS = {
     'svc3-title':'Growth<br><span>Strategy</span>','svc3-desc':'We go beyond launch. Our ongoing strategy and support services ensure your digital presence continuously evolves and grows.','svc3-li1':'SEO & Content Strategy','svc3-li2':'Analytics & Reporting','svc3-li3':'Conversion Optimisation','svc3-li4':'Monthly Retainer Support',
     'svc4-title':'Product<br><span>Photography</span>','svc4-desc':'Visuals that sell. We produce clean, editorial-quality product photography tailored for web — designed to elevate your brand.','svc4-li1':'E-commerce Product Shots','svc4-li2':'Editorial & Lifestyle Photography','svc4-li3':'Brand Campaign Imagery','svc4-li4':'Photo Editing & Retouching','svc4-li5':'Web-Optimised Asset Delivery',
     'work-label':'Selected Work','work-title':'Recent<br><span class="green">Projects</span>','work-all':'View all work',
-    'proc-label':'How We Work','proc-title':'Our<br>Process','proc-intro':'A clear, collaborative workflow that keeps you informed at every step — from first conversation to final launch and beyond.',
+    'proc-label':'How We Work','proc-title':'Our<br><span class="green">Process</span>','proc-intro':'A clear, collaborative workflow — from first conversation to final launch and beyond.',
     'step1-t':'Discovery','step1-d':'We dig into your goals, audience, and competitive landscape. No guesswork — just clarity before a single pixel is drawn.',
     'step2-t':'Design','step2-d':'We craft wireframes and high-fidelity mockups that translate your brand vision into a coherent visual language.',
     'step3-t':'Build','step3-d':'Clean, performant code. We build with modern frameworks, accessibility at the core, and mobile-first always.',
@@ -1464,7 +1464,7 @@ const TRANSLATIONS = {
     'svc3-title':'Vekst<br><span>Strategi</span>','svc3-desc':'Vi går utover lansering. Våre løpende strategi- og støttetjenester sørger for at din digitale tilstedeværelse vokser kontinuerlig.','svc3-li1':'SEO og innholdsstrategi','svc3-li2':'Analyse og rapportering','svc3-li3':'Konverteringsoptimalisering','svc3-li4':'Månedlig retainer-støtte',
     'svc4-title':'Produkt<br><span>Fotografering</span>','svc4-desc':'Visuals som selger. Vi produserer ren, redaksjonell produktfotografering for nett — designet for å løfte merkevaren din.','svc4-li1':'Produktbilder for e-handel','svc4-li2':'Redaksjonell og livsstilsfotografering','svc4-li3':'Merkevare­kampanje bilder','svc4-li4':'Bilderedigering og retusjering','svc4-li5':'Nett-optimaliserte filer',
     'work-label':'Utvalgte prosjekter','work-title':'Nylige<br><span class="green">Prosjekter</span>','work-all':'Se alt arbeid',
-    'proc-label':'Slik jobber vi','proc-title':'Vår<br>Prosess','proc-intro':'En tydelig, samarbeidsorientert arbeidsflyt som holder deg informert i hvert steg — fra første samtale til endelig lansering.',
+    'proc-label':'Slik jobber vi','proc-title':'Vår<br><span class="green">Prosess</span>','proc-intro':'En tydelig, samarbeidsorientert arbeidsflyt — fra første samtale til endelig lansering.',
     'step1-t':'Oppdagelse','step1-d':'Vi graver oss inn i dine mål, målgruppe og konkurranselandskap. Ingen gjetting — bare klarhet.',
     'step2-t':'Design','step2-d':'Vi lager wireframes og høy­fidelity mockups som oversetter merkevarevisjonen din til et sammenhengende visuelt språk.',
     'step3-t':'Bygging','step3-d':'Ren, ytelsesdyktig kode. Vi bygger med moderne rammeverk, tilgjengelighet i kjernen og mobile-first alltid.',
@@ -1518,7 +1518,7 @@ const T_MAP = [
   ['.service-block:nth-child(4) .service-title','svc4-title','h'],['.service-block:nth-child(4) .service-desc','svc4-desc','t'],
   ['.service-block:nth-child(4) .service-list li:nth-child(1)','svc4-li1','t'],['.service-block:nth-child(4) .service-list li:nth-child(2)','svc4-li2','t'],['.service-block:nth-child(4) .service-list li:nth-child(3)','svc4-li3','t'],['.service-block:nth-child(4) .service-list li:nth-child(4)','svc4-li4','t'],['.service-block:nth-child(4) .service-list li:nth-child(5)','svc4-li5','t'],
   ['.work-header .section-label','work-label','t'],['.work-title','work-title','h'],['.work-header .btn-dark','work-all','t'],
-  ['.process-header .section-label','proc-label','t'],['.process-title','proc-title','h'],['.process-intro','proc-intro','t'],
+  ['#process .section-label','proc-label','t'],['#process .g4-title','proc-title','h'],['#process .g4-desc','proc-intro','t'],
   ['#g4Track .g4-item:nth-child(1) .g4-card-title','step1-t','t'],['#g4Track .g4-item:nth-child(1) .g4-card-desc','step1-d','t'],
   ['#g4Track .g4-item:nth-child(2) .g4-card-title','step2-t','t'],['#g4Track .g4-item:nth-child(2) .g4-card-desc','step2-d','t'],
   ['#g4Track .g4-item:nth-child(3) .g4-card-title','step3-t','t'],['#g4Track .g4-item:nth-child(3) .g4-card-desc','step3-d','t'],
