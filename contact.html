@@ -50,16 +50,10 @@ a{text-decoration:none;color:inherit;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
 .form-group{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem;}
 .form-label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,242,236,.5);}
-.budget-display{color:var(--white);font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.05em;margin-left:.5rem;}
 .form-input{background:rgba(245,242,236,.06);border:1px solid rgba(245,242,236,.15);color:var(--white);font-family:'DM Sans',sans-serif;font-size:.9rem;padding:.9rem 1.2rem;outline:none;transition:border-color .2s;width:100%;}
 .form-input::placeholder{color:rgba(245,242,236,.25);}
 .form-input:focus{border-color:rgba(245,242,236,.5);}
 .form-textarea{resize:vertical;min-height:130px;}
-.form-range{-webkit-appearance:none;appearance:none;width:100%;height:2px;background:rgba(245,242,236,.2);outline:none;margin:.8rem 0 .4rem;cursor:pointer;}
-.form-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;background:var(--white);border-radius:50%;cursor:pointer;transition:transform .15s;}
-.form-range::-webkit-slider-thumb:hover{transform:scale(1.2);}
-.form-range::-moz-range-thumb{width:20px;height:20px;background:var(--white);border-radius:50%;cursor:pointer;border:none;}
-.range-labels{display:flex;justify-content:space-between;font-size:.62rem;color:rgba(245,242,236,.3);letter-spacing:.08em;}
 .btn-white{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--black);background:var(--white);padding:1.1rem 2.5rem;transition:background .2s;border:none;cursor:pointer;width:100%;margin-top:.5rem;border-radius:50px;}
 .btn-white:hover{background:var(--off-white);}
 .btn-white:disabled{opacity:.5;cursor:not-allowed;}
@@ -182,11 +176,6 @@ footer{background:#0f1a14;padding:2.5rem 3rem 2rem;border-top:1px solid rgba(245
         <label class="form-label" for="fproject" data-key="label-project">Project Description</label>
         <textarea class="form-input form-textarea" id="fproject" placeholder="Tell us about your project, goals, and timeline..." data-ph="ph-project" required></textarea>
       </div>
-      <div class="form-group">
-        <label class="form-label" for="fbudget" data-key="label-budget">Budget <span class="budget-display" id="budgetDisplay">NOK 30k</span></label>
-        <input class="form-range" type="range" id="fbudget" min="10000" max="50000" step="5000" value="30000"/>
-        <div class="range-labels"><span>NOK 10k</span><span>NOK 50k</span></div>
-      </div>
       <button class="btn-white" type="submit" id="formSubmit" data-key="form-submit">Send Your Inquiry</button>
     </form>
     <div class="form-success-msg" id="formSuccess">
@@ -307,13 +296,6 @@ footer{background:#0f1a14;padding:2.5rem 3rem 2rem;border-top:1px solid rgba(245
 <script>
 const WEB3_KEY = '79d11e30-fd01-499a-93b2-72a2831a8e61';
 
-const slider  = document.getElementById('fbudget');
-const display = document.getElementById('budgetDisplay');
-if(slider && display){
-  const fmt = v => 'NOK ' + Math.round(v/1000) + 'k';
-  slider.addEventListener('input', () => { display.textContent = fmt(slider.value); });
-}
-
 const form      = document.getElementById('contactForm');
 const successMsg= document.getElementById('formSuccess');
 const submitBtn = document.getElementById('formSubmit');
@@ -326,7 +308,6 @@ if(form){
     const name  = document.getElementById('fname').value.trim();
     const email = document.getElementById('femail').value.trim();
     const project = document.getElementById('fproject').value.trim();
-    const budget  = display?.textContent || '';
     if(!name || !email) return;
     submitBtn.disabled    = true;
     submitBtn.textContent = isNo ? 'Sender...' : 'Sending...';
@@ -341,8 +322,7 @@ if(form){
           replyto:    email,
           name, email,
           project: project || '—',
-          budget:  budget  || '—',
-          message: `Name: ${name}\nEmail: ${email}\n\nProject:\n${project}\n\nBudget: ${budget}`
+          message: `Name: ${name}\nEmail: ${email}\n\nProject:\n${project}`
         })
       });
       const data = await res.json();
@@ -370,7 +350,7 @@ const BT = {
     'nav-work':'Work','nav-services':'Services','nav-process':'Process','nav-contact':'Contact','nav-about':'About','nav-blog':'Blog','nav-cta':'Get a quote',
     'contact-bg':"LET'S TALK",'contact-label':'Ready when you are','contact-title':'Let\'s Build<br>Something Great',
     'contact-sub':'Tell us about your project and we\'ll get back to you within 24 hours with a tailored proposal.',
-    'label-name':'Full Name','label-email':'Email Address','label-project':'Project Description','label-budget':'Budget',
+    'label-name':'Full Name','label-email':'Email Address','label-project':'Project Description',
     'ph-name':'Your name','ph-project':'Tell us about your project, goals, and timeline...',
     'form-submit':'Send Your Inquiry',
     'suc-title':'Message Sent','suc-body':'Thanks for reaching out. We\'ll review your inquiry and get back to you within 24 hours.',
@@ -386,7 +366,7 @@ const BT = {
     'nav-work':'Arbeid','nav-services':'Tjenester','nav-process':'Prosess','nav-contact':'Kontakt','nav-about':'Om oss','nav-blog':'Blogg','nav-cta':'Få et tilbud',
     'contact-bg':'LA OSS PRATE','contact-label':'Klar når du er klar','contact-title':'Klar for vekst?<br>La oss bygge.',
     'contact-sub':'Book en gratis konsultasjon, få en nettside-analyse, eller motta ditt tilbud i dag — vi svarer innen 24 timer.',
-    'label-name':'Fullt navn','label-email':'E-postadresse','label-project':'Prosjektbeskrivelse','label-budget':'Budsjett',
+    'label-name':'Fullt navn','label-email':'E-postadresse','label-project':'Prosjektbeskrivelse',
     'ph-name':'Ditt navn','ph-project':'Fortell oss om prosjektet ditt, mål og tidslinje...',
     'form-submit':'Send forespørsel',
     'suc-title':'Melding sendt','suc-body':'Takk for at du tok kontakt. Vi gjennomgår forespørselen din og kommer tilbake til deg innen 24 timer.',
