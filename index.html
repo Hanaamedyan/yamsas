@@ -972,7 +972,7 @@ footer { border-top-color:rgba(245,242,236,.2); }
 <nav id="mainNav">
   <a class="nav-logo" href="#">YAMS</a>
   <ul class="nav-links">
-    <li><a href="#work" data-key="nav-work">Work</a></li>
+    <li><a href="./" data-key="nav-home">Home</a></li>
     <li><a href="./services.html" data-key="nav-services">Services</a></li>
     <li><a href="./contact.html" data-key="nav-contact">Contact</a></li>
     <li><a href="./about.html" data-key="nav-about">About</a></li>
@@ -987,7 +987,7 @@ footer { border-top-color:rgba(245,242,236,.2); }
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation" aria-hidden="true">
   <ul class="mobile-nav-links">
-    <li><a href="#work" data-key="nav-work">Work</a></li>
+    <li><a href="./" data-key="nav-home">Home</a></li>
     <li><a href="./services.html" data-key="nav-services">Services</a></li>
     <li><a href="./contact.html" data-key="nav-contact">Contact</a></li>
     <li><a href="./about.html" data-key="nav-about">About</a></li>
@@ -1394,7 +1394,7 @@ if(slider && display){
 /* ── LANGUAGE SWITCHER ── */
 const TRANSLATIONS = {
   en: {
-    'nav-services':'Services','nav-work':'Work','nav-process':'Process','nav-pricing':'Pricing','nav-contact':'Contact','nav-about':'About','nav-blog':'Blog',
+    'nav-home':'Home','nav-services':'Services','nav-process':'Process','nav-pricing':'Pricing','nav-contact':'Contact','nav-about':'About','nav-blog':'Blog',
     'nav-cta':'Start the quiz','mob-cta':'Start the quiz','mob-tagline':'YAMS — Website Solutions',
     'hero-eyebrow':'Website Solutions — Est. Norway',
     'hero-btn-filled':'Website Builder','hero-btn-outline':'Services',
@@ -1449,7 +1449,7 @@ const TRANSLATIONS = {
 
   },
   no: {
-    'nav-services':'Tjenester','nav-work':'Arbeid','nav-process':'Prosess','nav-pricing':'Priser','nav-contact':'Kontakt','nav-about':'Om oss','nav-blog':'Blogg',
+    'nav-home':'Hjem','nav-services':'Tjenester','nav-process':'Prosess','nav-pricing':'Priser','nav-contact':'Kontakt','nav-about':'Om oss','nav-blog':'Blogg',
     'nav-cta':'Start quizen','mob-cta':'Start quizen','mob-tagline':'YAMS — Nettstedløsninger',
     'hero-eyebrow':'Nettstedløsninger — Est. Norge',
     'hero-btn-filled':'Nettsidebygger','hero-btn-outline':'Tjenester',
@@ -1506,9 +1506,9 @@ const TRANSLATIONS = {
 };
 
 const T_MAP = [
-  ['.nav-links li:nth-child(1) a','nav-work','t'],['.nav-links li:nth-child(2) a','nav-services','t'],['.nav-links li:nth-child(3) a','nav-contact','t'],['.nav-links li:nth-child(4) a','nav-about','t'],['.nav-links li:nth-child(5) a','nav-blog','t'],
+  ['.nav-links li:nth-child(1) a','nav-home','t'],['.nav-links li:nth-child(2) a','nav-services','t'],['.nav-links li:nth-child(3) a','nav-contact','t'],['.nav-links li:nth-child(4) a','nav-about','t'],['.nav-links li:nth-child(5) a','nav-blog','t'],
   ['.nav-cta','nav-cta','t'],['.mobile-menu-cta','mob-cta','t'],['.mobile-menu-tagline','mob-tagline','t'],
-  ['.mobile-nav-links li:nth-child(1) a','nav-work','t'],['.mobile-nav-links li:nth-child(2) a','nav-services','t'],['.mobile-nav-links li:nth-child(3) a','nav-contact','t'],['.mobile-nav-links li:nth-child(4) a','nav-about','t'],['.mobile-nav-links li:nth-child(5) a','nav-blog','t'],
+  ['.mobile-nav-links li:nth-child(1) a','nav-home','t'],['.mobile-nav-links li:nth-child(2) a','nav-services','t'],['.mobile-nav-links li:nth-child(3) a','nav-contact','t'],['.mobile-nav-links li:nth-child(4) a','nav-about','t'],['.mobile-nav-links li:nth-child(5) a','nav-blog','t'],
   ['.hero-eyebrow','hero-eyebrow','t'],['.hero-title','hero-h1','h'],['.hero-tagline','hero-tagline','t'],['#hero-btn-filled','hero-btn-filled','t'],['#hero-btn-outline','hero-btn-outline','t'],
   ['.hero-stat:nth-child(1) .stat-label','stat-label-1','t'],['.hero-stat:nth-child(2) .stat-label','stat-label-2','t'],['.hero-scroll span','hero-scroll','t'],
   ['.manifesto-label','manifesto-label','t'],['.manifesto-quote','manifesto-quote','h'],['.manifesto-body:nth-of-type(1)','manifesto-b1','t'],['.manifesto .btn-dark','manifesto-cta','t'],
