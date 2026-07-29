@@ -1340,22 +1340,25 @@ document.querySelectorAll('a, button').forEach(el => {
 });
 
 /* NAV / HAMBURGER */
-const hamburger = document.getElementById('navHamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click', () => {
-  const open = hamburger.classList.toggle('active');
-  mobileMenu.classList.toggle('open', open);
-  hamburger.setAttribute('aria-expanded', String(open));
-  mobileMenu.setAttribute('aria-hidden', String(!open));
-  document.body.style.overflow = open ? 'hidden' : '';
-});
-mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  hamburger.classList.remove('active');
-  mobileMenu.classList.remove('open');
-  hamburger.setAttribute('aria-expanded', 'false');
-  mobileMenu.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-}));
+(function(){
+  const ham = document.getElementById('navHamburger');
+  const mob = document.getElementById('mobileMenu');
+  if(!ham||!mob) return;
+  ham.addEventListener('click', () => {
+    const open = ham.classList.toggle('active');
+    mob.classList.toggle('open', open);
+    ham.setAttribute('aria-expanded', String(open));
+    mob.setAttribute('aria-hidden', String(!open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    ham.classList.remove('active');
+    mob.classList.remove('open');
+    ham.setAttribute('aria-expanded', 'false');
+    mob.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }));
+})();
 
 /* SCROLL REVEAL */
 const revealObserver = new IntersectionObserver(entries => {
