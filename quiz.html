@@ -1181,14 +1181,18 @@ document.addEventListener('DOMContentLoaded', function() {
   const mob = document.getElementById('mobileMenu');
   if(!ham||!mob) return;
   ham.addEventListener('click', () => {
-    ham.classList.toggle('active');
-    mob.classList.toggle('open');
-    mob.setAttribute('aria-hidden', mob.classList.contains('open') ? 'false' : 'true');
-    ham.setAttribute('aria-expanded', mob.classList.contains('open').toString());
+    const open = ham.classList.toggle('active');
+    mob.classList.toggle('open', open);
+    ham.setAttribute('aria-expanded', String(open));
+    mob.setAttribute('aria-hidden', String(!open));
+    document.body.style.overflow = open ? 'hidden' : '';
   });
   mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    mob.classList.remove('open');
     ham.classList.remove('active');
+    mob.classList.remove('open');
+    ham.setAttribute('aria-expanded', 'false');
+    mob.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
   }));
 })();
 </script>
