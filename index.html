@@ -2226,14 +2226,29 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
     item.addEventListener('click', e => { if(Math.abs(dragDist) > 8) e.preventDefault(); });
   });
 
-  // Mobile: sync dots with native scroll
-  if(outer) {
-    outer.addEventListener('scroll', () => {
-      if(!isMobile()) return;
-      const idx = Math.round(outer.scrollLeft / getItemWidth());
-      dotsWrap.querySelectorAll('.work-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
-    }, {passive:true});
-  }
+  // Mobile: sync dots with native scroll (scroll fires on track itself, not outer)
+  track.addEventListener('scroll', () => {
+    if(!isMobile()) return;
+    const idx = Math.round(track.scrollLeft / getItemWidth());
+    current = idx;
+    dotsWrap.querySelectorAll('.work-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
+  }, {passive:true});
+
+  // Mobile touch swipe (fallback for browsers where scroll-snap alone isn't enough)
+  let touchStartX = 0, touchStartScroll = 0;
+  track.addEventListener('touchstart', e => {
+    if(!isMobile()) return;
+    touchStartX = e.touches[0].clientX;
+    touchStartScroll = track.scrollLeft;
+  }, {passive:true});
+  track.addEventListener('touchend', e => {
+    if(!isMobile()) return;
+    const dx = touchStartX - e.changedTouches[0].clientX;
+    if(Math.abs(dx) > 40) {
+      const target = Math.max(0, Math.min(count - 1, current + (dx > 0 ? 1 : -1)));
+      track.scrollTo({left: target * getItemWidth(), behavior:'smooth'});
+    }
+  }, {passive:true});
 
   goTo(0);
   window.addEventListener('resize', () => { if(!isMobile()) goTo(current); });
