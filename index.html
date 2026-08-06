@@ -573,11 +573,12 @@ footer { background: #0f1a14; padding: 2.5rem 3rem 2rem; border-top: 1px solid r
   .work-section { padding: 5rem 0; }
   .work-header { padding: 0 2.5rem; margin-bottom: 2.2rem; }
   .work-scroll-track { padding: 0 2.5rem; }
-  .work-card-link { flex: 0 0 290px; }
+  .work-card-link { flex: 0 0 80vw; max-width: 320px; }
   .work-arrows { display: none; }
   .work-track-outer { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .work-track-outer::-webkit-scrollbar { display: none; }
-  .work-scroll-track { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; transform: none !important; transition: none !important; will-change: auto; }
+  .work-scroll-track { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; transform: none !important; transition: none !important; will-change: auto; scrollbar-width: none; }
+  .work-scroll-track::-webkit-scrollbar { display: none; }
   .work-card-link { scroll-snap-align: start; }
 
   /* Process */
@@ -810,7 +811,7 @@ footer { background: #0f1a14; padding: 2.5rem 3rem 2rem; border-top: 1px solid r
   .work-header { padding: 0 1.2rem; margin-bottom: 2rem; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
   .work-title { font-size: clamp(2.2rem,9vw,3.5rem); }
   .work-scroll-track { padding: 0 1.2rem; gap: 1rem; }
-  .work-card-link { flex: 0 0 240px; }
+  .work-card-link { flex: 0 0 80vw; max-width: 280px; }
   .work-arrows { display: none; }
 
   /* Process */
@@ -859,7 +860,7 @@ footer { background: #0f1a14; padding: 2.5rem 3rem 2rem; border-top: 1px solid r
   .hero-stat { min-width: 70px; }
   .stat-num { font-size: 1.6rem; }
   .manifesto-quote { font-size: 1.4rem; }
-  .work-card-link { flex: 0 0 200px; }
+  .work-card-link { flex: 0 0 80vw; max-width: 240px; }
   .service-visual { height: 160px; }
   .service-title { font-size: clamp(2rem,10vw,3.5rem); }
   .contact-title { font-size: clamp(2.4rem,11vw,3.5rem); }
@@ -2163,7 +2164,6 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
 <script>
 (function(){
   const track = document.getElementById('workTrack');
-  const outer = track ? track.parentElement : null;
   const dotsWrap = document.getElementById('workDots');
   const prevBtn = document.getElementById('workPrev');
   const nextBtn = document.getElementById('workNext');
@@ -2186,7 +2186,7 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
     dotsWrap.appendChild(d);
   });
 
-  function getItemWidth(){ return items[0].offsetWidth + parseInt(getComputedStyle(track).gap); }
+  function getItemWidth(){ return items[0].offsetWidth + 20; }
 
   function goTo(idx) {
     current = Math.max(0, Math.min(idx, count - 1));
@@ -2215,7 +2215,7 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
     const base = current * getItemWidth();
     track.style.transform = `translateX(${-(base - dragDist)}px)`;
   });
-  window.addEventListener('mouseup', () => {
+  window.addEventListener('mouseup', e => {
     if(!isDragging) return;
     isDragging = false;
     track.style.cursor = '';
@@ -2226,28 +2226,11 @@ document.addEventListener('DOMContentLoaded', ()=>setLang(currentLang));
     item.addEventListener('click', e => { if(Math.abs(dragDist) > 8) e.preventDefault(); });
   });
 
-  // Mobile: sync dots with native scroll (scroll fires on track itself, not outer)
+  // Mobile: sync dots with native scroll
   track.addEventListener('scroll', () => {
     if(!isMobile()) return;
     const idx = Math.round(track.scrollLeft / getItemWidth());
-    current = idx;
     dotsWrap.querySelectorAll('.work-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
-  }, {passive:true});
-
-  // Mobile touch swipe (fallback for browsers where scroll-snap alone isn't enough)
-  let touchStartX = 0, touchStartScroll = 0;
-  track.addEventListener('touchstart', e => {
-    if(!isMobile()) return;
-    touchStartX = e.touches[0].clientX;
-    touchStartScroll = track.scrollLeft;
-  }, {passive:true});
-  track.addEventListener('touchend', e => {
-    if(!isMobile()) return;
-    const dx = touchStartX - e.changedTouches[0].clientX;
-    if(Math.abs(dx) > 40) {
-      const target = Math.max(0, Math.min(count - 1, current + (dx > 0 ? 1 : -1)));
-      track.scrollTo({left: target * getItemWidth(), behavior:'smooth'});
-    }
   }, {passive:true});
 
   goTo(0);
