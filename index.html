@@ -573,13 +573,6 @@ footer { background: #0f1a14; padding: 2.5rem 3rem 2rem; border-top: 1px solid r
   .work-section { padding: 5rem 0; }
   .work-header { padding: 0 2.5rem; margin-bottom: 2.2rem; }
   .work-scroll-track { padding: 0 2.5rem; }
-  .work-card-link { flex: 0 0 80vw; max-width: 320px; }
-  .work-arrows { display: none; }
-  .work-track-outer { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-  .work-track-outer::-webkit-scrollbar { display: none; }
-  .work-scroll-track { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; transform: none !important; transition: none !important; will-change: auto; scrollbar-width: none; }
-  .work-scroll-track::-webkit-scrollbar { display: none; }
-  .work-card-link { scroll-snap-align: start; }
 
   /* Process */
   .process { padding: 5.5rem 2.5rem; }
@@ -873,6 +866,16 @@ footer { background: #0f1a14; padding: 2.5rem 3rem 2rem; border-top: 1px solid r
 
 /* ── MOBILE POLISH ── */
 @media(max-width:768px){
+  /* Work carousel — identical pattern to g4 */
+  .work-section { padding: 4rem 0; }
+  .work-header { padding: 0 1.2rem; margin-bottom: 2rem; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  .work-arrows { display: none; }
+  .work-track-outer { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .work-track-outer::-webkit-scrollbar { display: none; }
+  .work-scroll-track { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; transform: none !important; transition: none !important; will-change: auto; scrollbar-width: none; padding: 0 1.2rem; }
+  .work-scroll-track::-webkit-scrollbar { display: none; }
+  .work-card-link { scroll-snap-align: start; flex: 0 0 80vw; max-width: 300px; }
+
   /* Budget display */
   .budget-display{font-size:.85rem;}
 
