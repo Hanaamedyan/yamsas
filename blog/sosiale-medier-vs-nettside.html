@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&q=80"/>
 <meta property="og:site_name" content="YAMS"/>
 <meta property="article:published_time" content="2026-08-07"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Sosiale medier er ikke nok — derfor trenger bedriften din en nettside","description":"Instagram og Facebook gir deg synlighet, men ikke kontroll. Lær hvorfor en profesjonell nettside er fundamentet all digital markedsføring bør bygges på.","image":"https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&q=80","author":{"@type":"Organization","name":"YAMS","url":"https://yamsas.com/"},"publisher":{"@type":"Organization","name":"YAMS"},"datePublished":"2026-08-07","dateModified":"2026-08-07","mainEntityOfPage":{"@type":"WebPage","@id":"https://yamsas.com/blog/sosiale-medier-vs-nettside.html"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Sosiale medier er ikke nok — derfor trenger bedriften din en nettside","description":"Instagram og Facebook gir deg synlighet, men ikke kontroll.","image":"https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&q=80","author":{"@type":"Organization","name":"YAMS","url":"https://yamsas.com/"},"publisher":{"@type":"Organization","name":"YAMS"},"datePublished":"2026-08-07","dateModified":"2026-08-07","mainEntityOfPage":{"@type":"WebPage","@id":"https://yamsas.com/blog/sosiale-medier-vs-nettside.html"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"/>
 <style>
@@ -30,6 +30,23 @@ html{scroll-behavior:smooth;}
 body{font-family:'PPNeueMontreal',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 a{text-decoration:none;color:inherit;}
 img{display:block;max-width:100%;}
+
+/* ── LANGUAGE TOGGLE ── */
+.en-text{display:none;}
+.no-text{display:block;}
+html[lang="en"] .en-text{display:block;}
+html[lang="en"] .no-text{display:none;}
+/* inline elements */
+span.en-text{display:none;}
+span.no-text{display:inline;}
+html[lang="en"] span.en-text{display:inline;}
+html[lang="en"] span.no-text{display:none;}
+/* list items */
+li.en-text{display:none;}
+li.no-text{display:list-item;}
+html[lang="en"] li.en-text{display:list-item;}
+html[lang="en"] li.no-text{display:none;}
+
 #lang-bar{position:fixed;top:0;left:0;right:0;height:34px;z-index:200;background:rgba(10,10,10,.98);border-bottom:1px solid rgba(245,242,236,.07);display:flex;align-items:center;justify-content:flex-end;padding:0 52px;gap:4px;backdrop-filter:blur(10px);}
 .lb-label{font-size:.6rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,236,.25);margin-right:6px;}
 .lb-btn{font-family:'PPNeueMontreal',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:2px;border:1px solid transparent;background:none;cursor:pointer;color:rgba(245,242,236,.4);transition:color .2s,background .2s,border-color .2s;}
@@ -41,7 +58,6 @@ nav{position:fixed;top:34px;left:0;right:0;z-index:100;display:flex;align-items:
 .nav-links a{font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--white);opacity:.7;transition:opacity .2s;}
 .nav-links a:hover,.nav-links a.active{opacity:1;}
 .nav-cta{font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--black);background:var(--white);padding:.6rem 1.4rem;transition:background .2s;border-radius:50px;}
-.nav-cta:hover{background:var(--off-white);}
 .art-hero{padding:10rem 3rem 3.5rem;max-width:1100px;margin:0 auto;}
 .art-breadcrumb{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,242,236,.35);margin-bottom:1.5rem;display:flex;align-items:center;gap:.7rem;}
 .art-breadcrumb a{color:rgba(245,242,236,.35);transition:color .2s;}
@@ -79,14 +95,14 @@ nav{position:fixed;top:34px;left:0;right:0;z-index:100;display:flex;align-items:
 .sidebar-cta a{display:block;text-align:center;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--black);background:var(--white);padding:.9rem;transition:background .2s;}
 .sidebar-cta a:hover{background:var(--off-white);}
 .related{max-width:1100px;margin:0 auto;padding:0 3rem 6rem;}
-.related h2{font-family:'PPNeueMontreal',sans-serif;font-size:2rem;font-weight:600;letter-spacing:.02em;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid rgba(245,242,236,.1);}
+.related h2{font-family:'PPNeueMontreal',sans-serif;font-size:2rem;font-weight:600;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid rgba(245,242,236,.1);}
 .related-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:rgba(245,242,236,.06);}
 .related-card{background:var(--black);padding:1.8rem;transition:background .2s;display:block;}
 .related-card:hover{background:#111;}
 .related-cat{font-size:.57rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem;}
 .related-title{font-family:'PPNeueMontreal',sans-serif;font-size:1.1rem;font-weight:600;line-height:1.35;color:var(--white);margin-bottom:.5rem;}
 .related-arrow{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);}
-.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:150;}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;}
 .burger span{display:block;width:22px;height:1.5px;background:var(--white);transition:transform .3s,opacity .2s;}
 .burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
 .burger.open span:nth-child(2){opacity:0;}
@@ -94,16 +110,14 @@ nav{position:fixed;top:34px;left:0;right:0;z-index:100;display:flex;align-items:
 .mobile-overlay{display:none;position:fixed;inset:0;background:var(--black);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;}
 .mobile-overlay.open{display:flex;}
 .mobile-overlay a{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,8vw,3rem);color:var(--white);opacity:.6;transition:opacity .2s;}
-.mobile-overlay a:hover{opacity:1;}
 footer{background:#0f1a14;padding:2.5rem 3rem 2rem;border-top:1px solid rgba(245,242,236,.12);}
 .footer-inner{max-width:1300px;margin:0 auto;}
-.footer-totop{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;color:rgba(245,242,236,.4);letter-spacing:.04em;margin-bottom:2rem;transition:color .2s;cursor:pointer;background:none;border:none;}
-.footer-totop:hover{color:rgba(245,242,236,.85);}
+.footer-totop{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;color:rgba(245,242,236,.4);margin-bottom:2rem;transition:color .2s;cursor:pointer;background:none;border:none;}
 .footer-acc-item{border-top:1px solid rgba(245,242,236,.1);}
 .footer-acc-item:last-of-type{border-bottom:1px solid rgba(245,242,236,.1);}
-.footer-acc-row{display:flex;align-items:center;justify-content:space-between;padding:1.35rem 0;cursor:pointer;gap:1rem;}
+.footer-acc-row{display:flex;align-items:center;justify-content:space-between;padding:1.35rem 0;cursor:pointer;}
 .footer-acc-label{font-size:1rem;font-weight:500;color:rgba(245,242,236,.78);transition:color .2s;}
-.footer-acc-btn{background:none;border:none;color:rgba(245,242,236,.4);font-size:1.4rem;font-weight:300;line-height:1;cursor:pointer;transition:transform .3s ease,color .2s;flex-shrink:0;}
+.footer-acc-btn{background:none;border:none;color:rgba(245,242,236,.4);font-size:1.4rem;font-weight:300;line-height:1;cursor:pointer;transition:transform .3s ease,color .2s;}
 .footer-acc-item.open .footer-acc-btn{transform:rotate(45deg);color:#f5f2ec;}
 .footer-acc-item.open .footer-acc-label{color:#f5f2ec;}
 .footer-acc-body{max-height:0;overflow:hidden;transition:max-height .38s ease,opacity .25s ease;opacity:0;}
@@ -115,17 +129,7 @@ footer{background:#0f1a14;padding:2.5rem 3rem 2rem;border-top:1px solid rgba(245
 .footer-copy{font-size:.75rem;color:rgba(245,242,236,.45);}
 .footer-socials{display:flex;gap:2rem;list-style:none;margin:0;padding:0;}
 .footer-socials a{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,242,236,.5);transition:color .2s;display:inline-flex;align-items:center;gap:.45rem;}
-.footer-socials a:hover{color:#f5f2ec;}
-@media(max-width:900px){
-  #lang-bar{padding:0 1.5rem;}
-  nav{padding:1.2rem 1.5rem;}
-  .nav-links,.nav-cta{display:none;}
-  .art-hero{padding:8rem 1.5rem 2.5rem;}
-  .art-layout{grid-template-columns:1fr;padding:0 1.5rem 4rem;gap:3rem;}
-  .art-sidebar{position:static;}
-  .related{padding:0 1.5rem 4rem;}
-  .related-grid{grid-template-columns:1fr;}
-}
+@media(max-width:900px){#lang-bar{padding:0 1.5rem;}nav{padding:1.2rem 1.5rem;}.nav-links,.nav-cta{display:none;}.art-hero{padding:8rem 1.5rem 2.5rem;}.art-layout{grid-template-columns:1fr;padding:0 1.5rem 4rem;gap:3rem;}.art-sidebar{position:static;}.related{padding:0 1.5rem 4rem;}.related-grid{grid-template-columns:1fr;}}
 @media(max-width:768px){.burger{display:flex;}footer{padding:2rem 1.2rem 1.5rem;}.footer-bottom{flex-direction:column;align-items:flex-start;gap:1rem;}}
 </style>
 </head>
@@ -159,73 +163,98 @@ footer{background:#0f1a14;padding:2.5rem 3rem 2rem;border-top:1px solid rgba(245
 
 <div class="art-hero">
   <div class="art-breadcrumb">
-    <a href="../" data-key="crumb-home">Forside</a> / <a href="./index.html" data-key="crumb-blog">Blogg</a> / Sosiale medier vs. nettside
+    <a href="../" data-key="crumb-home">Forside</a> /
+    <a href="./index.html" data-key="crumb-blog">Blogg</a> /
+    <span class="no-text">Sosiale medier vs. nettside</span>
+    <span class="en-text">Social media vs. website</span>
   </div>
   <div class="art-cat">Strategy</div>
-  <h1>Sosiale medier er ikke nok — derfor trenger bedriften din en nettside</h1>
+  <h1 class="no-text">Sosiale medier er ikke nok — derfor trenger bedriften din en nettside</h1>
+  <h1 class="en-text">Social Media Is Not Enough — Why Your Business Needs a Website</h1>
   <div class="art-meta">
-    <span>YAMS</span><span class="dot">·</span><span>7. august 2026</span><span class="dot">·</span><span>6 min lesing</span>
+    <span>YAMS</span><span class="dot">·</span>
+    <span class="no-text">7. august 2026</span><span class="en-text">August 7, 2026</span>
+    <span class="dot">·</span>
+    <span class="no-text">6 min lesing</span><span class="en-text">6 min read</span>
   </div>
 </div>
 
-<img class="art-hero-img" src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&q=80" alt="Sosiale medier vs. nettside" style="max-width:1100px;margin:0 auto 0;display:block;padding:0 3rem;" loading="eager"/>
+<img class="art-hero-img" src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&q=80" alt="Social media vs website" style="max-width:1100px;margin:0 auto;display:block;padding:0 3rem;" loading="eager"/>
 
 <div class="art-layout">
   <article class="art-body">
 
-    <p>Mange bedrifter starter med en Instagram-profil, oppretter en Facebook-side og tenker: <strong>«Dette holder.»</strong> Det er forståelig — sosiale medier er gratis, enkelt å komme i gang med og gir rask synlighet. Men det er en farlig antagelse.</p>
+    <p class="no-text">Mange bedrifter starter med en Instagram-profil, oppretter en Facebook-side og tenker: <strong>«Dette holder.»</strong> Det er forståelig — sosiale medier er gratis, enkelt å komme i gang med og gir rask synlighet. Men det er en farlig antagelse.</p>
+    <p class="en-text">Many businesses start with an Instagram profile, set up a Facebook page and think: <strong>"This is enough."</strong> It's understandable — social media is free, easy to get started with and gives quick visibility. But it's a dangerous assumption.</p>
 
-    <p>Sosiale medier er utleid eiendom. Du leier plass på en plattform du ikke eier, etter regler du ikke bestemmer, med algoritmer som endrer seg uten forvarsel. Nettsiden din er derimot din egen eiendom — et digitalt hjem du kontrollerer fullt og helt.</p>
+    <p class="no-text">Sosiale medier er utleid eiendom. Du leier plass på en plattform du ikke eier, etter regler du ikke bestemmer, med algoritmer som endrer seg uten forvarsel. Nettsiden din er derimot din egen eiendom — et digitalt hjem du kontrollerer fullt og helt.</p>
+    <p class="en-text">Social media is rented property. You're renting space on a platform you don't own, under rules you don't set, with algorithms that change without warning. Your website, on the other hand, is your own property — a digital home you control entirely.</p>
 
-    <h2>Hva skjer når du bare har sosiale medier?</h2>
+    <h2 class="no-text">Hva skjer når du bare har sosiale medier?</h2>
+    <h2 class="en-text">What Happens When You Only Have Social Media?</h2>
 
-    <p>La oss se på noen konkrete scenarioer:</p>
-
+    <p class="no-text">La oss se på noen konkrete scenarioer:</p>
+    <p class="en-text">Let's look at some concrete scenarios:</p>
     <ul>
-      <li><strong>Algoritmen endres</strong> og rekkevidden din halveres over natten — uten at du kan gjøre noe.</li>
-      <li><strong>Kontoen din hackes eller stenges</strong> — og du mister hele kundebasen din med det.</li>
-      <li><strong>Plattformen endrer vilkår</strong> — og plutselig koster det penger å nå følgerne du har bygget opp i årevis.</li>
-      <li><strong>Du rangerer ikke på Google</strong> — for søkemotorer indekserer ikke Instagram-profilen din like godt som en nettside.</li>
+      <li class="no-text"><strong>Algoritmen endres</strong> og rekkevidden din halveres over natten — uten at du kan gjøre noe.</li>
+      <li class="en-text"><strong>The algorithm changes</strong> and your reach is halved overnight — without you being able to do anything.</li>
+      <li class="no-text"><strong>Kontoen din hackes eller stenges</strong> — og du mister hele kundebasen din med det.</li>
+      <li class="en-text"><strong>Your account is hacked or shut down</strong> — and you lose your entire customer base with it.</li>
+      <li class="no-text"><strong>Plattformen endrer vilkår</strong> — og plutselig koster det penger å nå følgerne du har bygget opp i årevis.</li>
+      <li class="en-text"><strong>The platform changes its terms</strong> — and suddenly it costs money to reach the followers you've built over years.</li>
+      <li class="no-text"><strong>Du rangerer ikke på Google</strong> — for søkemotorer indekserer ikke Instagram-profilen din like godt som en nettside.</li>
+      <li class="en-text"><strong>You don't rank on Google</strong> — because search engines don't index your Instagram profile as well as a website.</li>
     </ul>
 
-    <div class="pullquote"><p>«En Facebook-side kan forsvinne over natten. En profesjonell nettside er din for alltid.»</p></div>
-
-    <h2>Hva en nettside gir deg som sosiale medier ikke kan</h2>
-
-    <h3>1. Du eier trafikken</h3>
-    <p>Besøkende på nettsiden din kan fanges opp via e-postlister, kontaktskjemaer og analyser. Du vet hvem de er, hva de gjør og kan ta kontakt igjen — uten å betale for annonsering.</p>
-
-    <h3>2. Google finner deg</h3>
-    <p>Søkemotoroptimalisering (SEO) fungerer bare fullt ut på en nettside. Når noen søker etter «bilpleie i Trondheim» eller «elektriker i Bergen», er det nettsider som dukker opp — ikke Instagram-profiler.</p>
-
-    <h3>3. Du bygger troverdighet</h3>
-    <p>En gjennomarbeidet nettside signaliserer seriøsitet. Undersøkelser viser at <strong>75 % av forbrukere</strong> vurderer en bedrifts troverdighet basert på nettsiden. En Instagram-profil alene overbeviser langt færre.</p>
-
-    <h3>4. Du selger døgnet rundt</h3>
-    <p>Nettsiden jobber for deg 24/7. Kontaktskjemaer, prislister, booking-systemer og produktsider konverterer besøkende til kunder — selv mens du sover.</p>
-
-    <div class="tip-box">
-      <strong>YAMS-tips</strong>
-      <p>Bruk sosiale medier til å drive trafikk til nettsiden — ikke som erstatning for den. La Instagram og Facebook være inngangsdøren, men la nettsiden være stedet der kunden tar beslutningen.</p>
+    <div class="pullquote">
+      <p class="no-text">«En Facebook-side kan forsvinne over natten. En profesjonell nettside er din for alltid.»</p>
+      <p class="en-text">"A Facebook page can disappear overnight. A professional website is yours forever."</p>
     </div>
 
-    <h2>Sosiale medier og nettside — sterkest sammen</h2>
+    <h2 class="no-text">Hva en nettside gir deg som sosiale medier ikke kan</h2>
+    <h2 class="en-text">What a Website Gives You That Social Media Cannot</h2>
 
-    <p>Poenget er ikke å velge det ene over det andre. En sterk digital tilstedeværelse kombinerer begge: sosiale medier for synlighet og engasjement, nettsiden for konvertering og troverdighet.</p>
+    <h3 class="no-text">1. Du eier trafikken</h3>
+    <h3 class="en-text">1. You Own the Traffic</h3>
+    <p class="no-text">Besøkende på nettsiden din kan fanges opp via e-postlister, kontaktskjemaer og analyser. Du vet hvem de er, hva de gjør og kan ta kontakt igjen — uten å betale for annonsering.</p>
+    <p class="en-text">Visitors to your website can be captured through email lists, contact forms and analytics. You know who they are, what they do and can reach out again — without paying for advertising.</p>
 
-    <p>En god nettside gir deg:</p>
-    <ul>
-      <li>Et fast ankerpunkt for all markedsføring</li>
-      <li>SEO-trafikk fra Google — gratis og langvarig</li>
-      <li>Full kontroll over innhold, design og brukeropplevelse</li>
-      <li>En plattform for å samle anmeldelser, vise portefølje og selge tjenester</li>
-    </ul>
+    <h3 class="no-text">2. Google finner deg</h3>
+    <h3 class="en-text">2. Google Finds You</h3>
+    <p class="no-text">Søkemotoroptimalisering (SEO) fungerer bare fullt ut på en nettside. Når noen søker etter «bilpleie i Trondheim» eller «elektriker i Bergen», er det nettsider som dukker opp — ikke Instagram-profiler.</p>
+    <p class="en-text">Search engine optimisation (SEO) only works fully on a website. When someone searches for "car care in Trondheim" or "electrician in Bergen", it's websites that show up — not Instagram profiles.</p>
 
-    <h2>Hva koster det å ikke ha en nettside?</h2>
+    <h3 class="no-text">3. Du bygger troverdighet</h3>
+    <h3 class="en-text">3. You Build Credibility</h3>
+    <p class="no-text">En gjennomarbeidet nettside signaliserer seriøsitet. Undersøkelser viser at <strong>75 % av forbrukere</strong> vurderer en bedrifts troverdighet basert på nettsiden. En Instagram-profil alene overbeviser langt færre.</p>
+    <p class="en-text">A well-crafted website signals professionalism. Research shows that <strong>75% of consumers</strong> judge a business's credibility based on its website. An Instagram profile alone convinces far fewer.</p>
 
-    <p>Tenk på det slik: For hver dag du utsetter, mister du potensielle kunder som søker på Google og finner konkurrenten din i stedet. SEO tar tid å bygge — jo tidligere du starter, jo raskere begynner trafikken å strømme inn.</p>
+    <h3 class="no-text">4. Du selger døgnet rundt</h3>
+    <h3 class="en-text">4. You Sell Around the Clock</h3>
+    <p class="no-text">Nettsiden jobber for deg 24/7. Kontaktskjemaer, prislister, booking-systemer og produktsider konverterer besøkende til kunder — selv mens du sover.</p>
+    <p class="en-text">Your website works for you 24/7. Contact forms, price lists, booking systems and product pages convert visitors into customers — even while you sleep.</p>
 
-    <p>Hos YAMS lager vi nettsider som ikke bare ser bra ut, men som faktisk rangerer på Google og konverterer besøkende til betalende kunder. <a href="../quiz.html">Ta quizen vår</a> og få et skreddersydd tilbud innen 24 timer.</p>
+    <div class="tip-box">
+      <strong class="no-text">YAMS-tips</strong>
+      <strong class="en-text">YAMS tip</strong>
+      <p class="no-text">Bruk sosiale medier til å drive trafikk til nettsiden — ikke som erstatning for den. La Instagram og Facebook være inngangsdøren, men la nettsiden være stedet der kunden tar beslutningen.</p>
+      <p class="en-text">Use social media to drive traffic to your website — not as a replacement for it. Let Instagram and Facebook be the front door, but let the website be where the customer makes their decision.</p>
+    </div>
+
+    <h2 class="no-text">Sosiale medier og nettside — sterkest sammen</h2>
+    <h2 class="en-text">Social Media and Website — Strongest Together</h2>
+
+    <p class="no-text">Poenget er ikke å velge det ene over det andre. En sterk digital tilstedeværelse kombinerer begge: sosiale medier for synlighet og engasjement, nettsiden for konvertering og troverdighet.</p>
+    <p class="en-text">The point is not to choose one over the other. A strong digital presence combines both: social media for visibility and engagement, the website for conversion and credibility.</p>
+
+    <h2 class="no-text">Hva koster det å ikke ha en nettside?</h2>
+    <h2 class="en-text">What Does It Cost Not to Have a Website?</h2>
+
+    <p class="no-text">Tenk på det slik: For hver dag du utsetter, mister du potensielle kunder som søker på Google og finner konkurrenten din i stedet. SEO tar tid å bygge — jo tidligere du starter, jo raskere begynner trafikken å strømme inn.</p>
+    <p class="en-text">Think of it this way: every day you delay, you lose potential customers who search on Google and find your competitor instead. SEO takes time to build — the earlier you start, the sooner the traffic starts flowing in.</p>
+
+    <p class="no-text">Hos YAMS lager vi nettsider som ikke bare ser bra ut, men som faktisk rangerer på Google og konverterer besøkende til betalende kunder. <a href="../quiz.html">Ta quizen vår</a> og få et skreddersydd tilbud innen 24 timer.</p>
+    <p class="en-text">At YAMS we build websites that don't just look great, but actually rank on Google and convert visitors into paying customers. <a href="../quiz.html">Take our quiz</a> and get a tailored quote within 24 hours.</p>
 
   </article>
 
@@ -233,10 +262,10 @@ footer{background:#0f1a14;padding:2.5rem 3rem 2rem;border-top:1px solid rgba(245
     <div class="sidebar-box">
       <h4 data-key="sb-toc">I denne artikkelen</h4>
       <ul class="sidebar-toc">
-        <li><a href="#">Hva skjer uten nettside?</a></li>
-        <li><a href="#">Hva nettsiden gir deg</a></li>
-        <li><a href="#">Sterkest sammen</a></li>
-        <li><a href="#">Hva koster det å vente?</a></li>
+        <li><a href="#"><span class="no-text">Hva skjer uten nettside?</span><span class="en-text">Without a website?</span></a></li>
+        <li><a href="#"><span class="no-text">Hva nettsiden gir deg</span><span class="en-text">What a website gives you</span></a></li>
+        <li><a href="#"><span class="no-text">Sterkest sammen</span><span class="en-text">Strongest together</span></a></li>
+        <li><a href="#"><span class="no-text">Hva koster det å vente?</span><span class="en-text">What does waiting cost?</span></a></li>
       </ul>
     </div>
     <div class="sidebar-cta">
@@ -252,37 +281,27 @@ footer{background:#0f1a14;padding:2.5rem 3rem 2rem;border-top:1px solid rgba(245
   <div class="related-grid">
     <a class="related-card" href="./seo-for-sma-bedrifter.html">
       <div class="related-cat">SEO</div>
-      <div class="related-title">SEO for små bedrifter — slik rangerer du høyere på Google</div>
-      <div class="related-arrow">Les mer →</div>
+      <div class="related-title no-text">SEO for små bedrifter — slik rangerer du høyere på Google</div>
+      <div class="related-title en-text">SEO for small businesses — how to rank higher on Google</div>
+      <div class="related-arrow" data-key="read-more">Les mer →</div>
     </a>
     <a class="related-card" href="./hvorfor-bedriften-trenger-nettside.html">
       <div class="related-cat">Strategy</div>
-      <div class="related-title">Hvorfor bedriften din trenger en profesjonell nettside i 2026</div>
-      <div class="related-arrow">Les mer →</div>
+      <div class="related-title no-text">Hvorfor bedriften din trenger en profesjonell nettside i 2026</div>
+      <div class="related-title en-text">Why your business needs a professional website in 2026</div>
+      <div class="related-arrow" data-key="read-more">Les mer →</div>
     </a>
   </div>
 </div>
 
 <footer>
   <div class="footer-inner">
-    <button class="footer-totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
-      Til toppen
-    </button>
-    <div class="footer-acc-item">
-      <div class="footer-acc-row" onclick="this.closest('.footer-acc-item').classList.toggle('open')"><span class="footer-acc-label">Tjenester</span><button class="footer-acc-btn">+</button></div>
-      <div class="footer-acc-body"><ul class="footer-acc-links"><li><a href="../services.html">Web Design</a></li><li><a href="../services.html">Utvikling</a></li><li><a href="../services.html">E-handel</a></li><li><a href="../services.html">Vekststrategi</a></li></ul></div>
-    </div>
-    <div class="footer-acc-item">
-      <div class="footer-acc-row" onclick="this.closest('.footer-acc-item').classList.toggle('open')"><span class="footer-acc-label">Selskap</span><button class="footer-acc-btn">+</button></div>
-      <div class="footer-acc-body"><ul class="footer-acc-links"><li><a href="../index.html">Vårt arbeid</a></li><li><a href="../contact.html">Kontakt</a></li><li><a href="./index.html" style="color:#C8A660;">Blogg</a></li></ul></div>
-    </div>
-    <div class="footer-acc-item">
-      <div class="footer-acc-row" onclick="this.closest('.footer-acc-item').classList.toggle('open')"><span class="footer-acc-label">Kontakt</span><button class="footer-acc-btn">+</button></div>
-      <div class="footer-acc-body"><ul class="footer-acc-links"><li><a href="mailto:yamsasno@gmail.com">yamsasno@gmail.com</a></li><li><span style="color:rgba(245,242,236,.5);font-size:.88rem;">Trondheim, Norge</span></li><li><a href="tel:+4799109943">Johan: 99 10 99 43</a></li><li><a href="tel:+4790721481">Hana: 90 72 14 81</a></li></ul></div>
-    </div>
+    <button class="footer-totop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg> <span class="no-text">Til toppen</span><span class="en-text">Back to top</span></button>
+    <div class="footer-acc-item"><div class="footer-acc-row" onclick="this.closest('.footer-acc-item').classList.toggle('open')"><span class="footer-acc-label" data-key="ft-services">Tjenester</span><button class="footer-acc-btn">+</button></div><div class="footer-acc-body"><ul class="footer-acc-links"><li><a href="../services.html">Web Design</a></li><li><a href="../services.html" data-key="ft-dev">Utvikling</a></li><li><a href="../services.html">E-handel</a></li></ul></div></div>
+    <div class="footer-acc-item"><div class="footer-acc-row" onclick="this.closest('.footer-acc-item').classList.toggle('open')"><span class="footer-acc-label" data-key="ft-company">Selskap</span><button class="footer-acc-btn">+</button></div><div class="footer-acc-body"><ul class="footer-acc-links"><li><a href="../index.html" data-key="ft-work">Vårt arbeid</a></li><li><a href="../contact.html" data-key="ft-contact">Kontakt</a></li><li><a href="./index.html" style="color:#C8A660;" data-key="nav-blog">Blogg</a></li></ul></div></div>
+    <div class="footer-acc-item"><div class="footer-acc-row" onclick="this.closest('.footer-acc-item').classList.toggle('open')"><span class="footer-acc-label" data-key="ft-contact-label">Kontakt</span><button class="footer-acc-btn">+</button></div><div class="footer-acc-body"><ul class="footer-acc-links"><li><a href="mailto:yamsasno@gmail.com">yamsasno@gmail.com</a></li><li><span style="color:rgba(245,242,236,.5);font-size:.88rem;">Trondheim, Norge</span></li><li><a href="tel:+4799109943">Johan: 99 10 99 43</a></li><li><a href="tel:+4790721481">Hana: 90 72 14 81</a></li></ul></div></div>
     <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2026 YAMS &middot; <a href="../privacy.html" style="color:inherit;">Personvern</a></span>
+      <span class="footer-copy">&copy; 2026 YAMS &middot; <a href="../privacy.html" style="color:inherit;" data-key="ft-privacy">Personvern</a></span>
       <ul class="footer-socials">
         <li><a href="https://www.instagram.com/yamssolutions/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg> Instagram</a></li>
         <li><a href="https://www.linkedin.com/company/yamsas/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="3" ry="3"/><line x1="8" y1="11" x2="8" y2="16"/><line x1="8" y1="8" x2="8" y2="8.5" stroke-width="2.5"/><line x1="12" y1="16" x2="12" y2="11"/><path d="M12 13a3 3 0 0 1 6 0v3"/></svg> LinkedIn</a></li>
@@ -292,12 +311,19 @@ footer{background:#0f1a14;padding:2.5rem 3rem 2rem;border-top:1px solid rgba(245
 </footer>
 
 <script>
-const BT={en:{'nav-services':'Services','nav-home':'Home','nav-about':'About','nav-blog':'Blog','nav-contact':'Contact','crumb-home':'Home','crumb-blog':'Blog','sb-toc':'In this article','sb-cta-title':'Get a quote','sb-cta-p':'We build websites that look great, load fast and rank on Google.','sb-cta-link':'Start here →','related-title':'Read also'},no:{'nav-services':'Tjenester','nav-home':'Hjem','nav-about':'Om oss','nav-blog':'Blogg','nav-contact':'Kontakt','crumb-home':'Forside','crumb-blog':'Blogg','sb-toc':'I denne artikkelen','sb-cta-title':'Få et tilbud','sb-cta-p':'Vi lager nettsider som ser bra ut, laster raskt og rangerer på Google.','sb-cta-link':'Start her →','related-title':'Les også'}};
-function setLang(lang){localStorage.setItem('yams_lang',lang);document.getElementById('lb-en').classList.toggle('active',lang==='en');document.getElementById('lb-no').classList.toggle('active',lang==='no');document.documentElement.lang=lang;document.querySelectorAll('[data-key]').forEach(el=>{const v=BT[lang][el.dataset.key];if(v!==undefined)el.innerHTML=v;});}
+const BT={
+  en:{'nav-services':'Services','nav-home':'Home','nav-about':'About','nav-blog':'Blog','nav-contact':'Contact','crumb-home':'Home','crumb-blog':'Blog','sb-toc':'In this article','sb-cta-title':'Get a quote','sb-cta-p':'We build websites that look great, load fast and rank on Google.','sb-cta-link':'Start here →','related-title':'Read also','read-more':'Read more →','ft-services':'Services','ft-dev':'Development','ft-company':'Company','ft-work':'Our work','ft-contact':'Contact','ft-contact-label':'Contact','ft-privacy':'Privacy Policy'},
+  no:{'nav-services':'Tjenester','nav-home':'Hjem','nav-about':'Om oss','nav-blog':'Blogg','nav-contact':'Kontakt','crumb-home':'Forside','crumb-blog':'Blogg','sb-toc':'I denne artikkelen','sb-cta-title':'Få et tilbud','sb-cta-p':'Vi lager nettsider som ser bra ut, laster raskt og rangerer på Google.','sb-cta-link':'Start her →','related-title':'Les også','read-more':'Les mer →','ft-services':'Tjenester','ft-dev':'Utvikling','ft-company':'Selskap','ft-work':'Vårt arbeid','ft-contact':'Kontakt','ft-contact-label':'Kontakt','ft-privacy':'Personvern'}
+};
+function setLang(lang){
+  localStorage.setItem('yams_lang',lang);
+  document.getElementById('lb-en').classList.toggle('active',lang==='en');
+  document.getElementById('lb-no').classList.toggle('active',lang==='no');
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-key]').forEach(el=>{const v=BT[lang][el.dataset.key];if(v!==undefined)el.innerHTML=v;});
+}
 setLang(localStorage.getItem('yams_lang')||'no');
 </script>
-<script>
-(function(){const btn=document.getElementById('burgerBtn');const menu=document.getElementById('mobileOverlay');if(!btn||!menu)return;btn.addEventListener('click',()=>{btn.classList.toggle('open');menu.classList.toggle('open');document.body.style.overflow=menu.classList.contains('open')?'hidden':'';});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{btn.classList.remove('open');menu.classList.remove('open');document.body.style.overflow='';}));})();
-</script>
+<script>(function(){const btn=document.getElementById('burgerBtn');const menu=document.getElementById('mobileOverlay');if(!btn||!menu)return;btn.addEventListener('click',()=>{btn.classList.toggle('open');menu.classList.toggle('open');document.body.style.overflow=menu.classList.contains('open')?'hidden':'';});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{btn.classList.remove('open');menu.classList.remove('open');document.body.style.overflow='';}));})();</script>
 </body>
 </html>
