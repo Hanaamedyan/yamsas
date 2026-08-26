@@ -43,6 +43,80 @@
 
 <!-- Sitemap -->
 <link rel="sitemap" type="application/xml" href="./sitemap.xml">
+
+<!-- Structured Data — Google Preferred Sources -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://hanaamedyan.github.io/yamsas/#organization",
+      "name": "YAMS AS",
+      "alternateName": "YAMS Website Solutions",
+      "url": "https://hanaamedyan.github.io/yamsas/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://hanaamedyan.github.io/yamsas/yams-logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "description": "Norwegian web design and development studio building high-performance websites, e-commerce platforms, and digital strategies for startups and established brands.",
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Trondheim, Norway"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Norway"
+      },
+      "sameAs": [
+        "https://www.instagram.com/yamsas.no/"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "yamsasno@gmail.com",
+        "availableLanguage": ["English", "Norwegian"]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://hanaamedyan.github.io/yamsas/#website",
+      "url": "https://hanaamedyan.github.io/yamsas/",
+      "name": "YAMS — Website Solutions",
+      "description": "Norwegian web design and development studio.",
+      "publisher": { "@id": "https://hanaamedyan.github.io/yamsas/#organization" },
+      "inLanguage": ["en", "no"]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://hanaamedyan.github.io/yamsas/#service",
+      "name": "YAMS AS",
+      "image": "https://hanaamedyan.github.io/yamsas/yams-logo.png",
+      "url": "https://hanaamedyan.github.io/yamsas/",
+      "description": "Web design, web development, growth strategy and e-commerce solutions for Norwegian businesses.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Trondheim",
+        "addressCountry": "NO"
+      },
+      "priceRange": "$$",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Web Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Design" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Growth Strategy" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "E-commerce Development" } }
+        ]
+      },
+      "parentOrganization": { "@id": "https://hanaamedyan.github.io/yamsas/#organization" }
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
